@@ -1,3 +1,7 @@
+@font-face {
+    font-family: "Koulen";
+    src: url("../fonts/Koulen-Regular.ttf") format("truetype");
+  }
 /* General */
 body {
     background-color: #fdf0e6;
@@ -108,4 +112,17 @@ body {
 .forgot-password-text a:hover,
 .signup-text a:hover {
     text-decoration: underline;
+}
+
+/* Welcome Text */
+.welcome-text {
+    color: #F4A258;
+    font-size: 128px;
+    font-family: 'Koulen', sans-serif;
+    margin-bottom: 30px;
+    text-align: center; /* Centra horizontalmente el texto */
+    display: flex; /* Necesario para centrar dentro del contenedor */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 100%; /* Asegura que ocupe toda la altura disponible */
 }

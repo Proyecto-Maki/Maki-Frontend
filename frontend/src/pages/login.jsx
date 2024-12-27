@@ -28,7 +28,7 @@ const Login = () => {
                 className="logo-img"
                 style={{ height: "100px", marginRight: "15px" }}
                 />
-                    <h1 className="welcome-text">¡BIENVENIDO!</h1>
+                    <h2 className="welcome-text">¡BIENVENIDO!</h2>
                     <form className="login-form" onSubmit={handleSubmit}>
                         <div className="form-group">
                             <input
