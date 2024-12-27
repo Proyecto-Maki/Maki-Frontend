@@ -88,7 +88,7 @@
 
   .btn-custom {
     background-color: #FFD96E; /* Color de fondo */
-    color: #FCF3E3;             /* Color del texto */
+    color: white;             /* Color del texto */
     border: none;             /* Sin bordes */
     border-radius: 8px;       /* Bordes redondeados */
     padding: 10px 20px;       /* Espaciado interno */
