@@ -1,0 +1,40 @@
+/* Fuente personalizada */
+@font-face {
+    font-family: "AoboshiOne";
+    src: url("../fonts/AoboshiOne-Regular.ttf") format("truetype");
+  }
+  
+  body {
+    font-family: "AoboshiOne", sans-serif;
+  }
+  
+  /* Navbar */
+  .navbar {
+    width: 100%;
+    height: 80px;
+  }
+
+  .navbar .nav-link:hover {
+    color: #ffd96e;
+  }
+  
+  .logo-img {
+    height: 50px;
+  }
+  
+  .btn-custom {
+    background-color: #FFD96E; /* Color de fondo */
+    color: white;             /* Color del texto */
+    border: none;             /* Sin bordes */
+    border-radius: 8px;       /* Bordes redondeados */
+    padding: 10px 20px;       /* Espaciado interno */
+    font-size: 16px;          /* Tamaño de la fuente */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+  
+  .btn-custom:hover {
+    background-color: #ffc84c; /* Fondo más oscuro en hover */
+    transform: scale(1.05);    /* Animación de escala */
+  }
+  
+  
