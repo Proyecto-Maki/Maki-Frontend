@@ -1,36 +1,46 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import logo from '../img/Logotipo Maki.png'; // Asegúrate de que la ruta sea correcta
+import logo from '../img/Logotipo Maki.png'; // Ruta al logo
 
 function Navbar() {
   return (
-    <nav className="navbar navbar-expand-lg fixed-top navbar-light" style={{ backgroundColor: '#7BB66D' }}>
+    <nav
+      className="navbar navbar-expand-lg fixed-top"
+      style={{ backgroundColor: "#7BB66D", boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)" }}
+    >
       <div className="container-fluid">
-        <Link className="navbar-brand" to="/">
-        <img src={logo} alt="Logo" className="logo-img" />
-        </Link>
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
+        {/* Logo */}
+        <div className="navbar-brand">
+          <img
+            src={logo}
+            alt="Logo Maki"
+            className="logo-img"
+            style={{ height: "50px", marginRight: "15px" }}
+          />
+        </div>
+
+        {/* Links y botones */}
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav mx-auto">
             <li className="nav-item">
-              <Link className="nav-link" to="/login">Home</Link>
+              <a className="nav-link" href="/">Home</a>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/register">Servicios</Link>
+              <a className="nav-link" href="/servicios">Servicios</a>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/register">Productos</Link>
+              <a className="nav-link" href="/productos">Productos</a>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/register">MakiPaws</Link>
+              <a className="nav-link" href="/makipaws">MakiPaws</a>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/register">Acerca de Maki</Link>
+              <a className="nav-link" href="/acerca">Acerca de Maki</a>
             </li>
           </ul>
-          <button className="btn-custom" type="button">Login</button>
+          {/* Botones adicionales */}
+          <div style={{ display: "flex", alignItems: "center" }}>
+          <button className="btn-custom">Login</button>
+          </div>
         </div>
       </div>
     </nav>

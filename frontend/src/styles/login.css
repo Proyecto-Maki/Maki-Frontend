@@ -1,9 +1,111 @@
+/* General */
 body {
-    font-family: Arial, sans-serif;
-    background-color: rgb(255, 246, 196); 
+    background-color: #fdf0e6;
+    font-family: 'Aoboshi One', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Asegúrate de ocupar toda la pantalla */
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+}
+
+/* Login Container */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: #fdf0e6;
+}
+
+/* Login Content */
+.login-content {
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: none;
+    background: transparent;
+    max-width: 400px;
+    width: 100%;
+}
+
+/* Logo */
+.logo {
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+/* Welcome Text */
+.welcome-text {
+    color: #f39029;
+    font-size: 36px;
+    margin-bottom: 30px;
+}
+
+/* Form */
+.login-form {
+    margin: 0 auto;
+}
+
+/* Input Fields */
+.custom-input {
+    background: #e8f1e9;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 20px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #4a4a4a;
+}
+
+.custom-input::placeholder {
+    color: #b5b5b5;
+}
+
+/* Show Password Button */
+.show-password-btn {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #4a4a4a;
+}
+
+/* Login Button */
+.login-btn {
+    background-color: #8fc064;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* Links */
+.forgot-password-text,
+.signup-text {
+    font-size: 14px;
+    margin-top: 10px;
+    color: #4a4a4a;
+}
+
+.forgot-password-text a,
+.signup-text a {
+    color: #f39029;
+    text-decoration: none;
+}
+
+.forgot-password-text a:hover,
+.signup-text a:hover {
+    text-decoration: underline;
 }
