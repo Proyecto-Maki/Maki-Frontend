@@ -1,27 +1,91 @@
-/* Fuente personalizada */
+/*navbar.css Fuente personalizada */
 @font-face {
-    font-family: "AoboshiOne";
-    src: url("../fonts/AoboshiOne-Regular.ttf") format("truetype");
-  }
-  
-  body {
-    font-family: "AoboshiOne", sans-serif;
-  }
-  
-  /* Navbar */
-  .navbar {
-    width: 100%;
-    height: 80px;
+  font-family: "AoboshiOne";
+  src: url("../fonts/AoboshiOne-Regular.ttf") format("truetype");
+}
+
+/* Navbar */
+.navbar {
+  width: 100%;
+  height: 80px;
+  font-family: "AoboshiOne", sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.nav-link {
+  color: white; 
+  transition: color 0.3s ease, transform 0.3s ease; 
+}
+
+.navbar .nav-link:hover {
+  color: #ffd96e; 
+  transform: scale(1.1); 
+}
+
+.logo-img {
+  height: 50px;
+}
+
+.btn-custom {
+  background-color: #FFD96E; 
+  color: white; 
+  border: none; 
+  border-radius: 8px; 
+  padding: 10px 20px; 
+  font-size: 16px; 
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  display: block; 
+  margin: 0 auto; 
+}
+
+/* Centrar el botón dentro de su contenedor */
+.navbar .navbar-nav {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.btn-custom:hover {
+  background-color: #ffc84c; 
+  transform: scale(1.05); 
+}
+
+/* Navbar para pantallas pequeñas */
+@media (max-width: 992px) {
+  .navbar-nav {
+    flex-direction: column;
+    text-align: center;
   }
 
-  .navbar .nav-link:hover {
-    color: #ffd96e;
+  .navbar-toggler {
+    display: block; 
   }
-  
+
+  .navbar-collapse {
+    display: none; 
+  }
+
+  .navbar-collapse.show {
+    display: block; 
+    background-color: #7BB66D;  
+    width: 30%;             
+    height: 100vh;          
+    position: absolute;
+    top: 80px;              
+    right: 0;               
+    box-shadow: -2px 4px 6px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Navbar para pantallas más pequeñas (por debajo de 576px) */
+@media (max-width: 576px) {
   .logo-img {
-    height: 50px;
+    height: 40px;
   }
-  
+
   .btn-custom {
     background-color: #FFD96E; /* Color de fondo */
     color: #FCF3E3;             /* Color del texto */
@@ -30,11 +94,7 @@
     padding: 10px 20px;       /* Espaciado interno */
     font-size: 16px;          /* Tamaño de la fuente */
     transition: transform 0.3s ease, background-color 0.3s ease;
+    font-size: 14px;
+    padding: 8px 16px; 
   }
-  
-  .btn-custom:hover {
-    background-color: #ffc84c; /* Fondo más oscuro en hover */
-    transform: scale(1.05);    /* Animación de escala */
-  }
-  
-  
+}
