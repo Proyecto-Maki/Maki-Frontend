@@ -37,7 +37,12 @@ function Register() {
         }
       })
       .catch((error) => {
-        console.error("Error:", error.response ? error.response.data : error.message);
+        if (error.response) {
+          console.error("Error response:", error.response.data);
+          console.error("Status code:", error.response.status);
+        } else {
+          console.error("Error:", error.message);
+        }
       });
     };
 
