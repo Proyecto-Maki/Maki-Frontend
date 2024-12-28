@@ -1,25 +1,46 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Navbar from '../components/navbar'; // Import Navbar
+import Navbar from '../components/navbar'; 
 import "../styles/register.css";
+import api from "../api";
 
 function Register() {
-    const [type, setType] = useState("user"); // 'user' or 'foundation'
+    const [type, setType] = useState("user");
     const [formData, setFormData] = useState({});
-  
+    const navigate = useNavigate();
+
     const handleChange = (e) => {
       setFormData({
         ...formData,
         [e.target.name]: e.target.value,
       });
     };
-  
-    const handleSubmit = (e) => {
+
+    const handleSubmit = async (e) => {
       e.preventDefault();
-      console.log("Form Data:", formData);
-      // Aquí puedes enviar los datos al backend usando fetch o axios
+      const dataToSubmit = {
+        ...formData,
+        is_verified: false, // Ensure the is_verified field is included
+      };
+      console.log(dataToSubmit);
+
+      const url = type === "user" ? "registro/cliente/" : "registro/fundacion/";
+
+      api
+      .post(url, dataToSubmit)
+      .then((response) => {
+        if (response.status === 201) {
+          console.log("Usuario registrado correctamente");
+          //navigate("/login");
+        } else {
+          console.log("Error al registrar el usuario");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error.response ? error.response.data : error.message);
+      });
     };
-  
+
     return (
       <>
         <Navbar /> {/* Add Navbar component */}
