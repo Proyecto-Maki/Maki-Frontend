@@ -1,36 +1,3 @@
-/*@font-face {
-    font-family: "Koulen";
-    src: url("../fonts/Koulen-Regular.ttf") format("truetype");
-}*/
-
-/*body {
-    background-color: #fdf0e6;
-    /*background-image: url("../src/img/cuerpo_Perro.png");
-    background-position: center bottom;
-    background-size: 60%;
-    background-repeat: no-repeat;
-    font-family: 'Aoboshi One', sans-serif;
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}*/
-
-/*contenedor del home*/
-/*.home-container{
-    display: flex;
-    background-color: #7BB66D;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-*/
 @font-face {
     font-family: "Koulen";
     src: url("../fonts/Koulen-Regular.ttf") format("truetype");
@@ -52,25 +19,37 @@ body {
     align-items: center;
 }
 
-.backgroundHome-container {
-    background-image: url("../src/img/cuerpo_Perro.png"); 
-    background-size: cover; 
+.dog__animation {
+    /*background-image: url("../src/img/cuerpo_Perro.png"); */
+    /*background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat; 
-    height: 100vh; /*ola*/ 
+    height: 100vh; 
     width: 100vw; 
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: translateY(0px);
+    transform: translateY(0px);*/
     border: 2px solid red; 
-    
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100px; 
+    animation: moveDog 5s linear infinite;
 }
 
-.cuerpo_Perro { /*intento de acomodar la imagen del perro*/
-    width: 50px;
-    height: auto;  
-}
+/*@keyframes moveDog {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(100px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}*/
 
 .home-container {
     display: flex;
