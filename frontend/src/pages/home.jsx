@@ -12,8 +12,7 @@ const Home = () => {
             <Navbar />
 
             <div className="home-container">
-                <div className="background-container">
-                
+                <div className="backgroundHome-container">
                     <div className="home-content">
                         <div className="left-text-container">
                             ¡COMPRA <br /> LO MEJOR 

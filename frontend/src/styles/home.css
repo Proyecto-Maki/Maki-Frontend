@@ -52,8 +52,8 @@ body {
     align-items: center;
 }
 
-.background-container {
-    background-image: url("../src/img/cuerpo_Perro.svg"); 
+.backgroundHome-container {
+    background-image: url("../src/img/cuerpo_Perro.png"); 
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat; 
@@ -62,7 +62,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    /*border: 2px solid red; */
+    transform: translateY(0px);
+    border: 2px solid red; 
+    
+}
+
+.cuerpo_Perro { /*intento de acomodar la imagen del perro*/
+    width: 50px;
+    height: auto;  
 }
 
 .home-container {
