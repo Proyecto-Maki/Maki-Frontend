@@ -34,6 +34,7 @@ function Register() {
           //navigate("/login");
         } else {
           console.log("Error al registrar el usuario");
+          console.log(response);
         }
       })
       .catch((error) => {
