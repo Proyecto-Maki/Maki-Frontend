@@ -2,6 +2,7 @@ import axios from 'axios';
 import { ACCESS_TOKEN } from './constants';
 
 const apiURL = 'https://maki-backend-production.up.railway.app/';
+console.log("API URL:", import.meta.env.VITE_API_URL);
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL || apiURL,
 });
