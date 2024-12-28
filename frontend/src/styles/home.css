@@ -1,0 +1,31 @@
+@font-face {
+    font-family: "Koulen";
+    src: url("../fonts/Koulen-Regular.ttf") format("truetype");
+}
+
+body {
+    background-color: #fdf0e6;
+    /*background-image: url("../src/img/cuerpo_Perro.png");*/
+    background-position: center bottom;
+    background-size: 60%;
+    background-repeat: no-repeat;
+    font-family: 'Aoboshi One', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*contenedor del home*/
+.home-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    width: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
