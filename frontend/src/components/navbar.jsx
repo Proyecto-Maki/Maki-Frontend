@@ -12,7 +12,7 @@ function Navbar() {
   return (
     <nav
       className="navbar navbar-expand-lg fixed-top"
-      style={{ backgroundColor: "#7BB66D", boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)" }}
+      style={{ backgroundColor: "#7BB66D", boxShadow: "#7BB66D" }}
     >
       <div className="container-fluid">
         {/* Logo */}
@@ -34,7 +34,7 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav mx-auto">
             <li className="nav-item">
-              <a className="nav-link" href="/home">Home</a>
+              <a className="nav-link" href="/">Home</a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="/servicios">Servicios</a>

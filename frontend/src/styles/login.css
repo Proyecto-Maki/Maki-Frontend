@@ -6,7 +6,7 @@
 /* General */
 body {
     background-color: #fdf0e6;
-    background-image: url("../src/img/fondo.svg");
+    /*background-image: url("../src/img/fondo.svg");*/
     background-position: center bottom;
     background-size: 60%;
     background-repeat: no-repeat;
@@ -19,6 +19,30 @@ body {
     align-items: center;
 }
 
+/*Contenedor imagen fondo del login*/
+.background-container {
+    background-image: url("../src/img/fondo.svg"); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    height: 100vh; /*ola*/ 
+    width: 100vw; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*border: 2px solid red; */
+}
+
+/* Contenedor del contenido */
+.login-content {
+    text-align: center;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: none;
+    background: transparent;
+    /*max-width: 400px;*/
+    width: 400px
+}
 /* Login Container */
 .login-container {
     display: flex;
@@ -27,18 +51,6 @@ body {
     width: 100%;
     height: 100%;
     position: relative;
-
-}
-
-/* Login Content */
-.login-content {
-    text-align: center;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: none;
-    background: transparent;
-    max-width: 400px;
-    width: 100%;
 }
 
 /* Logo */

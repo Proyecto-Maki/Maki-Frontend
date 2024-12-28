@@ -87,6 +87,13 @@
   }
 
   .btn-custom {
+    background-color: #FFD96E; /* Color de fondo */
+    color: white;             /* Color del texto */
+    border: none;             /* Sin bordes */
+    border-radius: 8px;       /* Bordes redondeados */
+    padding: 10px 20px;       /* Espaciado interno */
+    font-size: 16px;          /* Tamaño de la fuente */
+    transition: transform 0.3s ease, background-color 0.3s ease;
     font-size: 14px;
     padding: 8px 16px; 
   }
