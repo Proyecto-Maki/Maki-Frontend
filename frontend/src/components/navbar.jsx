@@ -12,7 +12,7 @@ function Navbar() {
   return (
     <nav
       className="navbar navbar-expand-lg fixed-top"
-      style={{ backgroundColor: "#7BB66D", boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)" }}
+      style={{ backgroundColor: "#7BB66D", boxShadow: "#7BB66D" }}
     >
       <div className="container-fluid">
         {/* Logo */}

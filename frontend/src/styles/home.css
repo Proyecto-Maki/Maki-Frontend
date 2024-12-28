@@ -1,0 +1,146 @@
+@font-face {
+    font-family: "Koulen";
+    src: url("../fonts/Koulen-Regular.ttf") format("truetype");
+    font-family: "Aoboshi One";
+    src: url("../fonts/AoboshiOne-Regular.ttf") format("truetype");
+}
+
+body {
+    background-color: #fdf0e6;
+    background-position: center bottom;
+    background-size: 60%;
+    background-repeat: no-repeat;
+    font-family: 'Aoboshi One', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dog__animation {
+    /*background-image: url("../src/img/cuerpo_Perro.png"); */
+    /*background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    height: 100vh; 
+    width: 100vw; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(0px);*/
+    border: 2px solid red; 
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100px; 
+    animation: moveDog 5s linear infinite;
+}
+
+/*@keyframes moveDog {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(100px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}*/
+
+.home-container {
+    display: flex;
+    background-color: #7BB66D;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.home-content {
+    text-align: center;
+    color: #FF793F;
+    font-family: 'Koulen', sans-serif;
+}
+
+.logo {
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+/*.main-heading {
+    font-size: 3rem;
+    margin: 0;
+    line-height: 1.2;
+}*/
+
+.subheading {
+    color: #FCF3E3;
+    flex: 1;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    padding: 3rem;
+    font-weight: bold;
+    margin-left: 0px;
+    font-family: 'Aoboshi One', sans-serif;
+    font-size: 1.22rem;
+    top: 22rem;
+    border: 2px solid red;
+}
+
+.social-icons {
+    margin-top: 20px;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    margin: 0 10px;
+    display: inline-block;
+    background-size: cover;
+    background-position: center;
+}
+
+.instagram {
+    background-image: url('../img/instagram.png');
+}
+
+.tiktok {
+    background-image: url('../img/tiktok.png');
+}
+
+.left-text-container {
+    flex: 1;
+    text-align: left;
+    position: absolute;
+    left: 0;
+    top: 15vh;
+    padding: 2rem;
+    color: #FF793F;
+    font-family: 'Koulen', sans-serif;
+    font-size: 6rem;
+    border: 2px solid red;
+}
+
+.right-text-container {
+    flex: 1;
+    text-align: right;
+    position: absolute;
+    right: 0;
+    padding: 2rem;
+    color: #FF793F;
+    font-family: 'Koulen', sans-serif;
+    font-size: 6rem;
+    border: 2px solid red;
+}
+
+
+
+
