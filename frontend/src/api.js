@@ -1,11 +1,14 @@
 import axios from 'axios';
 import { ACCESS_TOKEN } from './constants';
 
-const apiURL = 'https://maki-backend-production.up.railway.app/';
-console.log("API URL:", import.meta.env.VITE_API_URL);
-const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || apiURL,
-});
+const baseURL = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost'
+  ? 'http://127.0.0.1:8000/' // Backend local
+  : VITE_API_URL; // Backend en producción
+
+
+  const api = axios.create({
+    baseURL,
+  });
 
 api.interceptors.request.use(
   config => {
