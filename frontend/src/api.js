@@ -3,7 +3,7 @@ import { ACCESS_TOKEN } from './constants';
 
 const baseURL = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost'
   ? 'http://127.0.0.1:8000/' // Backend local
-  : VITE_API_URL; // Backend en producción
+  : import.meta.env.VITE_API_URL || 'https://maki-backend-production.up.railway.app/'; // Backend en producción
 
 
   const api = axios.create({
