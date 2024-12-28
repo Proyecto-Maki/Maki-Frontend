@@ -1,0 +1,175 @@
+html, body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f7f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column; /* Ensure body content is stacked vertically */
+    justify-content: space-between; /* Ensure footer stays at the bottom */
+    min-height: 100vh; /* Ensure body takes at least full viewport height */
+    overflow: hidden; /* Prevent overflow */
+}
+
+.register-container {
+    width: 100%;
+    max-width: 500px; /* Ensure the container is responsive */
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    padding-top: 80px; /* Add padding to prevent overlap with fixed Navbar */
+    position: relative;
+    overflow: auto; /* Allow scrolling if content overflows */
+    transition: transform 0.3s ease;
+    min-height: 600px; /* Fija un alto mínimo */
+    margin: 20px auto; /* Center the container and add margin to prevent overflow */
+    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+    flex-shrink: 0; /* Prevent the container from shrinking */
+}
+
+@media (max-width: 600px) {
+    .register-container {
+        padding: 20px; /* Adjust padding for smaller screens */
+        padding-top: 80px; /* Add padding to prevent overlap with fixed Navbar */
+        min-height: auto; /* Remove fixed minimum height for smaller screens */
+    }
+
+    .register-form {
+        gap: 10px; /* Reduce gap between form elements for smaller screens */
+    }
+
+    .register-form h2 {
+        font-size: 1.5rem; /* Adjust font size for smaller screens */
+    }
+
+    .register-form input,
+    .register-form textarea {
+        padding: 8px; /* Adjust padding for smaller screens */
+        font-size: 0.9rem; /* Adjust font size for smaller screens */
+    }
+
+    .register-form button {
+        padding: 10px 15px; /* Adjust padding for smaller screens */
+        font-size: 0.9rem; /* Adjust font size for smaller screens */
+    }
+}
+
+@media (max-height: 600px) {
+    .register-container {
+        height: 100%; /* Ensure the container fits within the viewport height */
+        min-height: auto; /* Remove fixed minimum height */
+    }
+}
+
+.register-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.register-header h1 {
+    font-size: 2.5rem;
+    color: #ff7f50;
+}
+
+.toggle-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.toggle-buttons button {
+    background-color: #ffcc80;
+    color: #333;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-buttons button:hover {
+    background-color: #ffb74d;
+}
+
+.toggle-buttons button.active {
+    background-color: #ffa726;
+    font-weight: bold;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    text-align: left;
+}
+
+.register-form h2 {
+    font-size: 1.8rem;
+    color: #555;
+    min-height: 40px; /* Asegura un alto fijo para evitar cambios de tamaño */
+}
+
+.register-form input,
+.register-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #f7f7f7;
+    color: #333; /* Ensure text color is visible */
+}
+
+.register-form textarea {
+    resize: none;
+    height: 80px;
+}
+
+.register-form input:focus,
+.register-form textarea:focus {
+    outline: none;
+    border-color: #ffa726;
+    box-shadow: 0 0 5px rgba(255, 165, 38, 0.5);
+}
+
+.register-form button {
+    background-color: #ffa726;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.register-form button:hover {
+    background-color: #ff9800;
+}
+
+.footer-deco {
+    position: absolute;
+    bottom: -20px;
+    left: -20px;
+    width: 120px;
+    height: 120px;
+    background-color: #ffa726;
+    border-radius: 50%;
+    opacity: 0.2;
+    z-index: -1;
+}
+
+.input-field {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}

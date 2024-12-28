@@ -1,7 +1,14 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom'; // Importamos useLocation para obtener la ruta actual
 import logo from '../img/Logotipo Maki.png'; // Ruta al logo
+import '../styles/navbar.css';
 
 function Navbar() {
+  const location = useLocation(); // Obtenemos la ubicación actual de la ruta
+
+  // Comprobamos si estamos en la página de Login
+  const isLoginPage = location.pathname === '/login';
+
   return (
     <nav
       className="navbar navbar-expand-lg fixed-top"
@@ -17,6 +24,11 @@ function Navbar() {
             style={{ height: "50px", marginRight: "15px" }}
           />
         </div>
+
+        {/* Botón  para pantallas pequeñas */}
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
 
         {/* Links y botones */}
         <div className="collapse navbar-collapse" id="navbarNav">
@@ -39,7 +51,8 @@ function Navbar() {
           </ul>
           {/* Botones adicionales */}
           <div style={{ display: "flex", alignItems: "center" }}>
-          <button className="btn-custom">Login</button>
+            {/* Si no estamos en la página de login, mostramos el botón */}
+            {!isLoginPage && <button className="btn-custom">Login</button>}
           </div>
         </div>
       </div>
