@@ -431,6 +431,25 @@ html, body {
     visibility: visible;
 }
 
+.terms-label{
+    font-size: 14px;
+    flex:6;
+}
+
+.terms-checkbox{
+    width: 20px;
+    height: 20px;
+    flex: 1;
+}
+
+.form-group-terms{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    color: #302F2F;
+    font-family: 'Aoboshi One', sans-serif;
+}
+
 /* Pantallas medianas */
 @media (max-width: 1024px) {
     .register-container {

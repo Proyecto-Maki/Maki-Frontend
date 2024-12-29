@@ -50,6 +50,23 @@ function Register() {
 		}
 	}
 
+	const validatePhone = (phone) => {
+		const re = /^\d+$/;
+		if (!re.test(phone)) {
+			return "El número de teléfono solo debe contener números.";
+		}
+		if (phone.length !== 10) {
+			return "El número de teléfono debe tener al menos 10 dígitos.";
+		}
+		return null;
+
+	}
+
+	const validateNit = (nit) => {
+
+	}
+
+
 
 
 
@@ -64,19 +81,33 @@ function Register() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (!acceptedTerms) {
-			alert("Debes aceptar los términos y condiciones para continuar.");
+			setError("Debes aceptar los términos y condiciones para continuar.");
+			// alert("Debes aceptar los términos y condiciones para continuar.");
+			showErrorModal(true);
 			return;
 		}
 
 		const passwordError = validatePassword(formData.password, formData.password2);
 		if (passwordError) {
-			alert(passwordError);
+			setError(passwordError);
+			showErrorModal(true);
+			// alert(passwordError);
 			return;
 		}
 
 		const emailError = validateEmail(formData.email);
 		if (emailError) {
-			alert(emailError);
+			setError(emailError);
+			showErrorModal(true);
+			// alert(emailError);
+			return;
+		}
+
+		const phoneError = validatePhone(formData.telefono);
+		if (phoneError) {
+			setError(phoneError);
+			showErrorModal(true);
+			// alert(phoneError);
 			return;
 		}
 		
@@ -116,8 +147,16 @@ function Register() {
     setFormData({});
   };
 
-  const handleCloseSuccessModal = () => setShowSuccessModal(false);
-  const handleCloseErrorModal = () => setShowErrorModal(false);
+  const handleCloseSuccessModal = () => {
+		setShowSuccessModal(false)
+		setError("");
+		setResponse("");
+	};
+  const handleCloseErrorModal = () => {
+		setShowErrorModal(false)
+		setError("");
+		setResponse("");
+	};
 
 	return (
 		<>
@@ -419,13 +458,12 @@ function Register() {
 								</div>
 							</>
 						)}
-						<div className="form-group" style={{ marginBottom: '10px' }}>
-							<label htmlFor="terms">
+						<div className="form-group-terms" style={{ marginBottom: '10px' }}>
+							<label htmlFor="terms" className="terms-label">
 								Acepto los <a href="/terminos-y-condiciones" target="_blank" rel="noopener noreferrer" style={{ color: '#ff7f50' }}>términos y condiciones</a> de Maki
 							</label>
-						</div>
-						<div className="form-group">
 							<input
+								className="terms-checkbox"
 								type="checkbox"
 								id="terms"
 								checked={acceptedTerms}
@@ -433,6 +471,7 @@ function Register() {
 								required
 							/>
 						</div>
+						
 						<button type="submit" className="submit-button">Continuar</button>
 					</form>
 				</div>
