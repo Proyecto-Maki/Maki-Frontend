@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom'; // Importamos useLocation para obtener la ruta actual
-import logo from '../img/Logotipo Maki.png'; // Ruta al logo
+import logo from '../img/Logotipo Maki Blanco.png'; // Ruta al logo
 import '../styles/navbar.css';
 
 function Navbar() {
