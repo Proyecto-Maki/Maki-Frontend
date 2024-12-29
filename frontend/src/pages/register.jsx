@@ -8,6 +8,7 @@ import logo from '../img/Logotipo Maki.png';
 function Register() {
     const [type, setType] = useState("user");
     const [formData, setFormData] = useState({});
+    const [acceptedTerms, setAcceptedTerms] = useState(false);
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -19,6 +20,10 @@ function Register() {
 
     const handleSubmit = async (e) => {
       e.preventDefault();
+      if (!acceptedTerms) {
+        alert("Debes aceptar los términos y condiciones para continuar.");
+        return;
+      }
       const dataToSubmit = {
         ...formData,
         is_verified: false, // Ensure the is_verified field is included
@@ -282,6 +287,20 @@ function Register() {
                   </div>
                 </>
               )}
+              <div className="form-group" style={{ marginBottom: '10px' }}>
+                <label htmlFor="terms">
+                  Acepto los <a href="/terminos-y-condiciones" target="_blank" rel="noopener noreferrer" style={{ color: '#ff7f50' }}>términos y condiciones</a> de Maki
+                </label>
+              </div>
+              <div className="form-group">
+                <input
+                  type="checkbox"
+                  id="terms"
+                  checked={acceptedTerms}
+                  onChange={() => setAcceptedTerms(!acceptedTerms)}
+                  required
+                />
+              </div>
               <button type="submit" className="submit-button">Continuar</button>
             </form>
           </div>
