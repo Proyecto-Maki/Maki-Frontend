@@ -1,0 +1,62 @@
+.modal-success-content .modal-content {
+  background-color: #d4edda;
+  color: #155724;
+  border: none;
+}
+
+.modal-success-header {
+  background-color: #d4edda;
+  color: #155724;
+  border-color: #d4edda;
+}
+
+.modal-success-body {
+  background-color: #d4edda;
+  color: #155724;
+  border-color: #d4edda;
+}
+
+.modal-success-footer {
+  background-color: #d4edda;
+  border-color: #d4edda;
+}
+
+.modal-success-button-secondary {
+  background-color: #7cb66da2;
+  color: #d4edda;
+  border-color: #7BB66D;
+}
+
+.modal-success-button-primary {
+  background-color: #7BB66D;
+  color: #d4edda;
+  border-color: #7BB66D;
+}
+
+.modal-error-content .modal-content {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: none;
+}
+
+.modal-error-header {
+  background-color: #f8d7da;
+  color: #721c24;
+  border-color: #f8d7da;
+}
+
+.modal-error-body {
+  background-color: #f8d7da;
+  color: #721c24;
+  border-color: #f8d7da;
+}
+
+.modal-error-footer {
+  background-color: #f8d7da;
+  border-color: #f8d7da;
+}
+
+.modal-error-button-secondary {
+  background-color: #f5c6cb;
+  color: #721c24;
+}
