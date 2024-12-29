@@ -173,7 +173,7 @@ html, body {
     border-radius: 15px;
     font-size: 1rem;
     background-color: #BDD3CE;
-    color: #FCF3E3; 
+    color: #302f2fda; 
 }
 
 .register-form textarea {
@@ -186,11 +186,11 @@ html, body {
     outline: none;
     border-color: #FCF3E3;
     box-shadow: 0 0 5px rgba(132, 211, 250, 0.8);
-    color: #FCF3E3;
+    color: #302f2fe5;
 }
 
 ::placeholder{ /*texto dentro de cada box-text*/
-    color: #FCF3E3;
+    color: #302f2fc0;
     opacity: 1;
 }
 
