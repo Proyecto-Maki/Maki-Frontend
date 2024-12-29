@@ -264,6 +264,103 @@ html, body {
     max-height: 75vh;
 }
 
+.tooltip-registro{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+
+.tooltip-registro-text{
+    position: absolute;
+    top: -120%;
+    left: 50%;
+    visibility: hidden;
+    background-color: #ffa8269d;
+    color: #302F2F;
+    text-align: center;
+    border-radius: 6px ; 
+    font-size: 12px;
+    font-weight: 200;
+    padding: .25rem;
+    z-index: 100;
+}
+
+.tooltip-registro-text-l{
+    position: absolute;
+    top: -200%;
+    left: 50%;
+    visibility: hidden;
+    background-color: #ffa8269d;
+    color: #302F2F;
+    text-align: center;
+    border-radius: 6px ; 
+    font-size: 12px;
+    font-weight: 200;
+    padding: .25rem;
+    z-index: 100;
+}
+
+.tooltip-registro-text-m{
+    position: absolute;
+    top: -160%;
+    left: 50%;
+    visibility: hidden;
+    background-color: #ffa8269d;
+    color: #302F2F;
+    text-align: center;
+    border-radius: 6px ; 
+    font-size: 12px;
+    font-weight: 200;
+    padding: .25rem;
+    z-index: 100;
+}
+
+.tooltip-registro .tooltip-registro-text::after{
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    /* margin-left: -5px; */
+    border-width: 7px;
+    border-style: solid;
+    border-color: #ffa726 transparent transparent transparent;
+}
+
+.tooltip-registro .tooltip-registro-text-l::after{
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    /* margin-left: -5px; */
+    border-width: 7px;
+    border-style: solid;
+    border-color: #ffa726 transparent transparent transparent;
+}
+
+.tooltip-registro .tooltip-registro-text-m::after{
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    /* margin-left: -5px; */
+    border-width: 7px;
+    border-style: solid;
+    border-color: #ffa726 transparent transparent transparent;
+}
+
+.tooltip-registro:hover .tooltip-registro-text {
+    visibility: visible;
+}
+
+.tooltip-registro:hover .tooltip-registro-text-l {
+    visibility: visible;
+}
+
+.tooltip-registro:hover .tooltip-registro-text-m {
+    visibility: visible;
+}
+
 /* Pantallas medianas */
 @media (max-width: 1024px) {
     .register-container {

@@ -35,7 +35,7 @@ function Register() {
       api
       .post(url, dataToSubmit)
       .then((response) => {
-        if (response.status === 201) {
+        if (response.status === 200) {
           console.log("Usuario registrado correctamente");
           //navigate("/login");
         } else {
@@ -81,109 +81,142 @@ function Register() {
                   <h2 >Regístrate como Usuario</h2>
                   <div className="form-group">
                     <label>Primer nombre</label>
-                    <input
-                      className="input-field"
-                      type="text"
-                      name="primer_nombre"
-                      placeholder="Primer nombre"
-                      onChange={handleChange}
-                      value={formData.primer_nombre || ""}
-                      required
-                    />
+                    <div className="tooltip-registro">
+                      <input
+                        className="input-field"
+                        type="text"
+                        name="primer_nombre"
+                        placeholder="Primer nombre"
+                        onChange={handleChange}
+                        value={formData.primer_nombre || ""}
+                        required
+                      />
+                      <span className="tooltip-registro-text">Este campo es obligatorio. Ingresa tu primer nombre</span>
+                    </div>
+                    
                   </div>
                   <div className="form-group">
                     <label>Segundo nombre</label>
-                    <input
-                      className="input-field"
-                      type="text"
-                      name="segundo_nombre"
-                      placeholder="Segundo nombre"
-                      onChange={handleChange}
-                      value={formData.segundo_nombre || ""}
-                    />
+                    <div className="tooltip-registro">
+                      <input
+                        className="input-field"
+                        type="text"
+                        name="segundo_nombre"
+                        placeholder="Segundo nombre"
+                        onChange={handleChange}
+                        value={formData.segundo_nombre || ""}
+                      />
+                      <span className="tooltip-registro-text">Este campo no es obligatorio. Ingresa tu segundo nombre</span>
+                    </div>
+                    
                   </div>
                   <div className="form-group">
                     <label>Primer apellido</label>
-                    <input
-                      className="input-field"
-                      type="text"
-                      name="primer_apellido"
-                      placeholder="Primer apellido"
-                      onChange={handleChange}
-                      value={formData.primer_apellido || ""}
-                      required
-                    />
+                    <div className="tooltip-registro">
+                      <input
+                        className="input-field"
+                        type="text"
+                        name="primer_apellido"
+                        placeholder="Primer apellido"
+                        onChange={handleChange}
+                        value={formData.primer_apellido || ""}
+                        required
+                      />
+                      <span className="tooltip-registro-text">Este campo es obligatorio. Ingresa tu primer apellido</span>
+                    </div>
+                    
                   </div>
                   <div className="form-group">
                     <label>Segundo apellido</label>
-                    <input
-                      className="input-field"
-                      type="text"
-                      name="segundo_apellido"
-                      placeholder="Segundo apellido"
-                      onChange={handleChange}
-                      value={formData.segundo_apellido || ""}
-                    />
+                    <div className="tooltip-registro">
+                      <input
+                        className="input-field"
+                        type="text"
+                        name="segundo_apellido"
+                        placeholder="Segundo apellido"
+                        onChange={handleChange}
+                        value={formData.segundo_apellido || ""}
+                      />
+                      <span className="tooltip-registro-text">Este campo no es obligatorio. Ingresa tu segundo apellido</span>
+                    </div>
                   </div>
                   <div className="form-group">
                     <label>Correo electrónico</label>
-                    <input
-                      className="input-field"
-                      type="email"
-                      name="email"
-                      placeholder="Correo electrónico"
-                      onChange={handleChange}
-                      value={formData.email || ""}
-                      required
-                    />
+                    <div className="tooltip-registro">
+                      <input
+                        className="input-field"
+                        type="email"
+                        name="email"
+                        placeholder="Correo electrónico"
+                        onChange={handleChange}
+                        value={formData.email || ""}
+                        required
+                      />
+                      <span className="tooltip-registro-text">Este campo es obligatorio. Ingresa tu correo electrónico</span>
+                    </div>
                   </div>
                   <div className="form-group">
                     <label>Contraseña</label>
-                    <input
-                      className="input-field"
-                      type="password"
-                      name="password"
-                      placeholder="Contraseña"
-                      onChange={handleChange}
-                      value={formData.password || ""}
-                      required
-                    />
+                    <div className="tooltip-registro">
+                      <input
+                        className="input-field"
+                        type="password"
+                        name="password"
+                        placeholder="Contraseña"
+                        onChange={handleChange}
+                        value={formData.password || ""}
+                        required
+                      />
+                      <span className="tooltip-registro-text-l">Este campo es obligatorio. Ingresa tu contraseña, debe tener mínimo 8 caracteres, entre letras, números y caracteres especiales</span>
+                    </div>
+                    
                   </div>
                   <div className="form-group">
                     <label>Confirma tu contraseña</label>
-                    <input
-                      className="input-field"
-                      type="password"
-                      name="password2"
-                      placeholder="Confirma tu contraseña"
-                      onChange={handleChange}
-                      value={formData.password2 || ""}
-                      required
-                    />
+                    <div className="tooltip-registro">
+                      <input
+                        className="input-field"
+                        type="password"
+                        name="password2"
+                        placeholder="Confirma tu contraseña"
+                        onChange={handleChange}
+                        value={formData.password2 || ""}
+                        required
+                      />
+                      <span className="tooltip-registro-text-m">Este campo es obligatorio. Ingresa tu contraseña nuevamente</span>
+                    </div>
+                    
                   </div>
                   <div className="form-group">
                     <label>Teléfono</label>
-                    <input
-                      className="input-field"
-                      type="text"
-                      name="telefono"
-                      placeholder="Teléfono"
-                      onChange={handleChange}
-                      value={formData.telefono || ""}
-                      required
-                    />
+                    <div className="tooltip-registro">
+                      <input
+                        className="input-field"
+                        type="text"
+                        name="telefono"
+                        placeholder="Teléfono"
+                        onChange={handleChange}
+                        value={formData.telefono || ""}
+                        required
+                      />
+                      <span className="tooltip-registro-text">Este campo es obligatorio. Ingresa tu número de teléfono</span>
+                    </div>
+                    
                   </div>
                   <div className="form-group">
                     <label>Dirección</label>
-                    <input
-                      className="input-field"
-                      type="text"
-                      name="direccion"
-                      placeholder="Dirección"
-                      onChange={handleChange}
-                      value={formData.direccion || ""}
-                      required
-                    />
+                    <div className="tooltip-registro">
+                      <input
+                        className="input-field"
+                        type="text"
+                        name="direccion"
+                        placeholder="Dirección"
+                        onChange={handleChange}
+                        value={formData.direccion || ""}
+                        required
+                      />
+                      <span className="tooltip-registro-text">Este campo es obligatorio. Ingresa tu dirección</span>
+                    </div>
                   </div>
                 </>
               ) : (
@@ -191,99 +224,131 @@ function Register() {
                   <h2>Regístrate como Fundación</h2>
                   <div className="form-group">
                     <label>Nombre de la fundación</label>
-                    <input
-                      className="input-field"
-                      type="text"
-                      name="nombre"
-                      placeholder="Nombre de la fundación"
-                      onChange={handleChange}
-                      value={formData.nombre || ""}
-                      required
-                    />
+                    <div className="tooltip-registro">
+                      <input
+                        className="input-field"
+                        type="text"
+                        name="nombre"
+                        placeholder="Nombre de la fundación"
+                        onChange={handleChange}
+                        value={formData.nombre || ""}
+                        required
+                      />
+                      <span className="tooltip-registro-text">Este campo es obligatorio. Ingresa el nombre de la fundación</span>
+                    </div>
+                    
                   </div>
                   <div className="form-group">
                     <label>NIT</label>
-                    <input
-                      className="input-field"
-                      type="text"
-                      name="nit"
-                      placeholder="NIT"
-                      onChange={handleChange}
-                      value={formData.nit || ""}
-                      required
-                    />
+                    <div className="tooltip-registro">
+                      <input
+                        className="input-field"
+                        type="text"
+                        name="nit"
+                        placeholder="NIT"
+                        onChange={handleChange}
+                        value={formData.nit || ""}
+                        required
+                      />
+                      <span className="tooltip-registro-text">Este campo es obligatorio. Ingresa el NIT de la fundación</span>
+                    </div>
+                    
                   </div>
                   <div className="form-group">
                     <label>Descripción</label>
-                    <input
-                      className="input-field"
-                      type="text"
-                      name="descripcion"
-                      placeholder="Descripción"
-                      onChange={handleChange}
-                      value={formData.descripcion || ""}
-                      required
-                    />
+                    <div className="tooltip-registro">
+                      <input
+                        className="input-field"
+                        type="text"
+                        name="descripcion"
+                        placeholder="Descripción"
+                        onChange={handleChange}
+                        value={formData.descripcion || ""}
+                        required
+                      />
+                      <span className="tooltip-registro-text">Este campo es obligatorio. Ingresa una descripción de la fundación</span>
+                    </div>
+                    
                   </div>
                   <div className="form-group">
                     <label>Correo electrónico</label>
-                    <input
-                      className="input-field"
-                      type="email"
-                      name="email"
-                      placeholder="Correo electrónico"
-                      onChange={handleChange}
-                      value={formData.email || ""}
-                      required
-                    />
+                    <div className="tooltip-registro">
+                      <input
+                        className="input-field"
+                        type="email"
+                        name="email"
+                        placeholder="Correo electrónico"
+                        onChange={handleChange}
+                        value={formData.email || ""}
+                        required
+                      />
+                      <span className="tooltip-registro-text">Este campo es obligatorio. Ingresa tu correo electrónico</span>
+                    </div>
+                    
                   </div>
                   <div className="form-group">
                     <label>Contraseña</label>
-                    <input
-                      className="input-field"
-                      type="password"
-                      name="password"
-                      placeholder="Contraseña"
-                      onChange={handleChange}
-                      value={formData.password || ""}
-                      required
-                    />
+                    <div className="tooltip-registro">
+                      <input
+                        className="input-field"
+                        type="password"
+                        name="password"
+                        placeholder="Contraseña"
+                        onChange={handleChange}
+                        value={formData.password || ""}
+                        required
+                      />
+
+                      <span className="tooltip-registro-text-l">Este campo es obligatorio. Ingresa tu contraseña, debe tener mínimo 8 caracteres, entre letras, números y caracteres especiales</span>                    
+                    </div>
+                    
                   </div>
                   <div className="form-group">
                     <label>Confirma tu contraseña</label>
-                    <input
-                      className="input-field"
-                      type="password"
-                      name="password2"
-                      placeholder="Confirma tu contraseña"
-                      onChange={handleChange}
-                      value={formData.password2 || ""}
-                      required
-                    />
+                    <div className="tooltip-registro">
+                      <input
+                        className="input-field"
+                        type="password"
+                        name="password2"
+                        placeholder="Confirma tu contraseña"
+                        onChange={handleChange}
+                        value={formData.password2 || ""}
+                        required
+                      />
+                      <span className="tooltip-registro-text-m">Este campo es obligatorio. Ingresa tu contraseña nuevamente</span>
+                    </div>
+                    
                   </div>
                   <div className="form-group">
                     <label>Teléfono</label>
-                    <input
-                      className="input-field"
-                      type="text"
-                      name="telefono"
-                      placeholder="Teléfono"
-                      onChange={handleChange}
-                      value={formData.telefono || ""}
-                      required
-                    />
+                    <div className="tooltip-registro">
+                      <input
+                        className="input-field"
+                        type="text"
+                        name="telefono"
+                        placeholder="Teléfono"
+                        onChange={handleChange}
+                        value={formData.telefono || ""}
+                        required
+                      />
+                      <span className="tooltip-registro-text">Este campo es obligatorio. Ingresa tu número de teléfono</span>
+                    </div>
+                    
                   </div>
                   <div className="form-group">
                     <label>Dirección</label>
-                    <input
-                      className="input-field"
-                      type="text"
-                      name="direccion"
-                      placeholder="Dirección"
-                      onChange={handleChange}
-                      value={formData.direccion || ""}
-                      required
-                    />
+                    <div className="tooltip-registro">
+                      <input
+                        className="input-field"
+                        type="text"
+                        name="direccion"
+                        placeholder="Dirección"
+                        onChange={handleChange}
+                        value={formData.direccion || ""}
+                        required
+                      />
+                      <span className="tooltip-registro-text">Este campo es obligatorio. Ingresa tu dirección</span>
+                    </div>
                   </div>
                 </>
               )}
