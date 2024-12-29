@@ -1,63 +1,108 @@
+@font-face {
+    font-family: "Aoboshi One";
+    src: url("../fonts/AoboshiOne-Regular.ttf") format("truetype");
+}
+
 html, body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f9f7f4;
+    /*font-family: 'Arial', sans-serif;*/
+    background-color: #FCF3E3;
     margin: 0;
     padding: 0;
     display: flex;
-    flex-direction: column; /* Ensure body content is stacked vertically */
-    justify-content: space-between; /* Ensure footer stays at the bottom */
-    min-height: 100vh; /* Ensure body takes at least full viewport height */
-    overflow: hidden; /* Prevent overflow */
+    flex-direction: column; 
+    justify-content: space-between; 
+    min-height: 100vh; 
+    overflow: hidden; 
+}
+
+.background-register{
+        background-image: url("../src/img/fondo.svg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-color: #FCF3E3; 
+        display: flex; 
+        justify-content: center;
+        align-items: center;
+        height: 100vh; 
+        width: 100vw; 
+    
 }
 
 .register-container {
-    width: 100%;
-    max-width: 500px; /* Ensure the container is responsive */
-    background-color: #fff;
-    border-radius: 12px;
+    z-index: 1; /*para que esté sobre el fondo*/
+    width: 55vw; 
+    background-color: #FCF3E3;
+    border-radius: 20px;
+    border:4px solid #BDD3CE;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    padding-top: 80px; /* Add padding to prevent overlap with fixed Navbar */
+    padding: 20px;
+    padding-top: 40px;
     position: relative;
-    overflow: auto; /* Allow scrolling if content overflows */
+    overflow: auto; 
     transition: transform 0.3s ease;
-    min-height: 600px; /* Fija un alto mínimo */
-    margin: 20px auto; /* Center the container and add margin to prevent overflow */
-    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
-    flex-shrink: 0; /* Prevent the container from shrinking */
+    min-height: 600px; 
+    margin: 20px auto; 
+    box-sizing: border-box; 
+    flex-shrink: 0; 
+    display: grid;
+    place-items: center;
+    overflow-y: auto;
+    max-height: 75vh;
+    overflow: scroll;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.register-container::-webkit-scrollbar{
+    width: 10px;
+    color: #FCF3E3;
+}
+
+.register-container::-webkit-scrollbar-thumb {
+    background: #ffcc80; 
+    border-radius: 80px; 
+}
+
+.register-container::-webkit-scrollbar-thumb:hover {
+    background: #ffa726; 
+}
+
+.register-container::-webkit-scrollbar-track {
+    background: none; 
 }
 
 @media (max-width: 600px) {
     .register-container {
-        padding: 20px; /* Adjust padding for smaller screens */
-        padding-top: 80px; /* Add padding to prevent overlap with fixed Navbar */
-        min-height: auto; /* Remove fixed minimum height for smaller screens */
+        padding: 20px; 
+        padding-top: 80px; 
+        min-height: auto; 
     }
 
     .register-form {
-        gap: 10px; /* Reduce gap between form elements for smaller screens */
+        gap: 10px; 
     }
 
     .register-form h2 {
-        font-size: 1.5rem; /* Adjust font size for smaller screens */
+        font-size: 1.5rem; 
     }
 
     .register-form input,
     .register-form textarea {
-        padding: 8px; /* Adjust padding for smaller screens */
-        font-size: 0.9rem; /* Adjust font size for smaller screens */
+        padding: 8px; 
+        font-size: 0.9rem;
     }
 
     .register-form button {
-        padding: 10px 15px; /* Adjust padding for smaller screens */
-        font-size: 0.9rem; /* Adjust font size for smaller screens */
+        padding: 10px 15px; 
+        font-size: 0.9rem; 
     }
 }
 
 @media (max-height: 600px) {
     .register-container {
-        height: 100%; /* Ensure the container fits within the viewport height */
-        min-height: auto; /* Remove fixed minimum height */
+        height: 100%; 
+        min-height: auto; 
     }
 }
 
@@ -79,7 +124,7 @@ html, body {
 
 .toggle-buttons button {
     background-color: #ffcc80;
-    color: #333;
+    color: #FCF3E3;
     border: none;
     border-radius: 20px;
     padding: 10px 20px;
@@ -108,20 +153,22 @@ html, body {
 }
 
 .register-form h2 {
-    font-size: 1.8rem;
-    color: #555;
-    min-height: 40px; /* Asegura un alto fijo para evitar cambios de tamaño */
+    font-size: 2rem;
+    color: #ffa726;
+    min-height: 40px;
+    font-family: 'Aoboshi One', sans-serif;
+    text-align: center;
 }
 
 .register-form input,
 .register-form textarea {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    border: none;
+    border-radius: 15px;
     font-size: 1rem;
-    background-color: #f7f7f7;
-    color: #333; /* Ensure text color is visible */
+    background-color: #BDD3CE;
+    color: #FCF3E3; 
 }
 
 .register-form textarea {
@@ -132,13 +179,19 @@ html, body {
 .register-form input:focus,
 .register-form textarea:focus {
     outline: none;
-    border-color: #ffa726;
-    box-shadow: 0 0 5px rgba(255, 165, 38, 0.5);
+    border-color: #FCF3E3;
+    box-shadow: 0 0 5px rgba(132, 211, 250, 0.8);
+    color: #FCF3E3;
+}
+
+::placeholder{ /*texto dentro de cada box-text*/
+    color: #FCF3E3;
+    opacity: 1;
 }
 
 .register-form button {
-    background-color: #ffa726;
-    color: #fff;
+    background-color: #F4A258;
+    color: #FCF3E3;
     border: none;
     padding: 12px 20px;
     font-size: 1rem;
@@ -148,7 +201,7 @@ html, body {
 }
 
 .register-form button:hover {
-    background-color: #ff9800;
+    background-color: #fab247d1;
 }
 
 .footer-deco {
@@ -157,7 +210,7 @@ html, body {
     left: -20px;
     width: 120px;
     height: 120px;
-    background-color: #ffa726;
+    background-color: #FCF3E3;
     border-radius: 50%;
     opacity: 0.2;
     z-index: -1;
@@ -172,4 +225,96 @@ html, body {
     display: flex;
     flex-direction: column;
     width: 100%;
+    color: #302F2F;
+    font-size: 20px;
+    font-family: 'Aoboshi One', sans-serif;
 }
+
+
+.logo {
+    width: 300px;
+    margin-bottom: 50px;
+    position: relative;
+    top: 30px;
+}
+.logo-register {
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.type-user{
+    font-size: 30px;
+    font-family: 'Aoboshi One', sans-serif;
+    color: #ff7f50;
+    text-align: center; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    height: 100%;
+    position: relative;
+    top: 0px;
+}
+
+.register-container {
+    width: 55vw; /* Por defecto en pantallas grandes */
+    max-height: 75vh;
+}
+
+/* Pantallas medianas */
+@media (max-width: 1024px) {
+    .register-container {
+        width: 70vw; /* Más ancho en pantallas medianas */
+        min-height: 500px; /* Reducir altura mínima */
+    }
+}
+
+/* Pantallas pequeñas */
+@media (max-width: 768px) {
+    .register-container {
+        width: 85vw; /* Más ancho en pantallas pequeñas */
+        padding: 15px; /* Reducir padding */
+        min-height: 400px; 
+    }
+
+    .register-form h2 {
+        font-size: 1.8rem; /* Reducir tamaño del encabezado */
+    }
+
+    .register-form input,
+    .register-form textarea {
+        padding: 8px;
+        font-size: 0.95rem; /* Ajustar tamaño del texto */
+    }
+
+    .register-form button {
+        padding: 10px 15px;
+        font-size: 0.9rem; /* Ajustar botones */
+    }
+}
+
+/* Pantallas muy pequeñas (móviles) */
+@media (max-width: 480px) {
+    .register-container {
+        width: 95vw; /* Ocupa casi todo el ancho */
+        padding: 10px;
+        min-height: auto;
+    }
+
+    .register-form {
+        gap: 15px;
+    }
+
+    .register-form h2 {
+        font-size: 1.5rem; 
+    }
+
+    .register-form input,
+    .register-form textarea {
+        font-size: 0.85rem; 
+    }
+}
+
