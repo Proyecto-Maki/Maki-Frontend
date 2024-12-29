@@ -3,14 +3,16 @@ import Login from './pages/login'
 import Home from './pages/home'
 import React from 'react';
 import Register from './pages/register';
+import ConfirmationRegister from './pages/confirmation-register';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/confirmation-register" element={<ConfirmationRegister />} />
       </Routes>
     </BrowserRouter>
   );
