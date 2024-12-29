@@ -3,6 +3,7 @@ import Login from './pages/login'
 import Home from './pages/home'
 import React from 'react';
 import Register from './pages/register';
+import ConfirmationRegister from './pages/confirmation-register';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/confirmation-register" element={<ConfirmationRegister />} />
       </Routes>
     </BrowserRouter>
   );
