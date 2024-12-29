@@ -42,6 +42,11 @@ function Register() {
       });
     };
 
+    const handleTypeChange = (newType) => {
+      setType(newType);
+      setFormData({});
+    };
+
     return (
       <>
         <Navbar /> {/* Add Navbar component */}
@@ -54,13 +59,13 @@ function Register() {
             <div className="toggle-buttons">
               <button
                 className={type === "user" ? "active" : ""}
-                onClick={() => setType("user")}
+                onClick={() => handleTypeChange("user")}
               >
                 Dueño mascota
               </button>
               <button
                 className={type === "foundation" ? "active" : ""}
-                onClick={() => setType("foundation")}
+                onClick={() => handleTypeChange("foundation")}
               >
                 Fundación
               </button>
@@ -77,6 +82,7 @@ function Register() {
                       name="primer_nombre"
                       placeholder="Primer nombre"
                       onChange={handleChange}
+                      value={formData.primer_nombre || ""}
                       required
                     />
                   </div>
@@ -88,6 +94,7 @@ function Register() {
                       name="segundo_nombre"
                       placeholder="Segundo nombre"
                       onChange={handleChange}
+                      value={formData.segundo_nombre || ""}
                     />
                   </div>
                   <div className="form-group">
@@ -98,6 +105,7 @@ function Register() {
                       name="primer_apellido"
                       placeholder="Primer apellido"
                       onChange={handleChange}
+                      value={formData.primer_apellido || ""}
                       required
                     />
                   </div>
@@ -109,6 +117,7 @@ function Register() {
                       name="segundo_apellido"
                       placeholder="Segundo apellido"
                       onChange={handleChange}
+                      value={formData.segundo_apellido || ""}
                     />
                   </div>
                   <div className="form-group">
@@ -119,6 +128,7 @@ function Register() {
                       name="email"
                       placeholder="Correo electrónico"
                       onChange={handleChange}
+                      value={formData.email || ""}
                       required
                     />
                   </div>
@@ -130,6 +140,7 @@ function Register() {
                       name="password"
                       placeholder="Contraseña"
                       onChange={handleChange}
+                      value={formData.password || ""}
                       required
                     />
                   </div>
@@ -141,6 +152,7 @@ function Register() {
                       name="password2"
                       placeholder="Confirma tu contraseña"
                       onChange={handleChange}
+                      value={formData.password2 || ""}
                       required
                     />
                   </div>
@@ -152,6 +164,7 @@ function Register() {
                       name="telefono"
                       placeholder="Teléfono"
                       onChange={handleChange}
+                      value={formData.telefono || ""}
                       required
                     />
                   </div>
@@ -163,6 +176,7 @@ function Register() {
                       name="direccion"
                       placeholder="Dirección"
                       onChange={handleChange}
+                      value={formData.direccion || ""}
                       required
                     />
                   </div>
@@ -178,6 +192,7 @@ function Register() {
                       name="nombre"
                       placeholder="Nombre de la fundación"
                       onChange={handleChange}
+                      value={formData.nombre || ""}
                       required
                     />
                   </div>
@@ -189,6 +204,7 @@ function Register() {
                       name="nit"
                       placeholder="NIT"
                       onChange={handleChange}
+                      value={formData.nit || ""}
                       required
                     />
                   </div>
@@ -200,6 +216,7 @@ function Register() {
                       name="descripcion"
                       placeholder="Descripción"
                       onChange={handleChange}
+                      value={formData.descripcion || ""}
                       required
                     />
                   </div>
@@ -211,6 +228,7 @@ function Register() {
                       name="email"
                       placeholder="Correo electrónico"
                       onChange={handleChange}
+                      value={formData.email || ""}
                       required
                     />
                   </div>
@@ -222,6 +240,7 @@ function Register() {
                       name="password"
                       placeholder="Contraseña"
                       onChange={handleChange}
+                      value={formData.password || ""}
                       required
                     />
                   </div>
@@ -233,6 +252,7 @@ function Register() {
                       name="password2"
                       placeholder="Confirma tu contraseña"
                       onChange={handleChange}
+                      value={formData.password2 || ""}
                       required
                     />
                   </div>
@@ -244,6 +264,7 @@ function Register() {
                       name="telefono"
                       placeholder="Teléfono"
                       onChange={handleChange}
+                      value={formData.telefono || ""}
                       required
                     />
                   </div>
@@ -255,6 +276,7 @@ function Register() {
                       name="direccion"
                       placeholder="Dirección"
                       onChange={handleChange}
+                      value={formData.direccion || ""}
                       required
                     />
                   </div>
