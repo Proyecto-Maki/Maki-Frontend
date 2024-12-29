@@ -43,6 +43,9 @@ html, body {
     overflow: hidden;
 }
 
+/* Estilos de la rama 'development-Angel' */
+/* Estilos de la rama 'development-Kelly' */
+
 .alert-fixed-bottom {
     position: fixed;
     bottom: 20px; /* Espacio desde la parte inferior */

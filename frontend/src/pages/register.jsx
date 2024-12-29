@@ -14,6 +14,8 @@ function Register() {
 	const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
+  const [error, setError] = useState("");
+  const [response, setResponse] = useState("");
 
 	const navigate = useNavigate();
 
@@ -89,17 +91,22 @@ function Register() {
     api
       .post(url, dataToSubmit)
       .then((response) => {
-        if (response.status === 200) {
+        if (response.status === 201) {
           console.log("Usuario registrado correctamente");
           // Redirigir después de la espera si es éxito
+          setResponse(response.message);
           setShowSuccessModal(true);
         } else {
           console.log("Error al registrar el usuario");
+          console.log(response.message);
+          setResponse(response.message)
           setShowErrorModal(true);
         }
       })
       .catch((error) => {
-        console.error("Error:", error.response ? error.response.data : error.message);
+        console.error(error.response ? error.response.data : error.message);
+        console.log(error.response.data.message);
+        setError(error.response.data.message);
         setShowErrorModal(true);
       });
   };
@@ -430,6 +437,8 @@ function Register() {
 					</form>
 				</div>
 			</div>
+      <SuccessModal show={showSuccessModal} handleClose={handleCloseSuccessModal} response={response} />
+      <ErrorModal show={showErrorModal} handleClose={handleCloseErrorModal} error={error} />
 		</>
 	);
 }

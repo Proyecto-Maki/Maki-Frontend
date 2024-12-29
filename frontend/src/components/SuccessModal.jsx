@@ -3,7 +3,7 @@ import { Modal, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import '../styles/modal.css';
 
-function SuccessModal({ show, handleClose }) {
+function SuccessModal({ show, handleClose, response }) {
   const navigate = useNavigate();
 
   return (
@@ -12,7 +12,7 @@ function SuccessModal({ show, handleClose }) {
         <Modal.Title>Registro Exitoso</Modal.Title>
       </Modal.Header>
       <Modal.Body className="modal-success-body">
-        ¡Te has registrado exitosamente! Ahora puedes iniciar sesión.
+        ¡Te has registrado exitosamente! Ahora puedes iniciar sesión. {response}
       </Modal.Body>
       <Modal.Footer className="modal-success-footer">
         <Button variant="secondary" onClick={handleClose} className="modal-success-button-secondary">
