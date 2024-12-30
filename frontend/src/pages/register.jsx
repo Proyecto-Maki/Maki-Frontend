@@ -119,7 +119,7 @@ function Register() {
 			return;
 		}
 
-		if (type === "fundacion") {
+		if (type === "foundation") {
 			const nitError = validateNit(formData.nit);
 				if (nitError) {
 					setError(nitError);
