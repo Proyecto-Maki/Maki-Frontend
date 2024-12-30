@@ -1,4 +1,4 @@
 [phases]
-install = { cmd = "npm ci" }
-build = { cmd = "npm run build" }
-start = { cmd = "npm run start" }
+install = { cmd = ["npm ci"] }
+build = { cmd = ["npm run build"] }
+start = { cmd = ["npm run start"] }
