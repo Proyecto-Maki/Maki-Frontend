@@ -17,7 +17,6 @@ const ConfirmationRegister = () => {
     const [error, setError] = useState('');
     const [dirNavigate, setDirNavigate] = useState('');
 
-    const navigate = useNavigate();
 
     const handleCloseSuccessModal = () => {
 		setShowSuccessModal(false)
