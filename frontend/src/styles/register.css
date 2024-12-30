@@ -86,16 +86,16 @@ html, body {
 }
 
 .background-register{
-        background-image: url("../src/img/fondo.svg");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-color: #FCF3E3; 
-        display: flex; 
-        justify-content: center;
-        align-items: center;
-        height: 100vh; 
-        width: 100vw; 
+    background-image: url("/fondo.svg"); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #FCF3E3; 
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    width: 100vw; 
     
 }
 
