@@ -2,14 +2,11 @@ import React from "react";
 import { Card, Row, Col, Button } from "react-bootstrap";
 import { FaEdit } from "react-icons/fa";
 import '../styles/user-profile.css';
-import Navbar from '../components/navbar';  // Importar el Navbar
+import Navbar from '../components/navbar';
 
 const UserProfile = () => {
   return (
     <div className="profile-container">
-      {/* Coloca el Navbar al principio */}
-      <Navbar />
-
       <Card className="profile-card">
         <Row>
           <Col md={3} className="d-flex align-items-center justify-content-center">
