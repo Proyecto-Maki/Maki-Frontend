@@ -64,7 +64,14 @@ function Register() {
 	}
 
 	const validateNit = (nit) => {
-
+		const re = /^\d+$/;
+		if (!re.test(nit)) {
+			return "El NIT solo debe contener números.";
+		}
+		if (nit.length !== 9) {
+			return "El NIT debe tener 9 dígitos.";
+		}
+		return null;
 	}
 
 
@@ -109,6 +116,13 @@ function Register() {
 			setError(phoneError);
 			setShowErrorModal(true);
 			// alert(phoneError);
+			return;
+		}
+
+		const nitError = validateNit(formData.nit);
+		if (nitError) {
+			setError(nitError);
+			setShowErrorModal(true);
 			return;
 		}
 		
