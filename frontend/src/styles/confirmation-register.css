@@ -16,7 +16,7 @@ html, body {
 }
 
 .background-register{
-        background-image: url("../src/img/fondo.svg");
+        background-image: url("/fondo.svg");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
