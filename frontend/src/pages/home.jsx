@@ -3,7 +3,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from '../components/navbar';
 import '../styles/home.css';
 import logo from '../img/Logotipo Maki.png'; // Ruta al logo
-import cuerpo_Perro from '../img/cuerpo_Perro.png';
+import perro_home from '../img/Perro_Home.png';
+import instagram from '../img/instagram.png';
+import tiktok from '../img/tiktok.png';
 
 const Home = () => {
 
@@ -13,23 +15,27 @@ const Home = () => {
             <Navbar />
 
             <div className="home-container">
-                <div className="dog__animation">
-                    <img src={cuerpo_Perro} alt="cuerpo_Perro" className="cuerpo_Perro" />
+                 <div className="dog__animation">
+                    <img src={perro_home} alt="perro_home" className="perro_home" />
                 </div>
                 <div className="home-content">
                     <div className="left-text-container">
-                        ¡COMPRA <br /> LO MEJOR 
-                        <div className="subheading">
+                        <h2>¡COMPRA <br /> LO MEJOR </h2>
+                        <p className="subheading">
                             Tenemos los mejores alimentos naturales y ecológicos en el país
-                        </div>
+                        </p>
                     </div>
-                    <h1 className="right-text-container">
-                        PARA TU <br /> MASCOTA!
-                    </h1>
+                    <div className="right-text-container">
+                        <h2>PARA TU <br /> MASCOTA!</h2>
+                    </div>
 
-                    <div className="social-icons">
-                        <a href="#" className="social-icon instagram"></a>
-                        <a href="#" className="social-icon tiktok"></a>
+                    <div className="icon-container">
+                        <a href="#" className="social-icon instagram" class="social-icon">
+                            <img src={instagram} alt="instagram" className="instagram" />
+                        </a>
+                        <a href="#" className="social-icon tiktok"  class="social-icon">
+                            <img src={tiktok} alt="tiktok" className="tiktok" />
+                        </a>
                     </div>
                 </div>
             </div>

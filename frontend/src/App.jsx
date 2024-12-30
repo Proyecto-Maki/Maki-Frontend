@@ -4,7 +4,7 @@ import Home from './pages/home'
 import React from 'react';
 import Register from './pages/register';
 import ConfirmationRegister from './pages/confirmation-register';
-
+import UserProfile from './pages/user-profile';
 function App() {
   return (
     <BrowserRouter>
@@ -13,6 +13,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/confirmation-register" element={<ConfirmationRegister />} />
+        <Route path="/user-profile" element={<UserProfile/>} />
       </Routes>
     </BrowserRouter>
   );

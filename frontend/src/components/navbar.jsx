@@ -51,8 +51,11 @@ function Navbar() {
           </ul>
           {/* Botones adicionales */}
           <div style={{ display: "flex", alignItems: "center" }}>
-            {/* Si no estamos en la página de login, mostramos el botón */}
-            {!isLoginPage && <button className="btn-custom">Login</button>}
+            {!isLoginPage && (
+              <a href="/login">
+                <button className="btn-custom">Login</button>
+              </a>
+            )}
           </div>
         </div>
       </div>
