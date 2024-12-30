@@ -4,6 +4,7 @@ import Home from './pages/home'
 import React from 'react';
 import Register from './pages/register';
 import ConfirmationRegister from './pages/confirmation-register';
+import PasswordRecovery from './pages/password-recovery';
 import UserProfile from './pages/user-profile';
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/confirmation-register" element={<ConfirmationRegister />} />
         <Route path="/user-profile" element={<UserProfile/>} />
+        <Route path="/password-recovery" element={<PasswordRecovery />} />
       </Routes>
     </BrowserRouter>
   );
