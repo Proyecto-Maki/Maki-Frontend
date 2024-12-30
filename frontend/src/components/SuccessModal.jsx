@@ -3,7 +3,7 @@ import { Modal, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import '../styles/modal.css';
 
-function SuccessModal({ show, handleClose, response }) {
+function SuccessModal({ show, handleClose, response, dirNavigate }) {
   const navigate = useNavigate();
 
   return (
@@ -18,8 +18,8 @@ function SuccessModal({ show, handleClose, response }) {
         <Button variant="secondary" onClick={handleClose} className="modal-success-button-secondary">
           Cerrar
         </Button>
-        <Button variant="primary" onClick={() => navigate("/login")} className="modal-success-button-primary">
-          Ir a Iniciar sesión
+        <Button variant="primary" onClick={() => navigate({dirNavigate})} className="modal-success-button-primary">
+          Ir a {dirNavigate}
         </Button>
       </Modal.Footer>
     </Modal>

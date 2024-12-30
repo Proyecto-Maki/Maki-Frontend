@@ -16,6 +16,7 @@ function Register() {
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [error, setError] = useState("");
   const [response, setResponse] = useState("");
+  const [dirNavigate, setDirNavigate] = useState("");
 
 	const navigate = useNavigate();
 
@@ -125,12 +126,14 @@ function Register() {
         if (response.status === 201) {
           console.log("Usuario registrado correctamente");
           // Redirigir después de la espera si es éxito
-          setResponse(response.message);
+          setResponse(response.data.message);
+		  setDirNavigate("/confirmation-register")
           setShowSuccessModal(true);
+
         } else {
           console.log("Error al registrar el usuario");
-          console.log(response.message);
-          setResponse(response.message)
+          console.log(response.data.message);
+          setResponse(response.data.message)
           setShowErrorModal(true);
         }
       })
@@ -476,7 +479,7 @@ function Register() {
 					</form>
 				</div>
 			</div>
-      <SuccessModal show={showSuccessModal} handleClose={handleCloseSuccessModal} response={response} />
+      <SuccessModal show={showSuccessModal} handleClose={handleCloseSuccessModal} response={response} dirNavigate={dirNavigate} />
       <ErrorModal show={showErrorModal} handleClose={handleCloseErrorModal} error={error} />
 		</>
 	);
