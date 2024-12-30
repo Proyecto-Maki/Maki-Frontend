@@ -119,12 +119,15 @@ function Register() {
 			return;
 		}
 
-		const nitError = validateNit(formData.nit);
-		if (nitError) {
-			setError(nitError);
-			setShowErrorModal(true);
-			return;
+		if (type === "fundacion") {
+			const nitError = validateNit(formData.nit);
+				if (nitError) {
+					setError(nitError);
+					setShowErrorModal(true);
+					return;
+				}
 		}
+		
 		
 		const dataToSubmit = {
 			...formData,
