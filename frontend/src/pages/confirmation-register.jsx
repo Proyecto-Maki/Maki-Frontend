@@ -13,6 +13,22 @@ const ConfirmationRegister = () => {
     const [otp, setOtp] = useState('');
     const [showSuccessModal, setShowSuccessModal] = useState(false);
     const [showErrorModal, setShowErrorModal] = useState(false);
+    const [response, setResponse] = useState('');
+    const [error, setError] = useState('');
+    const [dirNavigate, setDirNavigate] = useState('');
+
+    const navigate = useNavigate();
+
+    const handleCloseSuccessModal = () => {
+		setShowSuccessModal(false)
+		setError("");
+		setResponse("");
+	};
+    const handleCloseErrorModal = () => {
+            setShowErrorModal(false)
+            setError("");
+            setResponse("");
+        };
 
     const handleSubmit = async (e) =>{
         e.preventDefault();
