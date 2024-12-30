@@ -84,14 +84,14 @@ function Register() {
 		if (!acceptedTerms) {
 			setError("Debes aceptar los términos y condiciones para continuar.");
 			// alert("Debes aceptar los términos y condiciones para continuar.");
-			showErrorModal(true);
+			setShowErrorModal(true);
 			return;
 		}
 
 		const passwordError = validatePassword(formData.password, formData.password2);
 		if (passwordError) {
 			setError(passwordError);
-			showErrorModal(true);
+			setShowErrorModal(true);
 			// alert(passwordError);
 			return;
 		}
@@ -99,7 +99,7 @@ function Register() {
 		const emailError = validateEmail(formData.email);
 		if (emailError) {
 			setError(emailError);
-			showErrorModal(true);
+			setShowErrorModal(true);
 			// alert(emailError);
 			return;
 		}
@@ -107,7 +107,7 @@ function Register() {
 		const phoneError = validatePhone(formData.telefono);
 		if (phoneError) {
 			setError(phoneError);
-			showErrorModal(true);
+			setShowErrorModal(true);
 			// alert(phoneError);
 			return;
 		}
