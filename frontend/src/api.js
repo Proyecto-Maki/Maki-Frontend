@@ -1,14 +1,20 @@
 import axios from 'axios';
 import { ACCESS_TOKEN } from './constants';
 
-const baseURL = window.location.hostname === '127.0.0.1:3000' || window.location.hostname === 'localhost'
-  ? 'http://127.0.0.1:8000/' // Backend local
-  : import.meta.env.VITE_API_URL || 'https://maki-backend-production.up.railway.app/'; // Backend en producción
+// const baseURL = window.location.hostname === '127.0.0.1:3000' || window.location.hostname === 'localhost'
+//   ? 'http://127.0.0.1:8000/' // Backend local
+//   : import.meta.env.VITE_API_URL || 'https://maki-backend-production.up.railway.app/'; // Backend en producción
 
 
-  const api = axios.create({
-    baseURL,
-  });
+//   const api = axios.create({
+//     baseURL,
+//   });
+
+const baseURL = import.meta.env.VITE_API_BASE_URL;
+
+if (!baseURL) {
+  throw new Error('La variable de entorno VITE_API_BASE_URL no está configurada.');
+}
 
 api.interceptors.request.use(
   config => {
