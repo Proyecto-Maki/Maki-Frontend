@@ -1,3 +1,5 @@
+@import url('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css');
+
 @font-face {
     font-family: "Koulen";
     src: url("../fonts/Koulen-Regular.ttf") format("truetype");
@@ -66,17 +68,40 @@ body {
 
 /* Input Fields */
 .custom-input {
-    background: #BDD3CE;
-    border: none;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.login-form input{ 
+    background-color: #BDD3CE;
+    border: 50px;
     border-radius: 30px;
     padding: 10px 20px;
     margin-bottom: 15px;
     font-size: 16px;
-    color: white;
+    color: #302f2fe5;
 }
 
-.custom-input::placeholder {
-    color: white;
+.login-form input:focus{
+    outline: none;
+    border-color: #FCF3E3;
+    box-shadow: 0 0 5px rgba(132, 211, 250, 0.8);
+    color: #302f2fe5;
+    background-color: #BDD3CE;
+}
+
+
+.login-form button{
+    background-color: #7ab453;
+    color: #FCF3E3;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: 'Aoboshi One', sans-serif;
+
 }
 
 /* Show Password Button */
@@ -111,6 +136,7 @@ body {
     font-size: 14px;
     margin-top: 10px;
     color: #4a4a4a;
+    font-family: 'Aoboshi One', sans-serif;
 }
 
 .forgot-password-text a,

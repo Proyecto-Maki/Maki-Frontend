@@ -116,6 +116,7 @@ html, body {
     font-size: 1rem;
     background-color: #BDD3CE;
     color: #302F2F; 
+    font-family: 'Aoboshi One', sans-serif;
 }
 
 .confirmation_register-form textarea {
@@ -129,6 +130,7 @@ html, body {
     border-color: #302F2F;
     box-shadow: 0 0 5px rgba(132, 211, 250, 0.8);
     color: #302F2F;
+    background-color: #BDD3CE;
 }
 
 ::placeholder{ /*texto dentro de cada box-text*/
