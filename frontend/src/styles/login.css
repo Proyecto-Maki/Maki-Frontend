@@ -57,7 +57,7 @@ body {
 
 /* Logo */
 .logo {
-    width: 150px;
+    width: 300px !important;
     margin-bottom: 20px;
 }
 
@@ -175,7 +175,7 @@ body {
     }
 
     .logo {
-        width: 120px;
+        width: 120px !important;
         margin-bottom: 15px;
     }
 
@@ -195,7 +195,7 @@ body {
     }
 
     .logo {
-        width: 100px;
+        width: 100px !important;
         margin-bottom: 10px;
     }
 

@@ -308,7 +308,7 @@ html, body {
 
 
 .logo {
-    width: 300px;
+    width: 300px !important;
     margin-bottom: 50px;
     position: relative;
     top: 30px;
