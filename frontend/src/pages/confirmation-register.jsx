@@ -22,11 +22,13 @@ const ConfirmationRegister = () => {
 		setShowSuccessModal(false)
 		setError("");
 		setResponse("");
+        setOtp("");
 	};
     const handleCloseErrorModal = () => {
             setShowErrorModal(false)
             setError("");
             setResponse("");
+            setOtp("");
         };
 
     const handleSubmit = async (e) =>{

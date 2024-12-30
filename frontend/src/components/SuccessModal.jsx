@@ -18,7 +18,7 @@ function SuccessModal({ show, handleClose, response, dirNavigate }) {
         <Button variant="secondary" onClick={handleClose} className="modal-success-button-secondary">
           Cerrar
         </Button>
-        <Button variant="primary" onClick={() => navigate({dirNavigate})} className="modal-success-button-primary">
+        <Button variant="primary" onClick={() => navigate(dirNavigate)} className="modal-success-button-primary">
           Ir a {dirNavigate}
         </Button>
       </Modal.Footer>
