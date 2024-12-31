@@ -184,7 +184,7 @@ function Register() {
 			<div className="background-register">
 				<div className="register-container">
 					<div className="logo-register">
-						<img src={logo} alt="logo" className="logo" style={{ height: "100px", marginRight: "10px" }} />
+						<img src={logo} alt="logo" className="logo-register-img" style={{ height: "100px", marginRight: "10px" }} />
 					</div>
 					<p className="type-user" >¿Que tipo de usuario eres?</p>
 					<div className="toggle-buttons">

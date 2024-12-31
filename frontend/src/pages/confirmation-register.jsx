@@ -19,17 +19,17 @@ const ConfirmationRegister = () => {
 
 
     const handleCloseSuccessModal = () => {
-		setShowSuccessModal(false)
-		setError("");
-		setResponse("");
+        setShowSuccessModal(false)
+        setError("");
+        setResponse("");
         setOtp("");
-	};
+    };
     const handleCloseErrorModal = () => {
-            setShowErrorModal(false)
-            setError("");
-            setResponse("");
-            setOtp("");
-        };
+        setShowErrorModal(false)
+        setError("");
+        setResponse("");
+        setOtp("");
+    };
 
     const handleSubmit = async (e) =>{
         e.preventDefault();
@@ -78,9 +78,10 @@ const ConfirmationRegister = () => {
                                     name="codigo"
                                     value={otp} onChange={(e) => setOtp(e.target.value)}
                                     placeholder="Código de confirmación"
+                                    required
                                 />  
                             </div>
-                        <button type="submit" className="submit-button" onClick={handleSubmit}>Registrar!</button>
+                        <button type="submit" className="submit-button" onClick={handleSubmit}>Registrar</button>
                     </div>
                 </div>
             </div>
