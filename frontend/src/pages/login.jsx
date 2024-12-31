@@ -36,9 +36,7 @@ const Login = () => {
             })
             .catch((error) => {
                 console.error(error.response ? error.response.data : error.message);
-                // console.log(error.response.data.message);
                 console.log(error.response.data.detail);
-                //setError(error.response.data.message);
                 setError(error.response.data.detail);
                 setShowErrorModal(true);
             });
@@ -73,7 +71,7 @@ const Login = () => {
                         />
                         <h2 className="welcome-text">¡BIENVENIDO!</h2>
                         <form className="login-form" onSubmit={handleSubmit}>
-                            <div className="form-group">
+                            <div className="form-group position-relative">
                                 <div className="tooltip-login">
                                     <input
                                         type="email"
@@ -83,11 +81,11 @@ const Login = () => {
                                         onChange={(e) => setEmail(e.target.value)}
                                         required
                                     />
-                                    <span className="tooltip-registro-text">Ingresa tu correo electrónico</span>
+                                    <span className="tooltip-login-email">Ingresa tu correo electrónico</span>
                                 </div>
                             </div>
                             <div className="form-group position-relative">
-                                <div className="tooltip-registro">
+                                <div className="tooltip-login">
                                     <input
                                         type="password"
                                         className="form-control custom-input"
@@ -96,14 +94,14 @@ const Login = () => {
                                         onChange={(e) => setPassword(e.target.value)}
                                         required
                                     />
-                                    <span className="tooltip-registro-text">Ingresa tu contraseña</span>
+                                    <span className="tooltip-login-password">Ingresa tu contraseña</span>
                                 </div>
                             </div>
                             <button type="submit" className="btn btn-success login-btn">
                                 Ingresa
                             </button>
                             <p className="forgot-password-text">
-                                <a href="/forget-password">Olvidé mi contraseña</a>
+                                <a href="/reset-password">Olvidé mi contraseña</a>
                             </p>
                             <p className="signup-text">
                                 ¿No tienes una cuenta aún? <a href="/register">Únete</a>
