@@ -1,6 +1,9 @@
 @font-face {
     font-family: "Koulen";
     src: url("../fonts/Koulen-Regular.ttf") format("truetype");
+}
+
+@font-face {
     font-family: "Aoboshi One";
     src: url("../fonts/AoboshiOne-Regular.ttf") format("truetype");
 }
@@ -20,69 +23,45 @@ body {
 }
 
 .dog__animation {
-    /*background-image: url("../src/img/cuerpo_Perro.png"); */
-    display: flex;
     max-width: 100%;
     height: auto;
     justify-content: center;
     transform: translateY(0px);
-    border: 2px solid red;
-    position: absolute;
+    position: relative;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
-    align-items: flex-end; 
+    align-items: flex-end;
     overflow: hidden;
     margin: 0 auto;
 }
 
-.dog__animation img{
-    width: 100vw;
-    height: 100vh;
+.dog__animation img {
+    width: 100%;
+    height: auto;
     object-fit: contain;
-    display: flex;
+    max-height: 100%;
+    display: block;
     align-items: flex-end;
+    margin-bottom: 0;
 }
 
 .home-container {
     align-items: flex-end;
-    z-index: 1;
     display: flex;
     background-color: #7BB66D;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     position: relative;
-    height: calc(100vh - 80px); /*se resta el tamaño de la pantalla con el tamaño del navbar para que se acomode debajo del navbar*/
-    /*min-height: 100vh;*/
+    height: 100vh;
     width: 100vw;
-    overflow-y: scroll;
     padding: 20px;
     margin-top: 80px;
     border: 2px solid red;
-    /*background-image: url("../src/img/Perro_Home.png");
-    background-repeat: no-repeat;
-    background-position: center;*/ /*opcion de colocarlo como fondo*/
 }
 
-.home-container::-webkit-scrollbar{
-    width: 10px;
-    color: #FCF3E3;
-}
-
-.home-container::-webkit-scrollbar-thumb {
-    background: #ffcc80; 
-    border-radius: 80px; 
-}
-
-.home-container::-webkit-scrollbar-thumb:hover {
-    background: #ffa726; 
-}
-
-.home-container::-webkit-scrollbar-track {
-    background: none; 
-}
 
 .home-content {
     text-align: center;
@@ -90,8 +69,8 @@ body {
     font-family: 'Koulen', sans-serif;
 }
 
-.left-text-container h1,
-.right-text-container h1 {
+.left-text-container h2,
+.right-text-container h2 {
     z-index: 1;
     margin: 0;
     font-size: 6rem;
@@ -99,17 +78,6 @@ body {
 }
 
 .subheading {
-    /*color: #FCF3E3;
-    flex: 1;
-    text-align: center;
-    position: absolute;
-    left: 0;
-    padding: 3rem;
-    font-weight: bold;
-    margin-left: 0px;
-    font-family: 'Aoboshi One', sans-serif;
-    font-size: 1.22rem;
-    top: 22rem;*/
     z-index: 1;
     margin-top: 1rem;
     font-size: 1.3rem;
@@ -118,8 +86,8 @@ body {
     font-weight: bold;
 }
 
-.icon-container{
-    display:flex;
+.icon-container {
+    display: flex;
     justify-content: center;
     align-items: center;
     position: absolute;
@@ -129,27 +97,19 @@ body {
     gap: 1rem;
 }
 
-/*.social-icons {
-    position: absolute;
-    bottom: 5%;
-    left: 2%;
-    display: flex;
-    gap: 1rem;
-}*/
-
 .social-icon {
-    width: 50px; 
-    height: 50px; 
-    background-color: #BDD3CE; 
-    border-radius: 50%; 
+    width: 50px;
+    height: 50px;
+    background-color: #BDD3CE;
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
 }
 
-.social-icon img{
-    width: 30px; 
+.social-icon img {
+    width: 30px;
     height: 30px;
     object-fit: contain;
 }
@@ -172,43 +132,62 @@ body {
     text-align: left;
 }
 
-/*para pantallas pequeñas*/
+.right-text-container h2 {
+    font-size: 120px;
+    line-height: 1.2;
+}
+
+.left-text-container h2 {
+    font-size: 120px;
+    line-height: 1.2;
+}
+
+.subheading {
+    font-size: 1.5rem;
+    color: white;
+}
+
+/* Para pantallas pequeñas */
 @media (max-width: 480px) {
-    .dog_animation {
-        max-width: 100%; 
-        position: fixed; 
+    .dog__animation {
+        max-width: 100%;
+        position: relative;
         bottom: 0;
-        left: 0;
-        transform: none;
-    }
-
-    .dog_animation img {
-        width: 100vw;
-        height: auto;
-        object-fit: contain;
-        align-items: flex-end;
-    }
-  }
-
-/*pantallas medianas*/
-@media screen and (max-width: 768px) {
-    .left-text-container h1,
-    .right-text-container h1 {
-        font-size: 2.5rem;
-        width: 60%;
-    }
-
-    .subheading {
-        font-size: 1rem;
+        left: 50%; /* Aseguramos que el perro esté centrado */
+        transform: translateX(-50%);
     }
 
     .dog__animation img {
-        max-width: 60%;
-        object-fit: contain;
-        align-items: flex-end;
+        width: 100vw;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .left-text-container h2,
+    .right-text-container h2,
+    .subheading {
+        font-size: 8px; /* Ajusta el tamaño a 8px para un tamaño aún más pequeño */
+        width: 80%;
+    }
+
+    .left-text-container,
+    .right-text-container {
+        width: 100%;
+        text-align: center;
     }
 }
 
+/* Para pantallas medianas */
+@media screen and (max-width: 768px) {
+    .left-text-container h2,
+    .right-text-container h2,
+    .subheading {
+        font-size: 2rem;
+        width: 80%;
+    }
 
-
-
+    .dog__animation img {
+        width: 80%;
+        object-fit: contain;
+    }
+}

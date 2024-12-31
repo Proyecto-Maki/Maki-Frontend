@@ -20,13 +20,13 @@ const Home = () => {
                 </div>
                 <div className="home-content">
                     <div className="left-text-container">
-                        <h1>¡COMPRA <br /> LO MEJOR </h1>
+                        <h2>¡COMPRA <br /> LO MEJOR </h2>
                         <p className="subheading">
                             Tenemos los mejores alimentos naturales y ecológicos en el país
                         </p>
                     </div>
                     <div className="right-text-container">
-                        <h1>PARA TU <br /> MASCOTA!</h1>
+                        <h2>PARA TU <br /> MASCOTA!</h2>
                     </div>
 
                     <div className="icon-container">
