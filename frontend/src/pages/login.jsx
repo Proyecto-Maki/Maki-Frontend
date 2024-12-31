@@ -103,7 +103,7 @@ const Login = () => {
                                 Ingresa
                             </button>
                             <p className="forgot-password-text">
-                                <a href="/reset-password">Olvidé mi contraseña</a>
+                                <a href="/forget-password">Olvidé mi contraseña</a>
                             </p>
                             <p className="signup-text">
                                 ¿No tienes una cuenta aún? <a href="/register">Únete</a>

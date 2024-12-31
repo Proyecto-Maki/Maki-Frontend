@@ -12,7 +12,7 @@ function SuccessModal({ show, handleClose, response, dirNavigate }) {
         <Modal.Title>Registro Exitoso</Modal.Title>
       </Modal.Header>
       <Modal.Body className="modal-success-body">
-        ¡Te has registrado exitosamente! Ahora puedes iniciar sesión. {response}
+        {response}
       </Modal.Body>
       <Modal.Footer className="modal-success-footer">
         <Button variant="secondary" onClick={handleClose} className="modal-success-button-secondary">

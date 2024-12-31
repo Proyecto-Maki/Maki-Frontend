@@ -1,39 +1,85 @@
 import React from "react";
-import { Card, Row, Col, Button } from "react-bootstrap";
-import { FaEdit } from "react-icons/fa";  // Ensure react-icons is installed
-import '../styles/user-profile.css';
-import Navbar from '../components/navbar';  // Importar el Navbar
+import { Button } from "react-bootstrap";
+import { FaDog, FaShoppingBag, FaHeart, FaDonate, FaEdit, FaSignOutAlt, FaTrashAlt } from "react-icons/fa";
+import Navbar from '../components/navbar'; // Navbar personalizado
+import '../styles/user-profile.css'; // Importa el archivo CSS
 
 const UserProfile = () => {
   return (
-    <div className="profile-container">
-      {/* Coloca el Navbar al principio */}
+    <>
+      {/* Navbar */}
       <Navbar />
+      
+      {/* User Profile */}
+      <div className="profile-container">
+        <div className="card profile-card">
+          <div className="card-body p-4">
+            <div className="d-flex">
+              <div className="flex-shrink-0">
+                <img
+                  src="../src/img/catPfp.jpeg"
+                  alt="Generic placeholder image"
+                  className="img-fluid"
+                />
+              </div>
+              <div className="flex-grow-1 ms-3">
+                <h2 className="nombreUserProfile">Nana Pedraza</h2>
+                <p className="correoUserProfile">Nana@gmail.com</p>
+                <p className="numeroUserProfile">310101025</p>
+                <p className="direccionUserProfile">calle autism</p>
+                <p className="rolUserProfile">Dueño de mascota</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <Card className="profile-card">
-        <Row>
-          <Col md={3} className="d-flex align-items-center justify-content-center">
-            <img
-              src="https://via.placeholder.com/150"
-              alt="Foto de perfil"
-              className="profile-image"
-            />
-          </Col>
-          <Col md={8} className="d-flex flex-column justify-content-center">
-            <h2 className="profile-name">Sol canino</h2>
-            <p>micorreo@correo</p>
-            <p>+57 30012121212</p>
-            <p>Colombia, Bogotá. cra 30 #1-1</p>
-            <p>Fundación</p>
-          </Col>
-          <Col md={1} className="d-flex align-items-start justify-content-end">
-            <Button variant="link" className="edit-button">
-              <FaEdit />
-            </Button>
-          </Col>
-        </Row>
-      </Card>
-    </div>
+      {/* User Profile */}
+      <div className="icons-container">
+            <div className="d-flex flex-row justify-content-center">
+              <div className="p-2">
+                <img
+                  src="../src/img/iconosProfile/mascotas.png"
+                  alt="Generic placeholder image"
+                  className="img-fluid"
+                />
+                <p className="titulosIconos">Mascotas</p>
+              </div>
+              <div className="p-2">
+              <img
+                  src="../src/img/iconosProfile/pedidos.png"
+                  alt="Generic placeholder image"
+                  className="img-fluid"
+                />
+                <p className="titulosIconos">Pedidos</p>
+              </div>
+              <div className="p-2">
+              <img
+                  src="../src/img/iconosProfile/adopciones.png"
+                  alt="Generic placeholder image"
+                  className="img-fluid"
+                />
+                <p className="titulosIconos">Adopciones</p>
+              </div>
+              <div className="p-2">
+              <img
+                  src="../src/img/iconosProfile/donaciones.png"
+                  alt="Generic placeholder image"
+                  className="img-fluid"
+                />
+                <p className="titulosIconos">Donaciones</p>
+              </div>
+              <div className="p-2">
+              <img
+                  src="../src/img/iconosProfile/MakiPaws.png"
+                  alt="Generic placeholder image"
+                  className="img-fluid"
+                />
+                <p className="titulosIconos">MakiPaws</p>
+              </div>
+            </div>
+          </div>
+    </>
   );
 };
 

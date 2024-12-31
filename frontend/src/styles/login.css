@@ -23,17 +23,17 @@ body {
 
 /*Contenedor imagen fondo del login*/
 .background-container {
-    background-image: url("/fondo.svg"); 
-    background-size: cover; 
-    background-position: center; 
-    background-repeat: no-repeat; 
-    height: 100vh; /*ola*/ 
-    width: 100vw; 
+    background-image: url("/fondo.svg");
+    background-size: contain; /* Mantiene la imagen sin distorsionar y ajusta su tamaño */
+    background-position: bottom center; /* Alinea la imagen al borde inferior */
+    background-repeat: no-repeat;
+    height: 100vh; /* Mantiene la altura completa de la ventana */
+    width: 55vw; 
     display: flex;
     justify-content: center;
     align-items: center;
-    /*border: 2px solid red; */
 }
+
 
 /* Contenedor del contenido */
 .login-content {

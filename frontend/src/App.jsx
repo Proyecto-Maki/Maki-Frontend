@@ -4,6 +4,7 @@ import Login from './pages/login';
 import Register from './pages/register';
 import ConfirmationRegister from './pages/confirmation-register';
 import PasswordRecovery from './pages/password-recovery';
+import ForgetPassword from './pages/forget-password';
 import UserProfile from './pages/user-profile';
 import Home from './pages/home'
 
@@ -16,7 +17,8 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/confirmation-register" element={<ConfirmationRegister />} />
         <Route path="/user-profile" element={<UserProfile/>} />
-        <Route path="/password-recovery" element={<PasswordRecovery />} />
+        <Route path="/password-reset-confirm/:uidb64/:token" element={<PasswordRecovery />} />
+        <Route path="/forget-password" element={<ForgetPassword />}></Route>
       </Routes>
     </BrowserRouter>
   );
