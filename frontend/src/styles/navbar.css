@@ -6,6 +6,7 @@
 
 /* Navbar */
 .navbar {
+  background-color: #7BB66D;
   width: 100%;
   height: 80px;
   font-family: "AoboshiOne", sans-serif;
@@ -54,6 +55,8 @@
   transform: scale(1.05); 
 }
 
+
+
 /* Navbar para pantallas pequeñas */
 @media (max-width: 992px) {
   .navbar-nav {
@@ -80,6 +83,7 @@
     box-shadow: -2px 4px 6px rgba(0, 0, 0, 0.3);
   }
 }
+
 
 /* Navbar para pantallas más pequeñas (por debajo de 576px) */
 @media (max-width: 576px) {
