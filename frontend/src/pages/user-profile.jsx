@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, Row, Col, Button } from "react-bootstrap";
-import { FaEdit } from "react-icons/fa";
+import { FaEdit } from "react-icons/fa";  // Ensure react-icons is installed
 import '../styles/user-profile.css';
 import Navbar from '../components/navbar';  // Importar el Navbar
 
