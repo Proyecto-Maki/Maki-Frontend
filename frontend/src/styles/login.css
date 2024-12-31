@@ -167,6 +167,62 @@ body {
     background-color: #7ab453;
 }
 
+/* Tooltip Login */
+.tooltip-login {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.tooltip-login-email {
+    position: absolute;
+    top: -95%;
+    left: 50%;
+    /* transform: translateX(-50%); */
+    visibility: hidden;
+    background-color: #ffa8269d;
+    color: #302F2F;
+    text-align: center;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 200;
+    padding: .25rem;
+    z-index: 100;
+}
+
+.tooltip-login-password {
+    position: absolute;
+    top: -62%;
+    left: 58%;
+    /* transform: translateX(-50%); */
+    visibility: hidden;
+    background-color: #ffa8269d;
+    color: #302F2F;
+    text-align: center;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 200;
+    padding: .25rem;
+    z-index: 100;
+}
+
+.tooltip-login-email::after,
+.tooltip-login-password::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 7px;
+    border-style: solid;
+    border-color: #ffa726 transparent transparent transparent;
+}
+
+.tooltip-login:hover .tooltip-login-email,
+.tooltip-login:hover .tooltip-login-password {
+    visibility: visible;
+}
+
 /* Responsiveness */
 @media (max-width: 768px) {
     .login-content {
