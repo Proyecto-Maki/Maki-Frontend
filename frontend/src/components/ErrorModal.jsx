@@ -6,7 +6,7 @@ function ErrorModal({ show, handleClose, error }) {
   return (
     <Modal show={show} onHide={handleClose} dialogClassName="modal-error-content">
       <Modal.Header closeButton className="modal-error-header">
-        <Modal.Title>Error en el Registro</Modal.Title>
+        <Modal.Title>Error</Modal.Title>
       </Modal.Header>
       <Modal.Body className="modal-error-body">
         {error}

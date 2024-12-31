@@ -9,7 +9,7 @@ function SuccessModal({ show, handleClose, response, dirNavigate }) {
   return (
     <Modal show={show} onHide={handleClose} dialogClassName="modal-success-content">
       <Modal.Header closeButton className="modal-success-header">
-        <Modal.Title>Registro Exitoso</Modal.Title>
+        <Modal.Title>Confirmación</Modal.Title>
       </Modal.Header>
       <Modal.Body className="modal-success-body">
         {response}
