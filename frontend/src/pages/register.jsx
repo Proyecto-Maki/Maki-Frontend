@@ -106,6 +106,14 @@ function Register() {
 			return;
 		}
 
+		const cedulaError = validateCedula(formData.cedula);
+		if (cedulaError) {
+			setError(cedulaError);
+			setShowErrorModal(true);
+			// alert(cedulaError);
+			return;
+		}
+
 		const passwordError = validatePassword(formData.password, formData.password2);
 		if (passwordError) {
 			setError(passwordError);
