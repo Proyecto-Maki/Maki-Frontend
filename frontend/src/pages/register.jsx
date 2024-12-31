@@ -20,6 +20,17 @@ function Register() {
 
 	const navigate = useNavigate();
 
+	const validateCedula = (cedula) => {
+		const re = /^\d+$/;
+		if (!re.test(cedula)) {
+			return "La cédula solo debe contener números.";
+		}
+		if (cedula.length !== 10) {
+			return "La cédula debe tener 10 dígitos.";
+		}
+		return null;
+	}
+
 	const validatePassword = (password, password2) => {
 		let message = "";
 		if (password !== password2) {
@@ -205,6 +216,22 @@ function Register() {
 						{type === "user" ? (
 							<>
 								<h2 >Regístrate como Usuario</h2>
+								<div className="form-group">
+									<label>Cédula de ciudadanía</label>
+									<div className="tooltip-registro">
+										<input
+											className="input-field"
+											type="text"
+											name="cedula"
+											placeholder="Cédula de ciudadanía"
+											onChange={handleChange}
+											value={formData.cedula || ""}
+											required
+										/>
+										<span className="tooltip-registro-text">Este campo es obligatorio. Ingresa tu cédula.</span>
+									</div>
+
+								</div>
 								<div className="form-group">
 									<label>Primer nombre</label>
 									<div className="tooltip-registro">
