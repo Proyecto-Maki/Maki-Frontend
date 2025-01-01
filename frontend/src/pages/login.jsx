@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from '../components/navbar';
 import '../styles/login.css';
 import logo from '../img/Logotipo Maki.png'; // Ruta al logo
-import SuccessModal from '../components/SuccessModal';
+import WelcomeModal from '../components/WelcomeModal'; // Import the new WelcomeModal component
 import ErrorModal from '../components/ErrorModal';
 import api from '../api';
 
@@ -24,9 +24,11 @@ const Login = () => {
             .then((response) => {
                 if (response.status === 200) {
                     console.log('Login successful:', response.data);
-                    setResponse(response.data.message);
-                    setDirNavigate('/home'); // Redirige a la página de dashboard o la que corresponda
+                    setResponse('¡Bienvenido!');
                     setShowSuccessModal(true);
+                    setTimeout(() => {
+                        window.location.href = '/'; // Redirige a la página de dashboard o la que corresponda
+                    }, 5000); // Redirige después de 5 segundos
                 } else {
                     console.log('Error en el login');
                     console.log(response.data.message);
@@ -110,7 +112,7 @@ const Login = () => {
                     </div>
                 </div>
             </div>
-            <SuccessModal show={showSuccessModal} handleClose={handleCloseSuccessModal} response={response} dirNavigate={dirNavigate} />
+            <WelcomeModal show={showSuccessModal} handleClose={handleCloseSuccessModal} response={response} />
             <ErrorModal show={showErrorModal} handleClose={handleCloseErrorModal} error={error} />
         </>
     );
