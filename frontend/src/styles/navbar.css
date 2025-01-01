@@ -126,6 +126,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  border: 2px solid red;
 }
 
 /* Navbar para pantallas más pequeñas (por debajo de 576px) */

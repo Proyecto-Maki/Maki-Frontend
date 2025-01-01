@@ -4,8 +4,6 @@ import { FaSearch, FaShoppingCart } from 'react-icons/fa'; // Importamos los ico
 import logo from '../img/Logotipo Maki Blanco.png'; // Ruta al logo
 import '../styles/navbar.css';
 
-
-
 function Navbar() {
   const location = useLocation(); // Obtenemos la ubicación actual de la ruta
 
@@ -32,16 +30,8 @@ function Navbar() {
         </div>
 
         {/* Botón  para pantallas pequeñas */}
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon">☰</span>
         </button>
 
         {/* Links y botones */}
@@ -64,9 +54,8 @@ function Navbar() {
             </li>
           </ul>
           {/* Botones adicionales */}
-          <div style={{ display: "flex", alignItems: "center" }}>
-            {/* Mostrar login si no estamos en la página de login ni en el perfil de usuario */}
-            {!isLoginPage && !isUserProfilePage && (
+          <div classname= "button-login" >
+            {!isLoginPage && (
               <a href="/login">
                 <button className="btn-custom">Login</button>
               </a>
