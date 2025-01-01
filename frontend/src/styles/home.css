@@ -59,7 +59,6 @@ body {
     width: 100vw;
     padding: 20px;
     margin-top: 80px;
-    border: 2px solid red;
 }
 
 
@@ -80,7 +79,7 @@ body {
 .subheading {
     z-index: 1;
     margin-top: 1rem;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     color: #302f2fe5;
     font-family: 'Aoboshi One', sans-serif;
     font-weight: bold;
@@ -142,10 +141,6 @@ body {
     line-height: 1.2;
 }
 
-.subheading {
-    font-size: 1.5rem;
-    color: white;
-}
 
 /* Para pantallas pequeñas */
 @media (max-width: 480px) {

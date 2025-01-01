@@ -38,7 +38,8 @@
   border-radius: 8px; 
   padding: 10px 20px; 
   font-size: 16px; 
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  transition: transform 0.3s ease;
+  background-color: 0.3s ease;
   display: block; 
   margin: 0 auto; 
 }
@@ -55,7 +56,31 @@
   transform: scale(1.05); 
 }
 
+.navbar-toggler{
+  display: block;
+  z-index: 1050;
+  position: center;
+  color: #7BB66D;
+}
+/*icono del menú desplegable*/
+.navbar-toggler-icon{
+  border-radius: 4px;
+  border: 2px solid red;
+  color: #fdf0e6;
+  font-size: 1.5rem;
+}
 
+.navbar-toggler-icon:hover{
+  color: #FFD96E;
+}
+
+.button-login {
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Alinear verticalmente */
+  margin-top: 15px; /* Espaciado superior */
+  width: 100%; /* Asegura que ocupa todo el ancho */
+}
 
 /* Navbar para pantallas pequeñas */
 @media (max-width: 992px) {
@@ -81,9 +106,16 @@
     top: 80px;              
     right: 0;               
     box-shadow: -2px 4px 6px rgba(0, 0, 0, 0.3);
+    align-items: center;
   }
 }
 
+.button-login{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  border: 2px solid red;
+}
 
 /* Navbar para pantallas más pequeñas (por debajo de 576px) */
 @media (max-width: 576px) {
@@ -101,5 +133,8 @@
     transition: transform 0.3s ease, background-color 0.3s ease;
     font-size: 14px;
     padding: 8px 16px; 
+    display: flex;
+    width: auto;
+    margin: 0 auto;
   }
 }
