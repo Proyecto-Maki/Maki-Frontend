@@ -56,8 +56,24 @@
   transform: scale(1.05); 
 }
 
-/* Estilos para los iconos de búsqueda y carrito */
-.profile-actions {
+.navbar-toggler{
+  display: block;
+  z-index: 1050;
+  position: center;
+  color: #7BB66D;
+}
+/*icono del menú desplegable*/
+.navbar-toggler-icon{
+  border-radius: 4px;
+  color: #fdf0e6;
+  font-size: 1.5rem;
+}
+
+.navbar-toggler-icon:hover{
+  color: #FFD96E;
+}
+
+.button-login {
   display: flex;
   align-items: center;
 }
@@ -105,7 +121,6 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  border: 2px solid red;
 }
 
 /* Navbar para pantallas más pequeñas (por debajo de 576px) */
