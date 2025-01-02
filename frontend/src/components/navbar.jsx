@@ -1,9 +1,8 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom'; // Importamos useLocation para obtener la ruta actual
-import { FaSearch, FaShoppingCart } from 'react-icons/fa'; // Importamos los iconos de React Icons
 import logo from '../img/Logotipo Maki Blanco.png'; // Ruta al logo
 import '../styles/navbar.css';
-
+import { FaSearch, FaShoppingCart } from 'react-icons/fa'; // Importamos los iconos de React Icons
 
 
 function Navbar() {
@@ -32,16 +31,8 @@ function Navbar() {
         </div>
 
         {/* Botón  para pantallas pequeñas */}
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon">☰</span>
         </button>
 
         {/* Links y botones */}
@@ -64,14 +55,12 @@ function Navbar() {
             </li>
           </ul>
           {/* Botones adicionales */}
-          <div style={{ display: "flex", alignItems: "center" }}>
-            {/* Mostrar login si no estamos en la página de login ni en el perfil de usuario */}
+          <div classname= "button-login" >
             {!isLoginPage && !isUserProfilePage && (
               <a href="/login">
                 <button className="btn-custom">Login</button>
               </a>
             )}
-
             {/* Mostrar foto de perfil si estamos en la página de perfil de usuario */}
             {isUserProfilePage && (
               <div className="profile-actions" style={{ display: 'flex', alignItems: 'center' }}>
