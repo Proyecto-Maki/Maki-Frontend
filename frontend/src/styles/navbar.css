@@ -62,12 +62,6 @@
   position: center;
   color: #7BB66D;
 }
-.navbar-toggler{
-  display: block;
-  z-index: 1050;
-  position: center;
-  color: #7BB66D;
-}
 /*icono del menú desplegable*/
 .navbar-toggler-icon{
   border-radius: 4px;
