@@ -62,6 +62,12 @@
   position: center;
   color: #7BB66D;
 }
+.navbar-toggler{
+  display: block;
+  z-index: 1050;
+  position: center;
+  color: #7BB66D;
+}
 /*icono del menú desplegable*/
 .navbar-toggler-icon{
   border-radius: 4px;
@@ -75,11 +81,16 @@
 
 .button-login {
   display: flex;
-  align-items: center;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Alinear verticalmente */
+  margin-top: 15px; /* Espaciado superior */
+  width: 100%; /* Asegura que ocupa todo el ancho */
 }
 
-.profile-actions > div {
-  margin-right: 10px;
+/* Estilos para los iconos de búsqueda y carrito */
+.profile-actions {
+  display: flex;
+  align-items: center;
 }
 
 /* Foto de perfil */
