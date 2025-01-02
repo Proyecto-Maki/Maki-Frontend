@@ -65,7 +65,6 @@
 /*icono del menú desplegable*/
 .navbar-toggler-icon{
   border-radius: 4px;
-  border: 2px solid red;
   color: #fdf0e6;
   font-size: 1.5rem;
 }
@@ -114,7 +113,6 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  border: 2px solid red;
 }
 
 /* Navbar para pantallas más pequeñas (por debajo de 576px) */
