@@ -12,11 +12,11 @@ function Register() {
 	const [type, setType] = useState("user");
 	const [formData, setFormData] = useState({});
 	const [acceptedTerms, setAcceptedTerms] = useState(false);
-	const [showSuccessModal, setShowSuccessModal] = useState(false);
-	const [showErrorModal, setShowErrorModal] = useState(false);
-	const [error, setError] = useState("");
-	const [response, setResponse] = useState("");
-	const [dirNavigate, setDirNavigate] = useState("");
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showErrorModal, setShowErrorModal] = useState(false);
+  const [error, setError] = useState("");
+  const [response, setResponse] = useState("");
+  const [dirNavigate, setDirNavigate] = useState("");
 
 	const navigate = useNavigate();
 
@@ -35,23 +35,23 @@ function Register() {
 		let message = "";
 		if (password !== password2) {
 			message += "Las contraseñas no coinciden. ";
-		}
-		if (!/\d/.test(password)) {
-			message += "La contraseña debe tener al menos un número. ";
-		}
-		if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-			message += "La contraseña debe tener al menos un carácter especial. ";
-		}
-		if (password.length < 8) {
-			message += "La contraseña debe tener más de 8 caracteres.";
-		}
+        }
+        if (!/\d/.test(password)) {
+            message += "La contraseña debe tener al menos un número. ";
+        }
+        if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+            message += "La contraseña debe tener al menos un carácter especial. ";
+        }
+        if (password.length < 8) {
+            message += "La contraseña debe tener más de 8 caracteres.";
+        }
 
 		if (message === "") {
 			return null;
 		} else {
 			return message;
 		}
-	}
+    }
 
 	const validateEmail = (email) => {
 		const re = /\S+@\S+\.\S+/;
@@ -140,14 +140,14 @@ function Register() {
 
 		if (type === "foundation") {
 			const nitError = validateNit(formData.nit);
-			if (nitError) {
-				setError(nitError);
-				setShowErrorModal(true);
-				return;
-			}
+				if (nitError) {
+					setError(nitError);
+					setShowErrorModal(true);
+					return;
+				}
 		}
-
-
+		
+		
 		const dataToSubmit = {
 			...formData,
 			is_verified: false, // Ensure the is_verified field is included
@@ -156,42 +156,42 @@ function Register() {
 
 		const url = type === "user" ? "registro/cliente/" : "registro/fundacion/";
 
-		api
-			.post(url, dataToSubmit)
-			.then((response) => {
-				if (response.status === 201) {
-					console.log("Usuario registrado correctamente");
-					// Redirigir después de la espera si es éxito
-					setResponse(response.data.message);
-					setDirNavigate("/confirmation-register")
-					setShowSuccessModal(true);
+    api
+      .post(url, dataToSubmit)
+      .then((response) => {
+        if (response.status === 201) {
+          console.log("Usuario registrado correctamente");
+          // Redirigir después de la espera si es éxito
+          setResponse(response.data.message);
+		  setDirNavigate("/confirmation-register")
+          setShowSuccessModal(true);
 
-				} else {
-					console.log("Error al registrar el usuario");
-					console.log(response.data.message);
-					setResponse(response.data.message)
-					setShowErrorModal(true);
-				}
-			})
-			.catch((error) => {
-				console.error(error.response ? error.response.data : error.message);
-				console.log(error.response.data.message);
-				setError(error.response.data.message);
-				setShowErrorModal(true);
-			});
-	};
+        } else {
+          console.log("Error al registrar el usuario");
+          console.log(response.data.message);
+          setResponse(response.data.message)
+          setShowErrorModal(true);
+        }
+      })
+      .catch((error) => {
+        console.error(error.response ? error.response.data : error.message);
+        console.log(error.response.data.message);
+        setError(error.response.data.message);
+        setShowErrorModal(true);
+      });
+  };
 
-	const handleTypeChange = (newType) => {
-		setType(newType);
-		setFormData({});
-	};
+  const handleTypeChange = (newType) => {
+    setType(newType);
+    setFormData({});
+  };
 
-	const handleCloseSuccessModal = () => {
+  const handleCloseSuccessModal = () => {
 		setShowSuccessModal(false)
 		setError("");
 		setResponse("");
 	};
-	const handleCloseErrorModal = () => {
+  const handleCloseErrorModal = () => {
 		setShowErrorModal(false)
 		setError("");
 		setResponse("");
@@ -526,13 +526,13 @@ function Register() {
 								required
 							/>
 						</div>
-
+						
 						<button type="submit" className="submit-button">Continuar</button>
 					</form>
 				</div>
 			</div>
-			<SuccessModal show={showSuccessModal} handleClose={handleCloseSuccessModal} response={response} dirNavigate={dirNavigate} />
-			<ErrorModal show={showErrorModal} handleClose={handleCloseErrorModal} error={error} />
+      <SuccessModal show={showSuccessModal} handleClose={handleCloseSuccessModal} response={response} dirNavigate={dirNavigate} />
+      <ErrorModal show={showErrorModal} handleClose={handleCloseErrorModal} error={error} />
 		</>
 	);
 }

@@ -1,50 +1,34 @@
-/* Importación de fuentes */
-@import url("@fortawesome/fontawesome-free/css/all.min.css");
+@font-face {
+  font-family: "Aoboshi One";
+  src: url("../fonts/AoboshiOne-Regular.ttf") format("truetype");
+}
 
-/* ================================ Estilos Generales ================================ */
-
-/* Contenedores principales */
+/* Contenedor del perfil */
 .profile-container {
-  width: 60vw;
-  max-width: 1600px;
-  height: auto;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  width: 90vw; /* Asegura que el contenedor ocupe todo el ancho disponible */
+  max-height: 300px;
+  max-width: 1600px; /* Establece un ancho máximo para evitar que se expanda demasiado */
+  margin: 0 auto; /* Centra el contenedor */
+  padding-top: 8%; /* Ajusta el espacio superior para que no esté tan pegado a la parte superior */
 }
 
-.button-container-userProfile {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  z-index: 10;
+/* Estilos para la tarjeta con fondo azul */
+.profile-card {
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Asegura que ocupe el 100% del contenedor */
+  padding: 2rem; /* Ajusta el espacio interno para más comodidad */
+  margin: 0 auto; /* Centra la tarjeta */
+  background-color: #BDD3CE; /* Color de fondo azul */
+  color: white; /* Color de texto blanco */
 }
 
-/* ================================ Información del perfil ================================ */
-
-/* Contenedor de la información */
-.profile-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;  
-  gap: 0.5rem;
-  width: 100%;
-  padding-top: 1rem;
-  text-align: center;
-  height: 100%;  
-  margin-left: 10%; 
-}
-
-/* Estilos para las etiquetas de usuario */
+/* Estilos para el contenido del perfil */
 .nombreUserProfile {
   font-family: "Aoboshi One", sans-serif;
-  font-size: 3rem;
+  font-size: 48px; /* Aumenta el tamaño de la fuente */
+  font-weight: bold;
   color: #FFD96E;
-  margin-right: 15%;
- 
 }
 
 .correoUserProfile,
@@ -52,231 +36,59 @@
 .direccionUserProfile,
 .rolUserProfile {
   font-family: "Aoboshi One", sans-serif;
-  font-size: 1rem;
+  font-size: 20px; /* Aumenta ligeramente el tamaño de la fuente */
   color: #302F2F;
-  margin-right: 15%;
+  margin-bottom: 0.5rem;
+  
 }
 
+/* Estilo para la imagen de perfil */
+.img-fluid {
+  width: 200px;
+  height: 200px; /* Asegura que la imagen tenga el mismo alto que el ancho */
+  border-radius: 50%; /* Hace que la imagen sea redonda */
+}
 
-/* ================================ Estilos para tarjetas ================================ */
+/* Estilos para los íconos */
 
-/* Estilo para la tarjeta del perfil */
-.profile-card {
-  border-radius: 15px;
-  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  padding: 1rem;
-  background-color: #BDD3CE;
-  margin-bottom: 2rem;
+.flex-grow-1 {
   display: flex;
   flex-direction: column;
-  justify-content: left; /* Centra verticalmente */
-  align-items: left; /* Centra horizontalmente */
-  text-align: left; /* Asegura que el texto esté centrado */
-  position: relative;
+  justify-content: center; /* Centra verticalmente el contenido */
 }
 
-/* Estilos de imagen */
-.img-fluid {
-  width: 280px;
-  height: 280px;
-  border-radius: 50%;
-}
-
-/* ================================ Contenedor de íconos ================================ */
-
-/* Contenedor de íconos */
 .icons-container {
   display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-top: 1rem;
-  flex-wrap: wrap;
+  justify-content: center; /* Centra los íconos horizontalmente */
+  gap: 2rem; /* Añade espacio uniforme entre los íconos */
+  padding-top: 15%; /* Mantén el espacio superior */
 }
-
-/* Estilo para la imagen de los íconos */
-.img-icon {
-  width: 150px;
-  height: 150px;
-  transition: transform 0.3s ease, filter 0.3s ease;
-  border-radius: 10px;
-}
-
-/* Subtítulos de los íconos */
 .titulosIconos {
-  text-align: center;
-  font-family: "Aoboshi One", sans-serif;
-  font-size: 1rem;
-  margin-top: 0.5rem;
-  color: #302F2F;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-
-/* Efectos de hover en los íconos */
-.p-2:hover .img-icon {
-  transform: scale(1.1);
-  filter: brightness(1.2);
-}
-
-.p-2:hover .titulosIconos {
-  color: #302F2F;
-  font-weight: bold;
-  transform: scale(1.1);
-}
-
-/* ================================ Botones ================================ */
-
-/* Estilo del botón de editar */
-.edit-icon {
-  font-family: "Aoboshi One", sans-serif;
-  color: #FFF;
-  background-color: #FFD96E;
-  font-size: 1.2rem;
-  padding: 0.5rem 1.5rem;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
-  border: none;
-  cursor: pointer;
-}
-
-.edit-icon i {
-  color: #302F2F;
-  transition: color 0.3s ease;
-}
-
-/* Efectos hover */
-.edit-icon:hover {
-  background-color: #F3C500;
-  transform: scale(1.05);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-}
-
-.edit-icon:hover i {
-  color: #FFF;
-}
-
-/* Estilo del botón de logout */
-.logout-icon {
-  font-family: "Aoboshi One", sans-serif;
-  color: #302F2F;
-  font-size: 1.2rem;
-  text-decoration: none !important;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.3s ease, color 0.3s ease;
-}
-
-.logout-icon:hover {
-  color: #FFF;
-  transform: scale(1.05);
-}
-
-/* Subrayado en hover */
-.logout-icon::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background-color: #FFD96E;
-  transition: width 0.3s ease, left 0.3s ease;
-}
-
-.logout-icon:hover::after {
-  width: 50%;
-  left: 25%;
-}
-
-/* Efectos en el ícono de logout */
-.logout-icon i {
-  color: #302F2F;
-  transition: color 0.3s ease;
-}
-
-.logout-icon:hover i {
-  color: #FFF;
-}
-
-/* Botón de eliminar cuenta */
-.btn-danger {
-  background-color: #FFD96E;
-  color: #302F2F;
-  font-size: 1rem;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-  border: none;
-  outline: none;
-}
-
-/* Efectos hover */
-.btn-danger:hover {
-  background-color: #F3C500;
-  transform: scale(1.1) rotate(3deg);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-}
-
-/* Cambio de color en el ícono */
-.btn-danger i {
+  text-align: center; /* Centra el texto debajo del ícono */
+  font-family: "Aoboshi One", sans-serif; /* Opcional: asegúrate de mantener la fuente */
+  font-size: 1rem; /* Ajusta el tamaño según lo que necesites */
+  margin-top: 0.5rem; /* Añade espacio entre la imagen y el título */
   color: #302F2F;
 }
 
-/* Animación de rebote */
-@keyframes bounce {
-  0% {
-    transform: translateY(0);
-  }
-  30% {
-    transform: translateY(-8px);
-  }
-  50% {
-    transform: translateY(0);
-  }
-  70% {
-    transform: translateY(-4px);
-  }
-  100% {
-    transform: translateY(0);
+
+
+/* Estilos responsivos */
+@media (max-width: 1200px) {
+  .profile-card {
+    width: 85%; /* En pantallas grandes, reduce el ancho */
   }
 }
 
-/* Rebotar al pasar el ratón */
-.btn-danger:hover {
-  animation: bounce 0.6s ease-out;
-}
-
-/* ================================ Estilos Responsivos ================================ */
-
-/* Estilos para dispositivos con pantallas pequeñas */
 @media (max-width: 992px) {
-  .icons-container {
-    gap: 1.5rem;
+  .profile-card {
+    width: 80%; /* En pantallas medianas, reduce el ancho */
   }
 }
 
 @media (max-width: 768px) {
-  .icons-container {
-    gap: 1rem;
-  }
-
-  .img-icon {
-    width: 80px;
-    height: 80px;
-  }
-
-  .titulosIconos {
-    font-size: 0.9rem;
+  .profile-card {
+    width: 100%; /* En pantallas pequeñas, ocupa el 100% del ancho */
   }
 }
+

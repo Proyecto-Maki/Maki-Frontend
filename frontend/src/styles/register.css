@@ -46,9 +46,10 @@ html, body {
 
 .background-register{
     background-image: url("/fondo.svg"); 
-    background-size: contain;
-    background-position: bottom center;
+    background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
+    background-color: #FCF3E3; 
     display: flex; 
     justify-content: center;
     align-items: center;
