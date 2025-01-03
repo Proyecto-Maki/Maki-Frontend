@@ -24,10 +24,10 @@ body {
 /*Contenedor imagen fondo del login*/
 .background-container {
     background-image: url("/fondo.svg");
-    background-size: contain; /* Mantiene la imagen sin distorsionar y ajusta su tamaño */
-    background-position: bottom center; /* Alinea la imagen al borde inferior */
+    background-size: contain; 
+    background-position: bottom center;
     background-repeat: no-repeat;
-    height: 100vh; /* Mantiene la altura completa de la ventana */
+    height: 100vh;
     width: 55vw; 
     display: flex;
     justify-content: center;

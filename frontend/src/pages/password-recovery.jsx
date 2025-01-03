@@ -23,9 +23,9 @@ const PasswordRecovery = () => {
 
 
     const validatePassword = (password, password2) => {
-		let message = "";
-		if (password !== password2) {
-			message += "Las contraseñas no coinciden. ";
+        let message = "";
+        if (password !== password2) {
+            message += "Las contraseñas no coinciden. ";
         }
         if (!/\d/.test(password)) {
             message += "La contraseña debe tener al menos un número. ";
@@ -37,22 +37,22 @@ const PasswordRecovery = () => {
             message += "La contraseña debe tener más de 8 caracteres.";
         }
 
-		if (message === "") {
-			return null;
-		} else {
-			return message;
-		}
+        if (message === "") {
+            return null;
+        } else {
+            return message;
+        }
     }
 
     const handleCloseSuccessModal = () => {
-		setShowSuccessModal(false)
-		setError("");
-		setResponse("");
+        setShowSuccessModal(false)
+        setError("");
+        setResponse("");
         setNewPasswords({
             password: '',
             password2: ''
         });
-	};
+    };
     const handleCloseErrorModal = () => {
         setShowErrorModal(false)
         setError("");
@@ -77,7 +77,7 @@ const PasswordRecovery = () => {
         'token': token
     }
 
-    const handleSubmit = async (e) =>{
+    const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(data);
 
@@ -94,20 +94,18 @@ const PasswordRecovery = () => {
         api
             .patch('/set-new-password/', data)
             .then((res) => {
-                if (res.status === 200){
+                if (res.status === 200) {
                     setResponse(res.data.message);
                     setDirNavigate('/login');
                     setShowSuccessModal(true);
                 }
             })
-            .catch((error) =>{
+            .catch((error) => {
                 console.log(error.response.data);
                 setError(error.response.data.message);
                 setShowErrorModal(true);
             })
     }
-
-
 
 
     return (
@@ -117,14 +115,14 @@ const PasswordRecovery = () => {
             <div className="background-recovery">
                 <div className="password-recovery-container">
                     <div className="logo-register">
-                        <img src={logo} alt="logo" className="logo" style={{ height: "100px", marginRight: "10px" }}/>
+                        <img src={logo} alt="logo" className="logo" style={{ height: "100px", marginRight: "10px" }} />
                     </div>
                     <h1 className="description-code-psre" >Cambia tu contraseña</h1>
                     <div className="password-recovery-form">
                         <div className='form-group-psre'>
                             <label>Nueva contraseña</label>
                             <div className="tooltip-contrasena">
-                                
+
                                 <input
                                     className="input-field-ps"
                                     type="password"
@@ -133,11 +131,11 @@ const PasswordRecovery = () => {
                                     value={newPasswords.password}
                                     placeholder="Contraseña"
                                     required
-                                />  
+                                />
                                 <span className="tooltip-psre-text-l">Este campo es obligatorio. Ingresa tu contraseña, debe tener mínimo 8 caracteres, entre letras, números y caracteres especiales</span>
                             </div>
-                            
-                            </div>
+
+                        </div>
                         <div className='form-group-psre'>
                             <label>Confirma tu nueva contraseña</label>
                             <div className="tooltip-contrasena">
@@ -153,9 +151,9 @@ const PasswordRecovery = () => {
                                 />
                                 <span className="tooltip-psre-text-m">Este campo es obligatorio. Ingresa tu contraseña nuevamente</span>
                             </div>
-                            
+
                         </div>
-                                                  
+
                         <button type="submit" className="submit-button" onClick={handleSubmit}>Cambiar</button>
                     </div>
                 </div>
