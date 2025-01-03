@@ -13,7 +13,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* position: relative; */
   padding: 0 20px;
 }
 
@@ -84,7 +83,7 @@
   justify-content: center; /* Centrar horizontalmente */
   align-items: center; /* Alinear verticalmente */
   margin-top: 15px; /* Espaciado superior */
-  width: 100%; /* Asegura que ocupa todo el ancho */
+  /* width: 100%; Asegura que ocupa todo el ancho */
 }
 
 /* Estilos para los iconos de búsqueda y carrito */
@@ -132,7 +131,6 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  border: 2px solid red;
 }
 
 /* Navbar para pantallas más pequeñas (por debajo de 576px) */
@@ -166,4 +164,3 @@
     height: 35px;
   }
 }
-

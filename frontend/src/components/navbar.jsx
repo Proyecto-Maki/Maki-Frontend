@@ -9,10 +9,10 @@ function Navbar() {
   const location = useLocation(); // Obtenemos la ubicación actual de la ruta
 
   // Comprobamos si estamos en la página de Login
-  const isLoginPage = location.pathname === '/login';
+  const isLoginPage = location.pathname === '/login/';
 
   // Comprobamos si estamos en la página de perfil de usuario
-  const isUserProfilePage = location.pathname === '/user-profile';
+  const isUserProfilePage = location.pathname === '/user-profile/';
 
   // Aquí podrías agregar la URL de la foto de perfil o pasarla como prop
   const userProfileImage = '../src/img/catPfp.jpeg'; // Reemplaza con la URL de la imagen del perfil
@@ -55,7 +55,7 @@ function Navbar() {
             </li>
           </ul>
           {/* Botones adicionales */}
-          <div className="button-login">
+          <div className= "button-login" >
             {!isLoginPage && !isUserProfilePage && (
               <a href="/login">
                 <button className="btn-custom">Login</button>
