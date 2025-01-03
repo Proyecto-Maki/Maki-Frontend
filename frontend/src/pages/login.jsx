@@ -68,7 +68,7 @@ const Login = () => {
                         <img
                             src={logo}
                             alt="Logo Maki"
-                            className="logo-img"
+                            className="logo-img-login"
                             style={{ height: "100px", marginRight: "15px" }}
                         />
                         <h2 className="welcome-text">¡BIENVENIDO!</h2>
