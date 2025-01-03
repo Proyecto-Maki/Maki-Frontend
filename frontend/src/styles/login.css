@@ -32,6 +32,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
 
 
@@ -42,9 +43,32 @@ body {
     border-radius: 10px;
     box-shadow: none;
     background: transparent;
+    justify-content: space-between;
     /*max-width: 400px;*/
-    width: 400px
+    width: 90%;
+    height: auto;
+    max-width: 400px;
+    max-height: 90vh;
+    min-height: 300px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    transform: scale(1);
 }
+
+.login-content img {
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-img-login{
+    max-width: 100%;
+    height: 100%;
+    margin-right: 15px;
+    margin-top: auto;
+}
+
+
 /* Login Container */
 .login-container {
     display: flex;
@@ -53,6 +77,7 @@ body {
     width: 100%;
     height: 100%;
     position: relative;
+    margin-top: 80px;
 }
 
 /* Logo */
@@ -64,6 +89,8 @@ body {
 /* Form */
 .login-form {
     margin: 0 auto;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Input Fields */
@@ -101,7 +128,6 @@ body {
     cursor: pointer;
     transition: background-color 0.3s ease;
     font-family: 'Aoboshi One', sans-serif;
-
 }
 
 /* Show Password Button */
@@ -124,17 +150,18 @@ body {
     border: none;
     border-radius: 30px;
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: clamp(14px, 2vw, 16px);
     font-weight: bold;
     width: 50%;
-    margin-top: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 /* Links */
 .forgot-password-text,
 .signup-text {
-    font-size: 14px;
-    margin-top: 10px;
+    font-size: clamp(12px, 2vw, 14px);
+    margin-top: 3px;
     color: #4a4a4a;
     font-family: 'Aoboshi One', sans-serif;
 }
@@ -153,14 +180,14 @@ body {
 /* Welcome Text */
 .welcome-text {
     color: #F4A258;
-    font-size: 128px;
+    font-size: clamp(48px, 8vw, 128px);
     font-family: 'Koulen', sans-serif;
     margin-bottom: 30px;
     text-align: center; 
     display: flex; 
     justify-content: center; 
     align-items: center; 
-    height: 100%; 
+    height: auto; 
 }
 
 .login-btn:hover {
@@ -228,6 +255,7 @@ body {
     .login-content {
         max-width: 80%;
         padding: 15px;
+        transform: scale(0.9); /* Escala más pequeña */
     }
 
     .logo {
@@ -242,6 +270,10 @@ body {
     .login-btn {
         width: 70%;
     }
+
+    /*.logo-img-login{
+        max-width: 70%;
+    }*/
 }
 
 @media (max-width: 480px) {
@@ -262,4 +294,8 @@ body {
     .login-btn {
         width: 80%;
     }
+
+    /*.logo-img-login{
+        max-width: 70%;
+    }*/
 }
