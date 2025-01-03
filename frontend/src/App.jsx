@@ -7,6 +7,8 @@ import PasswordRecovery from './pages/password-recovery';
 import ForgetPassword from './pages/forget-password';
 import UserProfile from './pages/user-profile';
 import Home from './pages/home'
+import LoadingPage from './pages/loading-page';
+import RegisterPetClient from './pages/pet-register-client';
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
         <Route path="/user-profile" element={<UserProfile/>} />
         <Route path="/password-reset-confirm/:uidb64/:token" element={<PasswordRecovery />} />
         <Route path="/forget-password" element={<ForgetPassword />}></Route>
+        <Route path="/loading-page" element={<LoadingPage />}></Route>
+        <Route path="/register-pet-client" element={<RegisterPetClient />}></Route>
       </Routes>
     </BrowserRouter>
   );
