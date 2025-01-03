@@ -1,232 +1,282 @@
-/* ================================ Estilos Globales ================================ */
-@import url('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css');
+/* Importación de fuentes */
+@import url("@fortawesome/fontawesome-free/css/all.min.css");
 
-@font-face {
-    font-family: "Koulen";
-    src: url("../fonts/Koulen-Regular.ttf") format("truetype");
+/* ================================ Estilos Generales ================================ */
+
+/* Contenedores principales */
+.profile-container {
+  width: 60vw;
+  max-width: 1600px;
+  height: auto;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-body {
-    background-color: #fdf0e6;
-    font-family: 'Aoboshi One', sans-serif;
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden; /* Evita el scroll innecesario */
+.button-container-userProfile {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
 }
 
-/* ================================ Estilos para Contenedor de Fondo ================================ */
-.background-container {
-    background-image: url("/fondo.svg");
-    background-size: contain;
-    background-position: bottom center;
-    background-repeat: no-repeat;
-    height: 100vh;
-    width: 60vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+/* ================================ Información del perfil ================================ */
+
+/* Contenedor de la información */
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;  
+  gap: 0.5rem;
+  width: 100%;
+  padding-top: 1rem;
+  text-align: center;
+  height: 100%;  
+  margin-left: 10%; 
 }
 
-/* ================================ Estilos para Contenedor del Formulario ================================ */
-.register-pet-container {
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    width: 100%;
-    max-width: 50vw;
-    z-index: 10;
-    background-color: #fdf0e6;
-    border-style: solid;
-    border-color: #BDD3CE;
-    color: #F4A258;
-    margin-top: 5%;
+/* Estilos para las etiquetas de usuario */
+.nombreUserProfile {
+  font-family: "Aoboshi One", sans-serif;
+  font-size: 3rem;
+  color: #FFD96E;
+  margin-right: 15%;
+ 
 }
 
-/* ================================ Estilos para Títulos ================================ */
-h2 {
-    margin-bottom: 20px;
+.correoUserProfile,
+.numeroUserProfile,
+.direccionUserProfile,
+.rolUserProfile {
+  font-family: "Aoboshi One", sans-serif;
+  font-size: 1rem;
+  color: #302F2F;
+  margin-right: 15%;
 }
 
-/* ================================ Estilos para el Formulario y los Inputs ================================ */
-form {
-    display: flex;
-    flex-direction: column;
+
+/* ================================ Estilos para tarjetas ================================ */
+
+/* Estilo para la tarjeta del perfil */
+.profile-card {
+  border-radius: 15px;
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  padding: 1rem;
+  background-color: #BDD3CE;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: left; /* Centra verticalmente */
+  align-items: left; /* Centra horizontalmente */
+  text-align: left; /* Asegura que el texto esté centrado */
+  position: relative;
 }
 
-input,
-select {
-    border: solid #BDD3CE;
-    border-radius: 20px;
-    padding: 10px;
-    font-size: 16px;
-    outline: none;
-    transition: border-color 0.3s;
-    background-color: #BDD3CE;
+/* Estilos de imagen */
+.img-fluid {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
 }
 
-input:focus {
-    border-color: #8ba59f;
+/* ================================ Contenedor de íconos ================================ */
+
+/* Contenedor de íconos */
+.icons-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
 }
 
-input::placeholder,
-select {
-    color: white;
-    font-style: italic;
+/* Estilo para la imagen de los íconos */
+.img-icon {
+  width: 150px;
+  height: 150px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  border-radius: 10px;
 }
 
-select option {
-    background-color: white;
-    color: black;
-    border-radius: 20%;
+/* Subtítulos de los íconos */
+.titulosIconos {
+  text-align: center;
+  font-family: "Aoboshi One", sans-serif;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  color: #302F2F;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
-select:focus {
-    border-color: #8ba59f;
-    outline: none;
+/* Efectos de hover en los íconos */
+.p-2:hover .img-icon {
+  transform: scale(1.1);
+  filter: brightness(1.2);
 }
 
-select option:hover {
-    background-color: #f0f0f0;
+.p-2:hover .titulosIconos {
+  color: #302F2F;
+  font-weight: bold;
+  transform: scale(1.1);
 }
 
-/* ================================ Estilos para Botones ================================ */
-.btn-register-pet,
-.btn-another-pet {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin: 10px auto;
-    position: relative;
+/* ================================ Botones ================================ */
+
+/* Estilo del botón de editar */
+.edit-icon {
+  font-family: "Aoboshi One", sans-serif;
+  color: #FFF;
+  background-color: #FFD96E;
+  font-size: 1.2rem;
+  padding: 0.5rem 1.5rem;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+  cursor: pointer;
 }
 
-.btn-register-pet {
-    color: #F4A258;
-    width: 20%;
+.edit-icon i {
+  color: #302F2F;
+  transition: color 0.3s ease;
 }
 
-.btn-another-pet {
-    background-color: #6db170;
-    color: white;
-    width: 30%;
+/* Efectos hover */
+.edit-icon:hover {
+  background-color: #F3C500;
+  transform: scale(1.05);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
 
-.btn-register-pet:hover {
-    background-color: #BDD3CE;
-    color: white;
+.edit-icon:hover i {
+  color: #FFF;
 }
 
-.btn-another-pet:hover {
-    background-color: #45a049;
+/* Estilo del botón de logout */
+.logout-icon {
+  font-family: "Aoboshi One", sans-serif;
+  color: #302F2F;
+  font-size: 1.2rem;
+  text-decoration: none !important;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
-.btn-register-pet i,
-.btn-another-pet i {
-    font-size: 24px;
-    transition: transform 0.3s ease-in-out;
+.logout-icon:hover {
+  color: #FFF;
+  transform: scale(1.05);
 }
 
-.btn-register-pet:hover i,
-.btn-another-pet:hover i {
-    animation: bounce 0.6s infinite;
+/* Subrayado en hover */
+.logout-icon::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: #FFD96E;
+  transition: width 0.3s ease, left 0.3s ease;
 }
 
-/* ================================ Animaciones de Iconos ================================ */
+.logout-icon:hover::after {
+  width: 50%;
+  left: 25%;
+}
+
+/* Efectos en el ícono de logout */
+.logout-icon i {
+  color: #302F2F;
+  transition: color 0.3s ease;
+}
+
+.logout-icon:hover i {
+  color: #FFF;
+}
+
+/* Botón de eliminar cuenta */
+.btn-danger {
+  background-color: #FFD96E;
+  color: #302F2F;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+  outline: none;
+}
+
+/* Efectos hover */
+.btn-danger:hover {
+  background-color: #F3C500;
+  transform: scale(1.1) rotate(3deg);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Cambio de color en el ícono */
+.btn-danger i {
+  color: #302F2F;
+}
+
+/* Animación de rebote */
 @keyframes bounce {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-5px);
-    }
+  0% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-8px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  70% {
+    transform: translateY(-4px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
-/* ================================ Media Queries para Responsividad ================================ */
-
-/* Para pantallas grandes */
-@media (max-width: 1200px) {
-    .background-container {
-        width: 50vw;
-    }
-
-    .register-pet-container {
-        max-width: 50vw;
-    }
-
-    .btn-register-pet {
-        width: 25%;
-    }
-
-    .btn-another-pet {
-        width: 30%;
-    }
+/* Rebotar al pasar el ratón */
+.btn-danger:hover {
+  animation: bounce 0.6s ease-out;
 }
 
-/* Para pantallas medianas */
+/* ================================ Estilos Responsivos ================================ */
+
+/* Estilos para dispositivos con pantallas pequeñas */
 @media (max-width: 992px) {
-    .background-container {
-        width: 60vw;
-    }
-
-    .register-pet-container {
-        max-width: 60vw;
-    }
-
-    .btn-register-pet {
-        width: 40%;
-    }
-
-    .btn-another-pet {
-        width: 45%;
-    }
+  .icons-container {
+    gap: 1.5rem;
+  }
 }
 
-/* Para pantallas pequeñas (móviles en modo apaisado) */
 @media (max-width: 768px) {
-    body {
-        padding: 10px;
-    }
+  .icons-container {
+    gap: 1rem;
+  }
 
-    .background-container {
-        width: 70vw;
-    }
+  .img-icon {
+    width: 80px;
+    height: 80px;
+  }
 
-    .register-pet-container {
-        max-width: 70vw;
-        padding: 20px;
-    }
-
-    .btn-register-pet,
-    .btn-another-pet {
-        width: 50%;
-    }
-}
-
-/* Para pantallas extra pequeñas (móviles) */
-@media (max-width: 576px) {
-    .background-container {
-        width: 100vw;
-        height: 100%;
-    }
-
-    .register-pet-container {
-        width: 90%;
-        padding: 15px;
-    }
-
-    .btn-register-pet,
-    .btn-another-pet {
-        width: 70%;
-    }
+  .titulosIconos {
+    font-size: 0.9rem;
+  }
 }
