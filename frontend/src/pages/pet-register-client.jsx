@@ -1,9 +1,23 @@
-import React from "react";
-import Navbar from "../components/navbar"; // Navbar personalizado
+import Navbar from "../components/navbar";
+import LoadingPage from '../components/loading-page';
 import "../styles/register-pet-client.css"; // Importa el archivo CSS
 import logo from '../img/Logotipo Maki.png'; // Ruta al logo
+import React, { useState, useEffect } from "react";
 
 const RegisterPetClient = () => {
+    const [isLoading, setIsLoading] = useState(true);
+    
+        useEffect(() => {
+            const timer = setTimeout(() => {
+                setIsLoading(false);
+            }, 3000);
+    
+            return () => clearTimeout(timer);
+        }, []);
+    
+        if (isLoading) {
+            return <LoadingPage />;
+        }
     return (
         <>
             {/* Navbar */}

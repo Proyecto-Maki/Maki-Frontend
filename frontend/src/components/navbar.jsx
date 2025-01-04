@@ -55,7 +55,7 @@ function Navbar() {
             </li>
           </ul>
           {/* Botones adicionales */}
-          <div classname= "button-login" >
+          <div className= "button-login" >
             {!isLoginPage && !isUserProfilePage && (
               <a href="/login">
                 <button className="btn-custom">Login</button>

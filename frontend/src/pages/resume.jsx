@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../components/navbar"; // Navbar personalizado
+import LoadingPage from '../components/loading-page';
 import "../styles/resume.css"; // Importa el archivo CSS
 
 const Resume = () => {
@@ -41,7 +42,19 @@ const Resume = () => {
     };
 
     const totalPrice = cart.reduce((total, product) => total + product.price * product.quantity, 0);
-
+    const [isLoading, setIsLoading] = useState(true);
+    
+        useEffect(() => {
+            const timer = setTimeout(() => {
+                setIsLoading(false);
+            }, 3000);
+    
+            return () => clearTimeout(timer);
+        }, []);
+    
+        if (isLoading) {
+            return <LoadingPage />;
+        }
     return (
         <>
             <Navbar />
