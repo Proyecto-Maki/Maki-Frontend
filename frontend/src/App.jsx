@@ -11,6 +11,8 @@ import LoadingPage from "./components/loading-page";
 import RegisterPetClient from "./pages/pet-register-client";
 import PetFoundation from "./pages/pet-foundation";
 import Resume from "./pages/resume";
+import Footer from "./components/Footer";
+import Navbar from "./components/navbar";
 
 function App() {
   return (
@@ -36,6 +38,7 @@ function App() {
         ></Route>
         <Route path="/pet-foundation" element={<PetFoundation />}></Route>
         <Route path="/resume" element={<Resume />}></Route>
+        <Route path="/footer" element={<Footer />}></Route>
       </Routes>
     </BrowserRouter>
   );

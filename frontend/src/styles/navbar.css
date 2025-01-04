@@ -21,6 +21,13 @@
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
+.navbar-info{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .navbar .nav-link:hover {
   color: #ffd96e;
   transform: scale(1.1);
@@ -83,7 +90,7 @@
   justify-content: center;
   align-items: center;
   margin-top: 15px;
-  width: 100%;
+  width: 90px;
 }
 
 .profile-actions {
@@ -99,6 +106,10 @@
 
 /* Navbar para pantallas pequeñas */
 @media (max-width: 992px) {
+  .navbar-info{
+    flex-direction: column;
+    align-items: center;
+  }
   .navbar-nav {
     flex-direction: column;
     text-align: center;
@@ -110,8 +121,18 @@
 
   .navbar-collapse {
     display: none;
+    flex-direction: column; 
+    background-color: #7BB66D;
+    position: fixed; 
+    top: 80px; 
+    right: 0; 
+    width: 250px; 
+    box-shadow: -2px 4px 6px rgba(0, 0, 0, 0.3); 
+    z-index: 1050; 
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-out; 
+    transform: translateX(100%); 
+    opacity: 0;
   }
-
   .navbar-collapse.show {
     display: block;
     background-color: #7bb66d;
@@ -121,7 +142,8 @@
     top: 80px;
     right: 0;
     box-shadow: -2px 4px 6px rgba(0, 0, 0, 0.3);
-    align-items: center;
+    transform: translateX(0);
+    opacity: 1;
   }
 }
 

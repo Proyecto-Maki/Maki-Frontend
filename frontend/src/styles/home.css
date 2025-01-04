@@ -184,3 +184,10 @@ body {
     object-fit: contain;
   }
 }
+
+/*footer{ 
+    max-height: 50vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+*/
