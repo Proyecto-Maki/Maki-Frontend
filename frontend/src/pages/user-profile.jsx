@@ -68,7 +68,7 @@ const UserProfile = () => {
                     address: res.data.direccion,
                     role: "Dueño de mascota",
                   })
-                  console.log(userData)
+                  //console.log('Información del usuario:', userData);
                 } else {
                   console.log('Error en la traida de los datos');
                   console.log(response.data.message);
@@ -109,7 +109,7 @@ const UserProfile = () => {
                     address: res.data.direccion,
                     role: "Fundación",
                   })
-                  console.log(userData)
+                  //console.log('Información del usuario:', userData);
                 } else {
                   console.log('Error en la traida de los datos');
                   console.log(response.data.message);
@@ -165,6 +165,11 @@ const UserProfile = () => {
     setResponse('');
   };
 
+  useEffect(() => {
+    console.log('userData ha cambiado:', userData);
+  }, [userData]);
+
+  
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -236,6 +241,7 @@ const UserProfile = () => {
           <i className="fas fa-trash-alt"></i> Eliminar Cuenta
         </button>
       </div>
+      
       {/* <WelcomeModal show={showSuccessModal} handleClose={handleCloseSuccessModal} response={response} /> */}
       <ErrorModal show={showErrorModal} handleClose={handleCloseErrorModal} error={error} />
     </>
