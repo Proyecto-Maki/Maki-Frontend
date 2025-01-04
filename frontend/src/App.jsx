@@ -11,6 +11,7 @@ import LoadingPage from './components/loading-page';
 import RegisterPetClient from './pages/pet-register-client';
 import PetFoundation from './pages/pet-foundation'
 import Resume from './pages/resume';
+import Logout from './pages/logout';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/register-pet-client" element={<RegisterPetClient />}></Route>
         <Route path="/pet-foundation" element={<PetFoundation />}></Route>
         <Route path="/resume" element={<Resume />}></Route>
+        <Route path="/logout" element={<Logout />}></Route>
       </Routes>
     </BrowserRouter>
   );

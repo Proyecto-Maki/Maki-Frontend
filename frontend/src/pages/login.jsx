@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from '../components/navbar';
 import '../styles/login.css';
@@ -6,6 +6,7 @@ import logo from '../img/Logotipo Maki.png'; // Ruta al logo
 import WelcomeModal from '../components/WelcomeModal'; // Import the new WelcomeModal component
 import ErrorModal from '../components/ErrorModal';
 import api from '../api';
+import LoadingPage from '../components/loading-page';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
@@ -20,7 +21,7 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
+
         api
             .post('login/', { email, password })
             .then((response) => {
@@ -60,6 +61,20 @@ const Login = () => {
         setError('');
         setResponse('');
     };
+
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+        }, 3000);
+
+        return () => clearTimeout(timer);
+    }, []);
+
+    if (isLoading) {
+        return <LoadingPage />;
+    }
 
     return (
         <>
