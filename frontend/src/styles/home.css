@@ -18,7 +18,7 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    
+    overflow-y: auto;
 }
 
 .dog__animation {
@@ -58,6 +58,11 @@ body {
     padding: 20px;
     margin-top: 80px;
     flex-grow: 1;
+}
+
+.animation-container {
+    height: 50vh;
+    width: 100vw;
 }
 
 .home-content {
@@ -189,48 +194,50 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh; 
-    overflow-y: auto;
     overflow-x: hidden;
     position: relative;
     width: 100vw;
     height: 100vh;
     background-color: #7BB66D;
+    border: 2px solid red;
 }
 
-.absolute-home-container::-webkit-scrollbar{
+.animation-container::-webkit-scrollbar{
     width: 10px;
     color: #FCF3E3;
 }
 
-.absolute-home-container::-webkit-scrollbar-thumb {
+.animation-container::-webkit-scrollbar-thumb {
     background: #ffcc80; 
     border-radius: 80px; 
 }
 
-.absolute-home-container::-webkit-scrollbar-thumb:hover {
+.animation-container::-webkit-scrollbar-thumb:hover {
     background: #ffa726; 
 }
 
-.absolute-home-container::-webkit-scrollbar-track {
+.animation-container::-webkit-scrollbar-track {
     background: none; 
 }
 
 .footer-container-home{
     text-align: center;
-    padding: 35vh 0;
+    padding: 100vh 0;
     width: 100%;
     position: relative;
+    overflow: visible;
     bottom: 0;
     background-color: #FCF3E3;
+    top: -20%;
 }
 
 .divider-footer-home {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 0%;
     width: 100%;
     overflow: hidden;
     line-height: 0;
+
 }
 
 .divider-footer svg {
@@ -246,12 +253,6 @@ body {
 }
 
 /*información del footer*/
-/*.footer {
-    background-color: #7AC16E;
-    color: #ffffff;
-    text-align: center;
-    padding: 20px 0;;
-  }*/
 
   .footer-logo-home .logo {
     max-width: 100px;
@@ -368,6 +369,9 @@ body {
     .copyright-home {
       font-size: 11px;
     }
+    .subheading{
+      overflow: hidden;
+    }
   }
   
   @media (max-width: 480px) {
@@ -389,3 +393,5 @@ body {
       font-size: 10px; 
     }
   }
+
+  

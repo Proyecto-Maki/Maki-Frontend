@@ -3,8 +3,11 @@
   src: url("../fonts/AoboshiOne-Regular.ttf") format("truetype");
 }
 
-body {
-  background-color: #7bb66d;
+.footer{
+  background-color: #7BB66D;
+  border: 2px solid red;
+  width: 100vw;
+  height: 100vh;
 }
 /*tope del footer*/
 .divider-footer {
@@ -30,7 +33,7 @@ body {
 
 /*información del footer*/
 .footer {
-  background-color: #7ac16e;
+  background-color: #7BB66D;
   color: #ffffff;
   text-align: center;
   padding: 20px 0;

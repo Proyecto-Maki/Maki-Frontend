@@ -7,7 +7,6 @@
 
 /* General */
 body {
-  background-color: #fdf0e6;
   /*background-image: url("../src/img/fondo.svg");*/
   background-position: center bottom;
   background-size: 60%;
@@ -32,6 +31,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #fcf3e3;
 }
 
 /* Contenedor del contenido */
