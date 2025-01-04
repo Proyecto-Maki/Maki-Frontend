@@ -1,12 +1,14 @@
-import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from '../components/navbar';
+import LoadingPage from '../components/loading-page';
 import "../styles/register.css";
 import api from "../api";
 import logo from '../img/Logotipo Maki.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SuccessModal from '../components/SuccessModal';
 import ErrorModal from '../components/ErrorModal';
+import React, { useState, useEffect } from "react";
+import { use } from "react";
 
 function Register() {
 	const [type, setType] = useState("user");
@@ -17,8 +19,21 @@ function Register() {
 	const [error, setError] = useState("");
 	const [response, setResponse] = useState("");
 	const [dirNavigate, setDirNavigate] = useState("");
+	const [isLoading, setIsLoading] = useState(true);
 
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			setIsLoading(false);
+		}, 3000);
+
+		return () => clearTimeout(timer);
+	}, []);
+
+	if (isLoading) {
+		return <LoadingPage />;
+	}
 
 	const validateCedula = (cedula) => {
 		const re = /^\d+$/;

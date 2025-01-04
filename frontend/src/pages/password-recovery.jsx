@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import LoadingPage from '../components/loading-page';
 import Navbar from '../components/navbar';
 import '../styles/password-recovery.css';
 import logo from '../img/Logotipo Maki.png'; // Ruta al logo
@@ -7,6 +7,7 @@ import api from "../api";
 import { useNavigate, useParams } from 'react-router-dom';
 import SuccessModal from '../components/SuccessModal';
 import ErrorModal from '../components/ErrorModal';
+import React, { useState, useEffect } from "react";
 
 const PasswordRecovery = () => {
 
@@ -20,6 +21,19 @@ const PasswordRecovery = () => {
     const [response, setResponse] = useState('');
     const [error, setError] = useState('');
     const [dirNavigate, setDirNavigate] = useState('');
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+		const timer = setTimeout(() => {
+			setIsLoading(false);
+		}, 3000);
+
+		return () => clearTimeout(timer);
+	}, []);
+
+	if (isLoading) {
+		return <LoadingPage />;
+	}
 
 
     const validatePassword = (password, password2) => {

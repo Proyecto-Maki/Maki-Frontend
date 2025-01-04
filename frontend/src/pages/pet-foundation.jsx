@@ -1,10 +1,12 @@
-import React, { useState } from "react";
 import Navbar from "../components/navbar"; // Navbar personalizado
 import "../styles/pet-foundation.css"; // Importa el archivo CSS
 import logo from "../img/Logotipo Maki.png"; // Ruta al logo
+import LoadingPage from '../components/loading-page';
+import React, { useState, useEffect } from "react";
 
 const PetFoundation = () => {
   // Estado inicial con las mascotas
+  
   const [mascotas, setMascotas] = useState([
     {
       id: 1,
@@ -52,7 +54,20 @@ const PetFoundation = () => {
   const eliminarMascota = (id) => {
     setMascotas(mascotas.filter((mascota) => mascota.id !== id));
   };
+  const [isLoading, setIsLoading] = useState(true);
 
+    useEffect(() => {
+		const timer = setTimeout(() => {
+			setIsLoading(false);
+		}, 3000);
+
+		return () => clearTimeout(timer);
+	}, []);
+
+	if (isLoading) {
+		return <LoadingPage />;
+	}
+  
   return (
     <>
       {/* Navbar */}

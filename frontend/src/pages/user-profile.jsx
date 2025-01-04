@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import LoadingPage from '../components/loading-page';
 import Navbar from "../components/navbar"; // Navbar personalizado
 import "../styles/user-profile.css"; // Importa el archivo CSS
+
 
 const ProfileIcon = ({ src, alt, title }) => {
   return (
@@ -19,7 +21,22 @@ const userData = {
   role: "Dueño de mascota",
 };
 
+
+
 const UserProfile = () => {
+  const [isLoading, setIsLoading] = useState(true);
+    
+        useEffect(() => {
+            const timer = setTimeout(() => {
+                setIsLoading(false);
+            }, 3000);
+    
+            return () => clearTimeout(timer);
+        }, []);
+    
+        if (isLoading) {
+            return <LoadingPage />;
+        }
   return (
     <>
       {/* Navbar */}
