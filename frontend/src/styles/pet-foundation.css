@@ -1,0 +1,84 @@
+/* Contenedor principal */
+.background-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #fdf0e6;
+}
+
+/* Estilos del contenedor de tarjetas */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 57px 160px;
+    justify-content: center;
+}
+
+/* Estilos de la tarjeta */
+.card {
+    position: relative;
+    width: 450px;
+    height: 320px;
+    background-color: #d1e7e0;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+/* Imagen de la mascota */
+.card-image {
+    position: absolute;
+    top: 20px;
+    left: -80px;
+    transform: translateY(0);
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #d1e7e0;
+    z-index: 1;
+}
+
+.actions {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.actions button {
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 0 5px;
+    color: white;
+}
+
+.actions button:hover {
+    color: #ff6347;
+}
+
+.card h3 {
+    color: #FFD96E;
+    margin-left: 90px;
+    font-weight: bold;
+}
+
+.card p {
+    color: black;
+    margin-left: 90px;
+}
+
+.card p strong {
+    color: #FFD96E;
+}
+
+/* Alineación y color de los textos */
+h2 {
+    color: #F4A258;
+    text-align: left;
+    width: 100%;
+
+}
