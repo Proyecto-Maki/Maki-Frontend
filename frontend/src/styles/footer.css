@@ -1,0 +1,179 @@
+@font-face {
+  font-family: "Aoboshi One";
+  src: url("../fonts/AoboshiOne-Regular.ttf") format("truetype");
+}
+
+body {
+  background-color: #7bb66d;
+}
+/*tope del footer*/
+.divider-footer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.divider-footer svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 150px;
+  transform: rotateY(180deg);
+}
+
+.divider-footer .shape-fill {
+  fill: #fcf3e3;
+}
+
+/*información del footer*/
+.footer {
+  background-color: #7ac16e;
+  color: #ffffff;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.footer-logo .logo {
+  max-width: 100px;
+  margin-bottom: 10px;
+}
+
+.footer-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.footer-nav ul li a {
+  text-decoration: none;
+  color: #fcf3e3;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.footer-nav ul li a:hover {
+  color: #ffd96e;
+}
+
+.footer-contact {
+  margin-top: 15px;
+}
+
+.footer-social {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.social-icon-footer.instagram {
+  width: 50px;
+  height: 50px;
+  background-color: #bdd3ce;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.social-icon-footer.tiktok {
+  width: 50px;
+  height: 50px;
+  background-color: #bdd3ce;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.footer-social img {
+  width: 24px;
+  height: 24px;
+}
+
+.email-footer {
+  margin-top: 30px;
+  font-size: 15px;
+  margin: 5px 0;
+}
+
+.copyright-footer {
+  font-size: 10px;
+  color: #ffd96e;
+  margin-top: 50px;
+}
+
+.footer-divider {
+  border: 2;
+  height: 1px;
+  background-color: #fcf3e3;
+  margin: 15px auto;
+  width: 40%;
+  opacity: 0.5;
+  margin-top: 40px;
+}
+
+/* Estilos responsive para pantallas pequeñas */
+@media (max-width: 768px) {
+  .footer {
+    padding: 15px 10px;
+  }
+
+  .footer-logo .logo {
+    max-width: 80px; /* Reduce el tamaño del logo */
+    margin-bottom: 10px;
+  }
+
+  .footer-nav ul {
+    flex-direction: column; /* Cambia la orientación de horizontal a vertical */
+    gap: 10px; /* Espacio entre los enlaces */
+  }
+
+  .footer-social {
+    gap: 10px; /* Reduce el espacio entre los íconos */
+  }
+
+  .footer-divider {
+    width: 80%; /* Ajusta el ancho del divisor */
+  }
+
+  .email {
+    font-size: 13px; /* Ajusta el tamaño del texto */
+  }
+
+  .copyright {
+    font-size: 11px; /* Ajusta el tamaño del copyright */
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 10px;
+  }
+
+  .footer-nav ul {
+    font-size: 14px; /* Reduce el tamaño del texto en los enlaces */
+  }
+
+  .footer-social img {
+    width: 20px; /* Reduce el tamaño de los íconos sociales */
+    height: 20px;
+  }
+
+  .email {
+    font-size: 12px; /* Reduce aún más el tamaño del correo */
+  }
+
+  .copyright {
+    font-size: 10px; /* Ajusta para pantallas muy pequeñas */
+  }
+}
