@@ -10,6 +10,7 @@ import Home from './pages/home'
 import LoadingPage from './pages/loading-page';
 import RegisterPetClient from './pages/pet-register-client';
 import PetFoundation from './pages/pet-foundation'
+import Resume from './pages/resume';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/loading-page" element={<LoadingPage />}></Route>
         <Route path="/register-pet-client" element={<RegisterPetClient />}></Route>
         <Route path="/pet-foundation" element={<PetFoundation />}></Route>
+        <Route path="/resume" element={<Resume />}></Route>
       </Routes>
     </BrowserRouter>
   );
