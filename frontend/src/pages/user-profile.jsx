@@ -169,7 +169,40 @@ const UserProfile = () => {
     console.log('userData ha cambiado:', userData);
   }, [userData]);
 
-  
+  const handleEliminarCuenta = () => {
+    api
+      .delete('cliente-profile-delete/', {
+        params: {
+          email: userData.email,
+        },
+        headers: {
+          'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
+        },
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          console.log('Cuenta eliminada con éxito');
+          setResponse('Cuenta eliminada con éxito');
+          setShowSuccessModal(true);
+          setTimeout(() => {
+            navigate('/login');
+          }, 3000)
+        } else {
+          console.log('Error al eliminar la cuenta');
+          console.log(response.data.message);
+          setResponse(response.data.message);
+          setShowErrorModal(true);
+        }
+      })
+      .catch((error) => {
+        console.error(error.response ? error.response.data : error.message);
+        console.log(error.response.data.detail);
+        setError(error.response.data.detail);
+        setResponse(error.response.data.detail);
+        setShowErrorModal(true);
+      });
+  }
+
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -241,7 +274,7 @@ const UserProfile = () => {
       <div className="icons-container">
         <div className="d-flex flex-row justify-content-center">
           <ProfileIcon
-            src="../src/img/iconosProfile/mascotas.svg"
+            src={imageProfile}
             alt="Mascotas"
             title="Mascotas"
           />
@@ -273,7 +306,7 @@ const UserProfile = () => {
           <i className="fas fa-trash-alt"></i> Eliminar Cuenta
         </button>
       </div>
-      
+
       {/* <WelcomeModal show={showSuccessModal} handleClose={handleCloseSuccessModal} response={response} /> */}
       <ErrorModal show={showErrorModal} handleClose={handleCloseErrorModal} error={error} />
     </>
