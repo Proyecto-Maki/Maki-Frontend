@@ -164,7 +164,7 @@ const UserProfile = () => {
           navigate('/login');
         }, 3000)
       });
-  });
+  },[]);
 
   const handleCloseErrorModal = () => {
     setShowErrorModal(false);
