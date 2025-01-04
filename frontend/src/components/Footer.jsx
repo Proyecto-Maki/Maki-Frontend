@@ -1,9 +1,9 @@
 import React from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '../styles/footer.css';
-import logo from '../img/Logotipo Maki Blanco.png';
-import instagram from '../img/instagram.png';
-import tiktok from '../img/tiktok.png';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../styles/footer.css";
+import logo from "../img/Logotipo Maki Blanco.png";
+import instagram from "../img/instagram.png";
+import tiktok from "../img/tiktok.png";
 
 const Footer = () => {
 

@@ -29,22 +29,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;  
+  justify-content: center;
   gap: 0.5rem;
   width: 100%;
   padding-top: 1rem;
   text-align: center;
-  height: 100%;  
-  margin-left: 10%; 
+  height: 100%;
+  margin-left: 10%;
 }
 
 /* Estilos para las etiquetas de usuario */
 .nombreUserProfile {
   font-family: "Aoboshi One", sans-serif;
   font-size: 3rem;
-  color: #FFD96E;
+  color: #ffd96e;
   margin-right: 15%;
- 
 }
 
 .correoUserProfile,
@@ -53,10 +52,9 @@
 .rolUserProfile {
   font-family: "Aoboshi One", sans-serif;
   font-size: 1rem;
-  color: #302F2F;
+  color: #302f2f;
   margin-right: 15%;
 }
-
 
 /* ================================ Estilos para tarjetas ================================ */
 
@@ -66,7 +64,7 @@
   box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
   padding: 1rem;
-  background-color: #BDD3CE;
+  background-color: #bdd3ce;
   margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
@@ -108,7 +106,7 @@
   font-family: "Aoboshi One", sans-serif;
   font-size: 1rem;
   margin-top: 0.5rem;
-  color: #302F2F;
+  color: #302f2f;
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
@@ -119,7 +117,7 @@
 }
 
 .p-2:hover .titulosIconos {
-  color: #302F2F;
+  color: #302f2f;
   font-weight: bold;
   transform: scale(1.1);
 }
@@ -129,39 +127,40 @@
 /* Estilo del botón de editar */
 .edit-icon {
   font-family: "Aoboshi One", sans-serif;
-  color: #FFF;
-  background-color: #FFD96E;
+  color: #fff;
+  background-color: #ffd96e;
   font-size: 1.2rem;
   padding: 0.5rem 1.5rem;
   border-radius: 5px;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, background-color 0.3s ease,
+    box-shadow 0.3s ease;
   border: none;
   cursor: pointer;
 }
 
 .edit-icon i {
-  color: #302F2F;
+  color: #302f2f;
   transition: color 0.3s ease;
 }
 
 /* Efectos hover */
 .edit-icon:hover {
-  background-color: #F3C500;
+  background-color: #f3c500;
   transform: scale(1.05);
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
 
 .edit-icon:hover i {
-  color: #FFF;
+  color: #fff;
 }
 
 /* Estilo del botón de logout */
 .logout-icon {
   font-family: "Aoboshi One", sans-serif;
-  color: #302F2F;
+  color: #302f2f;
   font-size: 1.2rem;
   text-decoration: none !important;
   padding: 0.5rem 1rem;
@@ -175,19 +174,19 @@
 }
 
 .logout-icon:hover {
-  color: #FFF;
+  color: #fff;
   transform: scale(1.05);
 }
 
 /* Subrayado en hover */
 .logout-icon::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 50%;
   width: 0;
   height: 2px;
-  background-color: #FFD96E;
+  background-color: #ffd96e;
   transition: width 0.3s ease, left 0.3s ease;
 }
 
@@ -198,39 +197,40 @@
 
 /* Efectos en el ícono de logout */
 .logout-icon i {
-  color: #302F2F;
+  color: #302f2f;
   transition: color 0.3s ease;
 }
 
 .logout-icon:hover i {
-  color: #FFF;
+  color: #fff;
 }
 
 /* Botón de eliminar cuenta */
 .btn-danger {
-  background-color: #FFD96E;
-  color: #302F2F;
+  background-color: #ffd96e;
+  color: #302f2f;
   font-size: 1rem;
   padding: 0.5rem 1rem;
   border-radius: 5px;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease,
+    box-shadow 0.3s ease;
   border: none;
   outline: none;
 }
 
 /* Efectos hover */
 .btn-danger:hover {
-  background-color: #F3C500;
+  background-color: #f3c500;
   transform: scale(1.1) rotate(3deg);
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* Cambio de color en el ícono */
 .btn-danger i {
-  color: #302F2F;
+  color: #302f2f;
 }
 
 /* Animación de rebote */
