@@ -119,9 +119,22 @@
     display: block;
   }
 
+  .navbar-collapse {
+    display: none;
+    flex-direction: column; 
+    background-color: #7BB66D;
+    position: fixed; 
+    top: 80px; 
+    right: 0; 
+    width: 250px; 
+    box-shadow: -2px 4px 6px rgba(0, 0, 0, 0.3); 
+    z-index: 1050; 
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-out; 
+    transform: translateX(100%); 
+    opacity: 0;
+  }
   .navbar-collapse.show {
     display: block;
-    flex-direction: column;
     background-color: #7BB66D;
     width: 30%;
     height: 100vh;
@@ -129,8 +142,8 @@
     top: 80px;
     right: 0;
     box-shadow: -2px 4px 6px rgba(0, 0, 0, 0.3);
-    align-items: center;
-    justify-content: center;
+    transform: translateX(0);
+    opacity: 1;
   }
 }
 

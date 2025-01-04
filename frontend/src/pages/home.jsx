@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from '../components/navbar';
+import Footer from '../components/Footer';
 import '../styles/home.css';
 import logo from '../img/Logotipo Maki.png'; // Ruta al logo
 import perro_home from '../img/Perro_Home.png';
@@ -14,7 +15,7 @@ const Home = () => {
             {/* Navbar */}
             <Navbar />
 
-            <div className="home-container">
+            <div className="home-container" >
                  <div className="dog__animation">
                     <img src={perro_home} alt="perro_home" className="perro_home" />
                 </div>
