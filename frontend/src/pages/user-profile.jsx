@@ -94,11 +94,11 @@ const UserProfile = () => {
             api
               .get('fundacion-profile/', {
                 params: {
-                  email: { tem_email },
-                  headers: {
-                    'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
-                  }
-                }
+                  email: tem_email,
+                },
+                headers: {
+                  'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
+                },
               })
               .then((res) => {
                 if (res.status === 200) {
