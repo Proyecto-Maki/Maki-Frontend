@@ -37,54 +37,56 @@ function Navbar() {
 
         {/* Links y botones */}
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav mx-auto">
-            <li className="nav-item">
-              <a className="nav-link" href="/">Home</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/servicios">Servicios</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/productos">Productos</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/makipaws">MakiPaws</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/acerca">Acerca de Maki</a>
-            </li>
-          </ul>
-          {/* Botones adicionales */}
-          <div className= "button-login" >
-            {!isLoginPage && !isUserProfilePage && (
-              <a href="/login">
-                <button className="btn-custom">Login</button>
-              </a>
-            )}
-            {/* Mostrar foto de perfil si estamos en la página de perfil de usuario */}
-            {isUserProfilePage && (
-              <div className="profile-actions" style={{ display: 'flex', alignItems: 'center' }}>
-                {/* Icono de búsqueda */}
-                <div style={{ marginRight: "10px" }}>
-                  <FaSearch size={20} />
-                </div>
+          <div className="navbar-info">
+            <ul className="navbar-nav mx-auto">
+              <li className="nav-item">
+                <a className="nav-link" href="/">Home</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/servicios">Servicios</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/productos">Productos</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/makipaws">MakiPaws</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/acerca">Acerca de Maki</a>
+              </li>
+            </ul>
+              {/* Botones adicionales */}
+            <div className= "button-login" >
+              {!isLoginPage && !isUserProfilePage && (
+                <a href="/login">
+                  <button className="btn-custom">Login</button>
+                </a> 
+              )}
+              {/* Mostrar foto de perfil si estamos en la página de perfil de usuario */}
+              {isUserProfilePage && (
+                <div className="profile-actions" style={{ display: 'flex', alignItems: 'center' }}>
+                  {/* Icono de búsqueda */}
+                  <div style={{ marginRight: "10px" }}>
+                    <FaSearch size={20} />
+                  </div>
 
-                {/* Icono de carrito */}
-                <div style={{ marginRight: "10px" }}>
-                  <FaShoppingCart size={20} />
-                </div>
+                  {/* Icono de carrito */}
+                  <div style={{ marginRight: "10px" }}>
+                    <FaShoppingCart size={20} />
+                  </div>
 
-                {/* Foto de perfil */}
-                <div className="profile-photo">
-                  <img
-                    src={userProfileImage}
-                    alt="Foto de perfil"
-                    className="img-profile"
-                    style={{ width: "40px", height: "40px", borderRadius: "50%" }}
-                  />
+                  {/* Foto de perfil */}
+                  <div className="profile-photo">
+                    <img
+                      src={userProfileImage}
+                      alt="Foto de perfil"
+                      className="img-profile"
+                      style={{ width: "40px", height: "40px", borderRadius: "50%" }}
+                    />
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
       </div>
