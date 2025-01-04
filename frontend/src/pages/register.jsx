@@ -40,8 +40,8 @@ function Register() {
     if (!re.test(cedula)) {
       return "La cédula solo debe contener números.";
     }
-    if (cedula.length !== 10) {
-      return "La cédula debe tener 10 dígitos.";
+    if (cedula.length < 6 || cedula.length > 10) {
+      return "La cédula debe tener entre 6 y 10 dígitos.";
     }
     return null;
   };
