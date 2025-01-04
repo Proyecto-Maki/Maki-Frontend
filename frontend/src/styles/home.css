@@ -346,48 +346,48 @@ body {
   /* Estilos responsive para pantallas pequeñas */
 @media (max-width: 768px) {
     .footer-logo-home .logo {
-      max-width: 80px; /* Reduce el tamaño del logo */
+      max-width: 80px; 
       margin-bottom: 10px;
     }
   
     .footer-nav-home ul {
-      flex-direction: column; /* Cambia la orientación de horizontal a vertical */
-      gap: 10px; /* Espacio entre los enlaces */
+      flex-direction: column; 
+      gap: 10px; 
     }
   
     .footer-social-home {
-      gap: 10px; /* Reduce el espacio entre los íconos */
+      gap: 10px; 
     }
   
     .footer-divider-home {
-      width: 80%; /* Ajusta el ancho del divisor */
+      width: 80%; 
     }
   
     .email-home {
-      font-size: 13px; /* Ajusta el tamaño del texto */
+      font-size: 13px; 
     }
   
     .copyright-home {
-      font-size: 11px; /* Ajusta el tamaño del copyright */
+      font-size: 11px;
     }
   }
   
   @media (max-width: 480px) {
   
     .footer-nav-home ul {
-      font-size: 14px; /* Reduce el tamaño del texto en los enlaces */
+      font-size: 14px; 
     }
   
     .footer-social-home img {
-      width: 20px; /* Reduce el tamaño de los íconos sociales */
+      width: 20px;
       height: 20px;
     }
   
     .email-home {
-      font-size: 12px; /* Reduce aún más el tamaño del correo */
+      font-size: 12px; 
     }
   
     .copyright-home {
-      font-size: 10px; /* Ajusta para pantallas muy pequeñas */
+      font-size: 10px; 
     }
   }
