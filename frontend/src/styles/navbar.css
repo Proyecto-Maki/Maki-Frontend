@@ -17,13 +17,13 @@
 }
 
 .nav-link {
-  color: white; 
-  transition: color 0.3s ease, transform 0.3s ease; 
+  color: white;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .navbar .nav-link:hover {
-  color: #ffd96e; 
-  transform: scale(1.1); 
+  color: #ffd96e;
+  transform: scale(1.1);
 }
 
 .logo-img {
@@ -31,19 +31,18 @@
 }
 
 .btn-custom {
-  background-color: #FFD96E; 
-  color: white; 
-  border: none; 
-  border-radius: 8px; 
-  padding: 10px 20px; 
-  font-size: 16px; 
+  background-color: #FFD96E;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 16px;
   transition: transform 0.3s ease;
   background-color: 0.3s ease;
-  display: block; 
-  margin: 0 auto; 
+  display: block;
+  margin: 0 auto;
 }
 
-/* Centrar el botón dentro de su contenedor */
 .navbar .navbar-nav {
   display: flex;
   justify-content: center;
@@ -51,48 +50,47 @@
 }
 
 .btn-custom:hover {
-  background-color: #ffc84c; 
-  transform: scale(1.05); 
+  background-color: #ffc84c;
+  transform: scale(1.05);
 }
 
-.navbar-toggler{
+.navbar-toggler {
   display: block;
   z-index: 1050;
   position: center;
   color: #7BB66D;
 }
-.navbar-toggler{
+
+.navbar-toggler {
   display: block;
   z-index: 1050;
   position: center;
   color: #7BB66D;
 }
-/*icono del menú desplegable*/
-.navbar-toggler-icon{
+
+.navbar-toggler-icon {
   border-radius: 4px;
   color: #fdf0e6;
   font-size: 1.5rem;
 }
 
-.navbar-toggler-icon:hover{
+.navbar-toggler-icon:hover {
   color: #FFD96E;
 }
 
 .button-login {
   display: flex;
-  justify-content: center; /* Centrar horizontalmente */
-  align-items: center; /* Alinear verticalmente */
-  margin-top: 15px; /* Espaciado superior */
-  width: 100%; /* Asegura que ocupa todo el ancho */
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+  width: 100%;
 }
 
-/* Estilos para los iconos de búsqueda y carrito */
 .profile-actions {
   display: flex;
   align-items: center;
 }
 
-/* Foto de perfil */
 .profile-photo img {
   width: 50px;
   height: 50px;
@@ -107,27 +105,27 @@
   }
 
   .navbar-toggler {
-    display: block; 
+    display: block;
   }
 
   .navbar-collapse {
-    display: none; 
+    display: none;
   }
 
   .navbar-collapse.show {
-    display: block; 
-    background-color: #7BB66D;  
-    width: 30%;             
-    height: 100vh;          
+    display: block;
+    background-color: #7BB66D;
+    width: 30%;
+    height: 100vh;
     position: absolute;
-    top: 80px;              
-    right: 0;               
+    top: 80px;
+    right: 0;
     box-shadow: -2px 4px 6px rgba(0, 0, 0, 0.3);
     align-items: center;
   }
 }
 
-.button-login{
+.button-login {
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -140,28 +138,26 @@
   }
 
   .btn-custom {
-    background-color: #FFD96E; /* Color de fondo */
-    color: white;             /* Color del texto */
-    border: none;             /* Sin bordes */
-    border-radius: 8px;       /* Bordes redondeados */
-    padding: 10px 20px;       /* Espaciado interno */
-    font-size: 16px;          /* Tamaño de la fuente */
+    background-color: #FFD96E;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 16px;
     transition: transform 0.3s ease, background-color 0.3s ease;
     font-size: 14px;
-    padding: 8px 16px; 
+    padding: 8px 16px;
     display: flex;
     width: auto;
     margin: 0 auto;
   }
 
-  /* Ajustar el tamaño de los iconos y la foto de perfil en pantallas pequeñas */
-  .profile-actions > div {
-    margin-right: 8px; /* Menos espacio entre los iconos */
+  .profile-actions>div {
+    margin-right: 8px;
   }
 
   .profile-photo img {
-    width: 35px; /* Reducir el tamaño de la imagen en pantallas pequeñas */
+    width: 35px;
     height: 35px;
   }
 }
-
