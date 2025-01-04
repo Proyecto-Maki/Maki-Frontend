@@ -1,188 +1,193 @@
 @font-face {
-    font-family: "Koulen";
-    src: url("../fonts/Koulen-Regular.ttf") format("truetype");
+  font-family: "Koulen";
+  src: url("../fonts/Koulen-Regular.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: "Aoboshi One";
-    src: url("../fonts/AoboshiOne-Regular.ttf") format("truetype");
+  font-family: "Aoboshi One";
+  src: url("../fonts/AoboshiOne-Regular.ttf") format("truetype");
 }
 
 body {
-    background-color: #fdf0e6;
-    background-position: center bottom;
-    background-size: 60%;
-    background-repeat: no-repeat;
-    font-family: 'Aoboshi One', sans-serif;
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  background-color: #fdf0e6;
+  background-position: center bottom;
+  background-size: 60%;
+  background-repeat: no-repeat;
+  font-family: "Aoboshi One", sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .dog__animation {
-    max-width: 100%;
-    height: auto;
-    justify-content: center;
-    transform: translateY(0px);
-    position: relative;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    align-items: flex-end;
-    overflow: hidden;
-    margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+  justify-content: center;
+  transform: translateY(0px);
+  position: relative;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  align-items: flex-end;
+  overflow: hidden;
+  margin: 0 auto;
 }
 
 .dog__animation img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    max-height: 100%;
-    display: block;
-    align-items: flex-end;
-    margin-bottom: 0;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  max-height: 100%;
+  display: block;
+  align-items: flex-end;
+  margin-bottom: 0;
 }
 
 .home-container {
-    align-items: flex-end;
-    display: flex;
-    background-color: #7BB66D;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    position: relative;
-    height: 100vh;
-    width: 100vw;
-    padding: 20px;
-    margin-top: 80px;
+  align-items: flex-end;
+  display: flex;
+  background-color: #7bb66d;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  padding: 20px;
+  margin-top: 80px;
 }
 
-
 .home-content {
-    text-align: center;
-    color: #FF793F;
-    font-family: 'Koulen', sans-serif;
+  text-align: center;
+  color: #ff793f;
+  font-family: "Koulen", sans-serif;
 }
 
 .left-text-container h2,
 .right-text-container h2 {
-    z-index: 1;
-    margin: 0;
-    font-size: 6rem;
-    line-height: 1.2;
+  z-index: 1;
+  margin: 0;
+  font-size: 6rem;
+  line-height: 1.2;
 }
 
 .subheading {
-    z-index: 1;
-    margin-top: 1rem;
-    font-size: 1.5rem;
-    color: #302f2fe5;
-    font-family: 'Aoboshi One', sans-serif;
-    font-weight: bold;
+  z-index: 1;
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  color: #302f2fe5;
+  font-family: "Aoboshi One", sans-serif;
+  font-weight: bold;
 }
 
 .icon-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    bottom: 5%;
-    left: 5%;
-    display: flex;
-    gap: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 5%;
+  left: 5%;
+  display: flex;
+  gap: 1rem;
 }
 
 .social-icon {
-    width: 50px;
-    height: 50px;
-    background-color: #BDD3CE;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+  width: 50px;
+  height: 50px;
+  background-color: #bdd3ce;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
 .social-icon img {
-    width: 30px;
-    height: 30px;
-    object-fit: contain;
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
 }
 
 .left-text-container {
-    position: absolute;
-    top: 10%;
-    left: 5%;
-    width: 30%;
-    color: #FF793F;
-    text-align: left;
-    margin-top: 50px;
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  width: 30%;
+  color: #ff793f;
+  text-align: left;
+  margin-top: 50px;
 }
 
 .right-text-container {
-    position: absolute;
-    bottom: 10%;
-    right: 10%;
-    color: #FF793F;
-    text-align: left;
+  position: absolute;
+  bottom: 10%;
+  right: 10%;
+  color: #ff793f;
+  text-align: left;
 }
 
 .right-text-container h2 {
-    font-size: 120px;
-    line-height: 1.2;
+  font-size: 120px;
+  line-height: 1.2;
 }
 
 .left-text-container h2 {
-    font-size: 120px;
-    line-height: 1.2;
+  font-size: 120px;
+  line-height: 1.2;
 }
-
 
 /* Para pantallas pequeñas */
 @media (max-width: 480px) {
-    .dog__animation {
-        max-width: 100%;
-        position: relative;
-        bottom: 0;
-        left: 50%; /* Aseguramos que el perro esté centrado */
-        transform: translateX(-50%);
-    }
+  .dog__animation {
+    max-width: 100%;
+    position: relative;
+    bottom: 0;
+    left: 50%; /* Aseguramos que el perro esté centrado */
+    transform: translateX(-50%);
+  }
 
-    .dog__animation img {
-        width: 100vw;
-        height: auto;
-        object-fit: cover;
-    }
+  .dog__animation img {
+    width: 100vw;
+    height: auto;
+    object-fit: cover;
+  }
 
-    .left-text-container h2,
-    .right-text-container h2,
-    .subheading {
-        font-size: 8px; /* Ajusta el tamaño a 8px para un tamaño aún más pequeño */
-        width: 80%;
-    }
+  .left-text-container h2,
+  .right-text-container h2,
+  .subheading {
+    font-size: 8px; /* Ajusta el tamaño a 8px para un tamaño aún más pequeño */
+    width: 80%;
+  }
 
-    .left-text-container,
-    .right-text-container {
-        width: 100%;
-        text-align: center;
-    }
+  .left-text-container,
+  .right-text-container {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 /* Para pantallas medianas */
 @media screen and (max-width: 768px) {
-    .left-text-container h2,
-    .right-text-container h2,
-    .subheading {
-        font-size: 2rem;
-        width: 80%;
-    }
+  .left-text-container h2,
+  .right-text-container h2,
+  .subheading {
+    font-size: 2rem;
+    width: 80%;
+  }
 
-    .dog__animation img {
-        width: 80%;
-        object-fit: contain;
-    }
+  .dog__animation img {
+    width: 80%;
+    object-fit: contain;
+  }
 }
+
+/*footer{ 
+    max-height: 50vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+*/

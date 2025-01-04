@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import LoadingPage from '../components/loading-page';
+import LoadingPage from "../components/loading-page";
 import Navbar from "../components/navbar"; // Navbar personalizado
 import "../styles/user-profile.css"; // Importa el archivo CSS
 import { useNavigate } from "react-router-dom";
@@ -184,6 +184,18 @@ const UserProfile = () => {
   if (isLoading) {
     return <LoadingPage />;
   }
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return <LoadingPage />;
+  }
   return (
     <>
       {/* Navbar */}
@@ -228,11 +240,31 @@ const UserProfile = () => {
       {/* Icons Section */}
       <div className="icons-container">
         <div className="d-flex flex-row justify-content-center">
-          <ProfileIcon src="../src/img/iconosProfile/mascotas.svg" alt="Mascotas" title="Mascotas" />
-          <ProfileIcon src="../src/img/iconosProfile/pedidos.svg" alt="Pedidos" title="Pedidos" />
-          <ProfileIcon src="../src/img/iconosProfile/adopciones.svg" alt="Adopciones" title="Adopciones" />
-          <ProfileIcon src="../src/img/iconosProfile/donaciones.svg" alt="Donaciones" title="Donaciones" />
-          <ProfileIcon src="../src/img/iconosProfile/makipaws.svg" alt="Makipaws" title="MakiPaws" />
+          <ProfileIcon
+            src="../src/img/iconosProfile/mascotas.svg"
+            alt="Mascotas"
+            title="Mascotas"
+          />
+          <ProfileIcon
+            src="../src/img/iconosProfile/pedidos.svg"
+            alt="Pedidos"
+            title="Pedidos"
+          />
+          <ProfileIcon
+            src="../src/img/iconosProfile/adopciones.svg"
+            alt="Adopciones"
+            title="Adopciones"
+          />
+          <ProfileIcon
+            src="../src/img/iconosProfile/donaciones.svg"
+            alt="Donaciones"
+            title="Donaciones"
+          />
+          <ProfileIcon
+            src="../src/img/iconosProfile/makipaws.svg"
+            alt="Makipaws"
+            title="MakiPaws"
+          />
         </div>
       </div>
       {/* Botón de Eliminar cuenta */}
