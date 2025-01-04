@@ -15,16 +15,6 @@ const ProfileIcon = ({ src, alt, title }) => {
   );
 };
 
-const userData = {
-  name: "Nana Pedraza",
-  email: "Nana@gmail.com",
-  phone: "310101025",
-  address: "calle autism",
-  role: "Dueño de mascota",
-};
-
-
-
 const UserProfile = () => {
 
   const [showErrorModal, setShowErrorModal] = useState(false);
