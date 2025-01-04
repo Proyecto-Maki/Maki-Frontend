@@ -6,6 +6,7 @@ import logo from '../img/Logotipo Maki.png'; // Ruta al logo
 import WelcomeModal from '../components/WelcomeModal'; // Import the new WelcomeModal component
 import ErrorModal from '../components/ErrorModal';
 import api from '../api';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -15,6 +16,7 @@ const Login = () => {
     const [error, setError] = useState('');
     const [response, setResponse] = useState('');
     const [dirNavigate, setDirNavigate] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -27,7 +29,10 @@ const Login = () => {
                     setResponse('¡Bienvenido!');
                     setShowSuccessModal(true);
                     setTimeout(() => {
-                        window.location.href = '/'; // Redirige a la página de dashboard o la que corresponda
+                        sessionStorage.setItem('token', response.data.data.access);
+                        sessionStorage.setItem('refresh', response.data.data.refresh);
+                        sessionStorage.setItem('email', email);
+                        navigate('/'); // Redirige a la página de dashboard o la que corresponda
                     }, 5000); // Redirige después de 5 segundos
                 } else {
                     console.log('Error en el login');
