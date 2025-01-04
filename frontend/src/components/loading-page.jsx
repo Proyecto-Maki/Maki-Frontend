@@ -1,14 +1,12 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from '../components/navbar';
 import '../styles/loading-page.css';
 
 const LoadingPage = () => {
 
     return (
         <>
-            {/* Navbar */}
-            <Navbar />
+        <div className="loading-container">
             <div className="loading-cat">
                 <div className="body"></div>
                 <div className="head">
@@ -23,6 +21,7 @@ const LoadingPage = () => {
                 <div className="hands left"></div>
                 <div className="hands right"></div>
             </div>
+        </div>
         </>
     );
 };

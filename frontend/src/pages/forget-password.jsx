@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import LoadingPage from '../components/loading-page';
 import Navbar from '../components/navbar';
 import '../styles/forget-password.css';
 import SuccessModal from '../components/SuccessModal';
 import ErrorModal from '../components/ErrorModal';
 import logo from '../img/Logotipo Maki.png'; // Ruta al logo
 import api from "../api";
+import React, { useState, useEffect } from "react";
 
 const ForgetPassword = () => {
 
@@ -15,7 +16,19 @@ const ForgetPassword = () => {
     const [response, setResponse] = useState('');
     const [error, setError] = useState('');
     const [dirNavigate, setDirNavigate] = useState('');
+    const [isLoading, setIsLoading] = useState(true);
 
+    useEffect(() => {
+		const timer = setTimeout(() => {
+			setIsLoading(false);
+		}, 3000);
+
+		return () => clearTimeout(timer);
+	}, []);
+
+	if (isLoading) {
+		return <LoadingPage />;
+	}
 
     const handleCloseSuccessModal = () => {
         setShowSuccessModal(false)
