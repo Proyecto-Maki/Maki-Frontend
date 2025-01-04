@@ -1,216 +1,214 @@
 @font-face {
-    font-family: "Aoboshi One";
-    src: url("../fonts/AoboshiOne-Regular.ttf") format("truetype");
+  font-family: "Aoboshi One";
+  src: url("../fonts/AoboshiOne-Regular.ttf") format("truetype");
 }
 
-html, body {
-    /*font-family: 'Arial', sans-serif;*/
-    background-color: #FCF3E3;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column; 
-    justify-content: space-between; 
-    min-height: 100vh; 
-    overflow: hidden; 
+html,
+body {
+  /*font-family: 'Arial', sans-serif;*/
+  background-color: #fcf3e3;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  overflow: hidden;
 }
 
-.background-register{
-        background-image: url("/fondo.svg");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-color: #FCF3E3; 
-        display: flex; 
-        justify-content: center;
-        align-items: center;
-        height: 100vh; 
-        width: 100vw; 
-    
+.background-register {
+  background-image: url("/fondo.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #fcf3e3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
 }
 
 .confirmation_register-container {
-    z-index: 1; /*para que esté sobre el fondo*/
-    /*width: 70vw;  /* Por defecto en pantallas grandes */
-    /*height: 90vh;*/
-    background-color: #FCF3E3;
-    border-radius: 20px;
-    border:4px solid #BDD3CE;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 100px;
-    padding-top: 30px;
-    position: relative;
-    top: 50px;
-    overflow: auto; 
-    transition: transform 0.3s ease;
-    min-width: 20vw;
-    max-width: 90vw;
-    min-height: 50vh; 
-    max-height: 70vh;
-    margin: 20px auto; 
-    box-sizing: border-box; 
-    flex-shrink: 0; 
-    display: grid;
-    place-items: center;
-    max-height: 75vh;
-    /*padding: 10px;*/
+  z-index: 1; /*para que esté sobre el fondo*/
+  /*width: 70vw;  /* Por defecto en pantallas grandes */
+  /*height: 90vh;*/
+  background-color: #fcf3e3;
+  border-radius: 20px;
+  border: 4px solid #bdd3ce;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 100px;
+  padding-top: 30px;
+  position: relative;
+  top: 50px;
+  overflow: auto;
+  transition: transform 0.3s ease;
+  min-width: 20vw;
+  max-width: 90vw;
+  min-height: 50vh;
+  max-height: 70vh;
+  margin: 20px auto;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  max-height: 75vh;
+  /*padding: 10px;*/
 }
 
-.confirmation_register-container::-webkit-scrollbar{
-    width: 10px;
-    color: #FCF3E3;
+.confirmation_register-container::-webkit-scrollbar {
+  width: 10px;
+  color: #fcf3e3;
 }
 
 .confirmation_register-container::-webkit-scrollbar-thumb {
-    background: #ffcc80; 
-    border-radius: 80px; 
+  background: #ffcc80;
+  border-radius: 80px;
 }
 
 .confirmation_register-container::-webkit-scrollbar-thumb:hover {
-    background: #ffa726; 
+  background: #ffa726;
 }
 
 .confirmation_register-container::-webkit-scrollbar-track {
-    background: none; 
+  background: none;
 }
 
-.description-code{
-    font-size: 40px;
-    font-family: 'Aoboshi One', sans-serif;
-    color: #ff7f50;
-    text-align: center; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    height: 100%;
-    width: 100%;
-    position: relative;
-    top: 0px;
+.description-code {
+  font-size: 40px;
+  font-family: "Aoboshi One", sans-serif;
+  color: #ff7f50;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  top: 0px;
 }
 
 .confirmation_register-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    text-align: left;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  text-align: left;
 }
 
 .confirmation_register-form h2 {
-    font-size: 1rem;
-    color: #302F2F;
-    min-height: 40px;
-    font-family: 'Aoboshi One', sans-serif;
-    text-align: left;
-    padding-top: 30px;
+  font-size: 1rem;
+  color: #302f2f;
+  min-height: 40px;
+  font-family: "Aoboshi One", sans-serif;
+  text-align: left;
+  padding-top: 30px;
 }
 
 .confirmation_register-form input,
 .confirmation_register-form textarea {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 15px;
-    font-size: 1rem;
-    background-color: #BDD3CE;
-    color: #302F2F; 
-    font-family: 'Aoboshi One', sans-serif;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 15px;
+  font-size: 1rem;
+  background-color: #bdd3ce;
+  color: #302f2f;
+  font-family: "Aoboshi One", sans-serif;
 }
 
 .confirmation_register-form textarea {
-    resize: none;
-    height: 80px;
+  resize: none;
+  height: 80px;
 }
 
 .confirmation_register-form input:focus,
 .confirmation_register-form textarea:focus {
-    outline: none;
-    border-color: #302F2F;
-    box-shadow: 0 0 5px rgba(132, 211, 250, 0.8);
-    color: #302F2F;
-    background-color: #BDD3CE;
+  outline: none;
+  border-color: #302f2f;
+  box-shadow: 0 0 5px rgba(132, 211, 250, 0.8);
+  color: #302f2f;
+  background-color: #bdd3ce;
 }
 
-::placeholder{ /*texto dentro de cada box-text*/
-    color: #302f2fc8;
-    opacity: 1;
+::placeholder {
+  /*texto dentro de cada box-text*/
+  color: #302f2fc8;
+  opacity: 1;
 }
 
 .confirmation_register-form button {
-    background-color: #F4A258;
-    color: #FCF3E3;
-    border: none;
-    padding: 12px 20px;
-    font-size: 1rem;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  background-color: #f4a258;
+  color: #fcf3e3;
+  border: none;
+  padding: 12px 20px;
+  font-size: 1rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .confirmation_register-form button:hover {
-    background-color: #fab247d1;
+  background-color: #fab247d1;
 }
 
-
-
-.tooltip-code{
-    position: relative;
-    display: inline-block;
-    width: 100%;
+.tooltip-code {
+  position: relative;
+  display: inline-block;
+  width: 100%;
 }
 
 /*Pantallas medianas*/
 @media (max-width: 1024px) {
-    .confirmation_register-container {
-        width: 70vw; 
-        min-height: 500px; 
-    }
+  .confirmation_register-container {
+    width: 70vw;
+    min-height: 500px;
+  }
 }
 
 /* Pantallas pequeñas */
 @media (max-width: 768px) {
-    .confirmation_register-container {
-        width: 85vw; 
-        padding: 15px; 
-        min-height: 400px; 
-    }
+  .confirmation_register-container {
+    width: 85vw;
+    padding: 15px;
+    min-height: 400px;
+  }
 
-    .confirmation_register-form h2 {
-        font-size: 1.8rem; 
-    }
+  .confirmation_register-form h2 {
+    font-size: 1.8rem;
+  }
 
-    .confirmation_register-form input,
-    .confirmation_register-form textarea {
-        padding: 8px;
-        font-size: 0.95rem; 
-    }
+  .confirmation_register-form input,
+  .confirmation_register-form textarea {
+    padding: 8px;
+    font-size: 0.95rem;
+  }
 
-    .confirmation_register-form button {
-        padding: 10px 15px;
-        font-size: 0.9rem;
-    }
+  .confirmation_register-form button {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
 }
 
 /*Pantallas muy pequeñas*/
 @media (max-width: 480px) {
-    .confirmation_register-container {
-        width: 95vw;
-        padding: 10px;
-        min-height: auto;
-    }
+  .confirmation_register-container {
+    width: 95vw;
+    padding: 10px;
+    min-height: auto;
+  }
 
-    .confirmation_register-form {
-        gap: 15px;
-    }
+  .confirmation_register-form {
+    gap: 15px;
+  }
 
-    .confirmation_register-form h2 {
-        font-size: 1.5rem; 
-    }
+  .confirmation_register-form h2 {
+    font-size: 1.5rem;
+  }
 
-    .confirmation_register-form input,
-    .confirmation_register-form textarea {
-        font-size: 0.85rem; 
-    }
+  .confirmation_register-form input,
+  .confirmation_register-form textarea {
+    font-size: 0.85rem;
+  }
 }

@@ -1,192 +1,191 @@
 /* General */
 .background-container {
-    background-color: #fdf0e6;
-    padding: 10px 20px;
-    min-height: 100vh;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: nowrap;
-    padding-top: 15%;
+  background-color: #fdf0e6;
+  padding: 10px 20px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  padding-top: 15%;
 }
 
 .content-container {
-    display: flex;
-    gap: 20px;
-    width: 100%;
-    max-width: 1200px;
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
 }
 
 /* Columna izquierda */
 .left-column {
-    flex: 3;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 /* Columna derecha */
 .right-column {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 /* Tarjeta de información de pago */
 .payment-card {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .payment-method {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
 }
 
 /* Tarjetas de productos */
 .product-card {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* Mantiene el espaciado entre la imagen y el contenido */
-    background-color: #fafafa;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    overflow: visible;
-    min-height: 100px;
-    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Mantiene el espaciado entre la imagen y el contenido */
+  background-color: #fafafa;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: visible;
+  min-height: 100px;
+  width: 100%; /* Asegura que ocupe todo el ancho disponible */
 }
 
 .product-image {
-    position: absolute;
-    top: -50px;
-    left: 2px;
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 4px;
-    z-index: 1;
+  position: absolute;
+  top: -50px;
+  left: 2px;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 4px;
+  z-index: 1;
 }
 
 .product-details {
-    flex-grow: 1;
-    margin-left: 120px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  flex-grow: 1;
+  margin-left: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .product-name {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
 }
 
 .product-price {
-    font-size: 16px;
-    color: #777;
+  font-size: 16px;
+  color: #777;
 }
 
 /* Botón de remover */
 .remove-button {
-    display: flex;
-    align-items: center;
-    background-color: transparent; 
-    border: none;
-    cursor: pointer;
-    position: relative; 
-    overflow: hidden;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
-
 
 .remove-icon {
-    margin-right: 8px; 
-    font-size: 16px; 
-    color: #F4A258;
+  margin-right: 8px;
+  font-size: 16px;
+  color: #f4a258;
 }
 .remove-button::before {
-    content: ''; 
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 2px; 
-    background-color: #ec8f3d; 
-    transition: width 0.3s ease, left 0.3s ease; 
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: #ec8f3d;
+  transition: width 0.3s ease, left 0.3s ease;
 }
 .remove-button:hover::before {
-    width: 100%; 
-    left: 0;
+  width: 100%;
+  left: 0;
 }
 
 /* Resumen de compra */
 .summary-card {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .card-title {
-    font-size: 20px;
-    font-weight: bold;
-    color: #F4A258;
-    margin-bottom: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #f4a258;
+  margin-bottom: 15px;
 }
 
 .payment-card,
 .summary-card,
 .product-card {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 }
 
 .pay-button {
-    background-color: #F4A258;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 20px;
-    width: 100%;
+  background-color: #f4a258;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  width: 100%;
 }
 
 .pay-button:hover {
-    background-color: #f59949;
+  background-color: #f59949;
 }
 
 /* Controles de cantidad */
 .quantity-controls {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px; 
-    justify-content: center; 
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  justify-content: center;
 }
 
 .quantity-button {
-    background-color: #f0f0f0;
-    border: 1px solid #ddd;
-    padding: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  padding: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
 }
 
 .quantity-button:hover {
-    background-color: #ddd;
+  background-color: #ddd;
 }
 
 .quantity-display {
-    font-size: 16px;
-    font-weight: bold;
-    color: #333;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
 }
