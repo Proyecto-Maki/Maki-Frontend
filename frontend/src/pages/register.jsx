@@ -115,13 +115,15 @@ function Register() {
       return;
     }
 
-    const cedulaError = validateCedula(formData.cedula);
-    if (cedulaError) {
-      setError(cedulaError);
-      setShowErrorModal(true);
-      // alert(cedulaError);
-      return;
-    }
+    if (type === "user") {
+			const cedulaError = validateCedula(formData.cedula);
+			if (cedulaError) {
+				setError(cedulaError);
+				setShowErrorModal(true);
+				// alert(cedulaError);
+				return;
+			}
+		}
 
     const passwordError = validatePassword(
       formData.password,
@@ -165,19 +167,7 @@ function Register() {
     };
     console.log(dataToSubmit);
 
-<<<<<<< HEAD
-		if (type === "user") {
-			const cedulaError = validateCedula(formData.cedula);
-			if (cedulaError) {
-				setError(cedulaError);
-				setShowErrorModal(true);
-				// alert(cedulaError);
-				return;
-			}
-		}
-=======
     const url = type === "user" ? "registro/cliente/" : "registro/fundacion/";
->>>>>>> origin/development-Angel
 
     api
       .post(url, dataToSubmit)

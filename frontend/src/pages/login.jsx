@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from '../components/navbar';
@@ -9,17 +8,7 @@ import ErrorModal from '../components/ErrorModal';
 import api from '../api';
 import LoadingPage from '../components/loading-page';
 import { useNavigate } from 'react-router-dom';
-=======
-import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Navbar from "../components/navbar";
-import "../styles/login.css";
-import logo from "../img/Logotipo Maki.png"; // Ruta al logo
-import WelcomeModal from "../components/WelcomeModal"; // Import the new WelcomeModal component
-import ErrorModal from "../components/ErrorModal";
-import api from "../api";
-import { useNavigate } from "react-router-dom";
->>>>>>> origin/development-Angel
+
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -31,41 +20,8 @@ const Login = () => {
   const [dirNavigate, setDirNavigate] = useState("");
   const navigate = useNavigate();
 
-<<<<<<< HEAD
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        api
-            .post('login/', { email, password })
-            .then((response) => {
-                if (response.status === 200) {
-                    console.log('Login successful:', response.data);
-                    setResponse('¡Bienvenido!');
-                    setShowSuccessModal(true);
-                    setTimeout(() => {
-                        sessionStorage.setItem('token', response.data.data.access);
-                        sessionStorage.setItem('refresh', response.data.data.refresh);
-                        sessionStorage.setItem('email', email);
-                        navigate('/'); // Redirige a la página de dashboard o la que corresponda
-                    }, 5000); // Redirige después de 5 segundos
-                } else {
-                    console.log('Error en el login');
-                    console.log(response.data.message);
-                    setResponse(response.data.message);
-                    setShowErrorModal(true);
-                }
-            })
-            .catch((error) => {
-                console.error(error.response ? error.response.data : error.message);
-                console.log(error.response.data.detail);
-                setError(error.response.data.detail);
-                setShowErrorModal(true);
-            });
-    };
-=======
   const handleSubmit = (e) => {
     e.preventDefault();
->>>>>>> origin/development-Angel
 
     api
       .post("login/", { email, password })
@@ -101,7 +57,7 @@ const Login = () => {
     setResponse("");
   };
 
-<<<<<<< HEAD
+
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -116,17 +72,13 @@ const Login = () => {
         return <LoadingPage />;
     }
 
-    return (
-        <>
-            {/* Navbar */}
-            <Navbar />
-=======
+
   const handleCloseErrorModal = () => {
     setShowErrorModal(false);
     setError("");
     setResponse("");
   };
->>>>>>> origin/development-Angel
+
 
   return (
     <>
