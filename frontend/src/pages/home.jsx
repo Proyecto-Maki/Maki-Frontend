@@ -106,7 +106,7 @@ const Home = () => {
                                         <img src={tiktok} alt="tiktok" className="tiktok" />
                                     </a>
                                 </div>
-                                <p className="email-footer-home">makishop@gmail.com</p>
+                                <p className="email-footer-home">makishopmanagement@gmail.com</p>
                                 <p className="copyright-footer-home">© 2024 Maki. All rights reserved</p>
                             </div>
                         </div>
