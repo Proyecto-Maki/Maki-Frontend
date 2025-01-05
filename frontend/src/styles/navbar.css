@@ -14,6 +14,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
+  box-shadow: -2px 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 .nav-link {
@@ -65,14 +66,7 @@
   display: block;
   z-index: 1050;
   position: center;
-  color: #7bb66d;
-}
-
-.navbar-toggler {
-  display: block;
-  z-index: 1050;
-  position: center;
-  color: #7bb66d;
+  color: #7BB66D;
 }
 
 .navbar-toggler-icon {

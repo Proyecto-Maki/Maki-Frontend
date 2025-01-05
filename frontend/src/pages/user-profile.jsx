@@ -302,7 +302,7 @@ const UserProfile = () => {
       </div>
       {/* Botón de Eliminar cuenta */}
       <div className="d-flex justify-content-center mt-4">
-        <button className="btn btn-danger" title="Eliminar Cuenta">
+        <button className="btn-delete-account" title="Eliminar Cuenta">
           <i className="fas fa-trash-alt"></i> Eliminar Cuenta
         </button>
       </div>
