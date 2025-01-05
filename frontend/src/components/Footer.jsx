@@ -1,13 +1,13 @@
 import React from "react";
 import "../styles/footer.css"; // Ruta de estilos del footer
-import logo from "../img/Logotipo Maki.png"; // Ruta al logo
+import logo from "../img/Logotipo Maki Blanco.png"; // Ruta al logo
 import instagram from "../img/instagram.png";
 import tiktok from "../img/tiktok.png";
 
 const Footer = () => {
   return (
-    <footer className="footer-container-home">
-      <div className="divider-footer-home">
+    <footer className="footer">
+      <div className="divider-footer">
         <svg
           data-name="Layer 1"
           xmlns="http://www.w3.org/2000/svg"
@@ -29,7 +29,7 @@ const Footer = () => {
             className="shape-fill"
           ></path>
         </svg>
-        <div className="footer-logo-home">
+        <div className="footer-logo">
           <img
             src={logo}
             alt="Logo Maki"
@@ -37,7 +37,7 @@ const Footer = () => {
             style={{ height: "80px", marginRight: "15px" }}
           />
         </div>
-        <div className="footer-nav-home">
+        <div className="footer-nav">
           <ul>
             <li className="nav-item">
               <a className="nav-link" href="/">
@@ -66,18 +66,18 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-        <hr className="footer-divider-home" />
-        <div className="footer-contact-home">
-          <div className="footer-social-home">
-            <a href="#" className="social-icon-footer-home instagram">
+        <hr className="footer-divider" />
+        <div className="footer-contact">
+          <div className="footer-social">
+            <a href="#" className="social-icon-footer instagram">
               <img src={instagram} alt="instagram" className="instagram" />
             </a>
-            <a href="#" className="social-icon-footer-home tiktok">
+            <a href="#" className="social-icon-footer tiktok">
               <img src={tiktok} alt="tiktok" className="tiktok" />
             </a>
           </div>
-          <p className="email-footer-home">makishop@gmail.com</p>
-          <p className="copyright-footer-home">
+          <p className="email-footer">makishopmanagement@gmail.com</p>
+          <p className="copyright-footer">
             © 2024 Maki. All rights reserved
           </p>
         </div>

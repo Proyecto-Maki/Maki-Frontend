@@ -87,7 +87,6 @@ const Login = () => {
       {/* Navbar */}
       <Navbar />
 
-      {/* Login Page */}
           <div className="background-container">
             <div className="login-container">
               <div className="login-content">
@@ -97,7 +96,7 @@ const Login = () => {
                   className="logo-img-login"
                   style={{ height: "100px", marginRight: "15px" }}
                 />
-                <h2 className="welcome-text">¡BIENVENIDO!</h2>
+                <h2 className="welcome-text-login">¡BIENVENIDO!</h2>
                 <form className="login-form" onSubmit={handleSubmit}>
                   <div className="form-group position-relative">
                     <div className="tooltip-login">

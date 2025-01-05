@@ -18,6 +18,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 /*Contenedor imagen fondo del login*/
@@ -58,7 +59,6 @@ body {
   position: relative;
   top: -25%;
   margin-top: 10px;
-
 }
 
 .login-content img {
@@ -182,7 +182,7 @@ body {
 }
 
 /* Welcome Text */
-.welcome-text {
+.welcome-text-login {
   color: #f4a258;
   font-size: clamp(48px, 8vw, 128px);
   font-family: "Koulen", sans-serif;
@@ -309,13 +309,28 @@ body {
     }*/
 }
 
+.absolute-login-container::-webkit-scrollbar{
+  width: 10px;
+  color: #FCF3E3;
+}
+.absolute-login-container::-webkit-scrollbar-thumb {
+  background: #ffcc80; 
+  border-radius: 80px; 
+}
+.absolute-login-container::-webkit-scrollbar-thumb:hover {
+  background: #ffa726; 
+}
+.absolute-login-container::-webkit-scrollbar-track {
+  background: none; 
+}
+
 .footer-container-login{
   text-align: center;
-  padding: 0 0;
+  padding:10px 0;
   width: 100%;
   position: relative;
   overflow: visible;
-  background-color: #FCF3E3;
+  background-color: #7BB66D;
   top: 50%;
   
 }
@@ -327,176 +342,10 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh; 
+  min-width: 100vw;
   overflow-x: hidden;
   position: relative;
-  width: 100%;
+  width: 100vh;
   height: 100vh;
   background-color: #fcf3e3;
 }
-
-/*
-
-
-.divider-footer-login {
-  position: absolute;
-  top: 0%;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-
-}
-
-.divider-footer-login svg {
-  position: relative;
-  display: block;
-  width: calc(100% + 1.3px);
-  height: 150px;
-  transform: rotateY(180deg);
-}
-
-.divider-footer-login .shape-fill-login {
-  fill: #7BB66D;
-}
-
-/*información del footer*/
-/*
-.footer-logo-login .logo {
-  max-width: 100px;
-  margin-bottom: 10px;
-}
-
-.footer-nav-login ul {
-  list-style: none;
-  padding: 0;
-  margin: 10px 0;
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-}
-
-.footer-nav-login ul li a {
-  text-decoration: none;
-  color: #7BB66D;
-  font-weight: 500;
-  transition: color 0.3s;
-}
-
-.footer-nav-login ul li a:hover {
-  color: #FFD96E;
-}
-
-.footer-contact-login {
-  margin-top: 15px;
-}
-
-
-.footer-social-login {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-bottom: 30px;
-  margin-top: 30px;
-}
-
-.social-icon-footer-login.instagram {
-  width: 50px;
-  height: 50px;
-  background-color: #BDD3CE;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-
-.social-icon-footer-login.tiktok {
-  width: 50px;
-  height: 50px;
-  background-color: #BDD3CE;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-
-.footer-social-login img {
-  width: 24px;
-  height: 24px;
-}
-
-.email-footer-login {
-  margin-top: 30px;
-  font-size: 15px;
-  margin: 5px 0;
-  color: #7BB66D;
-}
-
-.copyright-footer-login {
-  font-size: 10px;
-  color: #ffa726;
-  margin-top: 50px;
-}
-
-.footer-divider-login {
-  border: 2;
-  height: 1px;
-  background-color: #7BB66D;
-  margin: 15px auto;
-  width: 40%;
-  opacity: 0.5; 
-  margin-top: 40px;
-}
-
-/*.footer-container-login-parallax{
-  padding: 20% 0;
-}*/
-
-/* Estilos responsive para pantallas pequeñas */
-/*@media (max-width: 768px) {
-  .footer-logo-login .logo {
-    max-width: 80px; 
-    margin-bottom: 10px;
-  }
-
-  .footer-nav-login ul {
-    flex-direction: column; 
-    gap: 10px; 
-  }
-
-  .footer-social-login {
-    gap: 10px; 
-  }
-
-  .footer-divider-login {
-    width: 80%; 
-  }
-
-  .email-login {
-    font-size: 13px; 
-  }
-
-  .copyright-login {
-    font-size: 11px;
-  }
-}
-
-@media (max-width: 480px) {
-
-  .footer-nav-login ul {
-    font-size: 14px; 
-  }
-
-  .footer-social-login img {
-    width: 20px;
-    height: 20px;
-  }
-
-  .email-login {
-    font-size: 12px; 
-  }
-
-  .copyright-login {
-    font-size: 10px; 
-  }
-}*/
