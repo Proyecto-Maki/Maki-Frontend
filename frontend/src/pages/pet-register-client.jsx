@@ -22,7 +22,7 @@ const RegisterPetClient = () => {
     <>
       {/* Navbar */}
       <Navbar />
-      <div className="background-container">
+      <div className="background-container-pr">
         {/* Logo Maki encima del formulario */}
         <div className="logo-container">
           <img
