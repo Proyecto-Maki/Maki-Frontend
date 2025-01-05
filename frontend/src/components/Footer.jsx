@@ -53,7 +53,7 @@ const Footer = () => {
                                 <img src={tiktok} alt="tiktok" className="tiktok" />
                             </a>
                         </div>
-                        <p className="email-footer">makishop@gmail.com</p>
+                        <p className="email-footer">makishopmanagement@gmail.com</p>
                         <p className="copyright-footer">© 2024 Maki. All rights reserved</p>
                     </div>
                 </div>
