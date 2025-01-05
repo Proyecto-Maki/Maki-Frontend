@@ -8,6 +8,9 @@
     margin: 0 auto;
     text-align: center;
     font-family: 'Aoboshi One', sans-serif;
+    background-color: rgba(255, 255, 255, 0.5); 
+
+
 }
 
 .publish-review-title {
@@ -73,32 +76,44 @@
 }
 
 .publish-review-star.selected {
-    color: #ff8c42; /* Color de las estrellas seleccionadas */
+    color: #ff8c42;
 }
 
 .publish-review-comment-section {
-    margin-bottom: 20px;
+    margin-bottom: 80px;
 }
 
 .publish-review-title-input {
     width: 100%;
     padding: 10px;
-    border: 1px solid #dddddd; /* Deja el borde como estaba */
+    border: 2px solid #BDD3CE;
     border-radius: 5px;
     margin-bottom: 10px;
     font-size: 14px;
+    background-color: transparent;
+    resize: none; /* Deshabilita la opción de redimensionar */
+}
+.publish-review-title-input::placeholder, .publish-review-textarea::placeholder {
+    color: #BDD3CE; /* Cambié el color del placeholder a rojo */
 }
 
 .publish-review-textarea {
     width: 100%;
     padding: 10px;
-    border: 2px solid #0000FF; /* Borde azul */
+    border: 2px solid #BDD3CE; /* El color inicial es un azul claro */
     border-radius: 5px;
     font-size: 14px;
-    min-height: 100px;
-    background-color: transparent; /* Sin relleno */
-    box-sizing: border-box; /* Asegura que el padding no afecte el ancho */
+    min-height: 190px;
+    background-color: transparent; 
+    box-sizing: border-box; 
+    transition: border-color 0.3s ease; /* Agregamos una transición para el hover */
+    resize: none; /* Deshabilita la opción de redimensionar */
 }
+
+.publish-review-textarea:hover {
+    border-color: #8faed9; /* Azul más oscuro */
+}
+
 
 .publish-review-button {
     background-color: #ff8c42;
@@ -117,8 +132,9 @@
 
 .publish-review-terms {
     font-size: 12px;
-    color: #888888;
-    margin-top: 10px;
+    color: #77918b;
+            margin-top: 10px;
     text-decoration: underline;
     cursor: pointer;
+    font-weight: bold;
 }
