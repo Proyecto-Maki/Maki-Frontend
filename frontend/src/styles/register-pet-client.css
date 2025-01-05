@@ -5,7 +5,6 @@
   src: url("../fonts/Koulen-Regular.ttf") format("truetype");
 }
 body {
-  background-color: #fdf0e6;
   font-family: "Aoboshi One", sans-serif;
   margin: 0;
   padding: 0;
@@ -13,6 +12,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #fcf3e3; /*si se quita este color, se quita de las demás vistas, dejar quieto*/
 }
 /* Contenedor imagen fondo del login */
 .background-container {
