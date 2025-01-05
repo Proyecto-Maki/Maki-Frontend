@@ -254,6 +254,24 @@ body {
   visibility: visible;
 }
 
+.absolute-login-container::-webkit-scrollbar{
+  width: 16px;
+  color: #FCF3E3;
+}
+
+.absolute-login-container::-webkit-scrollbar-thumb {
+  background: #ffcc80; 
+  border-radius: 80px; 
+}
+
+.absolute-login-container::-webkit-scrollbar-thumb:hover {
+  background: #ffa726; 
+}
+
+.absolute-login-container::-webkit-scrollbar-track {
+  background: none; 
+}
+
 /* Responsiveness */
 @media (max-width: 768px) {
   .login-content {

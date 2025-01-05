@@ -91,12 +91,12 @@ const Login = () => {
           <div className="background-container">
             <div className="login-container">
               <div className="login-content">
-                <img
-                  src={logo}
-                  alt="Logo Maki"
-                  className="logo-img-login"
-                  style={{ height: "100px", marginRight: "15px" }}
-                />
+                  <img
+                    src={logo}
+                    alt="Logo Maki"
+                    className="logo-img-login"
+                    style={{ height: "100px", marginRight: "15px" }}
+                  />
                 <h2 className="welcome-text">¡BIENVENIDO!</h2>
                 <form className="login-form" onSubmit={handleSubmit}>
                   <div className="form-group position-relative">
