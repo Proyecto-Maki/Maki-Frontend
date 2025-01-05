@@ -217,18 +217,6 @@ const UserProfile = () => {
   if (isLoading) {
     return <LoadingPage />;
   }
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (isLoading) {
-    return <LoadingPage />;
-  }
   return (
     <>
       {/* Navbar */}
@@ -274,7 +262,7 @@ const UserProfile = () => {
       <div className="icons-container">
         <div className="d-flex flex-row justify-content-center">
           <ProfileIcon
-            src={imageProfile}
+            src="../src/img/iconosProfile/mascotas.svg"
             alt="Mascotas"
             title="Mascotas"
           />

@@ -26,7 +26,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-
+  margin-top: 30%;
 }
 
 /* Contenedor del formulario */
@@ -58,6 +58,7 @@ form {
 /* Estilo para los campos de entrada */
 input,
 select {
+  width: 100%; /* Ancho completo */
   border: solid #bdd3ce; /* Borde azul */
   border-radius: 20px; /* Bordes redondeados */
   padding: 10px; /* Espaciado interno */
@@ -65,6 +66,7 @@ select {
   outline: none; /* Quitar el borde al enfocarse */
   transition: border-color 0.3s; /* Animación de transición al enfocarse */
   background-color: #bdd3ce;
+  color: #302f2fda;
 }
 
 /* Cambiar el color del borde cuando el campo esté enfocado */
@@ -75,14 +77,14 @@ input:focus {
 /* Ajuste de los placeholders */
 input::placeholder,
 select {
-  color: white; /* Color azul claro para los placeholders */
+  color: #302f2fc0; /* Color azul claro para los placeholders */
   font-style: italic; /* Estilo cursivo */
 }
 
 /* Estilo para la lista desplegable */
 select option {
   background-color: white;
-  color: black;
+  color: #302f2fda;
   border-radius: 20%;
 }
 
@@ -93,6 +95,21 @@ select:focus {
 
 select option:hover {
   background-color: #f0f0f0;
+}
+
+
+.photo-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.photo-container .photo-container-img{
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 2px solid #f4a258;
+  object-fit: scale-down;
 }
 
 .btn-register-pet {
