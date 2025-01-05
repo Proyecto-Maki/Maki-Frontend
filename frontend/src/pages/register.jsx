@@ -116,14 +116,14 @@ function Register() {
     }
 
     if (type === "user") {
-			const cedulaError = validateCedula(formData.cedula);
-			if (cedulaError) {
-				setError(cedulaError);
-				setShowErrorModal(true);
-				// alert(cedulaError);
-				return;
-			}
-		}
+      const cedulaError = validateCedula(formData.cedula);
+      if (cedulaError) {
+        setError(cedulaError);
+        setShowErrorModal(true);
+        // alert(cedulaError);
+        return;
+      }
+    }
 
     const passwordError = validatePassword(
       formData.password,
