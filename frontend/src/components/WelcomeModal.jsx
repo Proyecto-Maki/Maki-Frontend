@@ -5,7 +5,7 @@ const WelcomeModal = ({ show, handleClose, response }) => {
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Registro Exitoso</Modal.Title>
+        <Modal.Title>Bienvenida</Modal.Title>
       </Modal.Header>
       <Modal.Body>{response}</Modal.Body>
       <Modal.Footer>
