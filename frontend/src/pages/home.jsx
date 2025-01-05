@@ -61,7 +61,7 @@ const Home = () => {
                             </div>
 
                 </ParallaxLayer>
-                <ParallaxLayer offset={1} speed={1}>
+                <ParallaxLayer offset={1} speed={1} className="footer-container-home-parallax">
                     <div className="footer-container-home">
                         <div className="divider-footer-home">
                             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">

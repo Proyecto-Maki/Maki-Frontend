@@ -61,7 +61,7 @@ body {
 }
 
 .animation-container {
-    height: 50vh;
+    height: 100vh;
     width: 100vw;
 }
 
@@ -162,26 +162,29 @@ body {
   }
 
   .left-text-container h2,
-  .right-text-container h2,
-  .subheading {
-    font-size: 8px; /* Ajusta el tamaño a 8px para un tamaño aún más pequeño */
-    width: 80%;
+  .right-text-container h2 {
+    font-size: 18px; /* Ajusta el tamaño a 8px para un tamaño aún más pequeño */
+    width: 10%;
+    justify-content: center;
+    align-items: center;
+    line-height: 5rem;
   }
 
-  .left-text-container,
-  .right-text-container {
-    width: 100%;
-    text-align: center;
+  .subheading{
+    display: none;
   }
 }
 
 /* Para pantallas medianas */
 @media screen and (max-width: 768px) {
   .left-text-container h2,
-  .right-text-container h2,
-  .subheading {
-    font-size: 2rem;
+  .right-text-container h2{
+    font-size: 4.5rem;
     width: 80%;
+  }
+
+  .subheading{
+    font-size: 1rem;
   }
 
   .dog__animation img {
@@ -199,7 +202,6 @@ body {
     width: 100vw;
     height: 100vh;
     background-color: #7BB66D;
-    border: 2px solid red;
 }
 
 .animation-container::-webkit-scrollbar{
@@ -340,6 +342,10 @@ body {
     width: 40%;
     opacity: 0.5; 
     margin-top: 40px;
+  }
+
+  .footer-container-home-parallax{
+    padding: 20% 0;
   }
 
   /* Estilos responsive para pantallas pequeñas */
