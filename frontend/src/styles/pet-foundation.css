@@ -7,8 +7,26 @@
   width: 100vw;
   height: calc(100vh - 80px);
   margin-top: 90px;
-  border: 2px solid red;
   display: contents;
+  overflow-y: auto;
+}
+
+.container-pet-foundation::-webkit-scrollbar{
+  width: 10px;
+  color: #FCF3E3;
+}
+
+.container-pet-foundation::-webkit-scrollbar-thumb {
+  background: #ffcc80; 
+  border-radius: 80px; 
+}
+
+.container-pet-foundation::-webkit-scrollbar-thumb:hover {
+  background: #ffa726; 
+}
+
+.container-pet-foundation::-webkit-scrollbar-track {
+  background: none; 
 }
 
 .content-pet-foundation{
@@ -16,7 +34,6 @@
   height: 100%;
   margin-top: 30vh;
   padding: 20px 20px;
-  border: 2px solid red;
   justify-content: center;
   align-items: center;
   display: flex;
@@ -163,6 +180,7 @@ h2 {
   .actions button {
     font-size: 16px; 
   }
+
 }
 
 /*Pantallas medianas*/
@@ -208,4 +226,77 @@ h2 {
   .card-text p {
     font-size: 14px;
   }
+  
+}
+
+.button-container-foundation{
+  width: 100px;
+  height: 30px;
+  position: relative;
+  left: 40%;
+  top: -5%;
+}
+
+.button-add-pet-foundation {
+  --main-focus: #2d8cf0;
+  --font-color: #fcf3e3;
+  --bg-color-sub: #a2bf9b;
+  --bg-color: #7bb66d;
+  --main-color: #302F2F;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: 2px solid var(--main-color);
+  box-shadow: 4px 4px var(--main-color);
+  background-color: var(--bg-color);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.button-add-pet-foundation, .button__icon, .button__text {
+  transition: all 0.3s;
+}
+
+.button-add-pet-foundation .button__text {
+  transform: translateX(22px);
+  color: var(--font-color);
+  font-weight: 600;
+}
+
+.button-add-pet-foundation .button__icon {
+  position: absolute;
+  transform: translateX(109px);
+  height: 100%;
+  width: 39px;
+  background-color: var(--bg-color-sub);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #Fcf3e3;
+}
+
+.button-add-pet-foundation .svg {
+  width: 20px;
+  fill: var(--main-color);
+}
+
+.button-add-pet-foundation:hover {
+  background: var(--bg-color);
+}
+
+.button-add-pet-foundation:hover .button__text {
+  color: transparent;
+}
+
+.button-add-pet-foundation:hover .button__icon {
+  width: 148px;
+  transform: translateX(0);
+}
+
+.button-add-pet-foundation:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0px 0px var(--main-color);
 }

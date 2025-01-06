@@ -75,6 +75,12 @@ const PetFoundation = () => {
       <div className="container-pet-foundation">
         <div className="content-pet-foundation">
           <h2>Mascotas</h2>
+          <div className="button-container-foundation">
+            <button className="button-add-pet-foundation" type="button">
+                      <span class="button__text">Añadir</span>
+                      <span class="button__icon"><svg class="svg" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
+            </button>
+          </div>
           {/* Contenedor principal de tarjetas */}
           <div className="card-container">
             {mascotas.map((mascota) => (

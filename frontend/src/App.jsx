@@ -13,7 +13,6 @@ import RegisterPetClient from "./pages/pet-register-client";
 import PetFoundation from "./pages/pet-foundation";
 import Resume from "./pages/resume";
 import Logout from "./pages/logout";
-import Logout from './pages/logout';
 import PublishReview from './pages/publish-review';
 import InfoProduct from './pages/info-producto';
 import Footer from "./components/Footer";
