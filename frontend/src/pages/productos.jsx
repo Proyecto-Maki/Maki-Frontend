@@ -8,6 +8,7 @@ import "../styles/productos.css";
 
 function Productos() {
   const [productos, setProductos] = useState([]);
+  const cloudinaryBaseUrl = "https://res.cloudinary.com/dlktjxg1a/";
 
   const getProductos = () => {
     api
@@ -46,7 +47,7 @@ function Productos() {
                   <div className="card h-100 shadow-sm border-0 login-content">
                     <Link to={`/productos/${producto.slug}`}>
                       <img
-                        src={producto.imagen} // Usamos "imagen" según tu API
+                        src={`${cloudinaryBaseUrl}${producto.imagen}`} // Concatenamos la URL base con la ruta de la imagen
                         alt={producto.nombre} // Usamos "nombre" según tu API
                         className="card-img-top img-fluid logo-img-login"
                         style={{ borderRadius: "10px" }}
