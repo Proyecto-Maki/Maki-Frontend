@@ -12,7 +12,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fdf0e6; /*si se quita este color, se quita de las demás vistas, dejar quieto*/
+  background-color: #fcf3e3; /*si se quita este color, se quita de las demás vistas, dejar quieto*/
 }
 /* Contenedor imagen fondo del login */
 .background-container-pr {

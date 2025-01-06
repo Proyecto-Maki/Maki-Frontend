@@ -123,10 +123,10 @@ const PasswordRecovery = () => {
   };
 
   return (
-    <>
+    <div className="absolute-password-recovery-container">
       {/* Navbar */}
       <Navbar />
-      <div className="background-recovery">
+      <div className="background-password-recovery">
         <div className="password-recovery-container">
           <div className="logo-register">
             <img
@@ -196,7 +196,7 @@ const PasswordRecovery = () => {
         handleClose={handleCloseErrorModal}
         error={error}
       />
-    </>
+    </div>
   );
 };
 export default PasswordRecovery;
