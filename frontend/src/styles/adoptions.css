@@ -1,0 +1,93 @@
+.adoptions-container {
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    gap: 20px; 
+    padding: 20px;
+    width: 95%; 
+    max-width: 1600px; 
+    height: calc(100vh - 80px); 
+    padding-top: 10%;
+    margin: 0 auto; 
+}
+
+/* Configuración de las tarjetas */
+.pet-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #e7f6f3;
+    border-radius: 10px;
+    padding: 20px;
+    width: 100%; 
+    max-width: 1000px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px; 
+}
+
+
+/* Configuración de la imagen dentro de las tarjetas */
+.pet-image img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+/* Detalles de la mascota dentro de la tarjeta */
+.pet-details {
+    flex-grow: 1;
+    margin-right: 20px;
+}
+
+.pet-details h2 {
+    margin: 0 0 10px 0;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.pet-details p {
+    margin: 5px 0;
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Botón de adopción */
+.adopt-button {
+    background-color: transparent;
+    color: #ffa726;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+    position: relative;
+    overflow: hidden;
+}
+
+/* Configuración del ícono de huella */
+.adopt-button i {
+    font-size: 3rem; /* Tamaño de la huella */
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Animación de salto */
+.adopt-button:hover i {
+    animation: pawJump 0.6s ease-in-out infinite;
+}
+
+/* Animación para hacer que la huella salte */
+@keyframes pawJump {
+    0%, 100% {
+        transform: translateY(0); /* Posición inicial */
+    }
+    50% {
+        transform: translateY(-10px); /* Salto hacia arriba */
+    }
+}
+
+
