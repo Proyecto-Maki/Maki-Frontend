@@ -1,11 +1,10 @@
 /* General Styles */
-.background-container {
+.background-container-info-producto {
     display: flex;             
     justify-content: center;   
     align-items: flex-start;   
     padding-top: 0;       
-    min-height: 100vh;         
-    overflow: scroll;
+    min-height: 100vh;  
 }
 
 .producto-container-total {
