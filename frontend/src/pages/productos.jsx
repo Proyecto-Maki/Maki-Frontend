@@ -74,7 +74,7 @@ function Productos() {
           )}
         </div>
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
