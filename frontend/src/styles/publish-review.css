@@ -1,0 +1,140 @@
+.publish-review-container {
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 760px;
+    min-height: 750px;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    font-family: 'Aoboshi One', sans-serif;
+    background-color: rgba(255, 255, 255, 0.5); 
+
+
+}
+
+.publish-review-title {
+    text-align: center;
+    margin: 0 auto;
+    font-size: 32px;
+    color: #ff8c42;
+    margin-bottom: 15px;
+}
+
+.publish-review-user-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.publish-review-user-avatar {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin-right: 10px; 
+}
+
+.publish-review-user-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333333;
+    text-align: left; 
+    margin: 0;
+    flex-grow: 1; 
+}
+
+.publish-review-date {
+    font-size: 14px;
+    color: #888888;
+    text-align: right; 
+}
+
+.publish-review-rating-section {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.publish-review-stars {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px; 
+    font-size: 36px; 
+    color: #cccccc;
+    cursor: pointer;
+    transition: transform 0.3s ease; 
+}
+
+.publish-review-star {
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.publish-review-star:hover {
+    transform: scale(1.2); 
+    color: #ffc107; 
+}
+
+.publish-review-star.selected {
+    color: #ff8c42;
+}
+
+.publish-review-comment-section {
+    margin-bottom: 80px;
+}
+
+.publish-review-title-input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #BDD3CE;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    background-color: transparent;
+    resize: none; /* Deshabilita la opción de redimensionar */
+}
+.publish-review-title-input::placeholder, .publish-review-textarea::placeholder {
+    color: #BDD3CE; /* Cambié el color del placeholder a rojo */
+}
+
+.publish-review-textarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #BDD3CE; /* El color inicial es un azul claro */
+    border-radius: 5px;
+    font-size: 14px;
+    min-height: 190px;
+    background-color: transparent; 
+    box-sizing: border-box; 
+    transition: border-color 0.3s ease; /* Agregamos una transición para el hover */
+    resize: none; /* Deshabilita la opción de redimensionar */
+}
+
+.publish-review-textarea:hover {
+    border-color: #8faed9; /* Azul más oscuro */
+}
+
+
+.publish-review-button {
+    background-color: #ff8c42;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.publish-review-button:hover {
+    background-color: #e5762c;
+}
+
+.publish-review-terms {
+    font-size: 12px;
+    color: #77918b;
+            margin-top: 10px;
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: bold;
+}

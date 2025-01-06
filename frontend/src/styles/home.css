@@ -63,7 +63,7 @@ body {
 .animation-container {
     height: 100vh;
     width: 100vw;
-}
+} 
 
 .home-content {
     text-align: center;
@@ -242,7 +242,7 @@ body {
 
 }
 
-.divider-footer svg {
+.divider-footer-home svg {
     position: relative;
     display: block;
     width: calc(100% + 1.3px);

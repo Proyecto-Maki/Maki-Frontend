@@ -12,10 +12,13 @@ import LoadingPage from "./components/loading-page";
 import RegisterPetClient from "./pages/pet-register-client";
 import PetFoundation from "./pages/pet-foundation";
 import Resume from "./pages/resume";
+import Logout from "./pages/logout";
 import Logout from './pages/logout';
+import PublishReview from './pages/publish-review';
+import InfoProduct from './pages/info-producto';
 import Footer from "./components/Footer";
 import Navbar from "./components/navbar";
-
+import Productos from "./pages/productos";
 
 function App() {
   return (
@@ -40,10 +43,12 @@ function App() {
           element={<RegisterPetClient />}
         ></Route>
         <Route path="/pet-foundation" element={<PetFoundation />}></Route>
+        <Route path="/publish-review" element={<PublishReview />} />
+        <Route path="/infor-product" element={<InfoProduct />} />
         <Route path="/resume" element={<Resume />}></Route>
         <Route path="/logout" element={<Logout />}></Route>
         <Route path="/footer" element={<Footer />}></Route>
-
+        <Route path="/productos" element={<Productos />} />
       </Routes>
     </BrowserRouter>
   );

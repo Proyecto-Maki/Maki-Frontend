@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from '../components/navbar';
+import Footer from '../components/Footer';
 import '../styles/login.css';
 import logo from '../img/Logotipo Maki.png'; // Ruta al logo
 import WelcomeModal from '../components/WelcomeModal'; // Import the new WelcomeModal component
@@ -8,6 +9,7 @@ import ErrorModal from '../components/ErrorModal';
 import api from '../api';
 import LoadingPage from '../components/loading-page';
 import { useNavigate } from 'react-router-dom';
+import { Parallax, ParallaxLayer } from "@react-spring/parallax"
 
 
 const Login = () => {
@@ -81,76 +83,80 @@ const Login = () => {
 
 
   return (
-    <>
+    <div className="absolute-login-container">
       {/* Navbar */}
       <Navbar />
 
-      {/* Login Page */}
-      <div className="background-container">
-        <div className="login-container">
-          <div className="login-content">
-            <img
-              src={logo}
-              alt="Logo Maki"
-              className="logo-img-login"
-              style={{ height: "100px", marginRight: "15px" }}
-            />
-            <h2 className="welcome-text">¡BIENVENIDO!</h2>
-            <form className="login-form" onSubmit={handleSubmit}>
-              <div className="form-group position-relative">
-                <div className="tooltip-login">
-                  <input
-                    type="email"
-                    className="form-control custom-input"
-                    placeholder="Dirección de correo"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  />
-                  <span className="tooltip-login-email">
-                    Ingresa tu correo electrónico
-                  </span>
-                </div>
+          <div className="background-container">
+            <div className="login-container">
+              <div className="login-content">
+                <img
+                  src={logo}
+                  alt="Logo Maki"
+                  className="logo-img-login"
+                  style={{ height: "100px", marginRight: "15px" }}
+                />
+                <h2 className="welcome-text-login">¡BIENVENIDO!</h2>
+                <form className="login-form" onSubmit={handleSubmit}>
+                  <div className="form-group position-relative">
+                    <div className="tooltip-login">
+                      <input
+                        type="email"
+                        className="form-control custom-input"
+                        placeholder="Dirección de correo"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                      />
+                      <span className="tooltip-login-email">
+                        Ingresa tu correo electrónico
+                      </span>
+                    </div>
+                  </div>
+                  <div className="form-group position-relative">
+                    <div className="tooltip-login">
+                      <input
+                        type="password"
+                        className="form-control custom-input"
+                        placeholder="Contraseña"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                      />
+                      <span className="tooltip-login-password">
+                        Ingresa tu contraseña
+                      </span>
+                    </div>
+                  </div>
+                  <button type="submit" className="btn btn-success login-btn">
+                    Ingresa
+                  </button>
+                  <p className="forgot-password-text">
+                    <a href="/forget-password">Olvidé mi contraseña</a>
+                  </p>
+                  <p className="signup-text">
+                    ¿No tienes una cuenta aún? <a href="/register">Únete</a>
+                  </p>
+                </form>
               </div>
-              <div className="form-group position-relative">
-                <div className="tooltip-login">
-                  <input
-                    type="password"
-                    className="form-control custom-input"
-                    placeholder="Contraseña"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                  />
-                  <span className="tooltip-login-password">
-                    Ingresa tu contraseña
-                  </span>
-                </div>
-              </div>
-              <button type="submit" className="btn btn-success login-btn">
-                Ingresa
-              </button>
-              <p className="forgot-password-text">
-                <a href="/forget-password">Olvidé mi contraseña</a>
-              </p>
-              <p className="signup-text">
-                ¿No tienes una cuenta aún? <a href="/register">Únete</a>
-              </p>
-            </form>
+            </div>
           </div>
-        </div>
-      </div>
-      <WelcomeModal
-        show={showSuccessModal}
-        handleClose={handleCloseSuccessModal}
-        response={response}
-      />
-      <ErrorModal
-        show={showErrorModal}
-        handleClose={handleCloseErrorModal}
-        error={error}
-      />
-    </>
+          <div className="footer-container-login">
+              <Footer />
+          </div>
+          
+        
+        <WelcomeModal
+          show={showSuccessModal}
+          handleClose={handleCloseSuccessModal}
+          response={response}
+        />
+        <ErrorModal
+          show={showErrorModal}
+          handleClose={handleCloseErrorModal}
+          error={error}
+        />
+    </div>
   );
 };
 

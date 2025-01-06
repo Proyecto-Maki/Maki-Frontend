@@ -18,6 +18,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 /*Contenedor imagen fondo del login*/
@@ -27,11 +28,15 @@ body {
   background-position: bottom center;
   background-repeat: no-repeat;
   height: 100vh;
-  width: 55vw;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fcf3e3;
+  background-color: #fdf0e6;
+  padding-top: 50px;
+  position: relative;
+  top: 50%;
+  flex-grow: 1;
 }
 
 /* Contenedor del contenido */
@@ -52,7 +57,8 @@ body {
   display: flex;
   flex-direction: column;
   position: relative;
-  top: 20px;
+  top: -25%;
+  margin-top: 10px;
 }
 
 .login-content img {
@@ -74,8 +80,9 @@ body {
   align-items: center;
   width: 100%;
   height: 100%;
+  display: flex;
   position: relative;
-  top: -50px;
+  margin-top: 0;
 }
 
 /* Logo */
@@ -175,7 +182,7 @@ body {
 }
 
 /* Welcome Text */
-.welcome-text {
+.welcome-text-login {
   color: #f4a258;
   font-size: clamp(48px, 8vw, 128px);
   font-family: "Koulen", sans-serif;
@@ -250,12 +257,15 @@ body {
 /* Responsiveness */
 @media (max-width: 768px) {
   .login-content {
-    max-width: 80%;
+    top: 0;
+    transform: translateY(0);
+    max-width: 90%;
     padding: 15px;
+    margin-top: 5vh;
   }
 
   .logo {
-    width: 120px !important;
+    width: 120px ;
     margin-bottom: 15px;
   }
 
@@ -274,8 +284,11 @@ body {
 
 @media (max-width: 480px) {
   .login-content {
-    max-width: 90%;
-    padding: 10px;
+    max-width: 95%;
+    padding: 5px;
+    top: 0;
+    transform: translateY(0);
+    margin-top: 15vh;
   }
 
   .logo {
@@ -294,4 +307,45 @@ body {
   /*.logo-img-login{
         max-width: 70%;
     }*/
+}
+
+.absolute-login-container::-webkit-scrollbar{
+  width: 10px;
+  color: #FCF3E3;
+}
+.absolute-login-container::-webkit-scrollbar-thumb {
+  background: #ffcc80; 
+  border-radius: 80px; 
+}
+.absolute-login-container::-webkit-scrollbar-thumb:hover {
+  background: #ffa726; 
+}
+.absolute-login-container::-webkit-scrollbar-track {
+  background: none; 
+}
+
+.footer-container-login{
+  text-align: center;
+  padding:10px 0;
+  width: 100%;
+  position: relative;
+  overflow: visible;
+  background-color: #7BB66D;
+  top: 50%;
+  
+}
+
+
+.absolute-login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; 
+  min-width: 100vw;
+  overflow-x: hidden;
+  position: relative;
+  width: 100vh;
+  height: 100vh;
+  background-color: #fcf3e3;
 }
