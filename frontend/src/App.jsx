@@ -18,6 +18,7 @@ import InfoProduct from './pages/info-producto';
 import Footer from "./components/Footer";
 import Navbar from "./components/navbar";
 import Productos from "./pages/productos";
+import Adoptions from "./pages/adoptions";
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
         <Route path="/logout" element={<Logout />}></Route>
         <Route path="/footer" element={<Footer />}></Route>
         <Route path="/productos" element={<Productos />} />
+        <Route path="/adopcion" element={<Adoptions />} />
       </Routes>
     </BrowserRouter>
   );
