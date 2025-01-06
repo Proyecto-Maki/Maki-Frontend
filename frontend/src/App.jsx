@@ -13,8 +13,8 @@ import RegisterPetClient from "./pages/pet-register-client";
 import PetFoundation from "./pages/pet-foundation";
 import Resume from "./pages/resume";
 import Logout from "./pages/logout";
-import PublishReview from './pages/publish-review';
-import InfoProduct from './pages/info-producto';
+import PublishReview from "./pages/publish-review";
+import InfoProduct from "./pages/info-producto";
 import Footer from "./components/Footer";
 import Navbar from "./components/navbar";
 import Productos from "./pages/productos";
@@ -48,6 +48,8 @@ function App() {
         <Route path="/logout" element={<Logout />}></Route>
         <Route path="/footer" element={<Footer />}></Route>
         <Route path="/productos" element={<Productos />} />
+        <Route path="/productos/:slug" element={<InfoProduct />} />{" "}
+        {/* Cambia id por slug */}
       </Routes>
     </BrowserRouter>
   );
