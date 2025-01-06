@@ -68,10 +68,10 @@ const ConfirmationRegister = () => {
   };
 
   return (
-    <>
+    <div className="absolute-confirmation-register-container">
       {/* Navbar */}
       <Navbar />
-      <div className="background-register">
+      <div className="background-confirmation-register">
         <div className="confirmation_register-container">
           <div className="logo-register">
             <img
@@ -116,7 +116,7 @@ const ConfirmationRegister = () => {
         handleClose={handleCloseErrorModal}
         error={error}
       />
-    </>
+    </div>
   );
 };
 export default ConfirmationRegister;
