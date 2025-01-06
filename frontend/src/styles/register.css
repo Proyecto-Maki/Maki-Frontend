@@ -50,10 +50,9 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh; 
-  overflow-y: hidden;
-  overflow-x: hidden;
+  overflow-y: scroll;
   position: relative;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   background-color: #fcf3e3;
 }
@@ -64,12 +63,13 @@ body {
   background-position: center bottom;
   background-repeat: no-repeat;
   height: 30vh;
-  width: 30vw;
+  width: 50vw;
   display: flex;
+  justify-content: center;
   align-items: center;
   padding-top: 50px;
   position: relative;
-  top: 20%;
+  top: 4%;
   flex-grow: 1;
 }
 
@@ -83,7 +83,7 @@ body {
   padding: 100px;
   padding-top: 30px;
   position: relative;
-  top: -20%;
+  top: 0%;
   overflow: auto;
   transition: transform 0.3s ease;
   min-width: 20vw;
@@ -117,6 +117,24 @@ body {
 }
 
 .register-container::-webkit-scrollbar-track {
+  background: none;
+}
+
+.absolute-register-container::-webkit-scrollbar {
+  width: 10px;
+  color: #fcf3e3;
+}
+
+.absolute-register-container::-webkit-scrollbar-thumb {
+  background: #ffcc80;
+  border-radius: 80px;
+}
+
+.absolute-register-container::-webkit-scrollbar-thumb:hover {
+  background: #ffa726;
+}
+
+.absolute-register-container::-webkit-scrollbar-track {
   background: none;
 }
 
