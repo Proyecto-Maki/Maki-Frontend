@@ -167,6 +167,9 @@ const RegisterPetClient = () => {
       return;
     }
 
+    setShowConfirmationModal(true);
+
+
     const cantidad_mascotas = petsData.length;
     let respuestas = [];
     let error_vali = false;
@@ -280,12 +283,22 @@ const RegisterPetClient = () => {
     setResponse("");
   };
 
-  const handleYesConfirmationModal = () => {
-    navigate(dirNavigate);
+  const handleYesConfirmationModal = async (e) => {
+    
+    setIsLoading(true);
+    await new Promise(r => setTimeout(r, 2000));
+    await handleSubmit(e);
+    setIsLoading(false);
+    handleNoConfirmationModal();
+    
   }
 
   const handleNoConfirmationModal = () => {
     setShowConfirmationModal(false);
+  }
+
+  const handleOpenConfirmationModal = () => {
+    setShowConfirmationModal(true);
   }
 
 
@@ -546,7 +559,7 @@ const RegisterPetClient = () => {
             </div>
 
             <div className="d-flex flex-row">
-              <button type="submit" onClick={handleSubmit} className="btn-register-pet">
+              <button type="submit" onClick={handleOpenConfirmationModal} className="btn-register-pet">
                 <i className="fas fa-paw"></i> ¡Crear!
               </button>
               <button type="submit" className="btn-another-pet" onClick={handleMascotas}>
@@ -571,6 +584,7 @@ const RegisterPetClient = () => {
         show={showConfirmationModal}
         handleYes={handleYesConfirmationModal}
         handleNo={handleNoConfirmationModal}
+        response="¿Estás seguro de que deseas registrar a tus mascotas?"
       />
     </>
   );
