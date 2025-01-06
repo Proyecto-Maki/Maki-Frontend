@@ -7,6 +7,9 @@
 /* Navbar */
 .navbar {
   background-color: #7bb66d;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 80px;
   font-family: "AoboshiOne", sans-serif;

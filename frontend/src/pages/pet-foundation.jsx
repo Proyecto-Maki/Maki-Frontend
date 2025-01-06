@@ -72,43 +72,48 @@ const PetFoundation = () => {
     <>
       {/* Navbar */}
       <Navbar />
-      <div className="background-container">
-        <h2>Mascotas</h2>
-        {/* Contenedor principal de tarjetas */}
-        <div className="card-container">
-          {mascotas.map((mascota) => (
-            <div key={mascota.id} className="card">
-              <img
-                src={mascota.imagen}
-                alt={mascota.nombre}
-                className="card-image"
-              />
-              <h3>{mascota.nombre}</h3>
-              <p>
-                <strong>Tipo:</strong> {mascota.tipo}
-              </p>
-              <p>
-                <strong>Edad:</strong> {mascota.edad}
-              </p>
-              <p>
-                <strong>Tamaño:</strong> {mascota.tamano}
-              </p>
-              <p>
-                <strong>Peso:</strong> {mascota.peso}
-              </p>
-              <p>
-                <strong>Raza:</strong> {mascota.raza}
-              </p>
-              <div className="actions">
-                <button onClick={() => alert(`Editar: ${mascota.nombre}`)}>
-                  <i className="fas fa-pencil-alt"></i>
-                </button>
-                <button onClick={() => eliminarMascota(mascota.id)}>
-                  <i className="fas fa-trash-alt"></i>
-                </button>
+      <div className="container-pet-foundation">
+        <div className="content-pet-foundation">
+          <h2>Mascotas</h2>
+          {/* Contenedor principal de tarjetas */}
+          <div className="card-container">
+            {mascotas.map((mascota) => (
+              <div key={mascota.id} className="card-content">
+                <img
+                  src={mascota.imagen}
+                  alt={mascota.nombre}
+                  className="card-image"
+                />
+                <div key={mascota.id} className="card-text">
+                  <h3>{mascota.nombre}</h3>
+                  <p >
+                    <strong>Tipo:</strong> {mascota.tipo}
+                  </p>
+                  <p>
+                    <strong>Edad:</strong> {mascota.edad}
+                  </p>
+                  <p>
+                    <strong>Tamaño:</strong> {mascota.tamano}
+                  </p>
+                  <p>
+                    <strong>Peso:</strong> {mascota.peso}
+                  </p>
+                  <p>
+                    <strong>Raza:</strong> {mascota.raza}
+                  </p>
+                </div>
+                
+                <div className="actions">
+                  <button onClick={() => alert(`Editar: ${mascota.nombre}`)}>
+                    <i className="fas fa-pencil-alt"></i>
+                  </button>
+                  <button onClick={() => eliminarMascota(mascota.id)}>
+                    <i className="fas fa-trash-alt"></i>
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </>
