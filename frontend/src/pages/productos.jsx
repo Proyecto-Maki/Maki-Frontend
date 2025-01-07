@@ -5,10 +5,48 @@ import Footer from "../components/Footer";
 import api from "../api";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/productos.css";
+import generateRandomAlphaNumericCode, {
+  randomValue,
+} from "../GenerateCardCode";
 
 function Productos() {
   const [productos, setProductos] = useState([]);
+  const [mensaje, setMensaje] = useState(""); // Para mostrar mensajes al usuario
   const cloudinaryBaseUrl = "https://res.cloudinary.com/dlktjxg1a/";
+  const codigo_carrito =
+    localStorage.getItem("codigo_carrito") ||
+    (() => {
+      const nuevoCodigo = generateRandomAlphaNumericCode(10); // Genera el código aleatorio
+      localStorage.setItem("codigo_carrito", nuevoCodigo);
+      return nuevoCodigo;
+    })();
+  console.log("Código del carrito generado:", codigo_carrito);
+
+  const [inCart, setIncart] = useState(false);
+
+  const agregar_producto = (producto) => {
+    const nuevoProducto = {
+      codigo: codigo_carrito, // Código del carrito
+      id_producto: producto.id, // ID del producto
+    };
+
+    // Log para verificar los datos enviados
+    console.log("Datos enviados:", nuevoProducto);
+
+    api
+      .post("agregar_producto/", nuevoProducto)
+      .then((res) => {
+        console.log("Respuesta del servidor:", res.data);
+        setMensaje("Producto agregado al carrito correctamente.");
+        setTimeout(() => setMensaje(""), 3000); // Limpia el mensaje después de 3 segundos
+        setIncart(true);
+      })
+      .catch((err) => {
+        console.error("Error al agregar producto:", err.message);
+        setMensaje("Error al agregar el producto al carrito.");
+        setTimeout(() => setMensaje(""), 3000); // Limpia el mensaje después de 3 segundos
+      });
+  };
 
   const getProductos = () => {
     api
@@ -38,6 +76,13 @@ function Productos() {
               Productos para tu Mascota
             </h1>
           </header>
+
+          {/* Mensaje de feedback */}
+          {mensaje && (
+            <div className="alert alert-info text-center" role="alert">
+              {mensaje}
+            </div>
+          )}
 
           {/* Renderizamos los productos */}
           {productos.length > 0 ? (
@@ -72,8 +117,12 @@ function Productos() {
                       >
                         Ver detalles
                       </Link>
-                      <button className="btn btn-warning w-100 login-btn mt-2">
-                        Agregar al carrito
+                      <button
+                        className="btn btn-warning w-100 login-btn mt-2"
+                        onClick={() => agregar_producto(producto)}
+                        disabled={inCart}
+                      >
+                        {inCart ? "Agregado" : "Agregar al carrito"}
                       </button>
                     </div>
                   </div>
@@ -85,7 +134,7 @@ function Productos() {
           )}
         </div>
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }
