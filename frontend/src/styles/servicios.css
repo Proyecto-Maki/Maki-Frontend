@@ -1,0 +1,89 @@
+/* Servicios Container */
+.servicios-container {
+    padding: 20px;
+    background-color: #fff9e6;
+}
+
+/* Banners */
+.banners {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+    padding-top: 50px;
+}
+
+.adopta-card,
+.donar-card {
+    flex: 1;
+    max-width: 600px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.adopta-card-img,
+.donar-card-img {
+    width: 100%;
+    height: auto;
+}
+
+/* Fundaciones */
+.fundaciones {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.fundacion-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    background-color: #fff9e6;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.fundacion-info,
+.fundacion-mision {
+    background-color: #ffffff;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.fundacion-info h3,
+.fundacion-mision h3 {
+    margin-bottom: 10px;
+}
+
+.fundacion-actions {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-success {
+    background-color: #28a745;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+}
+
+.btn-info:hover {
+    background-color: #117a8b;
+}
