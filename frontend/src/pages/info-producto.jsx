@@ -12,6 +12,9 @@ const InfoProduct = () => {
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1); // Maneja la cantidad seleccionada
 
+  // Define la URL base de Cloudinary
+  const cloudinaryBaseUrl = "https://res.cloudinary.com/dlktjxg1a/";
+
   useEffect(() => {
     // Solicita la información del producto al backend
     api
@@ -20,7 +23,8 @@ const InfoProduct = () => {
         console.log("Producto recibido:", response.data);
         const data = response.data;
         setProduct(data);
-        setMainImage(data.imagen); // Usa la imagen principal del producto
+        // Configura la imagen principal
+        setMainImage(`${cloudinaryBaseUrl}${data.imagen}`);
         setLoading(false);
       })
       .catch((error) => {
@@ -59,9 +63,11 @@ const InfoProduct = () => {
                   {product.thumbnails?.map((thumb, index) => (
                     <img
                       key={index}
-                      src={thumb}
+                      src={`${cloudinaryBaseUrl}${thumb}`} // Concatenamos la URL base con la miniatura
                       alt={`Vista ${index + 1}`}
-                      onClick={() => setMainImage(thumb)}
+                      onClick={() =>
+                        setMainImage(`${cloudinaryBaseUrl}${thumb}`)
+                      }
                       className="thumbnail-image"
                     />
                   ))}
