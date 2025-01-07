@@ -6,9 +6,9 @@
 }
 
 /* General */
-body {
+/*body {
   /*background-image: url("../src/img/fondo.svg");*/
-  background-position: center bottom;
+  /*background-position: center bottom;
   background-size: 60%;
   background-repeat: no-repeat;
   font-family: "Aoboshi One", sans-serif;
@@ -27,12 +27,10 @@ body {
   background-size: contain;
   background-position: bottom center;
   background-repeat: no-repeat;
-  height: 100vh;
-  width: 100vw;
+  height: 60vh;
+  width: 60vw;
   display: flex;
-  justify-content: center;
   align-items: center;
-  background-color: #fdf0e6;
   padding-top: 50px;
   position: relative;
   top: 50%;
@@ -67,10 +65,10 @@ body {
 }
 
 .logo-img-login {
-  max-width: 100%;
-  height: 100%;
-  margin-right: 15px;
+  max-width: 70%;
+  height: auto;
   margin-top: auto;
+  margin-left: 15%;
 }
 
 /* Login Container */
@@ -261,6 +259,8 @@ body {
     transform: translateY(0);
     max-width: 90%;
     padding: 15px;
+    justify-content: center;
+    align-items: center;
     margin-top: 5vh;
   }
 
@@ -276,10 +276,6 @@ body {
   .login-btn {
     width: 70%;
   }
-
-  /*.logo-img-login{
-        max-width: 70%;
-    }*/
 }
 
 @media (max-width: 480px) {
@@ -289,6 +285,8 @@ body {
     top: 0;
     transform: translateY(0);
     margin-top: 15vh;
+    justify-content: center;
+    align-items: center;
   }
 
   .logo {
@@ -326,9 +324,10 @@ body {
 
 .footer-container-login{
   text-align: center;
-  padding:10px 0;
+  padding: 0 0;
   width: 100%;
   position: relative;
+  overflow: visible;
   background-color: #7BB66D;
   top: 50%;
   
@@ -341,10 +340,9 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh; 
-  min-width: 100vw;
   overflow-x: hidden;
   position: relative;
-  width: 100vh;
+  width: 100%;
   height: 100vh;
-  background-color: #fcf3e3;
+  background-color: #fdf0e6;
 }

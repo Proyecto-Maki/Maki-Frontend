@@ -15,17 +15,49 @@ body {
   overflow: hidden;
 }
 
-.background-register {
+.background-confirmation-register {
   background-image: url("/fondo.svg");
-  background-size: cover;
-  background-position: center;
+  background-size: contain;
+  background-position: bottom center;
   background-repeat: no-repeat;
-  background-color: #fcf3e3;
+  height: 70vh;
+  width: 90vw;
+  top: 10%;
   display: flex;
+  align-items: center;
+  padding-top: 50px;
+  position: relative;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.absolute-confirmation-register-container {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh; 
+  overflow-x: hidden;
+  overflow: auto;
+  position: relative;
   width: 100vw;
+  height: 100vh;
+  background-color: #fdf0e6;
+}
+
+.absolute-confirmation-register-container::-webkit-scrollbar{
+  width: 10px;
+  color: #FCF3E3;
+}
+.absolute-confirmation-register-container::-webkit-scrollbar-thumb {
+  background: #ffcc80; 
+  border-radius: 80px; 
+}
+.absolute-confirmation-register-container::-webkit-scrollbar-thumb:hover {
+  background: #ffa726; 
+}
+.absolute-confirmation-register-container::-webkit-scrollbar-track {
+  background: none; 
 }
 
 .confirmation_register-container {
@@ -39,7 +71,7 @@ body {
   padding: 100px;
   padding-top: 30px;
   position: relative;
-  top: 50px;
+  top: -10%;
   overflow: auto;
   transition: transform 0.3s ease;
   min-width: 20vw;

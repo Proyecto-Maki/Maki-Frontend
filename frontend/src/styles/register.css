@@ -32,32 +32,48 @@
   }
 }
 
-html,
+/*html,
 body {
   /*font-family: 'Arial', sans-serif;*/
-  margin: 0;
+  /*margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   min-height: 100vh;
   overflow: hidden;
+}*/
+
+.absolute-register-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; 
+  overflow-y: scroll;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: #fcf3e3;
 }
 
 .background-register {
   background-image: url("/fondo.svg");
   background-size: contain;
-  background-position: bottom center;
+  background-position: center bottom;
   background-repeat: no-repeat;
+  height: 30vh;
+  width: 50vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  width: 100vw;
+  padding-top: 50px;
+  position: relative;
+  top: 4%;
+  flex-grow: 1;
 }
 
 .register-container {
-  z-index: 1; /*para que esté sobre el fondo*/
   /*width: 70vw;  /* Por defecto en pantallas grandes */
   /*height: 90vh;*/
   background-color: #fcf3e3;
@@ -67,14 +83,14 @@ body {
   padding: 100px;
   padding-top: 30px;
   position: relative;
-  top: 50px;
+  top: 0%;
   overflow: auto;
   transition: transform 0.3s ease;
   min-width: 20vw;
   max-width: 90vw;
   min-height: 50vh;
   max-height: 70vh;
-  margin: 20px auto;
+  margin: 10px auto;
   box-sizing: border-box;
   flex-shrink: 0;
   display: grid;
@@ -101,6 +117,24 @@ body {
 }
 
 .register-container::-webkit-scrollbar-track {
+  background: none;
+}
+
+.absolute-register-container::-webkit-scrollbar {
+  width: 10px;
+  color: #fcf3e3;
+}
+
+.absolute-register-container::-webkit-scrollbar-thumb {
+  background: #ffcc80;
+  border-radius: 80px;
+}
+
+.absolute-register-container::-webkit-scrollbar-thumb:hover {
+  background: #ffa726;
+}
+
+.absolute-register-container::-webkit-scrollbar-track {
   background: none;
 }
 

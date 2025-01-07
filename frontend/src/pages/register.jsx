@@ -210,7 +210,7 @@ function Register() {
   };
 
   return (
-    <>
+    <div className="absolute-register-container">
       <Navbar /> {/* Add Navbar component */}
       <div className="background-register">
         <div className="register-container">
@@ -600,7 +600,7 @@ function Register() {
         handleClose={handleCloseErrorModal}
         error={error}
       />
-    </>
+    </div>
   );
 }
 

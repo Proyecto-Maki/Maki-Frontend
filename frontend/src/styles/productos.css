@@ -1,102 +1,28 @@
-/* productos.css */
-
-/* Contenedor principal */
-.absolute-products-container {
-  background-color: #fdf0e6;
-  min-height: 100vh;
+/* Estilo general para la página */
+.absolute-home-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  min-height: 100vh; /* Asegura que la página ocupe toda la altura */
+  background-color: #fdf0e6;
 }
 
-/* Título principal */
+/* Estilo para el contenido principal */
+.main-content {
+  flex: 1; /* Permite que el contenido principal ocupe el espacio restante */
+}
+
+/* Estilo del header */
 .welcome-text {
-  color: #8fc064;
   font-family: "Koulen", sans-serif;
-  text-align: center;
+  color: #8fc064;
   margin-bottom: 40px;
+  text-align: center;
 }
 
-/* Estilos de la tarjeta de producto */
-.card {
-  border-radius: 15px;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
-}
-
-.card-img-top {
-  object-fit: cover;
-  border-bottom: 3px solid #f39029;
-}
-
-/* Nombre del producto */
-.card-title {
-  font-family: "Koulen", sans-serif;
-  color: #f39029;
-}
-
-/* Descripción */
-.card-text.text-muted {
-  font-size: 14px;
-  line-height: 1.5;
-  color: #6c757d;
-}
-
-/* Precio */
-.card-text.text-primary {
-  font-size: 18px;
-  color: #8fc064;
-}
-
-/* Botón de agregar al carrito */
-.login-btn {
+/* Estilo del footer */
+footer {
   background-color: #8fc064;
   color: #fff;
-  border: none;
-  border-radius: 25px;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  font-family: "Koulen", sans-serif;
-  transition: background-color 0.3s ease;
-}
-
-.login-btn:hover {
-  background-color: #7ab453;
-}
-
-/* Responsividad */
-@media (max-width: 768px) {
-  .card-title {
-    font-size: 18px;
-  }
-
-  .card-text.text-primary {
-    font-size: 16px;
-  }
-
-  .login-btn {
-    font-size: 14px;
-    padding: 8px 15px;
-  }
-}
-
-@media (max-width: 480px) {
-  .card-title {
-    font-size: 16px;
-  }
-
-  .card-text.text-primary {
-    font-size: 14px;
-  }
-
-  .login-btn {
-    font-size: 12px;
-    padding: 6px 10px;
-  }
+  text-align: center;
+  padding: 10px 0;
 }
