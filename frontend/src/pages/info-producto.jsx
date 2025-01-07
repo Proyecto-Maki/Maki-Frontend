@@ -4,6 +4,20 @@ import LoadingPage from "../components/loading-page";
 import "../styles/info-producto.css";
 
 const InfoProduct = () => {
+    /*incremento y decremento producto*/
+    const [quantity, setQuantity] = useState(0);
+
+    const increment = () => {
+        setQuantity(quantity + 1);
+      };
+    
+    const decrement = () => {
+        if (quantity > 0) {
+          setQuantity(quantity - 1);
+        }
+    };
+    
+
     const [mainImage, setMainImage] = useState("../src/img/foodimg/dogfood.png"); // Imagen principal
     const thumbnails = [
         "/../src/img/foodimg/whiskas.png",
@@ -41,10 +55,12 @@ const InfoProduct = () => {
                             <h1>Alimento para Perro Natural Balance Adultos - 1.5kg</h1>
                             <h2>$60.000</h2>
                             <p>Selecciona la cantidad:</p>
-                            <div className="quantity-selector">
-                                <button>-</button>
-                                <input type="number" value="2" readOnly />
-                                <button>+</button>
+                            <div className="container-quantity-selector">
+                                <div className="quantity-selector">
+                                    <span className="rest" onClick={decrement}>-</span>
+                                    <span className="num">{quantity}</span>
+                                    <span className="add" onClick={increment}>+</span>
+                                </div>
                             </div>
                             <div className="Btn-add-cart-info-pr">
                                 <button className="cartBtn">
