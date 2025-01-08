@@ -9,7 +9,7 @@ import ForgetPassword from "./pages/forget-password";
 import UserProfile from "./pages/user-profile";
 import Home from "./pages/home";
 import LoadingPage from "./components/loading-page";
-import RegisterPetClient from "./pages/pet-register-client";
+import RegisterPet from "./pages/pet-register";
 import PetProfile from "./pages/pet-profile";
 import Resume from "./pages/resume";
 import Logout from "./pages/logout";
@@ -39,8 +39,8 @@ function App() {
         <Route path="/forget-password" element={<ForgetPassword />}></Route>
         {/*<Route path="/loading-page" element={<LoadingPage />}></Route>*/}
         <Route
-          path="/register-pet-client"
-          element={<RegisterPetClient />}
+          path="/register-pet"
+          element={<RegisterPet />}
         ></Route>
         <Route path="/pet-profile" element={<PetProfile />}></Route>
         <Route path="/publish-review" element={<PublishReview />} />

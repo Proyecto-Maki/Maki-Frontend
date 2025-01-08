@@ -148,7 +148,7 @@ const Login = () => {
       <div className="footer-container-login">
         <Footer />
       </div>
-      <SuccessModal
+      <WelcomeModal
         show={showSuccessModal}
         handleClose={handleCloseSuccessModal}
         response={response} 

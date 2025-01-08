@@ -76,7 +76,7 @@ function PetProfile() {
   const refresh = sessionStorage.getItem('refresh');
   let es_cliente = sessionStorage.getItem('is_cliente');
   let es_fundacion = sessionStorage.getItem('is_fundacion');
-  let crear_mascota_url = es_cliente ? '/register-pet-client' : '/register-pet-foundation';
+  let crear_mascota_url = '/register-pet';
 
   // MIRA SI EL USUARIO ES CLIENTE O FUNDACION
   // useEffect(() => {
