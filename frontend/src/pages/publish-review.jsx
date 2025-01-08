@@ -19,9 +19,9 @@ const PublishReview = () => {
     };
 
     return (
-        <>
+        <div className="absolute-container-publish-review">
             <Navbar />
-            <div className="background-container">
+            <div className="background-container-publish-review">
                 <div className="publish-review-container">
                     <h2 className="publish-review-title">¿Qué piensas de nuestro producto?</h2>
                     <div className="publish-review-user-info">
@@ -72,7 +72,7 @@ const PublishReview = () => {
                     <p className="publish-review-terms">Términos & Condiciones</p>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 
