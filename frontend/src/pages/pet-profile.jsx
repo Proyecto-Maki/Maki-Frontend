@@ -6,6 +6,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api";
 import ErrorModal from '../components/ErrorModal';
+import ConfirmationModal from "../components/ConfirmationModal";
+import SuccessModalReload from "../components/SuccessModalReload";
 import PetUpdate from "../components/forms/pet-update";
 
 function PetProfile() {
@@ -56,9 +58,13 @@ function PetProfile() {
 
   const [mascotasUser, setMascotasUser] = useState([]);
   const [mascotaUser, setMascotaUser] = useState({});
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [error, setError] = useState('');
+  const [response, setResponse] = useState("");
   const [isEditarOpen, setIsEditarOpen] = useState(false);
+  const [mascotaIdEliminar, setMascotaIdEliminar] = useState(0);
   const navigate = useNavigate();
 
   if (!sessionStorage.getItem('token') && !sessionStorage.getItem('email') && !sessionStorage.getItem('refresh')) {
@@ -136,19 +142,92 @@ function PetProfile() {
   }
 
   // Función para eliminar una mascota
-  const eliminarMascota = (id) => {
-    setMascotas(mascotas.filter((mascota) => mascota.id !== id));
+  const eliminarMascota = async (e) => {
+    // setMascotas(mascotas.filter((mascota) => mascota.id !== id));
+    if (mascotaIdEliminar === 0) {
+      return;
+    }
+    try {
+      api
+        .delete(`mascotas/delete/${mascotaIdEliminar}/`, {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          if(res.status === 204) {
+            setResponse("Mascota eliminada exitosamente");
+            setShowSuccessModal(true);
+          } else {
+            setError(res.data.message);
+            setShowErrorModal(true);
+          }
+        })
+        .catch((error) => {
+          console.error(error.response ? error.response.data : error.message);
+          setError(error.response.data.detail);
+          setShowErrorModal(true);
+        })
+    } catch (error) {
+      console.error(error.response ? error.response.data : error.message);
+      setError(error.response.data.detail);
+      setShowErrorModal(true);
+    }
   };
 
+  const handleOpenConfirmationModal = (e, mascotaId) => {
+    e.preventDefault();
+    setShowConfirmationModal(true);
+    setMascotaIdEliminar(mascotaId);
+    console.log("Se abrió el modal de confirmación", mascotaId);
+  }
 
+
+  const handleYesConfirmationModal = async (e) => {
+    setShowConfirmationModal(false);
+    e.preventDefault();
+    await new Promise(r => setTimeout(r, 2000));
+    await eliminarMascota(e);
+
+  }
+
+  const handleNoConfirmationModal = () => {
+    setShowConfirmationModal(false);
+    setMascotaIdEliminar(0);
+  }
 
   const handleCloseErrorModal = () => {
     setShowErrorModal(false);
     setError('');
   };
 
-  const abrirEditar = (mascota) => {
-    setMascotaUser(mascota);
+  const abrirEditar = async (mascota) => {
+    let mascotaData = mascota;
+    if (mascotaData.estado_salud === "Enfermo" || mascotaData.estado_salud === "Recuperación") {
+      try {
+        const res = await api.get(`padecimientos/mascota/${mascotaData.id}/`, {
+          headers: {
+            'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
+          }
+        });
+
+        if (res.status === 200) {
+          mascotaData.padecimiento = res.data.padecimiento;
+          console.log("El padecimiento es ", mascotaData.padecimiento);
+        } else {
+          setError(res.data.message);
+          setShowErrorModal(true);
+          return;
+        }
+      } catch (error) {
+        console.log(error);
+        setError(error);
+        setShowErrorModal(true);
+        return;
+      }
+    }
+
+    setMascotaUser(mascotaData);
     setIsEditarOpen(true);
   };
 
@@ -156,33 +235,40 @@ function PetProfile() {
     setIsEditarOpen(false);
   };
 
+const handleCloseSuccessModal = () => {
+    setShowSuccessModal(false);
+    setError("");
+    setResponse("");
+};
 
-  // const [isLoading, setIsLoading] = useState(true);
 
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     setIsLoading(false);
-  //   }, 2000);
+  const [isLoading, setIsLoading] = useState(true);
 
-  //   return () => clearTimeout(timer);
-  // }, []);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
 
-  // if (isLoading) {
-  //   return <LoadingPage />;
-  // }
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return <LoadingPage />;
+  }
 
   return (
-    <>
+
+    <div className="absolute-container-pet-foundation">
       {/* Navbar */}
       <Navbar />
       <div className="container-pet-foundation">
         <div className="content-pet-foundation">
-          <div className="content-pet-foundation-header">
+          <div className="heading-pet-foundation">
             <h2>Mascotas</h2>
             <div className="button-container-foundation">
-              <button className="button-add-pet-foundation" onClick={handleAnadirMascota} type="button">
-                <span className="button__text">Añadir</span>
-                <span className="button__icon"><svg className="svg" fill="none" height="24" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
+              <button className="button-add-pet-foundation" type="button" onClick={handleAnadirMascota}>
+                <span class="button__text">Añadir</span>
+                <span class="button__icon"><svg class="svg" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
               </button>
             </div>
           </div>
@@ -202,6 +288,9 @@ function PetProfile() {
                   />
                   <div key={mascota.id} className="card-text">
                     <h3>{mascota.nombre}</h3>
+                    <p>
+                      <strong>Sexo:</strong> {mascota.sexo === 'M' ? 'Macho' : 'Hembra'}
+                    </p>
                     <p >
                       <strong>Tipo:</strong> {mascota.tipo}
                     </p>
@@ -223,7 +312,7 @@ function PetProfile() {
                     <button onClick={() => abrirEditar(mascota)}>
                       <i className="fas fa-pencil-alt"></i>
                     </button>
-                    <button onClick={() => eliminarMascota(mascota.id)}>
+                    <button onClick={(e) => handleOpenConfirmationModal(e, mascota.id)}>
                       <i className="fas fa-trash-alt"></i>
                     </button>
                   </div>
@@ -245,15 +334,30 @@ function PetProfile() {
             <PetUpdate
               isEditarOpen={isEditarOpen}
               cerrarEditar={cerrarEditar}
-              mascotasUser={mascotaUser}
+              mascotaUser={mascotaUser}
             />
           </div>
         </div>
       )}
-      <ErrorModal show={showErrorModal} handleClose={handleCloseErrorModal} error={error} />
-    </>
+      <ErrorModal
+        show={showErrorModal}
+        handleClose={handleCloseErrorModal}
+        error={error}
+      />
+      <SuccessModalReload
+        show={showSuccessModal}
+        handleClose={handleCloseSuccessModal}
+        response={response}
+      />
+      <ConfirmationModal
+        show={showConfirmationModal}
+        handleYes={handleYesConfirmationModal}
+        handleNo={handleNoConfirmationModal}
+        response="¿Estás seguro de que deseas eliminar a la mascota?"
+      />
+    </div>
   );
-}
+};
 
 
 export default PetProfile;

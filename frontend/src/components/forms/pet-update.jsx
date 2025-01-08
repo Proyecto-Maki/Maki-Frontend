@@ -1,4 +1,4 @@
-import SuccessModal from "../SuccessModal";
+import SuccessModalReload from "../SuccessModalReload.jsx";
 import ErrorModal from "../ErrorModal";
 import ConfirmationModal from "../ConfirmationModal";
 import React, { useState, useEffect } from "react";
@@ -6,28 +6,28 @@ import "../../styles/modal-pet-update.css";
 import { useNavigate } from "react-router-dom";
 import api from "../../api.js";
 
-function PetUpdate({ isEditarOpen, cerrarEditar, mascotasUser }) {
-    const [profilePetImg, setProfilePetImg] = useState(mascotasUser.imagen);
-    console.log(mascotasUser.imagen);
-    const [nombre, setNombre] = useState(mascotasUser.nombre);
-    const [tipo, setTipo] = useState(mascotasUser.tipo);
-    const [raza, setRaza] = useState(mascotasUser.raza);
-    const [edad, setEdad] = useState(mascotasUser.edad);
-    const [estado_salud, setEstadoSalud] = useState(mascotasUser.estado_salud);
-    const [padecimiento, setPadecimiento] = useState(mascotasUser.padecimiento);
-    const [tamano, setTamano] = useState(mascotasUser.tamano);
-    const [peso, setPeso] = useState(mascotasUser.peso);
-    const [imagen, setImagen] = useState(mascotasUser.imagen);
+function PetUpdate({ isEditarOpen, cerrarEditar, mascotaUser }) {
+    const [profilePetImg, setProfilePetImg] = useState(mascotaUser.imagen);
+    const [nombre, setNombre] = useState(mascotaUser.nombre);
+    const [sexo, setSexo] = useState(mascotaUser.sexo);
+    const [tipo, setTipo] = useState(mascotaUser.tipo);
+    const [raza, setRaza] = useState(mascotaUser.raza);
+    const [edad, setEdad] = useState(mascotaUser.edad);
+    const [estado_salud, setEstadoSalud] = useState(mascotaUser.estado_salud);
+    const [padecimiento, setPadecimiento] = useState(mascotaUser.padecimiento);
+    const [tamano, setTamano] = useState(mascotaUser.tamano);
+    const [peso, setPeso] = useState(mascotaUser.peso);
+    const [imagen, setImagen] = useState(mascotaUser.imagen);
     const defaultImg = "../src/img/dog.png";
     const [showSuccessModal, setShowSuccessModal] = useState(false);
     const [showErrorModal, setShowErrorModal] = useState(false);
     const [showConfirmationModal, setShowConfirmationModal] = useState(false);
     const [error, setError] = useState('');
     const [response, setResponse] = useState("");
-    const [dirNavigate, setDirNavigate] = useState("");
+
 
     const validateNombre = (nombre) => {
-        const regex = /^[A-Za-z]+$/;
+        const regex = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/;
         if (nombre === "" || !regex.test(nombre)) {
             return false;
         }
@@ -43,7 +43,7 @@ function PetUpdate({ isEditarOpen, cerrarEditar, mascotasUser }) {
     }
 
     const validatePadecimiento = (padecimiento) => {
-        const regex = /^[A-Za-z]+$/;
+        const regex = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/;
         if (padecimiento === "" || !regex.test(padecimiento)) {
             return false;
         }
@@ -62,7 +62,7 @@ function PetUpdate({ isEditarOpen, cerrarEditar, mascotasUser }) {
             reader.readAsDataURL(file);
         } else {
             setProfilePetImg(defaultImg);
-            setImagen("");
+            setImagen(null);
         }
     }
 
@@ -72,7 +72,8 @@ function PetUpdate({ isEditarOpen, cerrarEditar, mascotasUser }) {
 
 
     const handleSubmit = async (e) => {
-        if (nombre === "" || tipo === "" || raza === "" || edad === "" || estado_salud === "" || tamano === "" || peso === "") {
+        e.preventDefault();
+        if (nombre === "" || sexo === "" || tipo === "" || raza === "" || edad === "" || estado_salud === "" || tamano === "" || peso === "") {
             // alert("Por favor, llena todos los campos");
             // return;
             setError("Por favor, llena todos los campos");
@@ -89,6 +90,7 @@ function PetUpdate({ isEditarOpen, cerrarEditar, mascotasUser }) {
 
         if (!validateNombre(nombre)) {
             setError("Nombre inválido. Ingresa solo letras.");
+            console.log("Nombre inválido. Ingresa solo letras.");
             setShowErrorModal(true);
         }
 
@@ -108,22 +110,25 @@ function PetUpdate({ isEditarOpen, cerrarEditar, mascotasUser }) {
         const data = {
             email: sessionStorage.getItem('email'),
             nombre: nombre,
+            sexo: sexo,
             tipo: tipo,
             raza: raza,
             edad: edad,
             estado_salud: estado_salud,
-            padecimiento: padecimiento,
             tamano: tamano,
             peso: parseFloat(peso),
-            imagen: imagen,
         }
 
-        if (imagen) {
-            data.imagen = imagen, imagen.name;
+        console.log(data.imagen);
+        if (imagen !== mascotaUser.imagen) {
+            data.imagen = imagen;
         }
+
+        let error_vali = false;
+        const id_mascota = mascotaUser.id;
 
         api
-            .put(`mascotas/update/${mascotasUser.id}/`, data, {
+            .put(`mascotas/update/${mascotaUser.id}/`, data, {
                 headers: {
                     'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
                     "Content-Type": "multipart/form-data",
@@ -131,37 +136,76 @@ function PetUpdate({ isEditarOpen, cerrarEditar, mascotasUser }) {
             })
             .then((res) => {
                 if (res.status === 200) {
-                    setResponse("Mascota actualizada con éxito");
-                    setShowSuccessModal(true);
-                    setDirNavigate("/pet-profile");
+                    console.log(id_mascota);
+                    console.log("Mascota actualizada");
+                    if (estado_salud === "Enfermo" || estado_salud === "Recuperación") {
+                        const dataPadecimiento = {
+                            id_mascota: id_mascota,
+                            padecimiento: padecimiento,
+                        }
+
+                        api
+                            .put(`padecimientos/update/${id_mascota}/`, dataPadecimiento, {
+                                headers: {
+                                    'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
+                                }
+                            })
+                            .then((res) => {
+                                if (res.status === 200) {
+                                    console.log("Padecimiento actualizado");
+                                } else {
+                                    error_vali = true;
+                                    setError(res.data.message);
+                                    setShowErrorModal(true);
+                                }
+                            })
+                            .catch((error) => {
+                                error_vali = true;
+                                console.log(error);
+                                setError(error);
+                                setShowErrorModal(true);
+                            });
+                    }
+
                 } else {
+                    error_vali = true;
                     setError(res.data.message);
                     setShowErrorModal(true);
                 }
             })
             .catch((error) => {
-                setError(error.response.data.message);
+                error_vali = true;
+                console.log(error);
+                setError(error);
                 setShowErrorModal(true);
             });
+
+        if (error_vali === false) {
+            setResponse("Mascota actualizada correctamente");
+            setShowSuccessModal(true);
+        }
     }
 
     const handleYesConfirmationModal = async (e) => {
-        alert("Mascota actualizada con éxito");
+        e.preventDefault();
+        setShowConfirmationModal(false);
         // setIsLoading(true);
-        // await new Promise(r => setTimeout(r, 2000));
-        // await handleSubmit(e);
+        await new Promise(r => setTimeout(r, 2000));
+        await handleSubmit(e);
         // setIsLoading(false);
-        // handleNoConfirmationModal();
+        handleNoConfirmationModal();
 
     }
 
     const handleNoConfirmationModal = () => {
+
         setShowConfirmationModal(false);
     }
 
-    const handleOpenConfirmationModal = () => {
+    const handleOpenConfirmationModal = (e) => {
+        e.preventDefault();
         setShowConfirmationModal(true);
-
+        console.log("entra");
     }
 
     const handleCloseErrorModal = () => {
@@ -286,6 +330,32 @@ function PetUpdate({ isEditarOpen, cerrarEditar, mascotasUser }) {
                                 </div>
 
                             </div>
+                            <div className="form-group col-md-6">
+                                <label
+                                    htmlFor="input-pet-size"
+                                    className="label-register-pet-size"
+                                >
+                                    Sexo
+                                </label>
+                                <div className="tooltip-registro-mascota">
+                                    <select
+                                        id="input-pet-size"
+                                        className="input-register-pet-size"
+                                        name="sexo"
+                                        value={sexo}
+                                        onChange={(e) => setSexo(e.target.value)}
+                                        required
+                                    >
+                                        <option defaultValue>Selecciona...</option>
+                                        <option value={'M'}>Macho</option>
+                                        <option value={'H'}>Hembra</option>
+                                    </select>
+                                    <span className="tooltip-registro-mascota-text-l">
+                                        Este campo es obligatorio. Ingresa el sexo de tu mascota.
+                                    </span>
+                                </div>
+
+                            </div>
                         </div>
 
                         {estado_salud === "Enfermo" || estado_salud === "Recuperación" ? (
@@ -394,7 +464,7 @@ function PetUpdate({ isEditarOpen, cerrarEditar, mascotasUser }) {
                             </div>
                         </div>
                         <div className="pet-update-row">
-                            <button type="submit" className="btn-register-pet" onClick={() => setShowConfirmationModal(true)}>
+                            <button type="submit" className="btn-register-pet" onClick={handleOpenConfirmationModal}>
                                 <i className="fas fa-paw"></i>Actualizar
                             </button>
                         </div>
@@ -402,28 +472,23 @@ function PetUpdate({ isEditarOpen, cerrarEditar, mascotasUser }) {
 
                     </form>
                 </div>
-                <SuccessModal
+                <SuccessModalReload
                     show={showSuccessModal}
                     handleClose={handleCloseSuccessModal}
                     response={response}
-                    dirNavigate={dirNavigate}
                 />
                 <ErrorModal
                     show={showErrorModal}
                     handleClose={handleCloseErrorModal}
                     error={error}
                 />
-                {showConfirmationModal && (
-                    <div style={{zIndex: 4000, position: "fixed", top: 0, left: 0, width: '100%', height: '100%' }}>
-                        <ConfirmationModal
-                            show={showConfirmationModal}
-                            handleYes={handleYesConfirmationModal}
-                            handleNo={handleNoConfirmationModal}
-                            response="¿Estás seguro de que deseas editar?"
-                        />
-                    </div>
-                )}
 
+                <ConfirmationModal
+                    show={showConfirmationModal}
+                    handleYes={handleYesConfirmationModal}
+                    handleNo={handleNoConfirmationModal}
+                    response="¿Estás seguro de que deseas editar?"
+                />
             </div>
 
 
