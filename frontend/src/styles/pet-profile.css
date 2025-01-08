@@ -1,39 +1,46 @@
 /* Contenedor principal */
+
+.absolute-container-pet-foundation{
+  width: 100vw;
+  height: calc(100vh - 80px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  top: 4%;
+}
 .container-pet-foundation {
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
   background-color: #fdf0e6;
   width: 100vw;
-  min-height: calc(100vh - 80px);
-  margin-top: 90px;
   display: contents;
-  overflow-y: scroll;
 }
 
-.container-pet-foundation::-webkit-scrollbar{
-  width: 10px;
+.absolute-container-pet-foundation::-webkit-scrollbar{
+  width: 5px;
+  right: 5%;
   color: #FCF3E3;
 }
 
-.container-pet-foundation::-webkit-scrollbar-thumb {
-  background: #ffcc80;
-  border-radius: 80px;
+.absolute-container-pet-foundation::-webkit-scrollbar-thumb {
+  background: #ffcc80; 
+  border-radius: 80px; 
 }
 
-.container-pet-foundation::-webkit-scrollbar-thumb:hover {
-  background: #ffa726;
+.absolute-container-pet-foundation::-webkit-scrollbar-thumb:hover {
+  background: #ffa726; 
 }
 
-.container-pet-foundation::-webkit-scrollbar-track {
-  background: none;
+.absolute-container-pet-foundation::-webkit-scrollbar-track {
+  background: none; 
 }
 
 .content-pet-foundation{
   width: 100%;
-  height: 100vh;
-  margin-top: 30vh;
-  padding: 20px 20px;
+  height: 100%;
+  margin-top: 8%;;
+  justify-content: center;
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -130,17 +137,18 @@ h2 {
 
 /* pantallas pequeñas */
 @media (max-width: 768px){
+
   .container-pet-foundation {
-    height: calc(100vh - 80px);
+    width: 100vw;
     display: flex;
+
   }
 
   .content-pet-foundation {
     width: 100%;
-    height: auto;
+    margin-top: 8%;
     /*margin-top: 70%;*/
-    padding: 10px;
-    display: contents;
+    padding: 10px 10px;
   }
 
   .card-container {
@@ -193,23 +201,24 @@ h2 {
     font-size: 16px;
   }
 
+
 }
 
 /*Pantallas medianas*/
 @media (min-width: 768px) and (max-width: 1024px) {
+  
 
   .container-pet-foundation {
-    height: calc(100vh - 80px);
+    width: 100vw;
     display: flex;
   }
 
   .content-pet-foundation{
     width: 100%;
-    height: auto;
-    /*margin-top: 70%;*/
+    margin-top: 0%;
     padding: 10px;
-    display: contents;
-
+    display: flex;
+    
   }
   .card-container {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -241,12 +250,21 @@ h2 {
 
 }
 
+.heading-pet-foundation{
+  width: 95vw;
+  height: 10vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
 .button-container-foundation{
   width: 100px;
   height: 30px;
-  /* position: relative;
-  left: 40%;
-  top: -5%; */
+  position: relative;
+  top: -200%;
+  left: 30%;
+  justify-self: center;
 }
 
 .button-add-pet-foundation {
