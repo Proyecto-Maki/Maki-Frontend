@@ -1,15 +1,63 @@
+.absolute-container-publish-review{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 80px); 
+    overflow-y: auto;
+    overflow-x: auto;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-color: #fcf3e3;
+}
+
+.absolute-container-publish-review::-webkit-scrollbar {
+    width: 10px;
+    color: #fcf3e3;
+  }
+  
+.absolute-container-publish-review::-webkit-scrollbar-thumb {
+    background: #ffcc80;
+    border-radius: 80px;
+}
+  
+.absolute-container-publish-review::-webkit-scrollbar-thumb:hover {
+    background: #ffa726;
+}
+  
+.absolute-container-publish-review::-webkit-scrollbar-track {
+    background: none;
+}
+
+.background-container-publish-review{
+    background-image: url("/fondo.svg");
+    background-size: contain;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    min-height: 30vh;
+    min-width: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 20%;
+    flex-grow: 1;
+}
+
 .publish-review-container {
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    max-width: 760px;
-    min-height: 750px;
-    width: 100%;
+    min-width: 50vw;
+    min-height: 30vh;
     margin: 0 auto;
+    margin-bottom: 10%;
+    position: relative;
+    top: 3%;
     text-align: center;
     font-family: 'Aoboshi One', sans-serif;
     background-color: rgba(255, 255, 255, 0.5); 
-
 
 }
 
@@ -137,4 +185,34 @@
     text-decoration: underline;
     cursor: pointer;
     font-weight: bold;
+}
+
+@media (min-width: 768px) {
+    .publish-review-user-info {
+        flex-direction: row; 
+        justify-content: space-between;
+    }
+
+    .publish-review-user-avatar {
+        margin-right: 10px; 
+    }
+
+    .publish-review-stars {
+        font-size: 36px;
+    }
+
+    .publish-review-button {
+        width: auto; 
+    }
+}
+
+@media (min-width: 1024px) {
+
+    .publish-review-title {
+        font-size: 32px;
+    }
+
+    .publish-review-user-info {
+        justify-content: space-between;
+    }
 }
