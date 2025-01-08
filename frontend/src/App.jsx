@@ -47,7 +47,7 @@ function App() {
         <Route path="/infor-product" element={<InfoProduct />} />
         <Route path="/resume" element={<Resume />}></Route>
         <Route path="/logout" element={<Logout />}></Route>
-        <Route path="/footer" element={<Footer />}></Route>
+        {/*<Route path="/footer" element={<Footer />}></Route>*/}
         <Route path="/productos" element={<Productos />} />
         <Route path="/productos/:slug" element={<InfoProduct />} />{" "}
         {/* Cambia id por slug */}
