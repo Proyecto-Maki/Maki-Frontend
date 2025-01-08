@@ -88,7 +88,7 @@ const Login = () => {
       {/* Navbar */}
       <Navbar />
 
-      <div className="background-container">
+      <div className="background-container-login">
         <div className="login-container">
           <div className="login-content">
             <img
