@@ -109,7 +109,7 @@ select option:hover {
   height: 200px;
   border-radius: 50%;
   border: 2px solid #f4a258;
-  object-fit: scale-down;
+  object-fit: cover;
 }
 
 .btn-register-pet {

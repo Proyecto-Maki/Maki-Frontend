@@ -83,7 +83,6 @@ const UserProfile = () => {
                 console.error(error.response ? error.response.data : error.message);
                 console.log(error.response.data.detail);
                 setError(error.response.data.detail);
-                setResponse(error.response.data.detail);
                 setShowErrorModal(true);
                 setTimeout(() => {
                   navigate('/login');
@@ -113,7 +112,7 @@ const UserProfile = () => {
                 } else {
                   console.log('Error en la traida de los datos');
                   console.log(response.data.message);
-                  setResponse(response.data.message);
+                  setError(response.data.message);
                   setShowErrorModal(true);
                   setTimeout(() => {
                     navigate('/login');
@@ -124,7 +123,6 @@ const UserProfile = () => {
                 console.error(error.response ? error.response.data : error.message);
                 console.log(error.response.data.detail);
                 setError(error.response.data.detail);
-                setResponse(error.response.data.detail);
                 setShowErrorModal(true);
                 setTimeout(() => {
                   navigate('/login');
@@ -133,7 +131,7 @@ const UserProfile = () => {
           } else {
             console.log('Este usuario no tiene un rol asignado');
             console.log(response.data.message);
-            setResponse(response.data.message);
+            setError(response.data.message);
             setShowErrorModal(true);
             setTimeout(() => {
               navigate('/login');
@@ -142,7 +140,7 @@ const UserProfile = () => {
         } else {
           console.log('Error en la traida de los datos, la petición no fue exitosa');
           console.log(response.data.message);
-          setResponse(response.data.message);
+          setError(response.data.message);
           setShowErrorModal(true);
           setTimeout(() => {
             navigate('/login');
@@ -151,7 +149,6 @@ const UserProfile = () => {
       })
       .catch((error) => {
         setError(error.response.message);
-        setResponse(error.response.message);
         setShowErrorModal(true);
         setTimeout(() => {
           navigate('/login');
@@ -190,7 +187,7 @@ const UserProfile = () => {
         } else {
           console.log('Error al eliminar la cuenta');
           console.log(response.data.message);
-          setResponse(response.data.message);
+          setError(response.data.message);
           setShowErrorModal(true);
         }
       })
@@ -198,7 +195,6 @@ const UserProfile = () => {
         console.error(error.response ? error.response.data : error.message);
         console.log(error.response.data.detail);
         setError(error.response.data.detail);
-        setResponse(error.response.data.detail);
         setShowErrorModal(true);
       });
   }
@@ -290,7 +286,7 @@ const UserProfile = () => {
       </div>
       {/* Botón de Eliminar cuenta */}
       <div className="d-flex justify-content-center mt-4">
-        <button className="btn-delete-account" title="Eliminar Cuenta">
+        <button className="btn-delete-account"  title="Eliminar Cuenta">
           <i className="fas fa-trash-alt"></i> Eliminar Cuenta
         </button>
       </div>

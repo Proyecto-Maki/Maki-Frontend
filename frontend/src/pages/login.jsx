@@ -40,6 +40,8 @@ const Login = () => {
             sessionStorage.setItem("token", response.data.data.access);
             sessionStorage.setItem("refresh", response.data.data.refresh);
             sessionStorage.setItem("email", email);
+            sessionStorage.setItem("is_cliente", response.data.data.is_cliente);
+            sessionStorage.setItem("is_fundacion", response.data.data.is_fundacion);
             navigate("/"); // Redirige a la página de dashboard o la que corresponda
           }, 5000); // Redirige después de 5 segundos
         } else {

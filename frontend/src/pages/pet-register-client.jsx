@@ -96,13 +96,17 @@ const RegisterPetClient = () => {
 
   const handleMascotas = () => {
     if (nombre === "" || tipo === "" || raza === "" || edad === "" || estado_salud === "" || tamano === "" || peso === "") {
-      alert("Por favor, llena todos los campos");
-      return;
+      //alert("Por favor, llena todos los campos");
+      // return;
+      setError("Por favor, llena todos los campos");
+      showErrorModal(true);
     }
     if (estado_salud === "Enfermo" || estado_salud === "Recuperación") {
       if (padecimiento === "") {
-        alert("Por favor, llena todos los campos");
-        return;
+        // alert("Por favor, llena todos los campos");
+        // return;
+        setError("Por favor, llena todos los campos");
+        showErrorModal(true);
       }
     }
 
@@ -167,7 +171,7 @@ const RegisterPetClient = () => {
       return;
     }
 
-    setShowConfirmationModal(true);
+    // setShowConfirmationModal(true);
 
 
     const cantidad_mascotas = petsData.length;
