@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Login from "./pages/login";
@@ -19,10 +19,31 @@ import Footer from "./components/Footer";
 import Navbar from "./components/navbar";
 import Productos from "./pages/productos";
 import Adoptions from "./pages/adoptions";
+import api from "./api"; // Importamos la API
 
 function App() {
+  const [numItemsCarrito, setNumeroItemsCarrito] = useState(0);
+  const codigo = localStorage.getItem("codigo_carrito");
+
+  // useEffect(() => {
+  //   if (codigo) {
+  //     api
+  //       .get(`/get_estado_carrito?codigo=${codigo}`)
+  //       .then((res) => {
+  //         setNumeroItemsCarrito(res.data.num_items);
+  //       })
+  //       .catch((err) => {
+  //         console.error(
+  //           "Error al obtener el número de items del carrito:",
+  //           err
+  //         );
+  //       });
+  //   }
+  // }, [codigo]);
+
   return (
     <BrowserRouter>
+      <Navbar cartItems={numItemsCarrito} />
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Home />} />

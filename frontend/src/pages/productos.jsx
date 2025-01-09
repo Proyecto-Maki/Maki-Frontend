@@ -5,13 +5,15 @@ import Footer from "../components/Footer";
 import api from "../api";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/productos.css";
-import generateRandomAlphaNumericCode, {
-  randomValue,
-} from "../GenerateCardCode";
+import generateRandomAlphaNumericCode from "../GenerateCardCode";
 
 function Productos() {
   const [productos, setProductos] = useState([]);
   const [mensaje, setMensaje] = useState(""); // Para mostrar mensajes al usuario
+  const [inCart, setInCart] = useState(() => {
+    const savedCart = localStorage.getItem("inCart");
+    return savedCart ? JSON.parse(savedCart) : {};
+  }); // Estado para manejar si cada producto está en el carrito
   const cloudinaryBaseUrl = "https://res.cloudinary.com/dlktjxg1a/";
   const codigo_carrito =
     localStorage.getItem("codigo_carrito") ||
@@ -21,8 +23,6 @@ function Productos() {
       return nuevoCodigo;
     })();
   console.log("Código del carrito generado:", codigo_carrito);
-
-  const [inCart, setIncart] = useState(false);
 
   const agregar_producto = (producto) => {
     const nuevoProducto = {
@@ -39,7 +39,11 @@ function Productos() {
         console.log("Respuesta del servidor:", res.data);
         setMensaje("Producto agregado al carrito correctamente.");
         setTimeout(() => setMensaje(""), 3000); // Limpia el mensaje después de 3 segundos
-        setIncart(true);
+        setInCart((prev) => {
+          const updatedCart = { ...prev, [producto.id]: true };
+          localStorage.setItem("inCart", JSON.stringify(updatedCart));
+          return updatedCart;
+        });
       })
       .catch((err) => {
         console.error("Error al agregar producto:", err.message);
@@ -51,10 +55,9 @@ function Productos() {
   const getProductos = () => {
     api
       .get("/productos/")
-      .then((res) => res.data)
-      .then((data) => {
-        setProductos(data); // Guardamos los productos en el estado
-        console.log("Productos:", data); // Verificamos los datos en consola
+      .then((res) => {
+        setProductos(res.data); // Guardamos los productos en el estado
+        console.log("Productos:", res.data); // Verificamos los datos en consola
       })
       .catch((err) => alert("Error al obtener productos: " + err));
   };
@@ -120,9 +123,11 @@ function Productos() {
                       <button
                         className="btn btn-warning w-100 login-btn mt-2"
                         onClick={() => agregar_producto(producto)}
-                        disabled={inCart}
+                        disabled={inCart[producto.id]}
                       >
-                        {inCart ? "Agregado" : "Agregar al carrito"}
+                        {inCart[producto.id]
+                          ? "Agregado"
+                          : "Agregar al carrito"}
                       </button>
                     </div>
                   </div>

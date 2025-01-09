@@ -1,15 +1,34 @@
 /* General Styles */
 .absolute-container-info-producto {
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
-    background-color: #fdf0e6;
-    width: 100%;
-    height: calc(100vh - 80px);
-    margin-top: 90px;
-    display: contents;
-    overflow-y: auto;
-  }
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  background-color: #fdf0e6;
+  width: 100%;
+  height: calc(100vh - 80px);
+  margin-top: 90px;
+  display: contents;
+  overflow-y: auto;
+}
+/* Estilo general del botón */
+.btn {
+  transition: background-color 0.3s, color 0.3s; /* Suaviza las transiciones */
+}
+
+/* Estilo personalizado cuando el botón está deshabilitado */
+.btn[disabled] {
+  background-color: #ccc !important; /* Forzar color de fondo */
+  color: #666 !important; /* Forzar color de texto */
+  border: 1px solid #aaa !important; /* Forzar borde */
+  cursor: not-allowed !important; /* Cambia el cursor */
+  opacity: 1 !important; /* Evita opacidad predeterminada */
+}
+
+/* Opcional: Evitar cambios en el hover para botones deshabilitados */
+.btn[disabled]:hover {
+  background-color: #ccc !important;
+  color: #666 !important;
+}
 
 .background-container-info-producto {
   display: flex;
@@ -86,6 +105,20 @@
   border-radius: 5px;
   cursor: pointer;
 }
+/* Estilo para el botón desactivado */
+.disabled-button {
+  background-color: #ccc; /* Cambia el color de fondo */
+  color: #666; /* Cambia el color del texto */
+  border: 1px solid #aaa; /* Opcional: Cambia el borde */
+  cursor: not-allowed; /* Muestra un cursor no permitido */
+  opacity: 0.7; /* Reduce la opacidad */
+}
+
+/* Opcional: Evitar que el botón cambie estilos al pasar el mouse */
+.disabled-button:hover {
+  background-color: #ccc;
+  color: #666;
+}
 
 .thumbnail-image:hover {
   border-color: #4caf50;
@@ -116,8 +149,6 @@
   border-radius: 4px;
 }
 
-
-
 /* Botón Agregar al Carrito */
 .add-to-cart-button {
   background-color: #4caf50;
@@ -135,23 +166,22 @@ h3 {
   color: #f4a258;
 }
 
-
 @media (max-width: 768px) {
-    .main-product-image img {
-        max-width: 90%; 
-    }
+  .main-product-image img {
+    max-width: 90%;
+  }
 }
 
 @media (max-width: 480px) {
-    .main-product-image img {
-        max-width: 100%; 
-    }
+  .main-product-image img {
+    max-width: 100%;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
-    .main-product-image img {
-        max-width: 90%; /* Deja algo de espacio a los lados */
-        height: auto; /* Mantiene proporciones */
-        border-radius: 10px; /* Opcional, más redondeo para pantallas medianas */
-    }
+  .main-product-image img {
+    max-width: 90%; /* Deja algo de espacio a los lados */
+    height: auto; /* Mantiene proporciones */
+    border-radius: 10px; /* Opcional, más redondeo para pantallas medianas */
+  }
 }
