@@ -319,7 +319,7 @@ const RegisterPetClient = () => {
     return <LoadingPage />;
   }
   return (
-    <>
+    <div className="absolute-container-pet-register">
       {/* Navbar */}
       <Navbar />
       <div className="background-container-pr">
@@ -624,7 +624,7 @@ const RegisterPetClient = () => {
         handleNo={handleNoConfirmationModal}
         response="¿Estás seguro de que deseas registrar a tus mascotas?"
       />
-    </>
+    </div>
   );
 };
 

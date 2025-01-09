@@ -258,15 +258,15 @@ const handleCloseSuccessModal = () => {
 
   return (
 
-    <div className="absolute-container-pet-foundation">
+    <div className="absolute-container-pet-profile">
       {/* Navbar */}
       <Navbar />
-      <div className="container-pet-foundation">
-        <div className="content-pet-foundation">
-          <div className="heading-pet-foundation">
+      <div className="container-pet-profile">
+        <div className="content-pet-profile">
+          <div className="heading-pet-profile">
             <h2>Mascotas</h2>
-            <div className="button-container-foundation">
-              <button className="button-add-pet-foundation" type="button" onClick={handleAnadirMascota}>
+            <div className="button-container-pet-profile">
+              <button className="button-add-pet-profile" type="button" onClick={handleAnadirMascota}>
                 <span class="button__text">Añadir</span>
                 <span class="button__icon"><svg class="svg" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
               </button>
@@ -278,15 +278,15 @@ const handleCloseSuccessModal = () => {
               <h2>No tienes mascotas registradas</h2>
             </div>
           ) : (
-            <div className="card-container">
+            <div className="card-container-pet-profile">
               {mascotasUser.map((mascota) => (
-                <div key={mascota.id} className="card-content">
+                <div key={mascota.id} className="card-content-pet-profile">
                   <img
                     src={mascota.imagen}
                     alt={mascota.nombre}
-                    className="card-image"
+                    className="card-image-pet-profile"
                   />
-                  <div key={mascota.id} className="card-text">
+                  <div key={mascota.id} className="card-text-pet-profile">
                     <h3>{mascota.nombre}</h3>
                     <p>
                       <strong>Sexo:</strong> {mascota.sexo === 'M' ? 'Macho' : 'Hembra'}
