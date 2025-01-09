@@ -170,12 +170,14 @@ const RegisterPetClient = () => {
       // return;
       setError("Por favor, agrega la mascota a la lista de mascotas");
       setShowErrorModal(true);
+      return;
     }
     if (petsData.length === 0) {
       // alert("Por favor, agrega al menos una mascota");
       // return;
       setError("Por favor, agrega al menos una mascota");
       setShowErrorModal(true);
+      return;
     }
 
     // setShowConfirmationModal(true);
@@ -601,7 +603,7 @@ const RegisterPetClient = () => {
                 <i className="fas fa-paw"></i> ¡Crear!
               </button>
               <button type="submit" className="btn-another-pet" onClick={handleMascotas}>
-                <i className="fas fa-plus"></i> Agregar mascota a la lista
+                <i className="fas fa-plus"></i> Registrar mascota
               </button>
             </div>
           </form>
