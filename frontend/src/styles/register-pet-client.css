@@ -12,7 +12,17 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fcf3e3; /*si se quita este color, se quita de las demás vistas, dejar quieto*/
+  background-color: #fdf0e6; /*si se quita este color, se quita de las demás vistas, dejar quieto*/
+}
+
+.absolute-container-pet-register{
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  padding-top: 6%;
+  background-color: #fdf0e6;
 }
 /* Contenedor imagen fondo del login */
 .background-container-pr {
