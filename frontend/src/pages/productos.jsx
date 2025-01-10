@@ -64,7 +64,7 @@ function Productos() {
   }, []);
 
   return (
-    <div className="absolute-home-container">
+    <div className="absolute-products-container">
       <Navbar />
       <main className="main-content">
         <div className="container py-5">
@@ -134,7 +134,9 @@ function Productos() {
           )}
         </div>
       </main>
-      <Footer />
+      <div className="footer-container-productos">
+        <Footer />
+      </div>
     </div>
   );
 }
