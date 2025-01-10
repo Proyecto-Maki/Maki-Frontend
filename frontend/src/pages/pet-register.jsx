@@ -357,11 +357,11 @@ const RegisterPetClient = () => {
                   // value={imagen}
                   onChange={handleChangeImg}
                 />
+                
                 <span className="tooltip-registro-mascota-text">
                   Este campo no es obligatorio. Ingresa la imagen de tu mascota, en formato .PNG o .JPEG.
                 </span>
               </div>
-
             </div>
             <div className="form-group">
               <label className="label-register-pet-name">
@@ -411,7 +411,7 @@ const RegisterPetClient = () => {
                 <div className="tooltip-registro-mascota">
                   <input
                     type="text"
-                    className="input-register-pet-breed"
+                    className="input-register-pet-race"
                     placeholder="Ingresa la raza de tu mascota"
                     name="raza"
                     value={raza}
@@ -597,14 +597,15 @@ const RegisterPetClient = () => {
 
               }
             </div>
-
-            <div className="d-flex flex-row">
-              <button type="submit" onClick={handleOpenConfirmationModal} className="btn-register-pet">
-                <i className="fas fa-paw"></i> ¡Crear!
-              </button>
-              <button type="submit" className="btn-another-pet" onClick={handleMascotas}>
-                <i className="fas fa-plus"></i> Registrar mascota
-              </button>
+            <div className="container-btns-pet-register">
+              <div className="d-flex flex-row">
+                <button type="submit" onClick={handleOpenConfirmationModal} className="btn-create-register-pet">
+                  <i className="fas fa-paw"></i> ¡Crear!
+                </button>
+                <button type="submit" className="btn-register-pet" onClick={handleMascotas}>
+                  <i className="fas fa-plus"></i> Registrar mascota
+                  </button>
+              </div>
             </div>
           </form>
         </div>
