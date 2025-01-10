@@ -20,6 +20,7 @@ import Navbar from "./components/navbar";
 import Productos from "./pages/productos";
 import Adoptions from "./pages/adoptions";
 import Servicios from "./pages/servicios";
+import Pedidos from "./pages/mis-pedidos";
 
 
 function App() {
@@ -55,6 +56,7 @@ function App() {
         {/* Cambia id por slug */}
         <Route path="/adopcion" element={<Adoptions />} />
         <Route path="/servicios" element={<Servicios />} />
+        <Route path="/mis-pedidos" element={<Pedidos />} />
       </Routes>
     </BrowserRouter>
   );
