@@ -83,7 +83,7 @@ const ForgetPassword = () => {
   };
 
   return (
-    <>
+    <div className="absolute-container-forget-password">
       <Navbar />
       <div className="background-recovery">
         <div className="forget-password-container">
@@ -130,7 +130,7 @@ const ForgetPassword = () => {
         handleClose={handleCloseErrorModal}
         error={error}
       />
-    </>
+    </div>
   );
 };
 

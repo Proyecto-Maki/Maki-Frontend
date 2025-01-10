@@ -9,17 +9,18 @@ import ForgetPassword from "./pages/forget-password";
 import UserProfile from "./pages/user-profile";
 import Home from "./pages/home";
 import LoadingPage from "./components/loading-page";
-import RegisterPetClient from "./pages/pet-register-client";
-import PetFoundation from "./pages/pet-foundation";
+import RegisterPet from "./pages/pet-register";
+import PetProfile from "./pages/pet-profile";
 import Resume from "./pages/resume";
 import Logout from "./pages/logout";
-import PublishReview from './pages/publish-review';
-import InfoProduct from './pages/info-producto';
+import PublishReview from "./pages/publish-review";
+import InfoProduct from "./pages/info-producto";
 import Footer from "./components/Footer";
 import Navbar from "./components/navbar";
 import Productos from "./pages/productos";
 import Adoptions from "./pages/adoptions";
 import Servicios from "./pages/servicios";
+
 
 function App() {
   return (
@@ -40,16 +41,18 @@ function App() {
         <Route path="/forget-password" element={<ForgetPassword />}></Route>
         {/*<Route path="/loading-page" element={<LoadingPage />}></Route>*/}
         <Route
-          path="/register-pet-client"
-          element={<RegisterPetClient />}
+          path="/register-pet"
+          element={<RegisterPet />}
         ></Route>
-        <Route path="/pet-foundation" element={<PetFoundation />}></Route>
+        <Route path="/pet-profile" element={<PetProfile />}></Route>
         <Route path="/publish-review" element={<PublishReview />} />
         <Route path="/infor-product" element={<InfoProduct />} />
         <Route path="/resume" element={<Resume />}></Route>
         <Route path="/logout" element={<Logout />}></Route>
-        <Route path="/footer" element={<Footer />}></Route>
+        {/*<Route path="/footer" element={<Footer />}></Route>*/}
         <Route path="/productos" element={<Productos />} />
+        <Route path="/productos/:slug" element={<InfoProduct />} />{" "}
+        {/* Cambia id por slug */}
         <Route path="/adopcion" element={<Adoptions />} />
         <Route path="/servicios" element={<Servicios />} />
       </Routes>

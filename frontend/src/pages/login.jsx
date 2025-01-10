@@ -10,6 +10,7 @@ import api from "../api";
 import LoadingPage from "../components/loading-page";
 import { useNavigate } from "react-router-dom";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
+import SuccessModal from "../components/SuccessModal";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -40,6 +41,8 @@ const Login = () => {
             sessionStorage.setItem("token", response.data.data.access);
             sessionStorage.setItem("refresh", response.data.data.refresh);
             sessionStorage.setItem("email", email);
+            sessionStorage.setItem("is_cliente", response.data.data.is_cliente);
+            sessionStorage.setItem("is_fundacion", response.data.data.is_fundacion);
             navigate("/"); // Redirige a la página de dashboard o la que corresponda
           }, 5000); // Redirige después de 5 segundos
         } else {
@@ -87,9 +90,9 @@ const Login = () => {
     <div className="absolute-login-container">
       {/* Navbar */}
       <Navbar />
-
-      <div className="background-container">
+      <div className="background-container-login">
         <div className="login-container">
+
           <div className="login-content">
             <img
               src={logo}
@@ -145,12 +148,12 @@ const Login = () => {
       <div className="footer-container-login">
         <Footer />
       </div>
-
       <WelcomeModal
         show={showSuccessModal}
         handleClose={handleCloseSuccessModal}
-        response={response}
+        response={response} 
       />
+
       <ErrorModal
         show={showErrorModal}
         handleClose={handleCloseErrorModal}

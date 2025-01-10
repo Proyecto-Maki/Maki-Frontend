@@ -25,6 +25,7 @@ const RegisterPetClient = () => {
   const defaultImg = "../src/img/dog.png";
   const [profilePetImg, setProfilePetImg] = useState(defaultImg);
   const [nombre, setNombre] = useState("");
+  const [sexo, setSexo] = useState("");
   const [tipo, setTipo] = useState("");
   const [raza, setRaza] = useState("");
   const [edad, setEdad] = useState("");
@@ -43,12 +44,12 @@ const RegisterPetClient = () => {
   const [dirNavigate, setDirNavigate] = useState("");
 
   const validateNombre = (nombre) => {
-    const regex = /^[A-Za-z]+$/;
+    const regex = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/;
     if (nombre === "" || !regex.test(nombre)) {
-      return false;
+        return false;
     }
     return true;
-  }
+}
 
   const validateRaza = (raza) => {
     const regex = /^[A-Za-z]+$/;
@@ -59,12 +60,12 @@ const RegisterPetClient = () => {
   }
 
   const validatePadecimiento = (padecimiento) => {
-    const regex = /^[A-Za-z]+$/;
+    const regex = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/;
     if (padecimiento === "" || !regex.test(padecimiento)) {
-      return false;
+        return false;
     }
     return true;
-  }
+}
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -96,13 +97,17 @@ const RegisterPetClient = () => {
 
   const handleMascotas = () => {
     if (nombre === "" || tipo === "" || raza === "" || edad === "" || estado_salud === "" || tamano === "" || peso === "") {
-      alert("Por favor, llena todos los campos");
-      return;
+      //alert("Por favor, llena todos los campos");
+      // return;
+      setError("Por favor, llena todos los campos");
+      showErrorModal(true);
     }
     if (estado_salud === "Enfermo" || estado_salud === "Recuperación") {
       if (padecimiento === "") {
-        alert("Por favor, llena todos los campos");
-        return;
+        // alert("Por favor, llena todos los campos");
+        // return;
+        setError("Por favor, llena todos los campos");
+        showErrorModal(true);
       }
     }
 
@@ -129,6 +134,7 @@ const RegisterPetClient = () => {
 
     const data = {
       nombre: nombre,
+      sexo: sexo,
       tipo: tipo,
       raza: raza,
       edad: edad,
@@ -143,6 +149,7 @@ const RegisterPetClient = () => {
     setPetsData([...petsData, data]);
     console.log(petsData);
     setNombre("");
+    setSexo("");
     setTipo("");
     setRaza("");
     setEdad("");
@@ -158,16 +165,20 @@ const RegisterPetClient = () => {
   const handleSubmit = async (e) => {
     console.log(petsData);
 
-    if (nombre !== "" || tipo !== "" || raza !== "" || edad !== "" || estado_salud !== "" || tamano !== "" || peso !== "") {
-      alert("Por favor, agrega la mascota a la lista de mascotas");
-      return;
+    if (nombre !== "" || sexo !== "" || tipo !== "" || raza !== "" || edad !== "" || estado_salud !== "" || tamano !== "" || peso !== "") {
+      // alert("Por favor, agrega la mascota a la lista de mascotas");
+      // return;
+      setError("Por favor, agrega la mascota a la lista de mascotas");
+      setShowErrorModal(true);
     }
     if (petsData.length === 0) {
-      alert("Por favor, agrega al menos una mascota");
-      return;
+      // alert("Por favor, agrega al menos una mascota");
+      // return;
+      setError("Por favor, agrega al menos una mascota");
+      setShowErrorModal(true);
     }
 
-    setShowConfirmationModal(true);
+    // setShowConfirmationModal(true);
 
 
     const cantidad_mascotas = petsData.length;
@@ -179,6 +190,7 @@ const RegisterPetClient = () => {
         const currentPet = {
           email: email,
           nombre: petsData[i].nombre,
+          sexo: petsData[i].sexo,
           tipo: petsData[i].tipo,
           raza: petsData[i].raza,
           edad: petsData[i].edad,
@@ -190,7 +202,7 @@ const RegisterPetClient = () => {
         if (petsData[i].imagen) {
           currentPet.imagen = petsData[i].imagen, petsData[i].imagen.name;
         }
-
+        console.log(currentPet);
         let id_mascota = 0;
 
         api
@@ -307,7 +319,7 @@ const RegisterPetClient = () => {
     return <LoadingPage />;
   }
   return (
-    <>
+    <div className="absolute-container-pet-register">
       {/* Navbar */}
       <Navbar />
       <div className="background-container-pr">
@@ -343,11 +355,11 @@ const RegisterPetClient = () => {
                   // value={imagen}
                   onChange={handleChangeImg}
                 />
+                
                 <span className="tooltip-registro-mascota-text">
                   Este campo no es obligatorio. Ingresa la imagen de tu mascota, en formato .PNG o .JPEG.
                 </span>
               </div>
-
             </div>
             <div className="form-group">
               <label className="label-register-pet-name">
@@ -397,7 +409,7 @@ const RegisterPetClient = () => {
                 <div className="tooltip-registro-mascota">
                   <input
                     type="text"
-                    className="input-register-pet-breed"
+                    className="input-register-pet-race"
                     placeholder="Ingresa la raza de tu mascota"
                     name="raza"
                     value={raza}
@@ -425,6 +437,32 @@ const RegisterPetClient = () => {
                   </select>
                   <span className="tooltip-registro-mascota-text">
                     Este campo es obligatorio. Ingresa el estado de salud de tu mascota.
+                  </span>
+                </div>
+
+              </div>
+              <div className="form-group col-md-6">
+                <label
+                  htmlFor="input-pet-size"
+                  className="label-register-pet-size"
+                >
+                  Sexo
+                </label>
+                <div className="tooltip-registro-mascota">
+                  <select
+                    id="input-pet-sexo"
+                    className="input-register-pet-size"
+                    name="sexo"
+                    value={sexo}
+                    onChange={(e) => setSexo(e.target.value)}
+                    required
+                  >
+                    <option defaultValue>Selecciona...</option>
+                    <option value={'M'}>Macho</option>
+                    <option value={'H'}>Hembra</option>
+                  </select>
+                  <span className="tooltip-registro-mascota-text-l">
+                    Este campo es obligatorio. Ingresa el sexo de tu mascota.
                   </span>
                 </div>
 
@@ -557,14 +595,15 @@ const RegisterPetClient = () => {
 
               }
             </div>
-
-            <div className="d-flex flex-row">
-              <button type="submit" onClick={handleOpenConfirmationModal} className="btn-register-pet">
-                <i className="fas fa-paw"></i> ¡Crear!
-              </button>
-              <button type="submit" className="btn-another-pet" onClick={handleMascotas}>
-                <i className="fas fa-plus"></i> Agregar mascota a la lista
-              </button>
+            <div className="container-btns-pet-register">
+              <div className="d-flex flex-row">
+                <button type="submit" onClick={handleOpenConfirmationModal} className="btn-create-register-pet">
+                  <i className="fas fa-paw"></i> ¡Crear!
+                </button>
+                <button type="submit" className="btn-register-pet" onClick={handleMascotas}>
+                  <i className="fas fa-plus"></i> Registrar mascota
+                  </button>
+              </div>
             </div>
           </form>
         </div>
@@ -586,7 +625,7 @@ const RegisterPetClient = () => {
         handleNo={handleNoConfirmationModal}
         response="¿Estás seguro de que deseas registrar a tus mascotas?"
       />
-    </>
+    </div>
   );
 };
 

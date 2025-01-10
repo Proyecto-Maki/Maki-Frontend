@@ -3,9 +3,12 @@ import { Modal, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import "../styles/modal.css";
 
-function SuccessModal({ show, handleClose, response, dirNavigate }) {
+function SuccessModalReload({ show, handleClose, response }) {
   const navigate = useNavigate();
-  console.log(dirNavigate);
+  
+  const handleNav = () => {
+    window.location.reload();
+  }
 
   return (
     <Modal
@@ -27,14 +30,14 @@ function SuccessModal({ show, handleClose, response, dirNavigate }) {
         </Button>
         <Button
           variant="primary"
-          onClick={() => navigate(dirNavigate)}
+          onClick={handleNav}
           className="modal-success-button-primary"
         >
-          Ir a {dirNavigate}
+          Recargar
         </Button>
       </Modal.Footer>
     </Modal>
   );
 }
 
-export default SuccessModal;
+export default SuccessModalReload;

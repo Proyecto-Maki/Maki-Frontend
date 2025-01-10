@@ -1,14 +1,74 @@
-/* Estilo general para la página */
-.absolute-home-container {
-  display: flex;
+
+.absolute-products-container {
+  /*display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Asegura que la página ocupe toda la altura */
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; 
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-color: #fdf0e6;*/
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  padding-top: 10%;
   background-color: #fdf0e6;
+}
+
+.absolute-products-container::-webkit-scrollbar{
+  width: 10px;
+  color: #FCF3E3;
+}
+.absolute-products-container::-webkit-scrollbar-thumb {
+  background: #ffcc80; 
+  border-radius: 80px; 
+}
+.absolute-products-container::-webkit-scrollbar-thumb:hover {
+  background: #ffa726; 
+}
+.absolute-products-container::-webkit-scrollbar-track {
+  background: none; 
+}
+
+.footer-container-productos{
+  text-align: center;
+  padding: 0 0;
+  width: 100%;
+  position: relative;
+  overflow: visible;
+  background-color: #7BB66D;
+  top: 50%;
+  
 }
 
 /* Estilo para el contenido principal */
 .main-content {
-  flex: 1; /* Permite que el contenido principal ocupe el espacio restante */
+  align-items: center;
+  flex-direction: column;
+  display: absolute;
+  overflow-y: auto;
+  position: relative;
+  flex: 1; 
+}
+
+.main-content::-webkit-scrollbar{
+  width: 10px;
+  color: #FCF3E3;
+}
+.main-content::-webkit-scrollbar-thumb {
+  background: #ffcc80; 
+  border-radius: 80px; 
+}
+.main-content::-webkit-scrollbar-thumb:hover {
+  background: #ffa726; 
+}
+.main-content::-webkit-scrollbar-track {
+  background: none; 
 }
 
 /* Estilo del header */
@@ -19,10 +79,13 @@
   text-align: center;
 }
 
-/* Estilo del footer */
-footer {
-  background-color: #8fc064;
-  color: #fff;
-  text-align: center;
-  padding: 10px 0;
+@media (max-width: 768px){
+  .absolute-products-container{
+    margin-top: 20%;
+  }
+  .main-content{
+    top: 10%;
+  }
 }
+
+
