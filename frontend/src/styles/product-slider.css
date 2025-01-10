@@ -1,0 +1,32 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css");
+
+.absolute-container-products-slider{
+    position: relative;
+    max-width: 90vw;
+    margin: 0 auto;
+}
+
+.item-slider{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.item-slider img {
+    width: 100%; /* La imagen ocupa el ancho del contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+    max-height: 300px; /* Altura máxima de la imagen */
+    object-fit: contain; /* Ajusta el contenido de la imagen para que no se deforme */
+}
+
+.slick-arrow{
+    position: absolute;
+    top: 47%;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    z-index: 1000;
+}
+

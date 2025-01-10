@@ -8,6 +8,7 @@ import "../styles/productos.css";
 import generateRandomAlphaNumericCode, {
   randomValue,
 } from "../GenerateCardCode";
+import ProductSlider from "../pages/product-slider"
 
 function Productos() {
   const [productos, setProductos] = useState([]);
@@ -66,6 +67,7 @@ function Productos() {
   return (
     <div className="absolute-products-container">
       <Navbar />
+      <ProductSlider />
       <main className="main-content">
         <div className="container py-5">
           <header className="text-center mb-4">

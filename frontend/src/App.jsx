@@ -20,6 +20,7 @@ import Navbar from "./components/navbar";
 import Productos from "./pages/productos";
 import Adoptions from "./pages/adoptions";
 
+
 function App() {
   return (
     <BrowserRouter>
