@@ -214,22 +214,25 @@ const UserProfile = () => {
     return <LoadingPage />;
   }
   return (
-    <>
+    <div className="absolute-container-user-profile">
       {/* Navbar */}
       <Navbar />
 
       {/* User Profile */}
+
       <div className="profile-container">
-        <div className="card profile-card">
+        <div className="content-user-profile">
           <div className="card-body p-4">
             <div className="d-flex">
               {/* Foto de perfil y botón de cerrar sesión */}
               <div className="flex-shrink-0 text-center">
-                <img
-                  src={imageProfile}
-                  alt="Profile"
-                  className="img-fluid"
-                />
+                <div className="image-user-profile">
+                  <img
+                    src={imageProfile}
+                    alt="Profile"
+                    className="img-fluid"
+                  />
+                </div>
                 <a href="/logout" className="logout-icon mt-3 d-block" title="Cerrar sesión">
                   <i className="fas fa-sign-out-alt"></i> Cerrar sesión
                 </a>
@@ -244,8 +247,9 @@ const UserProfile = () => {
               </div>
               {/* Botón de editar */}
               <div className="button-container-userProfile">
-                <button className="edit-icon" title="Editar Perfil">
-                  <i className="fas fa-edit"></i>
+                <button className="button-edit">
+                  <svg className="svg-icon" fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><g stroke="#fcf3e3" stroke-linecap="round" stroke-width="2"><path d="m20 20h-16"></path><path clip-rule="evenodd" d="m14.5858 4.41422c.781-.78105 2.0474-.78105 2.8284 0 .7811.78105.7811 2.04738 0 2.82843l-8.28322 8.28325-3.03046.202.20203-3.0304z" fill-rule="evenodd"></path></g></svg>
+                  <span className="lable">Edit</span>
                 </button>
               </div>
             </div>
@@ -256,31 +260,36 @@ const UserProfile = () => {
 
       {/* Icons Section */}
       <div className="icons-container">
-        <div className="d-flex flex-row justify-content-center">
+        <div className="d-flex flex-wrap justify-content-center">
           <ProfileIcon
             src="../src/img/iconosProfile/mascotas.svg"
             alt="Mascotas"
             title="Mascotas"
+            className="icon-user-profile"
           />
           <ProfileIcon
             src="../src/img/iconosProfile/pedidos.svg"
             alt="Pedidos"
             title="Pedidos"
+            className="icon-user-profile"
           />
           <ProfileIcon
             src="../src/img/iconosProfile/adopciones.svg"
             alt="Adopciones"
             title="Adopciones"
+            className="icon-user-profile"
           />
           <ProfileIcon
             src="../src/img/iconosProfile/donaciones.svg"
             alt="Donaciones"
             title="Donaciones"
+            className="icon-user-profile"
           />
           <ProfileIcon
             src="../src/img/iconosProfile/makipaws.svg"
             alt="Makipaws"
             title="MakiPaws"
+            className="icon-user-profile"
           />
         </div>
       </div>
@@ -293,7 +302,7 @@ const UserProfile = () => {
 
       {/* <WelcomeModal show={showSuccessModal} handleClose={handleCloseSuccessModal} response={response} /> */}
       <ErrorModal show={showErrorModal} handleClose={handleCloseErrorModal} error={error} />
-    </>
+    </div>
   );
 };
 
