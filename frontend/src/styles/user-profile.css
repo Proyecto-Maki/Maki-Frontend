@@ -185,7 +185,11 @@
 /* ================================ Estilos para botones ================================ */
 
 /* Estilo para el botón de editar */
-/* From Uiverse.io by andrew-demchenk0 */ 
+.btn-mascotas-user-profile{
+  background-color: #fdf0e6;
+  border: none;
+}
+
 .button-edit {
   display: -webkit-box;
   display: -ms-flexbox;

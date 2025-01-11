@@ -261,12 +261,17 @@ const UserProfile = () => {
       {/* Icons Section */}
       <div className="icons-container">
         <div className="d-flex flex-wrap justify-content-center">
-          <ProfileIcon
-            src="../src/img/iconosProfile/mascotas.svg"
-            alt="Mascotas"
-            title="Mascotas"
-            className="icon-user-profile"
-          />
+        <a href="/pet-profile">
+          <button className="btn-mascotas-user-profile" >
+              <ProfileIcon
+                src="../src/img/iconosProfile/mascotas.svg"
+                alt="Mascotas"
+                title="Mascotas"
+                className="icon-user-profile"
+              />
+            </button>
+        </a>
+          
           <ProfileIcon
             src="../src/img/iconosProfile/pedidos.svg"
             alt="Pedidos"
