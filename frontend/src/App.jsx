@@ -19,6 +19,7 @@ import Footer from "./components/Footer";
 import Navbar from "./components/navbar";
 import Productos from "./pages/productos";
 import Adoptions from "./pages/adoptions";
+import PetProfileFoundation from "./pages/pet-profile-foundation";
 
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
         <Route path="/productos/:slug" element={<InfoProduct />} />{" "}
         {/* Cambia id por slug */}
         <Route path="/adopcion" element={<Adoptions />} />
+        <Route path="/pet-profile-foundation" element={<PetProfileFoundation />} />
       </Routes>
     </BrowserRouter>
   );
