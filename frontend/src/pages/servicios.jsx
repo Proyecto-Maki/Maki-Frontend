@@ -92,7 +92,7 @@ function Servicios() {
                             <div className="fundacion-info">
                                 <h3>{fundacion.nombre}</h3>
                                 <p><strong>Teléfono:</strong> {fundacion.telefono}</p>
-                                <p><strong>Dirección:</strong> {fundacion.direccion}</p>
+                                <p><strong>Dirección:</strong> {fundacion.direccion} | {fundacion.localidad} | {fundacion.codigo_postal ? fundacion.codigo_postal : 'No hay código postal'}</p>
                                 <p><strong>Teléfono:</strong> {fundacion.telefono}</p>
                                 <p><strong>Email:</strong> {fundacion.email}</p>
                             </div>

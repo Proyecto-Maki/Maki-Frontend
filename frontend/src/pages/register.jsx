@@ -99,6 +99,17 @@ function Register() {
     return null;
   };
 
+  const validateCodigoPostal = (codigoPostal) => {
+    const re = /^\d+$/;
+    if (!re.test(codigoPostal)) {
+      return "El código postal solo debe contener números.";
+    }
+    if (codigoPostal.length !== 6) {
+      return "El código postal debe tener 6 dígitos.";
+    }
+    return null;
+  }
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -156,6 +167,15 @@ function Register() {
       const nitError = validateNit(formData.nit);
       if (nitError) {
         setError(nitError);
+        setShowErrorModal(true);
+        return;
+      }
+    }
+
+    if(formData.codigo_postal){
+      const codigoPostalError = validateCodigoPostal(formData.codigo_postal);
+      if (codigoPostalError) {
+        setError(codigoPostalError);
         setShowErrorModal(true);
         return;
       }
@@ -412,6 +432,52 @@ function Register() {
                     </span>
                   </div>
                 </div>
+                <div className="form-group">
+                  <label>Código postal</label>
+                  <div className="tooltip-registro">
+                    <input
+                      className="input-field"
+                      type="text"
+                      name="codigo_postal"
+                      placeholder="Código postal"
+                      onChange={handleChange}
+                      value={formData.codigo_postal || ""}
+                    />
+                    <span className="tooltip-registro-text">
+                      Este campo no es obligatorio. Ingresa tu código postal
+                    </span>
+                  </div>
+                </div><div className="form-group">
+                  <label>Localidad</label>
+                  <div className="tooltip-registro">
+                    <select className="input-field" name="id_localidad" onChange={handleChange} value={formData.id_localidad || ""} required>
+                      <option defaultValue>Selecciona...</option>
+                      <option value={1}>Usaquén</option>
+                      <option value={2}>Chapinero</option>
+                      <option value={3}>Santa Fe</option>
+                      <option value={4}>San Cristóbal</option>
+                      <option value={5}>Usme</option>
+                      <option value={6}>Tunjuelito</option>
+                      <option value={7}>Bosa</option>
+                      <option value={8}>Kennedy</option>
+                      <option value={9}>Fontibón</option>
+                      <option value={10}>Engativá</option>
+                      <option value={11}>Suba</option>
+                      <option value={12}>Barrios Unidos</option>
+                      <option value={13}>Teusaquillo</option>
+                      <option value={14}>Los Mártires</option>
+                      <option value={15}>Antonio Nariño</option>
+                      <option value={16}>Puente Aranda</option>
+                      <option value={17}>La Candelaria</option>
+                      <option value={18}>Rafael Uribe Uribe</option>
+                      <option value={19}>Ciudad Bolívar</option>
+                      <option value={20}>Sumapaz</option>
+                    </select>
+                    <span className="tooltip-registro-text">
+                      Este campo es obligatorio. Ingresa tu localidad
+                    </span>
+                  </div>
+                </div>
               </>
             ) : (
               <>
@@ -555,6 +621,52 @@ function Register() {
                     />
                     <span className="tooltip-registro-text">
                       Este campo es obligatorio. Ingresa tu dirección
+                    </span>
+                  </div>
+                </div>
+                <div className="form-group">
+                  <label>Código postal</label>
+                  <div className="tooltip-registro">
+                    <input
+                      className="input-field"
+                      type="text"
+                      name="codigo_postal"
+                      placeholder="Código postal"
+                      onChange={handleChange}
+                      value={formData.codigo_postal || ""}
+                    />
+                    <span className="tooltip-registro-text">
+                      Este campo no es obligatorio. Ingresa tu código postal
+                    </span>
+                  </div>
+                </div><div className="form-group">
+                  <label>Localidad</label>
+                  <div className="tooltip-registro">
+                    <select className="input-field" name="id_localidad" onChange={handleChange} value={formData.id_localidad || ""} required>
+                      <option defaultValue>Selecciona...</option>
+                      <option value={1}>Usaquén</option>
+                      <option value={2}>Chapinero</option>
+                      <option value={3}>Santa Fe</option>
+                      <option value={4}>San Cristóbal</option>
+                      <option value={5}>Usme</option>
+                      <option value={6}>Tunjuelito</option>
+                      <option value={7}>Bosa</option>
+                      <option value={8}>Kennedy</option>
+                      <option value={9}>Fontibón</option>
+                      <option value={10}>Engativá</option>
+                      <option value={11}>Suba</option>
+                      <option value={12}>Barrios Unidos</option>
+                      <option value={13}>Teusaquillo</option>
+                      <option value={14}>Los Mártires</option>
+                      <option value={15}>Antonio Nariño</option>
+                      <option value={16}>Puente Aranda</option>
+                      <option value={17}>La Candelaria</option>
+                      <option value={18}>Rafael Uribe Uribe</option>
+                      <option value={19}>Ciudad Bolívar</option>
+                      <option value={20}>Sumapaz</option>
+                    </select>
+                    <span className="tooltip-registro-text">
+                      Este campo es obligatorio. Ingresa tu localidad
                     </span>
                   </div>
                 </div>

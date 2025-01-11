@@ -53,6 +53,8 @@ const UserProfile = () => {
     email: "",
     phone: "",
     address: "",
+    postal_code: "",
+    localidad: "",
     role: "",
   });
 
@@ -88,6 +90,8 @@ const UserProfile = () => {
                     email: res.data.email,
                     phone: res.data.telefono,
                     address: res.data.direccion,
+                    postal_code: res.data.codigo_postal ? res.data.codigo_postal : 'No hay código postal',
+                    localidad: res.data.localidad,
                     role: "Dueño de mascota",
                   })
                   //console.log('Información del usuario:', userData);
@@ -128,6 +132,8 @@ const UserProfile = () => {
                     email: res.data.email,
                     phone: res.data.telefono,
                     address: res.data.direccion,
+                    postal_code: res.data.codigo_postal ? res.data.codigo_postal : 'No hay código postal',
+                    localidad: res.data.localidad,
                     role: "Fundación",
                   })
                   //console.log('Información del usuario:', userData);
@@ -290,7 +296,7 @@ const UserProfile = () => {
                 <h2 className="nombreUserProfile">{userData.name}</h2>
                 <p className="correoUserProfile">{userData.email}</p>
                 <p className="numeroUserProfile">{userData.phone}</p>
-                <p className="direccionUserProfile">{userData.address}</p>
+                <p className="direccionUserProfile">{userData.address} | {userData.localidad} | Cód. Postal: {userData.postal_code}</p>
                 <p className="rolUserProfile">{userData.role}</p>
               </div>
               {/* Botón de editar */}
