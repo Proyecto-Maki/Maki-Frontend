@@ -5,6 +5,8 @@ import "../styles/user-profile.css"; // Importa el archivo CSS
 import { useNavigate } from "react-router-dom";
 import api from "../api";
 import ErrorModal from '../components/ErrorModal';
+import ConfirmationModal from "../components/ConfirmationModal";
+import SuccessModal from "../components/SuccessModal";
 
 const ProfileIcon = ({ src, alt, title }) => {
   return (
@@ -19,6 +21,10 @@ const UserProfile = () => {
 
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [error, setError] = useState('');
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [response, setResponse] = useState("");
+  const [dirNavigate, setDirNavigate] = useState("");
   const [imageProfile, setImageProfile] = useState('');
   const navigate = useNavigate();
 
@@ -32,7 +38,7 @@ const UserProfile = () => {
   const es_cliente = sessionStorage.getItem('is_cliente');
   const es_fundacion = sessionStorage.getItem('is_fundacion');
   console.log(es_cliente);
-  const mascotas_url = es_cliente === true ? 'pet-profile-client/' : 'pet-profile-foundation/';
+  const mascotas_url = es_cliente === 'true' ? 'pet-profile-client/' : 'pet-profile-foundation/';
   console.log(mascotas_url)
   const [userData, setUserData] = useState({
     name: "",
@@ -170,11 +176,18 @@ const UserProfile = () => {
     setResponse('');
   };
 
+  const handleCloseSuccessModal = () => {
+    setShowSuccessModal(false);
+    setError("");
+    setResponse("");
+  };
+
   useEffect(() => {
     console.log('userData ha cambiado:', userData);
   }, [userData]);
 
-  const handleEliminarCuenta = () => {
+  const handleEliminarCuenta = async (e) => {
+    e.preventDefault();
     api
       .delete('cliente-profile-delete/', {
         params: {
@@ -206,6 +219,25 @@ const UserProfile = () => {
         setShowErrorModal(true);
       });
   }
+
+  const handleYesConfirmationModal = async (e) => {
+
+    setIsLoading(true);
+    await new Promise(r => setTimeout(r, 2000));
+    await handleEliminarCuenta(e);
+    setIsLoading(false);
+    handleNoConfirmationModal();
+
+  }
+
+  const handleNoConfirmationModal = () => {
+    setShowConfirmationModal(false);
+  }
+
+  const handleOpenConfirmationModal = () => {
+    setShowConfirmationModal(true);
+  }
+
 
 
   const [isLoading, setIsLoading] = useState(true);
@@ -269,8 +301,8 @@ const UserProfile = () => {
       {/* Icons Section */}
       <div className="icons-container">
         <div className="d-flex flex-wrap justify-content-center">
-        <a href={mascotas_url}>
-          <button className="btn-mascotas-user-profile" >
+          <a href={mascotas_url}>
+            <button className="btn-mascotas-user-profile" >
               <ProfileIcon
                 src="../src/img/iconosProfile/mascotas.svg"
                 alt="Mascotas"
@@ -278,8 +310,8 @@ const UserProfile = () => {
                 className="icon-user-profile"
               />
             </button>
-        </a>
-          
+          </a>
+
           <ProfileIcon
             src="../src/img/iconosProfile/pedidos.svg"
             alt="Pedidos"
@@ -298,23 +330,42 @@ const UserProfile = () => {
             title="Donaciones"
             className="icon-user-profile"
           />
-          <ProfileIcon
-            src="../src/img/iconosProfile/makipaws.svg"
-            alt="Makipaws"
-            title="MakiPaws"
-            className="icon-user-profile"
-          />
+          {es_cliente === 'true' && (
+            <ProfileIcon
+              src="../src/img/iconosProfile/makipaws.svg"
+              alt="Makipaws"
+              title="MakiPaws"
+              className="icon-user-profile"
+            />
+          )}
+
         </div>
       </div>
       {/* Botón de Eliminar cuenta */}
       <div className="d-flex justify-content-center mt-4">
-        <button className="btn-delete-account"  title="Eliminar Cuenta" onClick={handleEliminarCuenta}>
+        <button className="btn-delete-account" title="Eliminar Cuenta" onClick={handleOpenConfirmationModal}>
           <i className="fas fa-trash-alt"></i> Eliminar Cuenta
         </button>
       </div>
 
       {/* <WelcomeModal show={showSuccessModal} handleClose={handleCloseSuccessModal} response={response} /> */}
-      <ErrorModal show={showErrorModal} handleClose={handleCloseErrorModal} error={error} />
+      <SuccessModal
+        show={showSuccessModal}
+        handleClose={handleCloseSuccessModal}
+        response={response}
+        dirNavigate={dirNavigate}
+      />
+      <ErrorModal
+        show={showErrorModal}
+        handleClose={handleCloseErrorModal}
+        error={error}
+      />
+      <ConfirmationModal
+        show={showConfirmationModal}
+        handleYes={handleYesConfirmationModal}
+        handleNo={handleNoConfirmationModal}
+        response="¿Estás seguro de eliminar tu cuenta? Esta acción no se puede deshacer."
+      />
     </div>
   );
 };
