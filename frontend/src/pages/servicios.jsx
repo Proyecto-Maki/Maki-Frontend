@@ -7,6 +7,8 @@ import SuccessModal from "../components/SuccessModal";
 import ConfirmationModal from "../components/ConfirmationModal";
 import { useNavigate } from "react-router-dom";
 import api from "../api";
+import adopta_banner from "../img/adoptaBanner.png";
+import dona_banner from "../img/donaBanner.png";
 
 function Servicios() {
 
@@ -75,11 +77,11 @@ function Servicios() {
             <div className="servicios-container">
                 <section className="banners">
                     <div class="adopta-card">
-                        <img src="../src/img/adoptaBanner.png" alt="Adopta, no compres" class="adopta-card-img" />
+                        <img src={adopta_banner} alt="Adopta, no compres" class="adopta-card-img" />
                     </div>
 
                     <div class="donar-card">
-                        <img src="../src/img/donaBanner.png" alt="Haz tu donación" class="donar-card-img" />
+                        <img src={dona_banner} alt="Haz tu donación" class="donar-card-img" />
                     </div>
 
                 </section>

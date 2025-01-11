@@ -8,6 +8,14 @@ import ErrorModal from '../components/ErrorModal';
 import ConfirmationModal from "../components/ConfirmationModal";
 import SuccessModal from "../components/SuccessModal";
 
+import mascotas_img from "../img/iconosProfile/mascotas.svg";
+import pedidos_img from "../img/iconosProfile/pedidos.svg";
+import adopciones_img from "../img/iconosProfile/adopciones.svg";
+import donaciones_img from "../img/iconosProfile/donaciones.svg";
+import makipaws_img from "../img/iconosProfile/makipaws.svg";
+import clientes_img from "../img/Foto_Perfil_Clientes.svg";
+import fundaciones_img from "../img/Foto_Perfil_Fundaciones.svg";
+
 const ProfileIcon = ({ src, alt, title }) => {
   return (
     <div className="p-2">
@@ -63,7 +71,7 @@ const UserProfile = () => {
           console.log(res.data);
           console.log(tem_email);
           if (res.data.is_cliente === true) {
-            setImageProfile('../src/img/Foto_Perfil_Clientes.svg');
+            setImageProfile(clientes_img);
             api
               .get(`cliente-profile/`, {
                 params: {
@@ -103,7 +111,7 @@ const UserProfile = () => {
                 }, 3000)
               });
           } else if (res.data.is_fundacion === true) {
-            setImageProfile('../src/img/Foto_Perfil_Fundaciones.svg');
+            setImageProfile(fundaciones_img);
             api
               .get('fundacion-profile/', {
                 params: {
@@ -304,7 +312,7 @@ const UserProfile = () => {
           <a href={mascotas_url}>
             <button className="btn-mascotas-user-profile" >
               <ProfileIcon
-                src="../src/img/iconosProfile/mascotas.svg"
+                src={mascotas_img}
                 alt="Mascotas"
                 title="Mascotas"
                 className="icon-user-profile"
@@ -313,26 +321,26 @@ const UserProfile = () => {
           </a>
 
           <ProfileIcon
-            src="../src/img/iconosProfile/pedidos.svg"
+            src={pedidos_img}
             alt="Pedidos"
             title="Pedidos"
             className="icon-user-profile"
           />
           <ProfileIcon
-            src="../src/img/iconosProfile/adopciones.svg"
+            src={adopciones_img}
             alt="Adopciones"
             title="Adopciones"
             className="icon-user-profile"
           />
           <ProfileIcon
-            src="../src/img/iconosProfile/donaciones.svg"
+            src={donaciones_img}
             alt="Donaciones"
             title="Donaciones"
             className="icon-user-profile"
           />
           {es_cliente === 'true' && (
             <ProfileIcon
-              src="../src/img/iconosProfile/makipaws.svg"
+              src={makipaws_img}
               alt="Makipaws"
               title="MakiPaws"
               className="icon-user-profile"
