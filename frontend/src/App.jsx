@@ -20,7 +20,10 @@ import Navbar from "./components/navbar";
 import Productos from "./pages/productos";
 import Adoptions from "./pages/adoptions";
 import PetProfileFoundation from "./pages/pet-profile-foundation";
-
+import Servicios from "./pages/servicios";
+import Pedidos from "./pages/mis-pedidos";
+import CreacionAdopcion from "./pages/creacion-de-adopcion";
+import Pedido from "./pages/pedido";
 
 function App() {
   return (
@@ -55,6 +58,10 @@ function App() {
         {/* Cambia id por slug */}
         <Route path="/adopcion" element={<Adoptions />} />
         <Route path="/pet-profile-foundation" element={<PetProfileFoundation />} />
+        <Route path="/servicios" element={<Servicios />} />
+        <Route path="/mis-pedidos" element={<Pedidos />} />
+        <Route path="/crear-adopcion" element={<CreacionAdopcion />} />
+        <Route path="/mi-pedido" element={<Pedido />} />
       </Routes>
     </BrowserRouter>
   );

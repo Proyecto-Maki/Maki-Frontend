@@ -14,7 +14,7 @@
   padding: 10px 20px;
   min-height: 100vh;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
   flex-wrap: nowrap;
   padding-top: 5%;
