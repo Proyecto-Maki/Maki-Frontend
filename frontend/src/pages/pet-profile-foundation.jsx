@@ -79,6 +79,10 @@ function PetProfileFoundation() {
   let es_fundacion = sessionStorage.getItem('is_fundacion');
   let crear_mascota_url = '/register-pet';
 
+  if (es_cliente === 'true') {
+    navigate('/pet-profile-client/');
+  }
+
   // MIRA SI EL USUARIO ES CLIENTE O FUNDACION
   // useEffect(() => {
   //   api

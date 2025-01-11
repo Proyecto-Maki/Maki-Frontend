@@ -10,7 +10,7 @@ import ConfirmationModal from "../components/ConfirmationModal";
 import SuccessModalReload from "../components/SuccessModalReload";
 import PetUpdate from "../components/forms/pet-update";
 
-function PetProfile() {
+function PetProfileClient() {
   // Estado inicial con las mascotas
 
   const [mascotas, setMascotas] = useState([
@@ -77,6 +77,11 @@ function PetProfile() {
   let es_cliente = sessionStorage.getItem('is_cliente');
   let es_fundacion = sessionStorage.getItem('is_fundacion');
   let crear_mascota_url = '/register-pet';
+
+  if (es_fundacion === 'true') {
+    navigate('/pet-profile-foundation/');
+  }
+
 
   // MIRA SI EL USUARIO ES CLIENTE O FUNDACION
   // useEffect(() => {
@@ -360,4 +365,4 @@ const handleCloseSuccessModal = () => {
 };
 
 
-export default PetProfile;
+export default PetProfileClient;

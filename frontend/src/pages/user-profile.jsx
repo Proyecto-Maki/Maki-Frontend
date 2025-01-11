@@ -26,6 +26,14 @@ const UserProfile = () => {
     navigate('/login');
   }
 
+  const email = sessionStorage.getItem('email');
+  const token = sessionStorage.getItem('token');
+  const refresh = sessionStorage.getItem('refresh');
+  const es_cliente = sessionStorage.getItem('is_cliente');
+  const es_fundacion = sessionStorage.getItem('is_fundacion');
+  console.log(es_cliente);
+  const mascotas_url = es_cliente === true ? 'pet-profile-client/' : 'pet-profile-foundation/';
+  console.log(mascotas_url)
   const [userData, setUserData] = useState({
     name: "",
     email: "",
@@ -261,7 +269,7 @@ const UserProfile = () => {
       {/* Icons Section */}
       <div className="icons-container">
         <div className="d-flex flex-wrap justify-content-center">
-        <a href="/pet-profile">
+        <a href={mascotas_url}>
           <button className="btn-mascotas-user-profile" >
               <ProfileIcon
                 src="../src/img/iconosProfile/mascotas.svg"
@@ -300,7 +308,7 @@ const UserProfile = () => {
       </div>
       {/* Botón de Eliminar cuenta */}
       <div className="d-flex justify-content-center mt-4">
-        <button className="btn-delete-account"  title="Eliminar Cuenta">
+        <button className="btn-delete-account"  title="Eliminar Cuenta" onClick={handleEliminarCuenta}>
           <i className="fas fa-trash-alt"></i> Eliminar Cuenta
         </button>
       </div>

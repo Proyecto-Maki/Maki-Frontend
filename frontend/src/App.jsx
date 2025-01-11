@@ -10,7 +10,7 @@ import UserProfile from "./pages/user-profile";
 import Home from "./pages/home";
 import LoadingPage from "./components/loading-page";
 import RegisterPet from "./pages/pet-register";
-import PetProfile from "./pages/pet-profile";
+import PetProfileClient from "./pages/pet-profile-client";
 import Resume from "./pages/resume";
 import Logout from "./pages/logout";
 import PublishReview from "./pages/publish-review";
@@ -47,7 +47,7 @@ function App() {
           path="/register-pet"
           element={<RegisterPet />}
         ></Route>
-        <Route path="/pet-profile" element={<PetProfile />}></Route>
+        <Route path="/pet-profile-client" element={<PetProfileClient />}></Route>
         <Route path="/publish-review" element={<PublishReview />} />
         <Route path="/infor-product" element={<InfoProduct />} />
         <Route path="/resume" element={<Resume />}></Route>
