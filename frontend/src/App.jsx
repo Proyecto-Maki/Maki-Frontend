@@ -22,7 +22,7 @@ import Adoptions from "./pages/adoptions";
 import Servicios from "./pages/servicios";
 import Pedidos from "./pages/mis-pedidos";
 import CreacionAdopcion from "./pages/creacion-de-adopcion";
-
+import Pedido from "./pages/pedido";
 
 function App() {
   return (
@@ -59,6 +59,7 @@ function App() {
         <Route path="/servicios" element={<Servicios />} />
         <Route path="/mis-pedidos" element={<Pedidos />} />
         <Route path="/crear-adopcion" element={<CreacionAdopcion />} />
+        <Route path="/mi-pedido" element={<Pedido />} />
       </Routes>
     </BrowserRouter>
   );
