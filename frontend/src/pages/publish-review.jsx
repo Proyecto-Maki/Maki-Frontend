@@ -8,9 +8,10 @@ import ErrorModal from "../components/ErrorModal";
 import ConfirmationModal from "../components/ConfirmationModal";
 import api from "../api";
 
-const PublishReview = ({ id_producto }) => {
+const PublishReview = ({ id_producto, slug }) => {
 
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(true);
     const [showSuccessModal, setShowSuccessModal] = useState(false);
     const [showErrorModal, setShowErrorModal] = useState(false);
     const [showConfirmationModal, setShowConfirmationModal] = useState(false);
@@ -23,8 +24,17 @@ const PublishReview = ({ id_producto }) => {
     const [comment, setComment] = useState("");
     const [imageProfile, setImageProfile] = useState('');
 
-    // Prueba de producto
-    id_producto = 7;
+    useEffect(() => {
+        const timer = setTimeout(() => {
+          setIsLoading(false);
+        }, 3000);
+    
+        return () => clearTimeout(timer);
+      }, []);
+
+    // Prueba de producto CAMBIAR ESTO PA HACER PRUEBAS
+    id_producto = 6;
+    slug = "whiskas-sabor-pollo-sobres-100-gr"
 
     if (!sessionStorage.getItem('token') && !sessionStorage.getItem('email') && !sessionStorage.getItem('refresh')) {
         navigate('/login');
@@ -40,10 +50,56 @@ const PublishReview = ({ id_producto }) => {
         setRating(value);
     };
 
-    const handlePublish = () => {
+    const handlePublish = async (e) => {
         // Lógica para manejar la publicación de la reseña
-        console.log("Publicando reseña", { rating, title, comment });
-        alert("¡Tu reseña ha sido publicada!");
+        // console.log("Publicando reseña", { rating, title, comment });
+        // alert("¡Tu reseña ha sido publicada!");
+
+        if (rating === 0) {
+            setError("Por favor ingrese una calificación entre una y cinco estrellas");
+            setShowErrorModal(true);
+        }
+
+        if (title === "" || comment === "") {
+            setError("Por favor ingrese todos los campos");
+            setShowErrorModal(true);
+        }
+
+        e.preventDefault();
+
+        const data = {
+            email: email,
+            id_producto: id_producto,
+            calificacion: rating,
+            titulo: title,
+            comentario: comment,
+        }
+
+        api
+            .post('resena/create/', data, {
+                headers: {
+                    'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
+                  }
+            })
+            .then((res) => {
+                if (res.status === 201){
+                    setResponse("¡Tu reseña ha sido publicada!");
+                    setShowSuccessModal(true);
+                    setDirNavigate("/productos/" + slug + "/");
+                } else {
+                    console.log("Error al publicar la reseña");
+                    setError(res.data.message);
+                    setShowErrorModal(true);
+                }
+            })
+            .catch((error) => {
+                console.log("Error al publicar la reseña");
+                setError(error.response.data.detail);
+                setShowErrorModal(true);
+            });
+
+
+
     };
 
     const handleCloseSuccessModal = () => {
@@ -57,8 +113,12 @@ const PublishReview = ({ id_producto }) => {
         setError("");
     }
 
-    const handleYesConfirmationModal = () => {
-
+    const handleYesConfirmationModal = async (e) => {
+        setIsLoading(true);
+        await new Promise(r => setTimeout(r, 2000));
+        await handlePublish(e);
+        setIsLoading(false);
+        handleNoConfirmationModal();
     }
 
     const handleNoConfirmationModal = () => {
@@ -144,6 +204,10 @@ const PublishReview = ({ id_producto }) => {
             });
     }, []);
 
+    if (isLoading) {
+        return <LoadingPage />;
+    }
+
     return (
         <div className="absolute-container-publish-review">
             <Navbar />
@@ -192,7 +256,7 @@ const PublishReview = ({ id_producto }) => {
                         ></textarea>
                     </div>
 
-                    <button className="publish-review-button" onClick={handlePublish}>
+                    <button className="publish-review-button" onClick={handleOpenConfirmationModal}>
                         Publicar
                     </button>
                     <p className="publish-review-terms">Términos & Condiciones</p>
