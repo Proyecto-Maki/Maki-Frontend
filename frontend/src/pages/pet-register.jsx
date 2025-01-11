@@ -170,12 +170,14 @@ const RegisterPetClient = () => {
       // return;
       setError("Por favor, agrega la mascota a la lista de mascotas");
       setShowErrorModal(true);
+      return;
     }
     if (petsData.length === 0) {
       // alert("Por favor, agrega al menos una mascota");
       // return;
       setError("Por favor, agrega al menos una mascota");
       setShowErrorModal(true);
+      return;
     }
 
     // setShowConfirmationModal(true);
