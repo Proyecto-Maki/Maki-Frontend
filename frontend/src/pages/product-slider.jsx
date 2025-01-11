@@ -14,7 +14,8 @@ const ProductSlider = () => {
         slidesToShow: 1,
         slidesToScroll: 1,
         fade: true,
-        arrows: true
+        arrows: true,
+        autoplay: true,
       };
     return(
     <div className='absolute-container-products-slider'>
