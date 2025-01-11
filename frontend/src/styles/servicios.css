@@ -27,6 +27,31 @@
     height: auto;
 }
 
+/* Filtros */
+
+.servicios-filtros{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.filtro-localidad{
+    display: flex;
+    width: 40%;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.filtro-localidad select{
+    width: 40%;
+}
+
+.no-fundaciones{
+    text-align: center;
+}
+
 /* Fundaciones */
 .fundaciones {
     display: flex;
