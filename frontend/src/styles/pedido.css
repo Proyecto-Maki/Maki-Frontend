@@ -40,8 +40,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 2px solid #f4a258; /* Borde inferior amarillo */
-    padding-bottom: 10px; /* Añade un poco de espacio debajo del borde */
+    border-bottom: 2px solid #f4a258; 
+    padding-bottom: 10px; 
 }
 
 .pedido-id {
@@ -53,16 +53,16 @@
 .fila-intermedia {
     margin-top: 10px;
     display: flex;
-    flex-direction: column; /* Alinea los elementos en columna */
-    text-align: left; /* Alinea a la izquierda */
+    flex-direction: column; 
+    text-align: left; 
 }
 
 .pedido-total, .pedido-fecha {
     font-size: 1rem;
     color: #555;
     display: flex;
-    justify-content: space-between; /* Añade espacio horizontal grande */
-    width: 100%; /* Asegúrate de que el contenedor ocupe todo el */
+    justify-content: space-between; 
+    width: 100%; 
 }
 
 /* Contenedor grande de productos */
@@ -81,6 +81,7 @@
     margin: 10px 0;
     width: 100%;
     justify-content: space-between;
+    border-bottom: 1px dotted gray;
 }
 
 .producto-imagen {
@@ -110,29 +111,29 @@
 
 /* Sección para la cantidad */
 .producto-cantidad {
-    display: flex; /* Alinea los elementos en una fila */
-    align-items: center; /* Centra verticalmente */
-    gap: 8px; /* Espacio entre "Cantidad:" y el número */
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
 }
 
 .cantidad-text {
-    margin: 0; /* Elimina márgenes adicionales */
+    margin: 0; 
     font-size: 1rem;
     color: #333;
     font-weight: bold;
 }
 
 .cantidad-numero {
-    display: inline-block; /* Asegura que sea un elemento en línea */
-    width: 50px; /* Ancho del rectángulo */
-    height: 30px; /* Alto del rectángulo */
-    background-color: #BDD3CE; /* Color de fondo */
-    color: white; /* Texto blanco */
+    display: inline-block; 
+    width: 50px; 
+    height: 30px; 
+    background-color: #BDD3CE; 
+    color: white;
     font-size: 1rem;
     font-weight: bold;
-    text-align: center; /* Centra horizontalmente */
-    line-height: 30px; /* Centra verticalmente */
-    border-radius: 10px; /* Bordes redondeados opcionales */
+    text-align: center; 
+    line-height: 30px; 
+    border-radius: 10px; 
 }
 
 
@@ -145,11 +146,11 @@
     font-weight: bold;
     border-radius: 5px;
     cursor: pointer;
-    display: flex; /* Alineación del ícono y el texto */
+    display: flex;
     align-items: center;
-    gap: 8px; /* Espacio entre el ícono y el texto */
+    gap: 8px; 
     transition: background-color 0.3s ease;
-    margin-bottom: 30px; /* Añadido margen inferior */
+    margin-bottom: 30px; 
 }
 
 .eliminar-pedido-btn:hover {
@@ -158,13 +159,13 @@
 
 /* Estilo para el ícono de "X" */
 .eliminar-pedido-btn i {
-    color: #f4a258; /* Color naranja */
-    font-size: 1.5rem; /* Tamaño más grande para el ícono */
+    color: #f4a258; 
+    font-size: 1.5rem;
     transition: transform 0.3s ease;
 }
 
 .eliminar-pedido-btn:hover i {
-    transform: rotate(360deg) scale(1.2); /* Rotación y escala */
+    transform: rotate(360deg) scale(1.2); 
 }
 
 
@@ -180,6 +181,7 @@
 .productos-container .resumen-titulo h2 {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #7BB66D; /* Verde */
+    color: #7BB66D; 
     margin: 0;
 }
+
