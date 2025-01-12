@@ -2,6 +2,11 @@
 .servicios-container {
     padding: 20px;
     background-color: #fff9e6;
+    padding-top: 10%;
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 /* Banners */
