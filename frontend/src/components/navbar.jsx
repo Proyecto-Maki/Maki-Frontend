@@ -1,8 +1,9 @@
-import React from "react";
+import {React, useState, useEffect} from "react";
 import { useLocation } from "react-router-dom"; // Importamos useLocation para obtener la ruta actual
 import logo from "../img/Logotipo Maki Blanco.png"; // Ruta al logo
 import "../styles/navbar.css";
 import { FaSearch, FaShoppingCart } from "react-icons/fa"; // Importamos los iconos de React Icons
+
 
 function Navbar() {
   const location = useLocation(); // Obtenemos la ubicación actual de la ruta
@@ -12,6 +13,18 @@ function Navbar() {
 
   // Comprobamos si estamos en la página de perfil de usuario
   const isUserProfilePage = location.pathname === "/user-profile";
+
+  const [userLogin, setUserLogin] = useState(false); // Variable de estado para saber si el usuario está logueado
+
+  useEffect(() => {
+    if (sessionStorage.getItem('token') !== null && sessionStorage.getItem('refreshToken') !== null && sessionStorage.getItem('email') !== null && sessionStorage.getItem('is_cliente') !== null && sessionStorage.getItem('is_fundacion') !== null) {
+      setUserLogin(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log(userLogin);
+  }, [userLogin]);
 
   // Aquí podrías agregar la URL de la foto de perfil o pasarla como prop
   const userProfileImage = "../src/img/catPfp.jpeg"; // Reemplaza con la URL de la imagen del perfil
