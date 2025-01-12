@@ -1,0 +1,337 @@
+.absolute-container-pet-profile-foundation{
+    width: 100vw;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    padding-top: 6%;
+    background-color: #fdf0e6;
+  }
+  .container-pet-profile-foundation {
+    align-items: center;
+    flex-direction: column;
+    background-color: #fdf0e6;
+    width: 100vw;
+    height: auto;
+    display: absolute;
+  }
+  
+  .absolute-container-pet-profile-foundation::-webkit-scrollbar{
+    width: 5px;
+    right: 5%;
+    color: #FCF3E3;
+  }
+  
+  .absolute-container-pet-profile-foundation::-webkit-scrollbar-thumb {
+    background: #ffcc80; 
+    border-radius: 80px; 
+  }
+  
+  .absolute-container-pet-profile-foundation::-webkit-scrollbar-thumb:hover {
+    background: #ffa726; 
+  }
+  
+  .absolute-container-pet-profile-foundation::-webkit-scrollbar-track {
+    background: none; 
+  }
+  
+  .content-pet-profile-foundation{
+    width: 100%;
+    height: 100%;
+    margin-top: 5%;;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Estilos del contenedor de tarjetas */
+  .card-container-pet-profile-foundation {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 57px 160px;
+    justify-content: center;
+    margin-bottom: 5%;
+  }
+  
+  /* Estilos de la tarjeta */
+  .card-content-pet-profile-foundation {
+    position: relative;
+    width: 450px;
+    height: 320px;
+    background-color: #BDD3CE;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-text-pet-profile-foundation{
+    padding-left: 80px;
+    text-align: left;
+  }
+  
+  /* Imagen de la mascota */
+  .card-image-pet-profile-foundation {
+    position: absolute;
+    top: 20px;
+    left: -85px;
+    transform: translateY(0);
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid BDD3CE;
+    z-index: 1;
+  }
+  
+  .actions {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  
+  .actions button {
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 0 5px;
+    color: white;
+  }
+
+  
+  .actions button:hover {
+    color: #ff6347;
+  }
+  
+  .card-text-pet-profile-foundation h3 {
+    color: #Fcf3e3;
+    font-weight: bold;
+  }
+  
+  .card-text-pet-profile-foundation  p {
+    color: #302F2F;
+  }
+  
+  .card-text-pet-profile-foundation p strong {
+    color: #302F2F;
+  }
+  
+  h2 {
+    color: #F4A258;
+    text-align: left;
+    width: 100%;
+  }
+  
+  /* pantallas pequeñas */
+  @media (max-width: 768px){
+  
+    .container-pet-profile-foundation {
+      width: 100vw;
+      display: flex;
+  
+    }
+  
+    .content-pet-profile-foundation {
+      width: 100%;
+      margin-top: 8%;
+      /*margin-top: 70%;*/
+      padding: 10px 10px;
+    }
+  
+    .card-container-pet-profile-foundation {
+      grid-template-columns: 1fr;
+      gap: 90px; 
+      padding: 0 30vw; 
+      margin-bottom: 8%;
+    }
+  
+    .card-content-pet-profile-foundation {
+      width: 100%; 
+      height: 100%; 
+      padding: 0 10vw; 
+      justify-content: center;
+      align-items: center;
+      margin-top: 50px;
+    }
+  
+    .card-image-pet-profile-foundation {
+      position: absolute; 
+      margin: 0 auto 15px auto; 
+      left: 70%;
+      top: -15%;
+      transform: none;
+      width: auto;
+      height: 105px;
+      width: 105px;
+    }
+  
+    .card-text-pet-profile-foundation {
+      padding-left: 0; 
+      text-align: center; 
+      padding-top: 30%;
+    }
+  
+    .card-text-pet-profile-foundation h3 {
+      font-size: 18px;
+    }
+  
+    .card-text-pet-profile-foundation p {
+      font-size: 14px;
+    }
+  
+    .actions {
+      position: static; 
+      text-align: center; 
+      margin-top: 10px; 
+    }
+  
+    .actions button {
+      font-size: 16px; 
+    }
+  
+    .button-container-pet-profile-foundation {
+      position: relative;
+      right: 10%;
+    }
+  
+    .heading-pet-profile-foundation {
+      margin-bottom: 10%;
+    }
+  
+  }
+  
+  /*Pantallas medianas*/
+  @media (min-width: 768px) and (max-width: 1024px) {
+    
+  
+    .container-pet-profile-foundation {
+      width: 100vw;
+      display: flex;
+    }
+  
+    .content-pet-profile-foundation {
+      width: 100%;
+      margin-top: 0%;
+      padding: 10px;
+      display: flex;
+      
+    }
+    .card-container-pet-profile-foundation {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 50px;
+      
+    }
+    .card-content-pet-profile-foundation {
+      width: 100%;
+      max-width: 350px;
+      height: auto;
+      padding: 10px;
+    }
+    .card-image-pet-profile-foundation {
+      width: 80px;
+      height: 80px;
+    }
+    .card-text-pet-profile-foundation {
+      padding-left: 10%;
+      text-align: left; 
+      padding-top: 8%;
+    }
+    .card-text-pet-profile-foundation h3 {
+      font-size: 18px;
+    }
+  
+    .card-text-pet-profile-foundation p {
+      font-size: 14px;
+    }
+    
+  }
+  
+  .heading-pet-profile-foundation {
+    width: 95vw;
+    height: 10vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .button-container-pet-profile-foundation {
+    width: 100px;
+    height: 30px;
+    position: absolute;
+    left: 80%;
+    justify-self: center;
+    justify-content: center;
+    align-items: center;
+  
+  }
+  
+  .button-add-pet-profile-foundation {
+    --main-focus: #2d8cf0;
+    --font-color: #fcf3e3;
+    --bg-color-sub: #a2bf9b;
+    --bg-color: #7bb66d;
+    --main-color: #302F2F;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border: 2px solid var(--main-color);
+    box-shadow: 4px 4px var(--main-color);
+    background-color: var(--bg-color);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .button-add-pet-profile-foundation, .button__icon, .button__text {
+    transition: all 0.3s;
+  }
+  
+  .button-add-pet-profile-foundation .button__text {
+    transform: translateX(22px);
+    color: var(--font-color);
+    font-weight: 600;
+  }
+  
+  .button-add-pet-profile-foundation .button__icon {
+    position: absolute;
+    transform: translateX(109px);
+    height: 100%;
+    width: 39px;
+    background-color: var(--bg-color-sub);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #Fcf3e3;
+  }
+  
+  .button-add-pet-profile-foundation .svg {
+    width: 20px;
+    fill: var(--main-color);
+  }
+  
+  .button-add-pet-profile-foundation:hover {
+    background: var(--bg-color);
+  }
+  
+  .button-add-pet-profile-foundation:hover .button__text {
+    color: transparent;
+  }
+  
+  .button-add-pet-profile-foundation:hover .button__icon {
+    width: 148px;
+    transform: translateX(0);
+  }
+  
+  .button-add-pet-profile-foundation:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0px 0px var(--main-color);
+  }
+  
+  .modal-open .modal{
+    z-index: 4000;
+  }

@@ -170,12 +170,14 @@ const RegisterPetClient = () => {
       // return;
       setError("Por favor, agrega la mascota a la lista de mascotas");
       setShowErrorModal(true);
+      return;
     }
     if (petsData.length === 0) {
       // alert("Por favor, agrega al menos una mascota");
       // return;
       setError("Por favor, agrega al menos una mascota");
       setShowErrorModal(true);
+      return;
     }
 
     // setShowConfirmationModal(true);
@@ -319,7 +321,7 @@ const RegisterPetClient = () => {
     return <LoadingPage />;
   }
   return (
-    <>
+    <div className="absolute-container-pet-register">
       {/* Navbar */}
       <Navbar />
       <div className="background-container-pr">
@@ -355,11 +357,11 @@ const RegisterPetClient = () => {
                   // value={imagen}
                   onChange={handleChangeImg}
                 />
+                
                 <span className="tooltip-registro-mascota-text">
                   Este campo no es obligatorio. Ingresa la imagen de tu mascota, en formato .PNG o .JPEG.
                 </span>
               </div>
-
             </div>
             <div className="form-group">
               <label className="label-register-pet-name">
@@ -409,7 +411,7 @@ const RegisterPetClient = () => {
                 <div className="tooltip-registro-mascota">
                   <input
                     type="text"
-                    className="input-register-pet-breed"
+                    className="input-register-pet-race"
                     placeholder="Ingresa la raza de tu mascota"
                     name="raza"
                     value={raza}
@@ -595,14 +597,15 @@ const RegisterPetClient = () => {
 
               }
             </div>
-
-            <div className="d-flex flex-row">
-              <button type="submit" onClick={handleOpenConfirmationModal} className="btn-register-pet">
-                <i className="fas fa-paw"></i> ¡Crear!
-              </button>
-              <button type="submit" className="btn-another-pet" onClick={handleMascotas}>
-                <i className="fas fa-plus"></i> Agregar mascota a la lista
-              </button>
+            <div className="container-btns-pet-register">
+              <div className="d-flex flex-row">
+                <button type="submit" onClick={handleOpenConfirmationModal} className="btn-create-register-pet">
+                  <i className="fas fa-paw"></i> ¡Crear!
+                </button>
+                <button type="submit" className="btn-register-pet" onClick={handleMascotas}>
+                  <i className="fas fa-plus"></i> Registrar mascota
+                  </button>
+              </div>
             </div>
           </form>
         </div>
@@ -624,7 +627,7 @@ const RegisterPetClient = () => {
         handleNo={handleNoConfirmationModal}
         response="¿Estás seguro de que deseas registrar a tus mascotas?"
       />
-    </>
+    </div>
   );
 };
 

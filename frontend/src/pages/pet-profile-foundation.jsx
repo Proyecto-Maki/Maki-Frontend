@@ -1,5 +1,5 @@
 import Navbar from "../components/navbar"; // Navbar personalizado
-import "../styles/pet-profile.css"; // Importa el archivo CSS
+import "../styles/pet-profile-foundation.css"; // Importa el archivo CSS
 import logo from "../img/Logotipo Maki.png"; // Ruta al logo
 import LoadingPage from "../components/loading-page";
 import React, { useState, useEffect } from "react";
@@ -9,8 +9,9 @@ import ErrorModal from '../components/ErrorModal';
 import ConfirmationModal from "../components/ConfirmationModal";
 import SuccessModalReload from "../components/SuccessModalReload";
 import PetUpdate from "../components/forms/pet-update";
+import { MdPets } from "react-icons/md";
 
-function PetProfile() {
+function PetProfileFoundation() {
   // Estado inicial con las mascotas
 
   const [mascotas, setMascotas] = useState([
@@ -76,7 +77,11 @@ function PetProfile() {
   const refresh = sessionStorage.getItem('refresh');
   let es_cliente = sessionStorage.getItem('is_cliente');
   let es_fundacion = sessionStorage.getItem('is_fundacion');
-  let crear_mascota_url = es_cliente ? '/register-pet-client' : '/register-pet-foundation';
+  let crear_mascota_url = '/register-pet';
+
+  if (es_cliente === 'true') {
+    navigate('/pet-profile-client/');
+  }
 
   // MIRA SI EL USUARIO ES CLIENTE O FUNDACION
   // useEffect(() => {
@@ -258,15 +263,15 @@ const handleCloseSuccessModal = () => {
 
   return (
 
-    <div className="absolute-container-pet-foundation">
+    <div className="absolute-container-pet-profile-foundation">
       {/* Navbar */}
       <Navbar />
-      <div className="container-pet-foundation">
-        <div className="content-pet-foundation">
-          <div className="heading-pet-foundation">
+      <div className="container-pet-profile-foundation">
+        <div className="content-pet-profile-foundation">
+          <div className="heading-pet-profile-foundation">
             <h2>Mascotas</h2>
-            <div className="button-container-foundation">
-              <button className="button-add-pet-foundation" type="button" onClick={handleAnadirMascota}>
+            <div className="button-container-pet-profile-foundation">
+              <button className="button-add-pet-profile-foundation" type="button" onClick={handleAnadirMascota}>
                 <span class="button__text">Añadir</span>
                 <span class="button__icon"><svg class="svg" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
               </button>
@@ -278,15 +283,15 @@ const handleCloseSuccessModal = () => {
               <h2>No tienes mascotas registradas</h2>
             </div>
           ) : (
-            <div className="card-container">
+            <div className="card-container-pet-profile-foundation">
               {mascotasUser.map((mascota) => (
-                <div key={mascota.id} className="card-content">
+                <div key={mascota.id} className="card-content-pet-profile-foundation">
                   <img
                     src={mascota.imagen}
                     alt={mascota.nombre}
-                    className="card-image"
+                    className="card-image-pet-profile-foundation"
                   />
-                  <div key={mascota.id} className="card-text">
+                  <div key={mascota.id} className="card-text-pet-profile-foundation">
                     <h3>{mascota.nombre}</h3>
                     <p>
                       <strong>Sexo:</strong> {mascota.sexo === 'M' ? 'Macho' : 'Hembra'}
@@ -314,6 +319,9 @@ const handleCloseSuccessModal = () => {
                     </button>
                     <button onClick={(e) => handleOpenConfirmationModal(e, mascota.id)}>
                       <i className="fas fa-trash-alt"></i>
+                    </button>
+                    <button >
+                      <i className="adopt"> <MdPets /></i>
                     </button>
                   </div>
                 </div>
@@ -360,4 +368,4 @@ const handleCloseSuccessModal = () => {
 };
 
 
-export default PetProfile;
+export default PetProfileFoundation;

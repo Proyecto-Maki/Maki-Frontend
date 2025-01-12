@@ -1,10 +1,39 @@
 /* ================================ Importación de fuentes ================================ */
 @import url("@fortawesome/fontawesome-free/css/all.min.css");
 
+.absolute-container-user-profile{
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  padding-top: 7%;
+  background-color: #fdf0e6;
+  border: 2px solid red;
+}
+
+.absolute-container-user-profile::-webkit-scrollbar {
+  width: 10px;
+  color: #fcf3e3;
+}
+
+.absolute-container-user-profile::-webkit-scrollbar-thumb {
+  background: #ffcc80;
+  border-radius: 80px;
+}
+
+.absolute-container-user-profile::-webkit-scrollbar-thumb:hover {
+  background: #ffa726;
+}
+
+.absolute-container-user-profile::-webkit-scrollbar-track {
+  background: none;
+}
+
 /* ================================ Estilos Generales ================================ */
 
 /* Contenedor principal del perfil */
-.profile-background-container {
+.profile-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,18 +49,17 @@
   z-index: 10;
 }
 
+
 /* ================================ Información del perfil ================================ */
 
 /* Contenedor de la información */
 .profile-info {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   gap: 0.5rem;
   width: 100%;
   padding-top: 1rem;
-  text-align: center;
+  text-align: left;
   height: 100%;  
   margin-left: 10%;
 }
@@ -40,7 +68,7 @@
 .nombreUserProfile {
   font-family: "Aoboshi One", sans-serif;
   font-size: 3rem;
-  color: #FFD96E;
+  color: #7BB66D;
 }
 
 .correoUserProfile,
@@ -56,28 +84,54 @@
 /* ================================ Estilos para las tarjetas ================================ */
 
 /* Estilo para la tarjeta de perfil */
-.profile-card {
+.content-user-profile {
   border-radius: 15px;
   box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
-  width: 800px;
+  width: 90%;
+  max-width: 800px;
   padding: 1rem;
   background-color: #BDD3CE;
-  margin-bottom: 2rem;
+  margin: 2% auto;
   display: flex;
   flex-direction: column;
-  justify-content: left;
-  align-items: left;
   text-align: left;
+  align-items: left;
+  justify-content: left;
   position: relative;
 }
 
-/* Estilo para la imagen dentro de la tarjeta */
-.img-fluid {
-  width: 280px;
-  height: 280px;
-  border-radius: 50%;
-  object-fit: cover; /* Mantiene la imagen centrada y escalada */
+.card-body{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
+
+/*.d-flex{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}*/
+
+.image-user-profile{
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fcf3e3; 
+  margin: auto;
+}
+
+.image-user-profile img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 
 /* ================================ Contenedor de íconos ================================ */
 
@@ -87,7 +141,8 @@
   justify-content: center;
   gap: 2rem;
   margin-top: 1rem;
-  flex-wrap: wrap; /* Asegura que los íconos se ajusten en pantallas pequeñas */
+  flex-wrap: wrap; 
+  padding: 16px;
 }
 
 /* Estilo para los íconos */
@@ -96,6 +151,13 @@
   height: 150px;
   transition: transform 0.3s ease, filter 0.3s ease;
   border-radius: 10px;
+}
+
+.icon-user-profile{
+  width: 80px;
+  height: 80px;
+  margin: 10px;
+  transition: transform 0.3 ease, box-shadow 0.3 ease;
 }
 
 /* Subtítulos de los íconos */
@@ -115,7 +177,7 @@
 }
 
 .p-2:hover .titulosIconos {
-  color: #302F2F;
+  color: #7BB66D;
   font-weight: bold;
   transform: scale(1.1);
 }
@@ -123,7 +185,93 @@
 /* ================================ Estilos para botones ================================ */
 
 /* Estilo para el botón de editar */
-.edit-icon {
+.btn-mascotas-user-profile{
+  background-color: #fdf0e6;
+  border: none;
+}
+
+.button-edit {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 8px 12px;
+  gap: 2px;
+  height: 40px;
+  width: 85px;
+  border: none;
+  background: #fcf3e3;
+  border-radius: 20px;
+  cursor: pointer;
+}
+ 
+.lable {
+  line-height: 22px;
+  font-size: 18px;
+  color: #fcf3e3;
+  letter-spacing: 1px;
+}
+
+.button-edit {
+  background: #FFD96E;
+}
+
+.button-edit:hover .svg-icon {
+  -webkit-animation: lr 1s linear infinite;
+          animation: lr 1s linear infinite;
+  color: #fcf3e3;
+}
+
+@-webkit-keyframes lr {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+
+  25% {
+    -webkit-transform: translateX(-1px);
+            transform: translateX(-1px);
+  }
+
+  75% {
+    -webkit-transform: translateX(1px);
+            transform: translateX(1px);
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+@keyframes lr {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+
+  25% {
+    -webkit-transform: translateX(-1px);
+            transform: translateX(-1px);
+  }
+
+  75% {
+    -webkit-transform: translateX(1px);
+            transform: translateX(1px);
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+/*.edit-icon {
   font-family: "Aoboshi One", sans-serif;
   color: #FFF;
   background-color: #FFD96E;
@@ -143,7 +291,6 @@
   transition: color 0.3s ease;
 }
 
-/* Efectos de hover sobre el botón de editar */
 .edit-icon:hover {
   background-color: #F3C500;
   transform: scale(1.05);
@@ -152,7 +299,7 @@
 
 .edit-icon:hover i {
   color: #FFF;
-}
+}*/
 
 /* Estilo para el botón de logout */
 .logout-icon {
@@ -215,6 +362,7 @@
   transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   border: none;
   outline: none;
+  margin-bottom: 10%;
 }
 
 /* Efectos hover sobre el botón de eliminar cuenta */
@@ -254,13 +402,16 @@
 /* ================================ Estilos Responsivos ================================ */
 
 /* Estilos para dispositivos con pantallas pequeñas */
-@media (max-width: 992px) {
-  .icons-container {
-    gap: 1.5rem;
-  }
-}
-
 @media (max-width: 768px) {
+  .btn-delete-account {
+    margin-bottom: 20%;
+  }
+
+  .icon-user-profile {
+    width: 30px;
+    height: 30px;
+  }
+
   .icons-container {
     gap: 1rem;
   }
@@ -272,5 +423,85 @@
 
   .titulosIconos {
     font-size: 0.9rem;
+  }
+
+  .absolute-container-user-profile{
+    margin-top: 20%;
+  }
+  
+  .content-user-profile{
+    width: 95%;
+    padding: 0.8rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .d-flex{
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-info{
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .profile-info h2{
+    font-size: 1.3rem;
+    text-align: center;
+  }
+
+  .profile-info p{
+    font-size: 0.9rem;
+    margin-left: 10%;
+    text-align: center;
+  }
+
+  .logout-icon,
+  .button-edit{
+    font-size: 0.9rem;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .btn-delete-account {
+    margin-bottom: 20%;
+  }
+
+  .content-user-profile{
+    border-radius: 10px;
+    padding: 0.5rem;
+    
+    display: flex;
+    flex-direction: column;
+  }
+
+  .icon-user-profile {
+    width: 30px; 
+    height: 30px;
+  }
+
+  .content-user-profile {
+    padding: 0.5rem;
+  }
+
+  .profile-info h2 {
+    font-size: 1.2rem;
+  }
+
+  .profile-info p {
+    font-size: 0.8rem;
+  }
+
+  .logout-icon,
+  .button-edit{
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .icons-container {
+    gap: 1.5rem;
   }
 }

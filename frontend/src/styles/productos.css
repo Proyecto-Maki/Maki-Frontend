@@ -1,17 +1,79 @@
-/* Estilo general para la página */
-.absolute-home-container {
-  display: flex;
+
+.absolute-products-container {
+  /*display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Asegura que la página ocupe toda la altura */
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; 
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-color: #fdf0e6;*/
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  padding-top: 10%;
   background-color: #fdf0e6;
 }
 
-/* Estilo para el contenido principal */
-.main-content {
-  flex: 1; /* Permite que el contenido principal ocupe el espacio restante */
+.absolute-products-container::-webkit-scrollbar{
+  width: 10px;
+  color: #FCF3E3;
+}
+.absolute-products-container::-webkit-scrollbar-thumb {
+  background: #ffcc80; 
+  border-radius: 80px; 
+}
+.absolute-products-container::-webkit-scrollbar-thumb:hover {
+  background: #ffa726; 
+}
+.absolute-products-container::-webkit-scrollbar-track {
+  background: none; 
 }
 
-/* Estilo del header */
+.footer-container-productos{
+  text-align: center;
+  padding: 0 0;
+  width: 100%;
+  position: relative;
+  overflow: visible;
+  background-color: #7BB66D;
+  top: 50%;
+  
+}
+
+
+/* Estilo para el contenido principal */
+.main-content-products {
+  align-items: center;
+  flex-direction: column;
+  display: absolute;
+  overflow-y: auto;
+  position: relative;
+  flex: 1; 
+}
+
+.main-content-products::-webkit-scrollbar{
+  width: 10px;
+  color: #7BB66D;
+}
+.main-content-products::-webkit-scrollbar-thumb {
+  background: #7BB66D; 
+  border-radius: 80px; 
+}
+.main-content-products::-webkit-scrollbar-thumb:hover {
+  background: #7BB66D; 
+}
+.main-content-products::-webkit-scrollbar-track {
+  background: none; 
+}
+
+
+
 .welcome-text {
   font-family: "Koulen", sans-serif;
   color: #8fc064;
@@ -19,10 +81,273 @@
   text-align: center;
 }
 
-/* Estilo del footer */
-footer {
-  background-color: #8fc064;
-  color: #fff;
-  text-align: center;
-  padding: 10px 0;
+.details {
+  position: relative;
+  margin: auto;
+  padding: 12px 18px;
+  transition: all 0.2s ease;
+  border: none;
+  background: none;
+  cursor: pointer;
 }
+
+.details:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  border-radius: 50px;
+  background: #7BB668;
+  width: 45px;
+  height: 45px;
+  transition: all 0.3s ease;
+}
+
+.details span {
+  position: relative;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #FCF3E3;
+}
+
+.details svg {
+  position: relative;
+  top: 0;
+  margin-left: 10px;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: #FCF3E3;
+  stroke-width: 2;
+  transform: translateX(-5px);
+  transition: all 0.3s ease;
+}
+
+.details:hover:before {
+  width: 100%;
+  background: #84ca6a;
+}
+
+.details:hover svg {
+  transform: translateX(0);
+}
+
+.details:active {
+  transform: scale(0.95);
+}
+
+
+.card {
+  border: none;
+  border-radius: 15px; /* Bordes redondeados */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  background-color: #bdd3cec3; /* Fondo blanco para las tarjetas */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animación para efecto hover */
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.card:hover {
+  transform: translateY(-5px); /* Efecto de elevarse */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Sombra más intensa en hover */
+}
+
+/* Imagen del producto */
+.card-img-top {
+  width: 100%;
+  height: 200px;
+  object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+  transition: transform 0.3s ease; /* Efecto zoom en hover */
+  border-radius: 15px 15px 0 0;
+  overflow: hidden;
+  display: flex;
+  justify-self: center;
+  margin-left: 0;
+}
+
+.card-img-top:hover {
+  transform: scale(1.05); /* Efecto de zoom en la imagen */
+}
+
+/* Contenido de la tarjeta */
+.card-body {
+  padding: 20px;
+  text-align: center;
+}
+
+/* Título del producto */
+.card-title {
+  font-family: 'Koulen', sans-serif;
+  color: #f39029;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  transition: color 0.3s ease;
+}
+
+.card-title:hover {
+  color: #ff9800; /* Cambio de color en hover */
+}
+
+/* Descripción del producto */
+.card-text {
+  font-size: 0.9rem;
+  color: #757575;
+  margin-bottom: 15px;
+}
+
+/* Precio */
+.card-price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #FCF3E3;
+  margin-bottom: 20px;
+}
+
+/*botón carro*/
+.btn-cart-products {
+  position: relative;
+  overflow: hidden;
+  outline: none;
+  cursor: pointer;
+  border-radius: 15px;
+  border: none;
+  background-image: linear-gradient(
+    90.1deg,
+    #f6ad6d 0.2%,
+    #ff7700  99.9%
+  );
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.default-btn {
+  background-image: linear-gradient(
+    90.1deg,
+    #f6ad6d 0.2%,
+    #ff7700 99.9%
+  );
+}
+
+.default-btn,
+.hover-btn {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 1em 3em;
+  border-radius: 0px;
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: none;
+  transition: all 0.3s ease;
+}
+
+.hover-btn {
+  position: absolute;
+  inset: 0;
+  font-size: 16px;
+  padding: 1em 3em;
+  text-align: center;
+  background: #7BB66D;
+  background: linear-gradient(
+    63deg,
+    #7BB668
+  );
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  transform: translate(0%, 100%);
+}
+
+.default-btn span {
+  color: hsl(0, 0%, 100%);
+  margin-left: 20px;
+}
+
+.hover-btn span {
+  color: hsl(0, 0%, 100%);
+}
+
+.btn-cart-products:hover .default-btn {
+  transform: translate(0%, -100%);
+}
+
+.btn-cart-products:hover .hover-btn {
+  transform: translate(0%, 0%);
+}
+
+
+/*.card-button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ff9800;
+  color: white;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.card-button:hover {
+  background-color: #f57c00; 
+}
+
+.card-button:disabled {
+  background-color: #ccc; 
+}*/
+
+/* Aseguramos que las tarjetas tengan un aspecto responsivo */
+@media (max-width: 768px) {
+  .card-img-top {
+    height: 180px; /* Reducción del tamaño de la imagen */
+  }
+
+  .card-body {
+    padding: 15px;
+  }
+
+  .card-title {
+    font-size: 1rem;
+  }
+
+  .card-price {
+    font-size: 1rem;
+  }
+}
+
+/* Estilo del contenedor de productos */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+
+@media (max-width: 768px){
+  .absolute-products-container{
+    margin-top: 20%;
+  }
+  .main-content{
+    top: 10%;
+  }
+}
+
+
+@media (max-width: 480px){
+  .absolute-products-container{
+    margin-top: 30%;
+  }
+  .main-content{
+    top: 10%;
+  }
+}
+
+

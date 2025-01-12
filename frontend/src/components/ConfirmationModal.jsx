@@ -9,10 +9,10 @@ const ConfirmationModal = ({ show, handleYes, handleNo, response }) => {
       </Modal.Header>
       <Modal.Body>{response}</Modal.Body>
       <Modal.Footer>
-        <Button variant="primary" onClick={handleYes}>
-          Yes
+        <Button variant="danger" onClick={handleYes}>
+          Sí
         </Button>
-        <Button variant="secondary" onClick={handleNo}>
+        <Button variant="primary" onClick={handleNo}>
           No
         </Button>
       </Modal.Footer>

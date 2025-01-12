@@ -8,7 +8,7 @@
   src: url("../fonts/AoboshiOne-Regular.ttf") format("truetype");
 }
 
-body {
+/*body {
     background-position: center bottom;
     background-size: 60%;
     background-repeat: no-repeat;
@@ -19,7 +19,7 @@ body {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-}
+}*/
 
 .dog__animation {
   max-width: 100%;
@@ -230,7 +230,7 @@ body {
     overflow: visible;
     bottom: 0;
     background-color: #FCF3E3;
-    top: -20%;
+    top: -40%;
 }
 
 .divider-footer-home {

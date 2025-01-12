@@ -9,8 +9,8 @@ import ForgetPassword from "./pages/forget-password";
 import UserProfile from "./pages/user-profile";
 import Home from "./pages/home";
 import LoadingPage from "./components/loading-page";
-import RegisterPetClient from "./pages/pet-register-client";
-import PetProfile from "./pages/pet-profile";
+import RegisterPet from "./pages/pet-register";
+import PetProfileClient from "./pages/pet-profile-client";
 import Resume from "./pages/resume";
 import Logout from "./pages/logout";
 import PublishReview from "./pages/publish-review";
@@ -19,7 +19,11 @@ import Footer from "./components/Footer";
 import Navbar from "./components/navbar";
 import Productos from "./pages/productos";
 import Adoptions from "./pages/adoptions";
-import api from "./api"; // Importamos la API
+import PetProfileFoundation from "./pages/pet-profile-foundation";
+import Servicios from "./pages/servicios";
+import Pedidos from "./pages/mis-pedidos";
+import CreacionAdopcion from "./pages/creacion-de-adopcion";
+import Pedido from "./pages/pedido";
 
 function App() {
   const [numItemsCarrito, setNumeroItemsCarrito] = useState(0);
@@ -59,11 +63,11 @@ function App() {
         />
         <Route path="/forget-password" element={<ForgetPassword />}></Route>
         {/*<Route path="/loading-page" element={<LoadingPage />}></Route>*/}
+        <Route path="/register-pet" element={<RegisterPet />}></Route>
         <Route
-          path="/register-pet-client"
-          element={<RegisterPetClient />}
+          path="/pet-profile-client"
+          element={<PetProfileClient />}
         ></Route>
-        <Route path="/pet-profile" element={<PetProfile />}></Route>
         <Route path="/publish-review" element={<PublishReview />} />
         <Route path="/infor-product" element={<InfoProduct />} />
         <Route path="/resume" element={<Resume />}></Route>
@@ -73,6 +77,14 @@ function App() {
         <Route path="/productos/:slug" element={<InfoProduct />} />{" "}
         {/* Cambia id por slug */}
         <Route path="/adopcion" element={<Adoptions />} />
+        <Route
+          path="/pet-profile-foundation"
+          element={<PetProfileFoundation />}
+        />
+        <Route path="/servicios" element={<Servicios />} />
+        <Route path="/mis-pedidos" element={<Pedidos />} />
+        <Route path="/crear-adopcion" element={<CreacionAdopcion />} />
+        <Route path="/mi-pedido" element={<Pedido />} />
       </Routes>
     </BrowserRouter>
   );

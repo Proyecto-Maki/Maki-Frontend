@@ -5,6 +5,16 @@ import "../styles/user-profile.css"; // Importa el archivo CSS
 import { useNavigate } from "react-router-dom";
 import api from "../api";
 import ErrorModal from '../components/ErrorModal';
+import ConfirmationModal from "../components/ConfirmationModal";
+import SuccessModal from "../components/SuccessModal";
+
+import mascotas_img from "../img/iconosProfile/mascotas.svg";
+import pedidos_img from "../img/iconosProfile/pedidos.svg";
+import adopciones_img from "../img/iconosProfile/adopciones.svg";
+import donaciones_img from "../img/iconosProfile/donaciones.svg";
+import makipaws_img from "../img/iconosProfile/makipaws.svg";
+import clientes_img from "../img/Foto_Perfil_Clientes.svg";
+import fundaciones_img from "../img/Foto_Perfil_Fundaciones.svg";
 
 const ProfileIcon = ({ src, alt, title }) => {
   return (
@@ -19,6 +29,10 @@ const UserProfile = () => {
 
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [error, setError] = useState('');
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [response, setResponse] = useState("");
+  const [dirNavigate, setDirNavigate] = useState("");
   const [imageProfile, setImageProfile] = useState('');
   const navigate = useNavigate();
 
@@ -26,11 +40,21 @@ const UserProfile = () => {
     navigate('/login');
   }
 
+  const email = sessionStorage.getItem('email');
+  const token = sessionStorage.getItem('token');
+  const refresh = sessionStorage.getItem('refresh');
+  const es_cliente = sessionStorage.getItem('is_cliente');
+  const es_fundacion = sessionStorage.getItem('is_fundacion');
+  console.log(es_cliente);
+  const mascotas_url = es_cliente === 'true' ? 'pet-profile-client/' : 'pet-profile-foundation/';
+  console.log(mascotas_url)
   const [userData, setUserData] = useState({
     name: "",
     email: "",
     phone: "",
     address: "",
+    postal_code: "",
+    localidad: "",
     role: "",
   });
 
@@ -49,7 +73,7 @@ const UserProfile = () => {
           console.log(res.data);
           console.log(tem_email);
           if (res.data.is_cliente === true) {
-            setImageProfile('../src/img/Foto_Perfil_Clientes.svg');
+            setImageProfile(clientes_img);
             api
               .get(`cliente-profile/`, {
                 params: {
@@ -66,6 +90,8 @@ const UserProfile = () => {
                     email: res.data.email,
                     phone: res.data.telefono,
                     address: res.data.direccion,
+                    postal_code: res.data.codigo_postal ? res.data.codigo_postal : 'No hay código postal',
+                    localidad: res.data.localidad,
                     role: "Dueño de mascota",
                   })
                   //console.log('Información del usuario:', userData);
@@ -89,7 +115,7 @@ const UserProfile = () => {
                 }, 3000)
               });
           } else if (res.data.is_fundacion === true) {
-            setImageProfile('../src/img/Foto_Perfil_Fundaciones.svg');
+            setImageProfile(fundaciones_img);
             api
               .get('fundacion-profile/', {
                 params: {
@@ -106,6 +132,8 @@ const UserProfile = () => {
                     email: res.data.email,
                     phone: res.data.telefono,
                     address: res.data.direccion,
+                    postal_code: res.data.codigo_postal ? res.data.codigo_postal : 'No hay código postal',
+                    localidad: res.data.localidad,
                     role: "Fundación",
                   })
                   //console.log('Información del usuario:', userData);
@@ -162,11 +190,18 @@ const UserProfile = () => {
     setResponse('');
   };
 
+  const handleCloseSuccessModal = () => {
+    setShowSuccessModal(false);
+    setError("");
+    setResponse("");
+  };
+
   useEffect(() => {
     console.log('userData ha cambiado:', userData);
   }, [userData]);
 
-  const handleEliminarCuenta = () => {
+  const handleEliminarCuenta = async (e) => {
+    e.preventDefault();
     api
       .delete('cliente-profile-delete/', {
         params: {
@@ -199,6 +234,25 @@ const UserProfile = () => {
       });
   }
 
+  const handleYesConfirmationModal = async (e) => {
+
+    setIsLoading(true);
+    await new Promise(r => setTimeout(r, 2000));
+    await handleEliminarCuenta(e);
+    setIsLoading(false);
+    handleNoConfirmationModal();
+
+  }
+
+  const handleNoConfirmationModal = () => {
+    setShowConfirmationModal(false);
+  }
+
+  const handleOpenConfirmationModal = () => {
+    setShowConfirmationModal(true);
+  }
+
+
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -214,22 +268,25 @@ const UserProfile = () => {
     return <LoadingPage />;
   }
   return (
-    <>
+    <div className="absolute-container-user-profile">
       {/* Navbar */}
       <Navbar />
 
       {/* User Profile */}
+
       <div className="profile-container">
-        <div className="card profile-card">
+        <div className="content-user-profile">
           <div className="card-body p-4">
             <div className="d-flex">
               {/* Foto de perfil y botón de cerrar sesión */}
               <div className="flex-shrink-0 text-center">
-                <img
-                  src={imageProfile}
-                  alt="Profile"
-                  className="img-fluid"
-                />
+                <div className="image-user-profile">
+                  <img
+                    src={imageProfile}
+                    alt="Profile"
+                    className="img-fluid"
+                  />
+                </div>
                 <a href="/logout" className="logout-icon mt-3 d-block" title="Cerrar sesión">
                   <i className="fas fa-sign-out-alt"></i> Cerrar sesión
                 </a>
@@ -239,13 +296,14 @@ const UserProfile = () => {
                 <h2 className="nombreUserProfile">{userData.name}</h2>
                 <p className="correoUserProfile">{userData.email}</p>
                 <p className="numeroUserProfile">{userData.phone}</p>
-                <p className="direccionUserProfile">{userData.address}</p>
+                <p className="direccionUserProfile">{userData.address} | {userData.localidad} | Cód. Postal: {userData.postal_code}</p>
                 <p className="rolUserProfile">{userData.role}</p>
               </div>
               {/* Botón de editar */}
               <div className="button-container-userProfile">
-                <button className="edit-icon" title="Editar Perfil">
-                  <i className="fas fa-edit"></i>
+                <button className="button-edit">
+                  <svg className="svg-icon" fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><g stroke="#fcf3e3" stroke-linecap="round" stroke-width="2"><path d="m20 20h-16"></path><path clip-rule="evenodd" d="m14.5858 4.41422c.781-.78105 2.0474-.78105 2.8284 0 .7811.78105.7811 2.04738 0 2.82843l-8.28322 8.28325-3.03046.202.20203-3.0304z" fill-rule="evenodd"></path></g></svg>
+                  <span className="lable">Edit</span>
                 </button>
               </div>
             </div>
@@ -256,44 +314,73 @@ const UserProfile = () => {
 
       {/* Icons Section */}
       <div className="icons-container">
-        <div className="d-flex flex-row justify-content-center">
+        <div className="d-flex flex-wrap justify-content-center">
+          <a href={mascotas_url}>
+            <button className="btn-mascotas-user-profile" >
+              <ProfileIcon
+                src={mascotas_img}
+                alt="Mascotas"
+                title="Mascotas"
+                className="icon-user-profile"
+              />
+            </button>
+          </a>
+
           <ProfileIcon
-            src="../src/img/iconosProfile/mascotas.svg"
-            alt="Mascotas"
-            title="Mascotas"
-          />
-          <ProfileIcon
-            src="../src/img/iconosProfile/pedidos.svg"
+            src={pedidos_img}
             alt="Pedidos"
             title="Pedidos"
+            className="icon-user-profile"
           />
           <ProfileIcon
-            src="../src/img/iconosProfile/adopciones.svg"
+            src={adopciones_img}
             alt="Adopciones"
             title="Adopciones"
+            className="icon-user-profile"
           />
           <ProfileIcon
-            src="../src/img/iconosProfile/donaciones.svg"
+            src={donaciones_img}
             alt="Donaciones"
             title="Donaciones"
+            className="icon-user-profile"
           />
-          <ProfileIcon
-            src="../src/img/iconosProfile/makipaws.svg"
-            alt="Makipaws"
-            title="MakiPaws"
-          />
+          {es_cliente === 'true' && (
+            <ProfileIcon
+              src={makipaws_img}
+              alt="Makipaws"
+              title="MakiPaws"
+              className="icon-user-profile"
+            />
+          )}
+
         </div>
       </div>
       {/* Botón de Eliminar cuenta */}
       <div className="d-flex justify-content-center mt-4">
-        <button className="btn-delete-account"  title="Eliminar Cuenta">
+        <button className="btn-delete-account" title="Eliminar Cuenta" onClick={handleOpenConfirmationModal}>
           <i className="fas fa-trash-alt"></i> Eliminar Cuenta
         </button>
       </div>
 
       {/* <WelcomeModal show={showSuccessModal} handleClose={handleCloseSuccessModal} response={response} /> */}
-      <ErrorModal show={showErrorModal} handleClose={handleCloseErrorModal} error={error} />
-    </>
+      <SuccessModal
+        show={showSuccessModal}
+        handleClose={handleCloseSuccessModal}
+        response={response}
+        dirNavigate={dirNavigate}
+      />
+      <ErrorModal
+        show={showErrorModal}
+        handleClose={handleCloseErrorModal}
+        error={error}
+      />
+      <ConfirmationModal
+        show={showConfirmationModal}
+        handleYes={handleYesConfirmationModal}
+        handleNo={handleNoConfirmationModal}
+        response="¿Estás seguro de eliminar tu cuenta? Esta acción no se puede deshacer."
+      />
+    </div>
   );
 };
 

@@ -1,45 +1,46 @@
 /* Contenedor principal */
 
-.absolute-container-pet-foundation{
+.absolute-container-pet-profile{
   width: 100vw;
-  height: calc(100vh - 80px);
+  height: 100vh;
   overflow-y: auto;
   overflow-x: hidden;
   position: relative;
-  top: 4%;
+  padding-top: 6%;
+  background-color: #fdf0e6;
 }
-.container-pet-foundation {
-  justify-content: flex-start;
+.container-pet-profile {
   align-items: center;
   flex-direction: column;
   background-color: #fdf0e6;
   width: 100vw;
-  display: contents;
+  height: auto;
+  display: absolute;
 }
 
-.absolute-container-pet-foundation::-webkit-scrollbar{
+.absolute-container-pet-profile::-webkit-scrollbar{
   width: 5px;
   right: 5%;
   color: #FCF3E3;
 }
 
-.absolute-container-pet-foundation::-webkit-scrollbar-thumb {
+.absolute-container-pet-profile::-webkit-scrollbar-thumb {
   background: #ffcc80; 
   border-radius: 80px; 
 }
 
-.absolute-container-pet-foundation::-webkit-scrollbar-thumb:hover {
+.absolute-container-pet-profile::-webkit-scrollbar-thumb:hover {
   background: #ffa726; 
 }
 
-.absolute-container-pet-foundation::-webkit-scrollbar-track {
+.absolute-container-pet-profile::-webkit-scrollbar-track {
   background: none; 
 }
 
-.content-pet-foundation{
+.content-pet-profile{
   width: 100%;
   height: 100%;
-  margin-top: 8%;;
+  margin-top: 5%;;
   justify-content: center;
   align-items: center;
   display: flex;
@@ -47,15 +48,16 @@
 }
 
 /* Estilos del contenedor de tarjetas */
-.card-container {
+.card-container-pet-profile {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 57px 160px;
   justify-content: center;
+  margin-bottom: 5%;
 }
 
 /* Estilos de la tarjeta */
-.card-content {
+.card-content-pet-profile {
   position: relative;
   width: 450px;
   height: 320px;
@@ -65,13 +67,13 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.card-text{
+.card-text-pet-profile{
   padding-left: 80px;
   text-align: left;
 }
 
 /* Imagen de la mascota */
-.card-image {
+.card-image-pet-profile {
   position: absolute;
   top: 20px;
   left: -85px;
@@ -103,16 +105,16 @@
   color: #ff6347;
 }
 
-.card-text h3 {
+.card-text-pet-profile h3 {
   color: #Fcf3e3;
   font-weight: bold;
 }
 
-.card-text  p {
+.card-text-pet-profile  p {
   color: #302F2F;
 }
 
-.card-text p strong {
+.card-text-pet-profile p strong {
   color: #302F2F;
 }
 
@@ -125,26 +127,27 @@ h2 {
 /* pantallas pequeñas */
 @media (max-width: 768px){
 
-  .container-pet-foundation {
+  .container-pet-profile {
     width: 100vw;
     display: flex;
 
   }
 
-  .content-pet-foundation {
+  .content-pet-profile {
     width: 100%;
     margin-top: 8%;
     /*margin-top: 70%;*/
     padding: 10px 10px;
   }
 
-  .card-container {
+  .card-container-pet-profile {
     grid-template-columns: 1fr;
     gap: 90px; 
     padding: 0 30vw; 
+    margin-bottom: 8%;
   }
 
-  .card-content {
+  .card-content-pet-profile {
     width: 100%; 
     height: 100%; 
     padding: 0 10vw; 
@@ -153,7 +156,7 @@ h2 {
     margin-top: 50px;
   }
 
-  .card-image {
+  .card-image-pet-profile {
     position: absolute; 
     margin: 0 auto 15px auto; 
     left: 70%;
@@ -164,17 +167,17 @@ h2 {
     width: 105px;
   }
 
-  .card-text {
+  .card-text-pet-profile {
     padding-left: 0; 
     text-align: center; 
     padding-top: 30%;
   }
 
-  .card-text h3 {
+  .card-text-pet-profile h3 {
     font-size: 18px;
   }
 
-  .card-text p {
+  .card-text-pet-profile p {
     font-size: 14px;
   }
 
@@ -188,6 +191,14 @@ h2 {
     font-size: 16px; 
   }
 
+  .button-container-pet-profile{
+    position: relative;
+    right: 10%;
+  }
+
+  .heading-pet-profile{
+    margin-bottom: 10%;
+  }
 
 }
 
@@ -195,66 +206,70 @@ h2 {
 @media (min-width: 768px) and (max-width: 1024px) {
   
 
-  .container-pet-foundation {
+  .container-pet-profile {
     width: 100vw;
     display: flex;
   }
 
-  .content-pet-foundation{
+  .content-pet-profile{
     width: 100%;
     margin-top: 0%;
     padding: 10px;
     display: flex;
     
   }
-  .card-container {
+  .card-container-pet-profile {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 50px;
     
   }
-  .card-content {
+  .card-content-pet-profile {
     width: 100%;
     max-width: 350px;
     height: auto;
     padding: 10px;
   }
-  .card-image {
+  .card-image-pet-profile {
     width: 80px;
     height: 80px;
   }
-  .card-text{
+  .card-text-pet-profile{
     padding-left: 10%;
     text-align: left; 
     padding-top: 8%;
   }
-  .card-text h3 {
+  .card-text-pet-profile h3 {
     font-size: 18px;
   }
 
-  .card-text p {
+  .card-text-pet-profile p {
     font-size: 14px;
   }
   
 }
 
-.heading-pet-foundation{
+.heading-pet-profile{
   width: 95vw;
   height: 10vh;
   display: grid;
   grid-template-columns: 1fr;
   gap: 10px;
+  justify-content: center;
+  align-items: center;
 }
 
-.button-container-foundation{
+.button-container-pet-profile{
   width: 100px;
   height: 30px;
-  position: relative;
-  top: -200%;
-  left: 30%;
+  position: absolute;
+  left: 80%;
   justify-self: center;
+  justify-content: center;
+  align-items: center;
+
 }
 
-.button-add-pet-foundation {
+.button-add-pet-profile {
   --main-focus: #2d8cf0;
   --font-color: #fcf3e3;
   --bg-color-sub: #a2bf9b;
@@ -273,17 +288,17 @@ h2 {
   overflow: hidden;
 }
 
-.button-add-pet-foundation, .button__icon, .button__text {
+.button-add-pet-profile, .button__icon, .button__text {
   transition: all 0.3s;
 }
 
-.button-add-pet-foundation .button__text {
+.button-add-pet-profile .button__text {
   transform: translateX(22px);
   color: var(--font-color);
   font-weight: 600;
 }
 
-.button-add-pet-foundation .button__icon {
+.button-add-pet-profile .button__icon {
   position: absolute;
   transform: translateX(109px);
   height: 100%;
@@ -295,25 +310,25 @@ h2 {
   color: #Fcf3e3;
 }
 
-.button-add-pet-foundation .svg {
+.button-add-pet-profile .svg {
   width: 20px;
   fill: var(--main-color);
 }
 
-.button-add-pet-foundation:hover {
+.button-add-pet-profile:hover {
   background: var(--bg-color);
 }
 
-.button-add-pet-foundation:hover .button__text {
+.button-add-pet-profile:hover .button__text {
   color: transparent;
 }
 
-.button-add-pet-foundation:hover .button__icon {
+.button-add-pet-profile:hover .button__icon {
   width: 148px;
   transform: translateX(0);
 }
 
-.button-add-pet-foundation:active {
+.button-add-pet-profile:active {
   transform: translate(3px, 3px);
   box-shadow: 0px 0px var(--main-color);
 }

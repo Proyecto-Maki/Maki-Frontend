@@ -1,0 +1,187 @@
+/* General */
+.absolute-container-resumen-pedido {
+    width: 100vw;
+    height: calc(100vh - 50px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-top: 5%;
+    position: relative;
+    top: 0;
+}
+
+.background-container-resumen-pedido {
+    background-color: #fdf0e6;
+    padding: 10px 20px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    padding-top: 5%;
+}
+
+.content-container-resumen {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.info-pedido-card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    width: 80vw;
+    margin-bottom: 30px;
+}
+
+.fila-superior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #f4a258; 
+    padding-bottom: 10px; 
+}
+
+.pedido-id {
+    font-size: 32px;
+    font-weight: bold;
+    color: #7BB66D;
+}
+
+.fila-intermedia {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column; 
+    text-align: left; 
+}
+
+.pedido-total, .pedido-fecha {
+    font-size: 1rem;
+    color: #555;
+    display: flex;
+    justify-content: space-between; 
+    width: 100%; 
+}
+
+/* Contenedor grande de productos */
+.productos-container {
+    width: 80vw;
+    margin-bottom: 30px;
+    background-color: white;
+    border-radius: 20px;
+}
+
+.producto-card {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    padding: 15px;
+    margin: 10px 0;
+    width: 100%;
+    justify-content: space-between;
+    border-bottom: 1px dotted gray;
+}
+
+.producto-imagen {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 15px;
+}
+
+.producto-detalles {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.producto-nombre {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.producto-precio {
+    font-size: 1rem;
+    color: #777;
+}
+
+/* Sección para la cantidad */
+.producto-cantidad {
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+}
+
+.cantidad-text {
+    margin: 0; 
+    font-size: 1rem;
+    color: #333;
+    font-weight: bold;
+}
+
+.cantidad-numero {
+    display: inline-block; 
+    width: 50px; 
+    height: 30px; 
+    background-color: #BDD3CE; 
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center; 
+    line-height: 30px; 
+    border-radius: 10px; 
+}
+
+
+.eliminar-pedido-btn {
+    background-color: #BDD3CE;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px; 
+    transition: background-color 0.3s ease;
+    margin-bottom: 30px; 
+}
+
+.eliminar-pedido-btn:hover {
+    background-color: #98B1AA;
+}
+
+/* Estilo para el ícono de "X" */
+.eliminar-pedido-btn i {
+    color: #f4a258; 
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.eliminar-pedido-btn:hover i {
+    transform: rotate(360deg) scale(1.2); 
+}
+
+
+/* Estilo para el título "Resumen" dentro del contenedor de productos */
+.productos-container .resumen-titulo {
+    width: 100%;
+    padding-top: 1rem;
+    margin-bottom: 20px;
+    padding-left: 20px;
+    font-size: 32px;
+}
+
+.productos-container .resumen-titulo h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #7BB66D; 
+    margin: 0;
+}
+
