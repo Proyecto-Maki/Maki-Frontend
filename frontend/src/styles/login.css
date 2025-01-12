@@ -98,7 +98,8 @@
 
 /* Form */
 .login-form {
-  margin: 0 auto;
+  margin: 0;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
