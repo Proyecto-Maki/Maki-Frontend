@@ -127,7 +127,7 @@ function Productos() {
                         onClick={() => agregar_producto(producto)}
                         disabled={inCart[producto.id]}
                       >
-                        <div class="default-btn">
+                        <div className="default-btn">
                           <svg
                             viewBox="0 0 24 24"
                             width="20"
@@ -143,7 +143,11 @@ function Productos() {
                             <circle cx="20" cy="21" r="1"></circle>
                             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                           </svg>
-                          <span>Agregar al carrito</span>
+                          <span>
+                            {inCart[producto.id]
+                              ? "Agregado"
+                              : "Agregar al carrito"}
+                          </span>
                         </div>
                         <div class="hover-btn">
                           <svg
@@ -159,7 +163,6 @@ function Productos() {
                           </svg>
                           <span>${producto.precio}</span>
                         </div>
-                        {inCart ? "Agregado" : ""}
                       </button>
                     </div>
                   </div>
