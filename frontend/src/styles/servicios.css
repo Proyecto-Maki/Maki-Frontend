@@ -9,6 +9,24 @@
     overflow-y: auto;
 }
 
+.servicios-container::-webkit-scrollbar{
+    width: 10px;
+    color: #FCF3E3;
+}
+
+.servicios-container::-webkit-scrollbar-thumb {
+    background: #ffcc80; 
+    border-radius: 80px; 
+}
+
+.servicios-container::-webkit-scrollbar-thumb:hover {
+    background: #ffa726; 
+}
+
+.servicios-container::-webkit-scrollbar-track {
+    background: none; 
+}
+
 /* Banners */
 .banners {
     display: flex;
