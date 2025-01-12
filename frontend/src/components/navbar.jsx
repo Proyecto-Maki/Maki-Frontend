@@ -17,7 +17,7 @@ function Navbar() {
   const [userLogin, setUserLogin] = useState(false); // Variable de estado para saber si el usuario está logueado
 
   useEffect(() => {
-    if (sessionStorage.getItem('token') !== null && sessionStorage.getItem('refreshToken') !== null && sessionStorage.getItem('email') !== null && sessionStorage.getItem('is_cliente') !== null && sessionStorage.getItem('is_fundacion') !== null) {
+    if (sessionStorage.getItem('token') !== null && sessionStorage.getItem('refresh') !== null && sessionStorage.getItem('email') !== null && sessionStorage.getItem('is_cliente') !== null && sessionStorage.getItem('is_fundacion') !== null) {
       setUserLogin(true);
     }
   }, []);
