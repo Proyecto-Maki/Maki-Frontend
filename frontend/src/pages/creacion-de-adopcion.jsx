@@ -5,28 +5,14 @@ import logo from "../img/Logotipo Maki.png"; // Ruta al logo
 const CreacionAdopcion = () => {
     const datosMascota = {
         imagen: '../src/img/catPfp.jpeg',
-        nombre: 'Miau',
-        tipo: 'Gato',
-        raza: 'Siames',
-        salud: 'Excelente',
-        sexo: 'Macho',
-        edad: '2 años',
-        tamaño: 'Mediano',
-        peso: '4 kg',
-        ubicacion: 'Ciudad de México',
+        Localidad: 'Teusaquillo',
+        direccion: 'cra26',
         personalidad: 'Juguetón, amigable y cariñoso'
     };
 
     // Estado para manejar el formulario
-    const [nombre, setNombre] = useState(datosMascota.nombre);
-    const [tipo, setTipo] = useState(datosMascota.tipo);
-    const [raza, setRaza] = useState(datosMascota.raza);
-    const [estadoSalud, setEstadoSalud] = useState(datosMascota.salud);
-    const [sexo, setSexo] = useState(datosMascota.sexo);
-    const [edad, setEdad] = useState(datosMascota.edad);
-    const [tamano, setTamano] = useState(datosMascota.tamaño);
-    const [peso, setPeso] = useState(datosMascota.peso);
-    const [ubicacion, setUbicacion] = useState('');
+    const [localidad, setLocalidad] = useState(datosMascota.localidad);
+    const [direccion, setDireccion] = useState(datosMascota.direccion);
     const [personalidad, setPersonalidad] = useState('');
 
 
@@ -38,7 +24,7 @@ const CreacionAdopcion = () => {
                 {/* Logo Maki encima del formulario */}
                 <div className="logo-container">
                     <img
-                        src={logo} // Usando la imagen de datosMascota
+                        src={logo} 
                         alt="Logo Maki"
                         className="logo-img"
                         style={{ height: "100px" }}
@@ -46,7 +32,6 @@ const CreacionAdopcion = () => {
                 </div>
                 <div className="crear-adopcion-container">
                     <form >
-                        {/* Foto de la mascota */}
                         <div className="photo-container-creacion-adopcion">
                             <img
                                 src={datosMascota.imagen}
@@ -55,34 +40,55 @@ const CreacionAdopcion = () => {
                             />
                         </div>
 
-                        <div className="form-group">
-                            <label className="label-creacion-adopcion-breed">Imagen</label>
-                            <div className="tooltip-creacion-adopcion">
-                                <input
-                                    accept="image/png,image/jpeg"
-                                    type="file"
-                                    className="input-creacion-adopcion-breed"
-                                    placeholder="Ingresa la raza de tu mascota"
-                                    name="imagen"
-                                    id="imagen-mascota"
-                                />
+                        <div className="form-row">
+                            <div className="form-group col-md-6">
+                                <label className="label-creacion-adopcion-locality">
+                                    Localidad de residencia
+                                </label>
+                                <div className="tooltip-creacion-adopcion">
+                                    <select
+                                        className="input-creacion-adopcion-locality"
+                                        name="localidad"
+                                        value={localidad}
+                                        onChange={(e) => setLocalidad(e.target.value)}
+                                        required
+                                    >
+                                        <option defaultValue>Selecciona...</option>
+                                        <option value={1}>Usaquén</option>
+                                        <option value={2}>Chapinero</option>
+                                        <option value={3}>Santa Fe</option>
+                                        <option value={4}>San Cristóbal</option>
+                                        <option value={5}>Usme</option>
+                                        <option value={6}>Tunjuelito</option>
+                                        <option value={7}>Bosa</option>
+                                        <option value={8}>Kennedy</option>
+                                        <option value={9}>Fontibón</option>
+                                        <option value={10}>Engativá</option>
+                                        <option value={11}>Suba</option>
+                                        <option value={12}>Barrios Unidos</option>
+                                        <option value={13}>Teusaquillo</option>
+                                        <option value={14}>Los Mártires</option>
+                                        <option value={15}>Antonio Nariño</option>
+                                        <option value={16}>Puente Aranda</option>
+                                        <option value={17}>La Candelaria</option>
+                                        <option value={18}>Rafael Uribe Uribe</option>
+                                        <option value={19}>Ciudad Bolívar</option>
+                                        <option value={20}>Sumapaz</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
 
-                        {/* Nombre de la mascota */}
-                        <div className="form-group">
-                            <label className="label-creacion-adopcion-name">
-                                ¿Cómo se llama tu mascota?
-                            </label>
-                            <div className="input-photo-container">
+                            {/* dirección */}
+                            <div className="form-group col-md-6">
+                                <label className="label-creacion-adopcion-direction">Dirección</label>
                                 <div className="tooltip-creacion-adopcion">
                                     <input
                                         type="text"
-                                        className="input-creacion-adopcion-name"
-                                        placeholder="Ingresa el nombre de tu mascota"
-                                        name="nombre"
-                                        value={nombre}
-                                        onChange={(e) => setNombre(e.target.value)}
+                                        className="input-creacion-adopcion-direction"
+                                        placeholder="Ingresa tu dirección exacta"
+                                        name="direccion"
+                                        value={direccion}
+                                        onChange={(e) => setDireccion(e.target.value)}
                                         required
                                     />
                                 </div>
@@ -90,176 +96,7 @@ const CreacionAdopcion = () => {
                         </div>
 
                         <div className="form-row">
-                            {/* Tipo de mascota */}
-                            <div className="form-group col-md-6">
-                                <label className="label-creacion-adopcion-type">
-                                    ¿Qué tipo de mascota tienes?
-                                </label>
-                                <div className="tooltip-creacion-adopcion">
-                                    <select
-                                        className="input-creacion-adopcion-type"
-                                        name="tipo"
-                                        value={tipo}
-                                        onChange={(e) => setTipo(e.target.value)}
-                                        required
-                                    >
-                                        <option defaultValue>Selecciona...</option>
-                                        <option>Perro</option>
-                                        <option>Gato</option>
-                                        <option>Roedor</option>
-                                        <option>Ave</option>
-                                        <option>Reptil</option>
-                                        <option>Pez</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            {/* Raza de la mascota */}
-                            <div className="form-group col-md-6">
-                                <label className="label-creacion-adopcion-breed">Raza</label>
-                                <div className="tooltip-creacion-adopcion">
-                                    <input
-                                        type="text"
-                                        className="input-creacion-adopcion-race"
-                                        placeholder="Ingresa la raza de tu mascota"
-                                        name="raza"
-                                        value={raza}
-                                        onChange={(e) => setRaza(e.target.value)}
-                                        required
-                                    />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="form-row">
-                            {/* Estado de salud */}
-                            <div className="form-group col-md-6">
-                                <label className="label-creacion-adopcion-type">
-                                    Estado de salud
-                                </label>
-                                <div className="tooltip-creacion-adopcion">
-                                    <select
-                                        className="input-creacion-adopcion-type"
-                                        name="estado_salud"
-                                        value={estadoSalud}
-                                        onChange={(e) => setEstadoSalud(e.target.value)}
-                                        required
-                                    >
-                                        <option defaultValue>Selecciona...</option>
-                                        <option>Saludable</option>
-                                        <option>Enfermo</option>
-                                        <option>Recuperación</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            {/* Sexo de la mascota */}
-                            <div className="form-group col-md-6">
-                                <label htmlFor="input-pet-size" className="label-creacion-adopcion-size">
-                                    Sexo
-                                </label>
-                                <div className="tooltip-creacion-adopcion">
-                                    <select
-                                        id="input-pet-sexo"
-                                        className="input-creacion-adopcion-size"
-                                        name="sexo"
-                                        value={sexo}
-                                        onChange={(e) => setSexo(e.target.value)}
-                                        required
-                                    >
-                                        <option defaultValue>Selecciona...</option>
-                                        <option value="M">Macho</option>
-                                        <option value="H">Hembra</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="form-row">
-                            {/* Edad de la mascota */}
-                            <div className="form-group col-md-6">
-                                <label htmlFor="input-pet-age" className="label-creacion-adopcion-age">
-                                    Edad
-                                </label>
-                                <div className="tooltip-creacion-adopcion">
-                                    <input
-                                        type="number"
-                                        className="input-creacion-adopcion-age"
-                                        id="input-pet-age"
-                                        placeholder="Ingresa la edad de tu mascota"
-                                        name="edad"
-                                        value={edad}
-                                        onChange={(e) => setEdad(e.target.value)}
-                                        required
-                                        min={0}
-                                        max={50}
-                                    />
-                                </div>
-                            </div>
-
-                            {/* Tamaño de la mascota */}
-                            <div className="form-group col-md-4">
-                                <label htmlFor="input-pet-size" className="label-creacion-adopcion-size">
-                                    Tamaño
-                                </label>
-                                <div className="tooltip-creacion-adopcion">
-                                    <select
-                                        id="input-pet-size"
-                                        className="input-creacion-adopcion-size"
-                                        name="tamano"
-                                        value={tamano}
-                                        onChange={(e) => setTamano(e.target.value)}
-                                        required
-                                    >
-                                        <option defaultValue>Selecciona...</option>
-                                        <option value="P">Pequeño</option>
-                                        <option value="M">Mediano</option>
-                                        <option value="G">Grande</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            {/* Peso de la mascota */}
-                            <div className="form-group col-md-2">
-                                <label htmlFor="input-pet-weight" className="label-creacion-adopcion-weight">
-                                    Peso
-                                </label>
-                                <div className="tooltip-creacion-adopcion">
-                                    <input
-                                        type="number"
-                                        className="input-creacion-adopcion-weight"
-                                        id="input-pet-weight"
-                                        placeholder="Peso en kg"
-                                        name="peso"
-                                        value={peso}
-                                        onChange={(e) => setPeso(e.target.value)}
-                                        min={0.1}
-                                        max={120}
-                                        required
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="form-row">
-                            {/* Ubicación de la mascota */}
-                            <div className="form-group col-md-6">
-                                <label className="label-creacion-adopcion-ubicacion">
-                                    Ubicación
-                                </label>
-                                <div className="input-photo-container">
-                                    <div className="tooltip-creacion-adopcion">
-                                        <input
-                                            type="text"
-                                            className="input-creacion-adopcion-ubicacion"
-                                            placeholder="Ingresa la ubicacion de tu mascota"
-                                            name="ubicacion"
-                                            value={ubicacion}
-                                            onChange={(e) => setUbicacion(e.target.value)}
-                                            required
-                                        />
-                                    </div>
-                                </div>
-                            </div>
+                            {/*personalidad*/}
                             <div className="form-group col-md-6">
                                 <label className="label-creacion-adopcion-personalidad">
                                     Personalidad

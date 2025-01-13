@@ -6,7 +6,8 @@
   overflow-x: hidden;
   position: relative;
   padding-top: 6%;
-  background-color: #fdf0e6; /* Color de fondo global */
+  background-color: #fdf0e6; 
+  border: 2px solid red;
 }
 
 .absolute-container-creacion-adopcion::-webkit-scrollbar {
@@ -64,9 +65,9 @@
   margin: 0 auto;
   padding: 30px;
   background-color: #fdf0e6;
-  border-radius: 8px;
+  border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border: 2px solid #BDD3CE;
+  border: 3px solid #BDD3CE;
 }
 
 
@@ -75,29 +76,18 @@
   margin-bottom: 10px; 
 }
 
-.label-creacion-adopcion-breed,
-.label-creacion-adopcion-name,
-.label-creacion-adopcion-type,
-.label-creacion-adopcion-size,
-.label-creacion-adopcion-age,
-.label-creacion-adopcion-weight,
-.label-creacion-adopcion-personalidad,
-.label-creacion-adopcion-ubicacion {
+.label-creacion-adopcion-direction,
+.label-creacion-adopcion-locality,
+.label-creacion-adopcion-personalidad {
   display: block;
   font-size: 1rem;
   margin-bottom: 8px;
   color: #333;
 }
 
-.input-creacion-adopcion-name,
-.input-creacion-adopcion-race,
-.input-creacion-adopcion-illness,
-.input-creacion-adopcion-age,
-.input-creacion-adopcion-weight,
-.input-creacion-adopcion-size,
-.input-creacion-adopcion-type,
+.input-creacion-adopcion-locality,
 .input-creacion-adopcion-personalidad,
-.input-creacion-adopcion-ubicacion {
+.input-creacion-adopcion-direction {
   width: 100%;
   padding: 10px; 
   font-size: 1rem;
@@ -107,14 +97,10 @@
   transition: border-color 0.3s ease;
 }
 
-.input-creacion-adopcion-name:focus,
-.input-creacion-adopcion-race:focus,
-.input-creacion-adopcion-illness:focus,
-.input-creacion-adopcion-age:focus,
-.input-creacion-adopcion-weight:focus,
-.input-creacion-adopcion-size:focus,
-.input-creacion-adopcion-type:focus {
-  border-color: #007bff;
+.input-creacion-adopcion-locality:focus,
+.input-creacion-adopcion-personalidad:focus,
+.input-creacion-adopcion-direction:focus{
+  border-color: #b9f1e4;
   outline: none;
 }
 
