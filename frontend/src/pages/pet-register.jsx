@@ -18,6 +18,8 @@ const RegisterPetClient = () => {
     navigate('/login');
   }
 
+  const tipoUsuario = sessionStorage.getItem('is_cliente') === 'true' ? 'dueño de mascotas' : 'fundacion';
+
   const email = sessionStorage.getItem('email');
   const token = sessionStorage.getItem('token');
   const refresh = sessionStorage.getItem('refresh');
@@ -338,7 +340,7 @@ const RegisterPetClient = () => {
         <div className="register-pet-container">
           <form >
             <h2>
-              ¡Hola! Eres dueño de mascotas ¡Nos gustaría que la registraras!
+              ¡Hola! Eres {tipoUsuario} ¡Nos gustaría que la registraras!
             </h2>
 
             <div className="photo-container">
