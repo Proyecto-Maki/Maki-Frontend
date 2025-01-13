@@ -120,12 +120,12 @@ function Navbar() {
                   </div>
 
                   {/* Foto de perfil */}
-                  <div className="profile-photo">
+                  <div className="profile-photo-navbar">
                     <a href="/user-profile">
                       <img
                         src={userProfileImage}
                         alt="Foto de perfil"
-                        className="img-profile"
+                        className="img-profile-navbar"
                         style={{
                           width: "40px",
                           height: "40px",

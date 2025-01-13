@@ -95,10 +95,19 @@
   align-items: center;
 }
 
-.profile-photo img {
-  width: 50px;
-  height: 50px;
+.profile-photo-navbar {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 50%;
+  margin: auto;
+}
+
+.profile-photo-navbar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* Navbar para pantallas pequeñas */
@@ -175,7 +184,7 @@
     margin-right: 8px;
   }
 
-  .profile-photo img {
+  .profile-photo-navbar img {
     width: 35px;
     height: 35px;
   }
