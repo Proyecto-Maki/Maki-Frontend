@@ -66,7 +66,6 @@ function PetProfileFoundation() {
   const [response, setResponse] = useState("");
   const [isEditarOpen, setIsEditarOpen] = useState(false);
   const [mascotaIdEliminar, setMascotaIdEliminar] = useState(0);
-  const [isAdoptarOpen, setIsAdoptarOpen] = useState(false);
   const navigate = useNavigate();
 
   if (!sessionStorage.getItem('token') && !sessionStorage.getItem('email') && !sessionStorage.getItem('refresh')) {
