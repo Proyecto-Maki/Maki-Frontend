@@ -60,7 +60,7 @@ const Footer = () => {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/acerca">
+              <a className="nav-link" href="/sobre-maki">
                 Acerca de Maki
               </a>
             </li>
