@@ -1,4 +1,4 @@
-.absolute-pedidos-container {
+.absolute-pedidos-container-mi {
   width: 100vw;
   height: 100vh;
   overflow-y: auto;
@@ -8,7 +8,7 @@
   background-color: #fdf0e6;
 }
 
-.contenedor-pedidos {
+.contenedor-pedidos-mi {
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -16,7 +16,7 @@
   background-color: transparent;
 }
 
-.tarjeta-pedido {
+.tarjeta-pedido-mi {
   display: flex;
   flex-direction: column;
   background-color: #ffd86e;
@@ -30,43 +30,52 @@
   justify-content: center;
 }
 
-.absolute-pedidos-container::-webkit-scrollbar {
+.absolute-pedidos-container-mi::-webkit-scrollbar {
   width: 10px;
   color: #FCF3E3;
 }
 
-.absolute-pedidos-container::-webkit-scrollbar-thumb {
+.absolute-pedidos-container-mi::-webkit-scrollbar-thumb {
   background: #ffcc80;
   border-radius: 80px;
 }
 
-.absolute-pedidos-container::-webkit-scrollbar-thumb:hover {
+.absolute-pedidos-container-mi::-webkit-scrollbar-thumb:hover {
   background: #ffa726;
 }
 
-.absolute-pedidos-container::-webkit-scrollbar-track {
+.absolute-pedidos-container-mi::-webkit-scrollbar-track {
   background: none;
 }
 
-.fila-superior {
+.fila-superior-mi {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   border-bottom: #fff solid 1px;
+  margin-left: 2rem;
+  margin-right: 2rem;
 }
 
-.icono {
+.id-mi-container{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.icono-mi {
   font-size: 2rem; 
   margin-right: 5px; 
-  color: red; 
+  color: rgb(255, 255, 255); 
+  margin-bottom: 0.5rem;
 }
 
 
-.id {
+.id-mi {
   color: #7BB66D; 
   font-size: 1.2rem; 
-  margin-left: 0; 
+  margin-left: 1rem; 
   text-align: left;
+  margin-bottom: 0;
 }
 
 #chevron {
@@ -74,7 +83,7 @@
   color: white;
 }
 
-.fila-intermedia {
+.fila-intermedia-mi {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -83,7 +92,7 @@
   margin-right: 2rem;
 }
 
-.estado {
+.estado-mi {
   background-color: #66bb6a;
   color: #fff;
   border: none;
@@ -93,12 +102,12 @@
   font-size: 0.9rem;
 }
 
-.fila-inferior {
+.fila-inferior-mi {
   font-size: 0.9rem;
   color: #333;
   margin-left: 2rem;
 }
 
-.fecha, .total {
+.fecha-mi, .total-mi {
   color: #302F2F;
 }
