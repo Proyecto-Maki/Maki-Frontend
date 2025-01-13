@@ -66,6 +66,7 @@ function PetProfileFoundation() {
   const [response, setResponse] = useState("");
   const [isEditarOpen, setIsEditarOpen] = useState(false);
   const [mascotaIdEliminar, setMascotaIdEliminar] = useState(0);
+  const [isAdoptarOpen, setIsAdoptarOpen] = useState(false);
   const navigate = useNavigate();
 
   if (!sessionStorage.getItem('token') && !sessionStorage.getItem('email') && !sessionStorage.getItem('refresh')) {
@@ -261,6 +262,11 @@ const handleCloseSuccessModal = () => {
     return <LoadingPage />;
   }
 
+  const handleAdoptar = () => {
+    navigate('/crear-adopcion');
+  };
+  
+
   return (
 
     <div className="absolute-container-pet-profile-foundation">
@@ -320,7 +326,7 @@ const handleCloseSuccessModal = () => {
                     <button onClick={(e) => handleOpenConfirmationModal(e, mascota.id)}>
                       <i className="fas fa-trash-alt"></i>
                     </button>
-                    <button >
+                    <button onClick={handleAdoptar}>
                       <i className="adopt"> <MdPets /></i>
                     </button>
                   </div>
