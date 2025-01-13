@@ -6,7 +6,6 @@
   position: relative;
   padding-top: 8%;
   background-color: #fdf0e6;
-  border: 2px solid red;
 }
 
 .contenedor-pedidos-mi {
@@ -15,7 +14,6 @@
   gap: 2rem;
   padding: 2rem;
   background-color: transparent;
-  border: 2px solid red;
 }
 
 .tarjeta-pedido-mi {
@@ -30,7 +28,6 @@
   margin: 0 auto;
   overflow: hidden;
   justify-content: center;
-  border: 2px solid red;
 }
 
 .absolute-pedidos-container-mi::-webkit-scrollbar {
