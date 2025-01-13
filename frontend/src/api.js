@@ -23,10 +23,11 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   response => response,
   error => {
-    if (error.response && error.response.status === 401) {
+    if (error.response && error.response.status === 401 && error.response.data.detail === "Given token not valid for any token type") {
       sessionStorage.clear();
       window.location.href = "/login";
     }
+    return Promise.reject(error); // Asegúrate de rechazar el error
   }
 );
 
