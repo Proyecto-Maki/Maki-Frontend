@@ -4,16 +4,18 @@
   overflow-y: auto;
   overflow-x: hidden;
   position: relative;
-  padding-top: 5%;
+  padding-top: 8%;
   background-color: #fdf0e6;
+  border: 2px solid red;
 }
 
 .contenedor-pedidos-mi {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding: 1rem;
+  padding: 2rem;
   background-color: transparent;
+  border: 2px solid red;
 }
 
 .tarjeta-pedido-mi {
@@ -28,6 +30,7 @@
   margin: 0 auto;
   overflow: hidden;
   justify-content: center;
+  border: 2px solid red;
 }
 
 .absolute-pedidos-container-mi::-webkit-scrollbar {
@@ -129,4 +132,77 @@
 .ver-detalle-mi{
   border: none;
   background-color: #ffd86e;
+}
+
+@media (max-width: 768px){
+  .contenedor-pedidos-mi {
+    padding: 5px 5px;
+    margin-top: 23%;
+  }
+
+  .tarjeta-pedido-mi {
+    width: 80vw;
+    height: auto;
+  }
+
+  .fila-superior-mi {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .icono-mi {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .id-mi {
+    font-size: 1rem;
+  }
+
+  #chevron {
+    font-size: 1rem;
+  }
+
+  .fila-intermedia-mi,
+  .fila-inferior-mi {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.5rem 1rem;
+  }
+
+  .total-mi,
+  .estado-mi {
+    font-size: 0.9rem;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .tarjeta-pedido-mi {
+    width: 95vw;
+    padding: 0.8rem;
+  }
+
+  .icono-mi {
+    font-size: 1.5rem;
+  }
+
+  .id-mi {
+    font-size: 0.9rem;
+  }
+
+  #chevron {
+    font-size: 0.9rem;
+  }
+
+  .estado-mi {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  .fecha-mi,
+  .total-mi {
+    font-size: 0.8rem;
+  }
 }
