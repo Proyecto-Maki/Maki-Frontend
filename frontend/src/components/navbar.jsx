@@ -19,9 +19,15 @@ function Navbar() {
   const [userProfileImage, setUserProfileImage] = useState(""); // Variable de estado para la foto de perfil
 
   useEffect(() => {
-    if (sessionStorage.getItem('token') !== null && sessionStorage.getItem('refresh') !== null && sessionStorage.getItem('email') !== null && sessionStorage.getItem('is_cliente') !== null && sessionStorage.getItem('is_fundacion') !== null) {
+    if (
+      sessionStorage.getItem("token") !== null &&
+      sessionStorage.getItem("refresh") !== null &&
+      sessionStorage.getItem("email") !== null &&
+      sessionStorage.getItem("is_cliente") !== null &&
+      sessionStorage.getItem("is_fundacion") !== null
+    ) {
       setUserLogin(true);
-      if (sessionStorage.getItem('is_cliente') === 'true') {
+      if (sessionStorage.getItem("is_cliente") === "true") {
         setUserProfileImage(clientes_img);
       } else {
         setUserProfileImage(fundaciones_img);
@@ -34,7 +40,7 @@ function Navbar() {
   }, [userLogin]);
 
   // Aquí podrías agregar la URL de la foto de perfil o pasarla como prop
-  // 
+  //
   // const userProfileImage = "../src/img/catPfp.jpeg"; // Reemplaza con la URL de la imagen del perfil
 
   return (
@@ -104,39 +110,41 @@ function Navbar() {
                 </a>
               )}
               {/* Mostrar foto de perfil si estamos en la página de perfil de usuario */}
-              {isUserProfilePage || userLogin === true && (
-                <div
-                  className="profile-actions"
-                  style={{ display: "flex", alignItems: "center" }}
-                >
-                  {/* Icono de búsqueda */}
-                  <div style={{ marginRight: "10px" }}>
-                    <FaSearch size={20} />
-                  </div>
+              {isUserProfilePage ||
+                (userLogin === true && (
+                  <div
+                    className="profile-actions"
+                    style={{ display: "flex", alignItems: "center" }}
+                  >
+                    {/* Icono de búsqueda */}
+                    <div style={{ marginRight: "10px" }}>
+                      <FaSearch size={20} />
+                    </div>
 
-                  {/* Icono de carrito */}
-                  <div style={{ marginRight: "10px" }}>
-                    <FaShoppingCart size={20} />
-                  </div>
+                    {/* Icono de carrito */}
+                    <div className="shopping-cart">
+                      <a href="/carrito" className="me-3">
+                        <FaShoppingCart className="cart-icon" />
+                      </a>
+                    </div>
 
-                  {/* Foto de perfil */}
-                  <div className="profile-photo">
-                    <a href="/user-profile">
-                      <img
-                        src={userProfileImage}
-                        alt="Foto de perfil"
-                        className="img-profile"
-                        style={{
-                          width: "40px",
-                          height: "40px",
-                          borderRadius: "50%",
-                        }}
-                      />
-                    </a>
-
+                    {/* Foto de perfil */}
+                    <div className="profile-photo">
+                      <a href="/user-profile">
+                        <img
+                          src={userProfileImage}
+                          alt="Foto de perfil"
+                          className="img-profile"
+                          style={{
+                            width: "40px",
+                            height: "40px",
+                            borderRadius: "50%",
+                          }}
+                        />
+                      </a>
+                    </div>
                   </div>
-                </div>
-              )}
+                ))}
             </div>
           </div>
         </div>

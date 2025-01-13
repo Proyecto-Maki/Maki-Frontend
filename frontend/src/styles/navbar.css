@@ -117,6 +117,24 @@
   font-size: 0.8rem;
 }
 
+.navbar .shopping-cart {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  transition: transform 0.3s ease;
+}
+
+.navbar .shopping-cart:hover {
+  transform: scale(1.1);
+}
+
+.navbar .shopping-cart .cart-icon {
+  font-size: 1.5rem;
+  color: white;
+}
+
 /* Navbar para pantallas pequeñas */
 @media (max-width: 992px) {
   .navbar-info {
