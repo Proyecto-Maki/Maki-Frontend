@@ -8,7 +8,7 @@ import api from "../api";
 import SuccessModal from "../components/SuccessModal";
 import ErrorModal from "../components/ErrorModal";
 import ConfirmationModal from "../components/ConfirmationModal";
-import defaultImg from "../img/dog.png";  
+import defaultImgFile from "../img/dog.png";  
 
 const RegisterPetClient = () => {
 
@@ -23,7 +23,7 @@ const RegisterPetClient = () => {
   const refresh = sessionStorage.getItem('refresh');
 
   const [isLoading, setIsLoading] = useState(true);
-  const defaultImg = defaultImg;
+  const defaultImg = defaultImgFile;
   const [profilePetImg, setProfilePetImg] = useState(defaultImg);
   const [nombre, setNombre] = useState("");
   const [sexo, setSexo] = useState("");
