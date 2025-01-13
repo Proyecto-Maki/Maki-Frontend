@@ -159,7 +159,7 @@ function AboutUs() {
               <div className="about-us-team-member-text">
                 <h4>Catalina Gómez M.</h4>
                 <p>Desarrolladora Frontend</p>
-                <p className="member-cite">ola</p>
+                <p className="member-cite">"Quien mira hacia afuera: sueña; quien mira hacia adentro, despierta" - Carl Jung</p>
                 <div className="about-us-team-member-social">
                   <a href="https://www.linkedin.com/in/cat-gomez/" target="_blank" rel="noopener noreferrer">
                     <ImLinkedin />
@@ -177,7 +177,7 @@ function AboutUs() {
               <div className="about-us-team-member-text">
                 <h4>Ivana A. Pedraza H.</h4>
                 <p>Desarrolladora Frontend</p>
-                <p className="member-cite">ola</p>
+                <p className="member-cite">"Empieza a ser quién eres, en vez de calcular quién serás" - Franz Kafka</p>
                 <div className="about-us-team-member-social">
                   <a href="https://www.linkedin.com/in/ivana-alejandra-pedraza-hernandez-a268011b3/" target="_blank" rel="noopener noreferrer">
                     <ImLinkedin />
@@ -195,7 +195,8 @@ function AboutUs() {
               <div className="about-us-team-member-text">
                 <h4>Ángel D. Piñeros S.</h4>
                 <p>Desarrollador Backend</p>
-                <p className="member-cite">ola</p>
+                <p className="member-cite">"Siempre cosas"
+                - Danilo Amerise</p>
                 <div className="about-us-team-member-social">
                   <a href="https://www.linkedin.com/in/apineross/" target="_blank" rel="noopener noreferrer">
                     <ImLinkedin />
@@ -213,7 +214,7 @@ function AboutUs() {
               <div className="about-us-team-member-text">
                 <h4>Kelly J. Solano C.</h4>
                 <p>Desarrolladora Backend</p>
-                <p className="member-cite">ola</p>
+                <p className="member-cite">"Todo cambiará, no te resistas a crecer" - Karmadame (Zoé)</p>
                 <div className="about-us-team-member-social">
                   <a href="https://www.linkedin.com/in/kelly-solano/" target="_blank" rel="noopener noreferrer">
                     <ImLinkedin />
