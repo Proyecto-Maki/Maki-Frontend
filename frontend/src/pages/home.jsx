@@ -59,7 +59,7 @@ const Home = () => {
 
             <div className="icon-container">
               <div className="social-icon">
-                <a href="#" className="social-icon instagram">
+                <a href="https://www.instagram.com/makishop.live/" target="_blank" rel="noopener noreferrer" className="social-icon instagram">
                   <img src={instagram} alt="instagram" className="instagram" />
                 </a>
               </div>
@@ -142,7 +142,8 @@ const Home = () => {
                 <div className="footer-social-home">
                   <div className="social-icon">
                     <a
-                      href="#"
+                      href="https://www.instagram.com/makishop.live/" 
+                      target="_blank" rel="noopener noreferrer"
                       className="social-icon-footer-home instagram"
                     >
                       <img

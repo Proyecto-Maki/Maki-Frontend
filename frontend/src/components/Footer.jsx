@@ -60,7 +60,7 @@ const Footer = () => {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/acerca">
+              <a className="nav-link" href="/sobre-maki">
                 Acerca de Maki
               </a>
             </li>
@@ -69,7 +69,7 @@ const Footer = () => {
         <hr className="footer-divider" />
         <div className="footer-contact">
           <div className="footer-social">
-            <a href="#" className="social-icon-footer instagram">
+            <a href="https://www.instagram.com/makishop.live/" target="_blank" rel="noopener noreferrer" className="social-icon-footer instagram">
               <img src={instagram} alt="instagram" className="instagram" />
             </a>
             <a href="#" className="social-icon-footer tiktok">

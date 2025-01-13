@@ -251,6 +251,7 @@ function Servicios() {
                     }
                 </section>
             </div>
+            
             <ErrorModal
                 show={showErrorModal}
                 handleClose={handleCloseErrorModal}

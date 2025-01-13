@@ -24,7 +24,8 @@ import Servicios from "./pages/servicios";
 import Pedidos from "./pages/mis-pedidos";
 import CreacionAdopcion from "./pages/creacion-de-adopcion";
 import Pedido from "./pages/pedido";
-// import Carrito from "./pages/carrito";
+import AboutUs from "./pages/about-us";
+
 function App() {
   const [numItemsCarrito, setNumeroItemsCarrito] = useState(0);
   const codigo = localStorage.getItem("codigo_carrito");
@@ -85,7 +86,7 @@ function App() {
         <Route path="/mis-pedidos" element={<Pedidos />} />
         <Route path="/crear-adopcion" element={<CreacionAdopcion />} />
         <Route path="/mi-pedido" element={<Pedido />} />
-        {/* <Route path="/carrito" element={<Carrito />} /> */}
+        <Route path="/sobre-maki" element={<AboutUs />}></Route>
       </Routes>
     </BrowserRouter>
   );
