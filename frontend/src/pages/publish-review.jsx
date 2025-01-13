@@ -7,6 +7,8 @@ import SuccessModal from "../components/SuccessModal";
 import ErrorModal from "../components/ErrorModal";
 import ConfirmationModal from "../components/ConfirmationModal";
 import api from "../api";
+import imagenCliente from "../img/Foto_Perfil_Clientes.svg";
+import imagenFundacion from "../img/Foto_Perfil_Fundaciones.svg";
 
 const PublishReview = ({ id_producto, slug }) => {
 
@@ -142,7 +144,7 @@ const PublishReview = ({ id_producto, slug }) => {
                     console.log(res.data);
                     if (res.data.is_cliente) {
                         console.log("Es cliente");
-                        setImageProfile('../src/img/Foto_Perfil_Clientes.svg');
+                        setImageProfile(imagenCliente);
                         api
                             .get(`cliente-profile/`, {
                                 params: {
@@ -167,7 +169,7 @@ const PublishReview = ({ id_producto, slug }) => {
                                 setShowErrorModal(true);
                             })
                     } else if (res.data.is_fundacion) {
-                        setImageProfile('../src/img/Foto_Perfil_Fundaciones.svg');
+                        setImageProfile(imagenFundacion);
                         api
                             .get(`fundacion-profile/`, {
                                 params: {
