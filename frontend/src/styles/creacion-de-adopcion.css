@@ -5,9 +5,8 @@
   overflow-y: auto;
   overflow-x: hidden;
   position: relative;
-  padding-top: 6%;
+  padding-top: 10%;
   background-color: #fdf0e6; 
-  border: 2px solid red;
 }
 
 .absolute-container-creacion-adopcion::-webkit-scrollbar {
@@ -68,6 +67,7 @@
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   border: 3px solid #BDD3CE;
+  margin-bottom: 10%;
 }
 
 
@@ -154,4 +154,46 @@
 
 .btn-crear-adopcion:hover .huella-icon {
   animation: saltar 0.6s infinite ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .crear-adopcion-container {
+    width: 95%;
+  }
+
+  .logo-img {
+    max-width: 80%;
+  }
+
+  .photo-container-img {
+    width: 80px;
+    height: 80px;
+  }
+  .logo-container{
+    padding-top: 30%;
+  }
+
+  .crear-adopcion-container{
+    margin-bottom: 10%;
+  }
+}
+
+@media (max-width: 480px) {
+  .btn-crear-adopcion {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+
+  .photo-container-img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .logo-container{
+    padding-top: 30%;
+  }
+
+  .crear-adopcion-container{
+    margin-bottom: 10%;
+  }
 }

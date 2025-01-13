@@ -21,6 +21,7 @@ const CreacionAdopcion = () => {
             {/* Navbar */}
             <Navbar />
             <div className="background-container-creacion-adopcion">
+                    
                 {/* Logo Maki encima del formulario */}
                 <div className="logo-container">
                     <img
