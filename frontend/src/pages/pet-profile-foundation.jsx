@@ -226,7 +226,7 @@ function PetProfileFoundation() {
         }
       } catch (error) {
         console.log(error);
-        setError(error);
+        setError(error.response ? error.response.data.detail : error.message);
         setShowErrorModal(true);
         return;
       }

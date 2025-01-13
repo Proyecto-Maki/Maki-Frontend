@@ -136,7 +136,7 @@ function PetProfileClient() {
       })
       .catch((error) => {
         console.error(error.response ? error.response.data : error.message);
-        setError(error.response.data.detail);
+        setError(error.response ? error.response.data.detail : error.message);
         setShowErrorModal(true);
       });
   }, []);

@@ -9,7 +9,7 @@
   position: relative;
   padding-top: 7%;
   background-color: #fdf0e6;
-  border: 2px solid red;
+  /* border: 2px solid red; */
 }
 
 .absolute-container-user-profile::-webkit-scrollbar {
@@ -186,6 +186,11 @@
 
 /* Estilo para el botón de editar */
 .btn-mascotas-user-profile{
+  background-color: #fdf0e6;
+  border: none;
+}
+
+.btn-pedidos-user-profile{
   background-color: #fdf0e6;
   border: none;
 }

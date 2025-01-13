@@ -94,7 +94,7 @@ const PublishReview = ({ id_producto, slug }) => {
             })
             .catch((error) => {
                 console.log("Error al publicar la reseña");
-                setError(error.response.data.detail);
+                setError(error.response ? error.response.data.detail : error.message);
                 setShowErrorModal(true);
             });
 

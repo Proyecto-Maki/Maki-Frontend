@@ -62,7 +62,7 @@ const ConfirmationRegister = () => {
         }
       })
       .catch((error) => {
-        setError(error.response.data.message);
+        setError(error.response ? error.response.data.detail : error.message);
         setShowErrorModal(true);
       });
   };

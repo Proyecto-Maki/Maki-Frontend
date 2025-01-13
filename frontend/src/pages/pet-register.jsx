@@ -246,7 +246,7 @@ const RegisterPetClient = () => {
                     error_vali = true;
                     console.log(error);
                     // alert("Error al registrar padecimiento");
-                    setError(error.response.data.message);
+                    setError(error.response ? error.response.data.detail : error.message);
                     setShowErrorModal(true);
                   });
 

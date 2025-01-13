@@ -4,7 +4,7 @@ import Navbar from "../components/navbar"; // Navbar personalizado
 import "../styles/user-profile.css"; // Importa el archivo CSS
 import { useNavigate } from "react-router-dom";
 import api from "../api";
-import ErrorModal from '../components/ErrorModal';
+import ErrorModal from "../components/ErrorModal";
 import ConfirmationModal from "../components/ConfirmationModal";
 import SuccessModal from "../components/SuccessModal";
 
@@ -26,28 +26,33 @@ const ProfileIcon = ({ src, alt, title }) => {
 };
 
 const UserProfile = () => {
-
   const [showErrorModal, setShowErrorModal] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [response, setResponse] = useState("");
   const [dirNavigate, setDirNavigate] = useState("");
-  const [imageProfile, setImageProfile] = useState('');
+  const [imageProfile, setImageProfile] = useState("");
   const navigate = useNavigate();
 
-  if (!sessionStorage.getItem('token') && !sessionStorage.getItem('email') && !sessionStorage.getItem('refresh')) {
-    navigate('/login');
+  if (
+    !sessionStorage.getItem("token") &&
+    !sessionStorage.getItem("email") &&
+    !sessionStorage.getItem("refresh")
+  ) {
+    navigate("/login");
   }
 
-  const email = sessionStorage.getItem('email');
-  const token = sessionStorage.getItem('token');
-  const refresh = sessionStorage.getItem('refresh');
-  const es_cliente = sessionStorage.getItem('is_cliente');
-  const es_fundacion = sessionStorage.getItem('is_fundacion');
+  const email = sessionStorage.getItem("email");
+  const token = sessionStorage.getItem("token");
+  const refresh = sessionStorage.getItem("refresh");
+  const es_cliente = sessionStorage.getItem("is_cliente");
+  const es_fundacion = sessionStorage.getItem("is_fundacion");
   console.log(es_cliente);
-  const mascotas_url = es_cliente === 'true' ? 'pet-profile-client/' : 'pet-profile-foundation/';
-  console.log(mascotas_url)
+  const mascotas_url =
+    es_cliente === "true" ? "pet-profile-client/" : "pet-profile-foundation/";
+  const pedidos_url = "mis-pedidos/";
+  console.log(mascotas_url);
   const [userData, setUserData] = useState({
     name: "",
     email: "",
@@ -59,16 +64,14 @@ const UserProfile = () => {
   });
 
   useEffect(() => {
-
     api
       .get(`current-user/`, {
         headers: {
-          'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
         },
       })
       .then((res) => {
         if (res.status === 200) {
-
           const tem_email = res.data.email;
           console.log(res.data);
           console.log(tem_email);
@@ -80,49 +83,54 @@ const UserProfile = () => {
                   email: tem_email,
                 },
                 headers: {
-                  'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
+                  Authorization: `Bearer ${sessionStorage.getItem("token")}`,
                 },
               })
               .then((res) => {
                 if (res.status === 200) {
                   setUserData({
-                    name: res.data.primer_nombre + ' ' + res.data.primer_apellido,
+                    name:
+                      res.data.primer_nombre + " " + res.data.primer_apellido,
                     email: res.data.email,
                     phone: res.data.telefono,
                     address: res.data.direccion,
-                    postal_code: res.data.codigo_postal ? res.data.codigo_postal : 'No hay código postal',
+                    postal_code: res.data.codigo_postal
+                      ? res.data.codigo_postal
+                      : "No hay código postal",
                     localidad: res.data.localidad,
                     role: "Dueño de mascota",
-                  })
+                  });
                   //console.log('Información del usuario:', userData);
                 } else {
-                  console.log('Error en la traida de los datos');
+                  console.log("Error en la traida de los datos");
                   console.log(response.data.message);
                   setResponse(response.data.message);
                   setShowErrorModal(true);
                   setTimeout(() => {
-                    navigate('/login');
-                  }, 3000)
+                    navigate("/login");
+                  }, 3000);
                 }
               })
               .catch((error) => {
-                console.error(error.response ? error.response.data : error.message);
+                console.error(
+                  error.response ? error.response.data : error.message
+                );
                 console.log(error.response.data.detail);
                 setError(error.response.data.detail);
                 setShowErrorModal(true);
                 setTimeout(() => {
-                  navigate('/login');
-                }, 3000)
+                  navigate("/login");
+                }, 3000);
               });
           } else if (res.data.is_fundacion === true) {
             setImageProfile(fundaciones_img);
             api
-              .get('fundacion-profile/', {
+              .get("fundacion-profile/", {
                 params: {
                   email: tem_email,
                 },
                 headers: {
-                  'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
+                  Authorization: `Bearer ${sessionStorage.getItem("token")}`,
                 },
               })
               .then((res) => {
@@ -132,62 +140,68 @@ const UserProfile = () => {
                     email: res.data.email,
                     phone: res.data.telefono,
                     address: res.data.direccion,
-                    postal_code: res.data.codigo_postal ? res.data.codigo_postal : 'No hay código postal',
+                    postal_code: res.data.codigo_postal
+                      ? res.data.codigo_postal
+                      : "No hay código postal",
                     localidad: res.data.localidad,
                     role: "Fundación",
-                  })
+                  });
                   //console.log('Información del usuario:', userData);
                 } else {
-                  console.log('Error en la traida de los datos');
+                  console.log("Error en la traida de los datos");
                   console.log(response.data.message);
                   setError(response.data.message);
                   setShowErrorModal(true);
                   setTimeout(() => {
-                    navigate('/login');
-                  }, 3000)
+                    navigate("/login");
+                  }, 3000);
                 }
               })
               .catch((error) => {
-                console.error(error.response ? error.response.data : error.message);
+                console.error(
+                  error.response ? error.response.data : error.message
+                );
                 console.log(error.response.data.detail);
                 setError(error.response.data.detail);
                 setShowErrorModal(true);
                 setTimeout(() => {
-                  navigate('/login');
-                }, 3000)
+                  navigate("/login");
+                }, 3000);
               });
           } else {
-            console.log('Este usuario no tiene un rol asignado');
+            console.log("Este usuario no tiene un rol asignado");
             console.log(response.data.message);
             setError(response.data.message);
             setShowErrorModal(true);
             setTimeout(() => {
-              navigate('/login');
-            }, 3000)
+              navigate("/login");
+            }, 3000);
           }
         } else {
-          console.log('Error en la traida de los datos, la petición no fue exitosa');
+          console.log(
+            "Error en la traida de los datos, la petición no fue exitosa"
+          );
           console.log(response.data.message);
           setError(response.data.message);
           setShowErrorModal(true);
           setTimeout(() => {
-            navigate('/login');
-          }, 3000)
+            navigate("/login");
+          }, 3000);
         }
       })
       .catch((error) => {
         setError(error.response.message);
         setShowErrorModal(true);
         setTimeout(() => {
-          navigate('/login');
-        }, 3000)
+          navigate("/login");
+        }, 3000);
       });
   }, []);
 
   const handleCloseErrorModal = () => {
     setShowErrorModal(false);
-    setError('');
-    setResponse('');
+    setError("");
+    setResponse("");
   };
 
   const handleCloseSuccessModal = () => {
@@ -197,30 +211,30 @@ const UserProfile = () => {
   };
 
   useEffect(() => {
-    console.log('userData ha cambiado:', userData);
+    console.log("userData ha cambiado:", userData);
   }, [userData]);
 
   const handleEliminarCuenta = async (e) => {
     e.preventDefault();
     api
-      .delete('cliente-profile-delete/', {
+      .delete("cliente-profile-delete/", {
         params: {
           email: userData.email,
         },
         headers: {
-          'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
         },
       })
       .then((res) => {
         if (res.status === 200) {
-          console.log('Cuenta eliminada con éxito');
-          setResponse('Cuenta eliminada con éxito');
+          console.log("Cuenta eliminada con éxito");
+          setResponse("Cuenta eliminada con éxito");
           setShowSuccessModal(true);
           setTimeout(() => {
-            navigate('/login');
-          }, 3000)
+            navigate("/login");
+          }, 3000);
         } else {
-          console.log('Error al eliminar la cuenta');
+          console.log("Error al eliminar la cuenta");
           console.log(response.data.message);
           setError(response.data.message);
           setShowErrorModal(true);
@@ -229,30 +243,26 @@ const UserProfile = () => {
       .catch((error) => {
         console.error(error.response ? error.response.data : error.message);
         console.log(error.response.data.detail);
-        setError(error.response.data.detail);
+        setError(error.response ? error.response.data.detail : error.message);
         setShowErrorModal(true);
       });
-  }
+  };
 
   const handleYesConfirmationModal = async (e) => {
-
     setIsLoading(true);
-    await new Promise(r => setTimeout(r, 2000));
+    await new Promise((r) => setTimeout(r, 2000));
     await handleEliminarCuenta(e);
     setIsLoading(false);
     handleNoConfirmationModal();
-
-  }
+  };
 
   const handleNoConfirmationModal = () => {
     setShowConfirmationModal(false);
-  }
+  };
 
   const handleOpenConfirmationModal = () => {
     setShowConfirmationModal(true);
-  }
-
-
+  };
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -281,13 +291,13 @@ const UserProfile = () => {
               {/* Foto de perfil y botón de cerrar sesión */}
               <div className="flex-shrink-0 text-center">
                 <div className="image-user-profile">
-                  <img
-                    src={imageProfile}
-                    alt="Profile"
-                    className="img-fluid"
-                  />
+                  <img src={imageProfile} alt="Profile" className="img-fluid" />
                 </div>
-                <a href="/logout" className="logout-icon mt-3 d-block" title="Cerrar sesión">
+                <a
+                  href="/logout"
+                  className="logout-icon mt-3 d-block"
+                  title="Cerrar sesión"
+                >
                   <i className="fas fa-sign-out-alt"></i> Cerrar sesión
                 </a>
               </div>
@@ -296,13 +306,32 @@ const UserProfile = () => {
                 <h2 className="nombreUserProfile">{userData.name}</h2>
                 <p className="correoUserProfile">{userData.email}</p>
                 <p className="numeroUserProfile">{userData.phone}</p>
-                <p className="direccionUserProfile">{userData.address} | {userData.localidad} | Cód. Postal: {userData.postal_code}</p>
+                <p className="direccionUserProfile">
+                  {userData.address} | {userData.localidad} | Cód. Postal:{" "}
+                  {userData.postal_code}
+                </p>
                 <p className="rolUserProfile">{userData.role}</p>
               </div>
               {/* Botón de editar */}
               <div className="button-container-userProfile">
                 <button className="button-edit">
-                  <svg className="svg-icon" fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><g stroke="#fcf3e3" stroke-linecap="round" stroke-width="2"><path d="m20 20h-16"></path><path clip-rule="evenodd" d="m14.5858 4.41422c.781-.78105 2.0474-.78105 2.8284 0 .7811.78105.7811 2.04738 0 2.82843l-8.28322 8.28325-3.03046.202.20203-3.0304z" fill-rule="evenodd"></path></g></svg>
+                  <svg
+                    className="svg-icon"
+                    fill="none"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g stroke="#fcf3e3" stroke-linecap="round" stroke-width="2">
+                      <path d="m20 20h-16"></path>
+                      <path
+                        clip-rule="evenodd"
+                        d="m14.5858 4.41422c.781-.78105 2.0474-.78105 2.8284 0 .7811.78105.7811 2.04738 0 2.82843l-8.28322 8.28325-3.03046.202.20203-3.0304z"
+                        fill-rule="evenodd"
+                      ></path>
+                    </g>
+                  </svg>
                   <span className="lable">Edit</span>
                 </button>
               </div>
@@ -311,12 +340,11 @@ const UserProfile = () => {
         </div>
       </div>
 
-
       {/* Icons Section */}
       <div className="icons-container">
         <div className="d-flex flex-wrap justify-content-center">
           <a href={mascotas_url}>
-            <button className="btn-mascotas-user-profile" >
+            <button className="btn-mascotas-user-profile">
               <ProfileIcon
                 src={mascotas_img}
                 alt="Mascotas"
@@ -325,13 +353,17 @@ const UserProfile = () => {
               />
             </button>
           </a>
+          <a href={pedidos_url}>
+            <button className="btn-pedidos-user-profile">
+              <ProfileIcon
+                src={pedidos_img}
+                alt="Pedidos"
+                title="Pedidos"
+                className="icon-user-profile"
+              />
+            </button>
+          </a>
 
-          <ProfileIcon
-            src={pedidos_img}
-            alt="Pedidos"
-            title="Pedidos"
-            className="icon-user-profile"
-          />
           <ProfileIcon
             src={adopciones_img}
             alt="Adopciones"
@@ -344,7 +376,7 @@ const UserProfile = () => {
             title="Donaciones"
             className="icon-user-profile"
           />
-          {es_cliente === 'true' && (
+          {es_cliente === "true" && (
             <ProfileIcon
               src={makipaws_img}
               alt="Makipaws"
@@ -352,12 +384,15 @@ const UserProfile = () => {
               className="icon-user-profile"
             />
           )}
-
         </div>
       </div>
       {/* Botón de Eliminar cuenta */}
       <div className="d-flex justify-content-center mt-4">
-        <button className="btn-delete-account" title="Eliminar Cuenta" onClick={handleOpenConfirmationModal}>
+        <button
+          className="btn-delete-account"
+          title="Eliminar Cuenta"
+          onClick={handleOpenConfirmationModal}
+        >
           <i className="fas fa-trash-alt"></i> Eliminar Cuenta
         </button>
       </div>
