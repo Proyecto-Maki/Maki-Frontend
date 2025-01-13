@@ -76,6 +76,7 @@ const Home = () => {
           offset={1}
           speed={1}
           className="footer-container-home-parallax"
+          style={{ display: "flex", justifyContent: "center", alignItems: "center" }}
         >
           <div className="footer-container-home">
             <div className="divider-footer-home">

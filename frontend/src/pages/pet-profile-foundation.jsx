@@ -261,6 +261,11 @@ const handleCloseSuccessModal = () => {
     return <LoadingPage />;
   }
 
+  const handleAdoptar = () => {
+    navigate('/crear-adopcion');
+  };
+  
+
   return (
 
     <div className="absolute-container-pet-profile-foundation">
@@ -320,7 +325,7 @@ const handleCloseSuccessModal = () => {
                     <button onClick={(e) => handleOpenConfirmationModal(e, mascota.id)}>
                       <i className="fas fa-trash-alt"></i>
                     </button>
-                    <button >
+                    <button onClick={handleAdoptar}>
                       <i className="adopt"> <MdPets /></i>
                     </button>
                   </div>
