@@ -1,0 +1,113 @@
+/* Asegura que la página completa sea desplazable */
+.absolute-container-carrito {
+  padding-top: 10%;
+  /* background-color: #FCF3E3; */
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  --color: #e0d0c4;
+  /* background-color: #fdf0e6; */
+}
+
+/* Scrollbar personalizado para .absolute-container-carrito */
+.absolute-container-carrito::-webkit-scrollbar {
+  width: 10px;
+  color: #fcf3e3;
+}
+
+.absolute-container-carrito::-webkit-scrollbar-thumb {
+  background: #ffcc80;
+  border-radius: 80px;
+}
+
+.absolute-container-carrito::-webkit-scrollbar-thumb:hover {
+  background: #ffa726;
+}
+
+.absolute-container-carrito::-webkit-scrollbar-track {
+  background: none;
+}
+
+/* Contenedor del contenido */
+.background-container-carrito {
+  flex: 1; /* Ocupa el espacio restante */
+  padding: 20px;
+  background-color: #ffffff;
+}
+
+/* Contenido general */
+.content-container-carrito {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-bottom: 50px; /* Asegura espacio para no solapar el footer */
+}
+
+.left-column {
+  margin-bottom: 30px; /* Espacio entre los elementos */
+}
+
+.product-card {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.product-image {
+  width: 80px;
+  height: 80px;
+  margin-right: 15px;
+  object-fit: cover; /* Asegura que la imagen mantenga proporción */
+}
+
+.product-details {
+  flex: 1; /* Asegura que el texto ocupe el espacio necesario */
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.quantity-button {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #eaeaea;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.quantity-display {
+  margin: 0 10px;
+}
+
+.right-column {
+  margin-top: 30px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.Btn-carrito-pay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #28a745;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}

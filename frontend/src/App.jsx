@@ -25,6 +25,7 @@ import Pedidos from "./pages/mis-pedidos";
 import CreacionAdopcion from "./pages/creacion-de-adopcion";
 import Pedido from "./pages/pedido";
 import AboutUs from "./pages/about-us";
+import Carrito from "./pages/carrito";
 
 function App() {
   const [numItemsCarrito, setNumeroItemsCarrito] = useState(0);
@@ -87,6 +88,7 @@ function App() {
         <Route path="/crear-adopcion" element={<CreacionAdopcion />} />
         <Route path="/mi-pedido" element={<Pedido />} />
         <Route path="/sobre-maki" element={<AboutUs />}></Route>
+        <Route path="/carrito" element={<Carrito />}></Route>
       </Routes>
     </BrowserRouter>
   );
