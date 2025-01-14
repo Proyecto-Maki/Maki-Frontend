@@ -78,7 +78,8 @@
 
 .label-creacion-adopcion-direction,
 .label-creacion-adopcion-locality,
-.label-creacion-adopcion-personalidad {
+.label-creacion-adopcion-descripcion, 
+.label-creacion-adopcion-title {
   display: block;
   font-size: 1rem;
   margin-bottom: 8px;
@@ -86,8 +87,9 @@
 }
 
 .input-creacion-adopcion-locality,
-.input-creacion-adopcion-personalidad,
-.input-creacion-adopcion-direction {
+.textarea-creacion-adopcion-descripcion,
+.input-creacion-adopcion-direction, 
+.input-creacion-adopcion-title {
   width: 100%;
   padding: 10px; 
   font-size: 1rem;
@@ -98,10 +100,24 @@
 }
 
 .input-creacion-adopcion-locality:focus,
-.input-creacion-adopcion-personalidad:focus,
-.input-creacion-adopcion-direction:focus{
+.textarea-creacion-adopcion-descripcion:focus,
+.input-creacion-adopcion-direction:focus,
+.input-creacion-adopcion-title:focus{
   border-color: #b9f1e4;
   outline: none;
+}
+
+.form-row textarea{
+  width: 100%;
+  padding: 10px; 
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  margin-bottom: 5px;
+  transition: border-color 0.3s ease;
+  background-color: #bdd3ce;
+  height: 10rem;
+  resize: none;
 }
 
 .photo-container-creacion-adopcion {
@@ -111,10 +127,19 @@
 
 .photo-container-img {
   width: 150px;
-  height: auto;
+  height: 150px;
   border-radius: 100%;
   border: 2px solid #ccc;
+  object-fit: cover;
 }
+
+.form-row-nombre-mascota{
+  width: 100%;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+
 /* Estilos generales para el botón */
 .btn-crear-adopcion {
   display: flex;
@@ -138,6 +163,7 @@
   margin-right: 10px;
   font-size: 24px;
 }
+
 
 /* Animación de salto continuo en hover */
 @keyframes saltar {

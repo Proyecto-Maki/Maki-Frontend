@@ -1,31 +1,189 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../components/navbar";
 import "../styles/creacion-de-adopcion.css";
 import logo from "../img/Logotipo Maki.png"; // Ruta al logo
+import { useLocation, useNavigate } from "react-router-dom";
+import SuccessModal from "../components/SuccessModal";
+import ErrorModal from "../components/ErrorModal";
+import ConfirmationModal from "../components/ConfirmationModal";
+import LoadingPage from "../components/loading-page";
+import api from "../api.js";
+
 const CreacionAdopcion = () => {
-    const datosMascota = {
-        imagen: '../src/img/catPfp.jpeg',
-        Localidad: 'Teusaquillo',
-        direccion: 'cra26',
-        personalidad: 'Juguetón, amigable y cariñoso'
-    };
+    // const datosMascota = {
+    //     imagen: '../src/img/catPfp.jpeg',
+    //     Localidad: 'Teusaquillo',
+    //     direccion: 'cra26',
+    //     descripcion: 'Juguetón, amigable y cariñoso'
+    // };
+
+    const [isLoading, setIsLoading] = useState(true);
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
+    const [showErrorModal, setShowErrorModal] = useState(false);
+    const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+    const [error, setError] = useState('');
+    const [response, setResponse] = useState("");
+    const [dirNavigate, setDirNavigate] = useState("");
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    if (!sessionStorage.getItem("email") || !sessionStorage.getItem("token") || !sessionStorage.getItem("refresh") || !sessionStorage.getItem("is_cliente") || !sessionStorage.getItem("is_fundacion")) {
+        window.location.href = "/login";
+    }
+
+    const email = sessionStorage.getItem("email");
+    const token = sessionStorage.getItem("token");
+    const refresh = sessionStorage.getItem("refresh");
+    const is_cliente = sessionStorage.getItem("is_cliente");
+    const is_fundacion = sessionStorage.getItem("is_fundacion");
 
     // Estado para manejar el formulario
-    const [localidad, setLocalidad] = useState(datosMascota.localidad);
-    const [direccion, setDireccion] = useState(datosMascota.direccion);
-    const [personalidad, setPersonalidad] = useState('');
+    const [mascotaImagen, setMascotaImagen] = useState('');
+    const [nombreMascota, setNombreMascota] = useState('');
+    const [titulo, setTitulo] = useState('');
+    const [localidad, setLocalidad] = useState('');
+    const [direccion, setDireccion] = useState('');
+    const [descripcion, setDescripcion] = useState('');
 
+    const { mascota } = location.state || {};
+
+    if (!mascota) {
+        window.location.href = "/pet-profile-foundation";
+        return;
+    }
+
+    useEffect(() => {
+        console.log(mascota);
+        setMascotaImagen(mascota.imagen);
+        setNombreMascota(mascota.nombre);
+    }, [mascota]);
+
+    const validateTitulo = (titulo) => {
+        const hasLetters = /[a-zA-Z]/.test(titulo);
+        const hasNumbers = /\d/.test(titulo);
+        const isValidLength = titulo.length >= 5;
+
+        return hasLetters && isValidLength;
+    }
+
+    const validateDescripcion = (descripcion) => {
+        const hasLetters = /[a-zA-Z]/.test(descripcion);
+        const hasNumbers = /\d/.test(descripcion);
+        const isValidLength = descripcion.length >= 5;
+
+        return hasLetters && isValidLength;
+    }
+
+
+
+    const handleCrearPublicacion = async (e) => {
+        e.preventDefault();
+
+        if (!titulo || !localidad || !direccion || !descripcion) {
+            setError("Por favor llene todos los campos");
+            setShowErrorModal(true);
+            return;
+        }
+
+        if (!validateTitulo(titulo)) {
+            setError("El título debe tener al menos 5 caracteres y contener letras");
+            setShowErrorModal(true);
+            return;
+        }
+
+        if (!validateDescripcion(descripcion)) {
+            setError("La descripción debe tener al menos 5 caracteres y contener letras");
+            setShowErrorModal(true);
+            return;
+        }
+
+        const datosPublicacion = {
+            email: email,
+            id_mascota: mascota.id,
+            titulo: titulo,
+            id_localidad: parseInt(localidad),
+            direccion: direccion,
+            descripcion: descripcion
+        };
+
+        console.log(datosPublicacion);
+
+
+        api
+            .post('publicaciones/create/', datosPublicacion, {
+                headers: {
+                    'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
+                }
+            })
+            .then((res) => {
+                if (res.status === 201) {
+                    setResponse("Publicación creada exitosamente");
+                    setShowSuccessModal(true);
+                    setDirNavigate("/pet-profile-foundation");
+                } else {
+                    setError(res.data.message);
+                    setShowErrorModal(true);
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+                setError(err.response ? err.response.data.detail : err.message);
+                setShowErrorModal(true);
+            });
+
+    }
+
+    const handleCloseSuccessModal = () => {
+        setShowSuccessModal(false);
+        setError("");
+        setResponse("");
+    }
+
+    const handleCloseErrorModal = () => {
+        setShowErrorModal(false);
+        setError("");
+    }
+
+    const handleYesConfirmationModal = async (e) => {
+        setIsLoading(true);
+        await new Promise(r => setTimeout(r, 2000));
+        await handleCrearPublicacion(e);
+        setIsLoading(false);
+        handleNoConfirmationModal();
+    }
+
+    const handleNoConfirmationModal = () => {
+        setShowConfirmationModal(false);
+    }
+
+    const handleOpenConfirmationModal = (e) => {
+        e.preventDefault();
+        setShowConfirmationModal(true);
+    }
+
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+        }, 3000);
+
+        return () => clearTimeout(timer);
+    }, []);
+
+    if (isLoading) {
+        return <LoadingPage />;
+    }
 
     return (
         <div className="absolute-container-creacion-adopcion">
             {/* Navbar */}
             <Navbar />
             <div className="background-container-creacion-adopcion">
-                    
+
                 {/* Logo Maki encima del formulario */}
                 <div className="logo-container">
                     <img
-                        src={logo} 
+                        src={logo}
                         alt="Logo Maki"
                         className="logo-img"
                         style={{ height: "100px" }}
@@ -35,12 +193,33 @@ const CreacionAdopcion = () => {
                     <form >
                         <div className="photo-container-creacion-adopcion">
                             <img
-                                src={datosMascota.imagen}
+                                src={mascotaImagen}
                                 alt="Foto-Mascota"
                                 className="photo-container-img"
                             />
                         </div>
 
+                        <div className="form-row-nombre-mascota">
+                            <h3>{nombreMascota}</h3>
+                        </div>
+                        <div className="form-row">
+                            <div className="form-group col-md-12">
+                                <label className="label-creacion-adopcion-title">
+                                    Dale un título a tu publicación
+                                </label>
+                                <div className="tooltip-creacion-adopcion">
+                                    <input
+                                        type="text"
+                                        className="input-creacion-adopcion-title"
+                                        placeholder="Ingresa el titulo de tu publicación"
+                                        name="titulo"
+                                        value={titulo}
+                                        onChange={(e) => setTitulo(e.target.value)}
+                                        required>
+                                    </input>
+                                </div>
+                            </div>
+                        </div>
                         <div className="form-row">
                             <div className="form-group col-md-6">
                                 <label className="label-creacion-adopcion-locality">
@@ -97,22 +276,21 @@ const CreacionAdopcion = () => {
                         </div>
 
                         <div className="form-row">
-                            {/*personalidad*/}
-                            <div className="form-group col-md-6">
-                                <label className="label-creacion-adopcion-personalidad">
-                                    Personalidad
+                            {/*descripcion*/}
+                            <div className="form-group col-md-12">
+                                <label className="label-creacion-adopcion-descripcion">
+                                    Descripción
                                 </label>
                                 <div className="input-photo-container">
                                     <div className="tooltip-creacion-adopcion">
-                                        <input
-                                            type="text"
-                                            className="input-creacion-adopcion-personalidad"
-                                            placeholder="Ingresa la personalidad de tu mascota"
-                                            name="personalidad"
-                                            value={personalidad}
-                                            onChange={(e) => setPersonalidad(e.target.value)}
+                                        <textarea
+                                            className="textarea-creacion-adopcion-descripcion"
+                                            placeholder="Ingresa una descripción para la publicación de tu mascota"
+                                            name="descripcion"
+                                            value={descripcion}
+                                            onChange={(e) => setDescripcion(e.target.value)}
                                             required
-                                        />
+                                        ></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -120,7 +298,7 @@ const CreacionAdopcion = () => {
 
                         {/* Botón para crear la adopción */}
                         <div className="form-group">
-                            <button class="btn-crear-adopcion">
+                            <button class="btn-crear-adopcion" onClick={handleOpenConfirmationModal}>
                                 <i class="fas fa-paw huella-icon"></i> ¡Crear!
                             </button>
                         </div>
@@ -128,6 +306,23 @@ const CreacionAdopcion = () => {
                     </form>
                 </div>
             </div>
+            <SuccessModal
+                show={showSuccessModal}
+                handleClose={handleCloseSuccessModal}
+                response={response}
+                dirNavigate={dirNavigate}
+            />
+            <ErrorModal
+                show={showErrorModal}
+                handleClose={handleCloseErrorModal}
+                error={error}
+            />
+            <ConfirmationModal
+                show={showConfirmationModal}
+                handleYes={handleYesConfirmationModal}
+                handleNo={handleNoConfirmationModal}
+                response="¿Estás seguro de publicar la adopción?"
+            />
         </div>
     );
 };

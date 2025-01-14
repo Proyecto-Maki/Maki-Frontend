@@ -14,48 +14,48 @@ import { MdPets } from "react-icons/md";
 function PetProfileFoundation() {
   // Estado inicial con las mascotas
 
-  const [mascotas, setMascotas] = useState([
-    {
-      id: 1,
-      nombre: "Baby",
-      tipo: "Perro",
-      edad: "2 meses",
-      tamano: "Pequeño",
-      peso: "3kg",
-      raza: "Korgi",
-      imagen: "../src/img/pet pfp/silly.jpeg", // Ruta de la imagen
-    },
-    {
-      id: 2,
-      nombre: "Milo",
-      tipo: "Gato",
-      edad: "1 año",
-      tamano: "Mediano",
-      peso: "5kg",
-      raza: "Siberiano",
-      imagen: "../src/img/pet pfp/fish.jpeg", // Ruta de la imagen
-    },
-    {
-      id: 3,
-      nombre: "Milo",
-      tipo: "Gato",
-      edad: "1 año",
-      tamano: "Mediano",
-      peso: "5kg",
-      raza: "Siberiano",
-      imagen: "../src/img/pet pfp/hampter.jpeg", // Ruta de la imagen
-    },
-    {
-      id: 4,
-      nombre: "Milo",
-      tipo: "Gato",
-      edad: "1 año",
-      tamano: "Mediano",
-      peso: "5kg",
-      raza: "Siberiano",
-      imagen: "../src/img/pet pfp/hehe.jpeg", // Ruta de la imagen
-    },
-  ]);
+  // const [mascotas, setMascotas] = useState([
+  //   {
+  //     id: 1,
+  //     nombre: "Baby",
+  //     tipo: "Perro",
+  //     edad: "2 meses",
+  //     tamano: "Pequeño",
+  //     peso: "3kg",
+  //     raza: "Korgi",
+  //     imagen: "../src/img/pet pfp/silly.jpeg", // Ruta de la imagen
+  //   },
+  //   {
+  //     id: 2,
+  //     nombre: "Milo",
+  //     tipo: "Gato",
+  //     edad: "1 año",
+  //     tamano: "Mediano",
+  //     peso: "5kg",
+  //     raza: "Siberiano",
+  //     imagen: "../src/img/pet pfp/fish.jpeg", // Ruta de la imagen
+  //   },
+  //   {
+  //     id: 3,
+  //     nombre: "Milo",
+  //     tipo: "Gato",
+  //     edad: "1 año",
+  //     tamano: "Mediano",
+  //     peso: "5kg",
+  //     raza: "Siberiano",
+  //     imagen: "../src/img/pet pfp/hampter.jpeg", // Ruta de la imagen
+  //   },
+  //   {
+  //     id: 4,
+  //     nombre: "Milo",
+  //     tipo: "Gato",
+  //     edad: "1 año",
+  //     tamano: "Mediano",
+  //     peso: "5kg",
+  //     raza: "Siberiano",
+  //     imagen: "../src/img/pet pfp/hehe.jpeg", // Ruta de la imagen
+  //   },
+  // ]);
 
   const [mascotasUser, setMascotasUser] = useState([]);
   const [mascotaUser, setMascotaUser] = useState({});
@@ -261,8 +261,10 @@ const handleCloseSuccessModal = () => {
     return <LoadingPage />;
   }
 
-  const handleAdoptar = () => {
-    navigate('/crear-adopcion');
+  const handleAdoptar = (mascota) => {
+    // navigate('/crear-adopcion');
+    console.log(`Crear adopción de ${mascota.nombre}`);
+    navigate('/crear-adopcion', { state: { mascota } });
   };
   
 
@@ -325,7 +327,7 @@ const handleCloseSuccessModal = () => {
                     <button onClick={(e) => handleOpenConfirmationModal(e, mascota.id)}>
                       <i className="fas fa-trash-alt"></i>
                     </button>
-                    <button onClick={handleAdoptar}>
+                    <button onClick={() => handleAdoptar(mascota)}>
                       <i className="adopt"> <MdPets /></i>
                     </button>
                   </div>
