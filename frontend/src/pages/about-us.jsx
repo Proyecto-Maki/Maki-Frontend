@@ -110,14 +110,14 @@ function AboutUs() {
             </div>
           </div>
           <div className="about-us-mision-text">
-            <div className="about-us-mision-text-mision">
-              <h4>Misión {user}</h4>
-              <p>{mision}</p>
-            </div>
-            <div className="vertical-line"></div>
             <div className="about-us-mision-text-vision">
               <h4>Visión {user}</h4>
               <p>{vision}</p>
+            </div>
+            <div className="vertical-line"></div>
+            <div className="about-us-mision-text-mision">
+              <h4>Misión {user}</h4>
+              <p>{mision}</p>
             </div>
           </div>
           <div></div>
@@ -160,10 +160,18 @@ function AboutUs() {
                 <h4>Catalina Gómez M.</h4>
                 <p>Desarrolladora Frontend</p>
                 <div className="about-us-team-member-social">
-                  <a href="https://www.linkedin.com/in/cat-gomez/" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://www.linkedin.com/in/cat-gomez/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <ImLinkedin />
                   </a>
-                  <a href="https://github.com/CatGmz" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://github.com/CatGmz"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <FaGithub />
                   </a>
                 </div>
@@ -177,10 +185,18 @@ function AboutUs() {
                 <h4>Ivana A. Pedraza H.</h4>
                 <p>Desarrolladora Frontend</p>
                 <div className="about-us-team-member-social">
-                  <a href="https://www.linkedin.com/in/ivana-alejandra-pedraza-hernandez-a268011b3/" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://www.linkedin.com/in/ivana-alejandra-pedraza-hernandez-a268011b3/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <ImLinkedin />
                   </a>
-                  <a href="https://github.com/IvanaPedraza" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://github.com/IvanaPedraza"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <FaGithub />
                   </a>
                 </div>
@@ -194,10 +210,18 @@ function AboutUs() {
                 <h4>Ángel D. Piñeros S.</h4>
                 <p>Desarrollador Backend</p>
                 <div className="about-us-team-member-social">
-                  <a href="https://www.linkedin.com/in/apineross/" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://www.linkedin.com/in/apineross/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <ImLinkedin />
                   </a>
-                  <a href="https://github.com/Locotin" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://github.com/Locotin"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <FaGithub />
                   </a>
                 </div>
@@ -211,10 +235,18 @@ function AboutUs() {
                 <h4>Kelly J. Solano C.</h4>
                 <p>Desarrolladora Backend</p>
                 <div className="about-us-team-member-social">
-                  <a href="https://www.linkedin.com/in/kelly-solano/" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://www.linkedin.com/in/kelly-solano/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <ImLinkedin />
                   </a>
-                  <a href="https://github.com/kellysolanomt" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://github.com/kellysolanomt"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <FaGithub />
                   </a>
                 </div>
