@@ -26,6 +26,7 @@ import CreacionAdopcion from "./pages/creacion-de-adopcion";
 import Pedido from "./pages/pedido";
 import AboutUs from "./pages/about-us";
 import Carrito from "./pages/carrito";
+import TerminosYCondiciones from "./pages/terms-and-conditions";
 
 function App() {
   const [numItemsCarrito, setNumeroItemsCarrito] = useState(0);
@@ -89,6 +90,10 @@ function App() {
         <Route path="/mi-pedido" element={<Pedido />} />
         <Route path="/sobre-maki" element={<AboutUs />}></Route>
         <Route path="/carrito" element={<Carrito />}></Route>
+        <Route
+          path="/terminos-y-condiciones"
+          element={<TerminosYCondiciones />}
+        />
       </Routes>
     </BrowserRouter>
   );
