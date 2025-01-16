@@ -34,7 +34,7 @@ const Logout = () => {
             }
         })
         .catch((error) => {
-            console.error(error.response ? error.response.data : error.message);
+            console.log(error.response ? error.response.data.detail : error.message);
             console.log(error.response.data.detail);
         });
 }

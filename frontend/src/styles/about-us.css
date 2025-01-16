@@ -72,6 +72,12 @@
   margin-top: 5%;
 }
 
+.member-cite {
+  font-size: 1rem;
+  color: #7e7e7e9a;
+  margin-top: 5%;
+}
+
 .about-us-mision-title {
   font-size: 1.5rem;
   color: #ff793f;
@@ -271,10 +277,12 @@
 
 .about-us-team-member-text {
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  justify-content: space-between;
 }
 
 .about-us-team-member-social {
@@ -349,4 +357,103 @@
 
 .custom-shape-divider-top-1736726719 .shape-fill {
   fill: #ffffff;
+}
+
+/* Responsive */
+
+@media only screen and (max-width: 992px) {
+  .about-us-container {
+    padding-top: 20%;
+  }
+
+  .about-us-content {
+    flex-direction: column;
+  }
+
+  .about-us-content-image {
+    width: 50%;
+    margin-right: 0;
+    margin-bottom: 5%;
+  }
+
+  .about-us-content-text {
+    width: 80%;
+  }
+
+  .about-us-mision-clientes {
+    width: 25%;
+    margin-right: 5%;
+  }
+
+  .about-us-mision-fundaciones {
+    width: 25%;
+  }
+
+  .about-us-mision-text {
+    width: 80%;
+    flex-direction: column;
+  }
+
+  .about-us-mision-text-mision {
+    width: 100%;
+    margin-bottom: 5%;
+  }
+  .vertical-line {
+    border-bottom: 2px solid #fff9e6;
+    margin-bottom: 5%;
+  }
+
+  .about-us-mision-text-vision {
+    width: 100%;
+  }
+
+  .about-us-team-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-us-team-member {
+    width: 50%;
+    margin-bottom: 5%;
+  }
+
+  .footer {
+    padding: 0;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .about-us-container {
+    padding-top: 25%;
+  }
+
+  .about-us-content-image {
+    width: 80%;
+  }
+
+  .about-us-mision-img {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-us-mision-clientes {
+    width: 50%;
+    margin-right: 0;
+    margin-bottom: 5%;
+  }
+
+  .about-us-mision-fundaciones {
+    width: 50%;
+    margin-bottom: 5%;
+  }
+
+  .about-us-team-member {
+    width: 80%;
+    margin-bottom: 10%;
+  }
+
+  .divider-footer {
+    background-color: #7bb66d;
+    padding-bottom: 20%;
+  }
 }

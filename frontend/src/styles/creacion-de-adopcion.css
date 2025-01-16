@@ -5,8 +5,8 @@
   overflow-y: auto;
   overflow-x: hidden;
   position: relative;
-  padding-top: 6%;
-  background-color: #fdf0e6; /* Color de fondo global */
+  padding-top: 10%;
+  background-color: #fdf0e6; 
 }
 
 .absolute-container-creacion-adopcion::-webkit-scrollbar {
@@ -64,9 +64,10 @@
   margin: 0 auto;
   padding: 30px;
   background-color: #fdf0e6;
-  border-radius: 8px;
+  border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border: 2px solid #BDD3CE;
+  border: 3px solid #BDD3CE;
+  margin-bottom: 10%;
 }
 
 
@@ -75,29 +76,20 @@
   margin-bottom: 10px; 
 }
 
-.label-creacion-adopcion-breed,
-.label-creacion-adopcion-name,
-.label-creacion-adopcion-type,
-.label-creacion-adopcion-size,
-.label-creacion-adopcion-age,
-.label-creacion-adopcion-weight,
-.label-creacion-adopcion-personalidad,
-.label-creacion-adopcion-ubicacion {
+.label-creacion-adopcion-direction,
+.label-creacion-adopcion-locality,
+.label-creacion-adopcion-descripcion, 
+.label-creacion-adopcion-title {
   display: block;
   font-size: 1rem;
   margin-bottom: 8px;
   color: #333;
 }
 
-.input-creacion-adopcion-name,
-.input-creacion-adopcion-race,
-.input-creacion-adopcion-illness,
-.input-creacion-adopcion-age,
-.input-creacion-adopcion-weight,
-.input-creacion-adopcion-size,
-.input-creacion-adopcion-type,
-.input-creacion-adopcion-personalidad,
-.input-creacion-adopcion-ubicacion {
+.input-creacion-adopcion-locality,
+.textarea-creacion-adopcion-descripcion,
+.input-creacion-adopcion-direction, 
+.input-creacion-adopcion-title {
   width: 100%;
   padding: 10px; 
   font-size: 1rem;
@@ -107,15 +99,25 @@
   transition: border-color 0.3s ease;
 }
 
-.input-creacion-adopcion-name:focus,
-.input-creacion-adopcion-race:focus,
-.input-creacion-adopcion-illness:focus,
-.input-creacion-adopcion-age:focus,
-.input-creacion-adopcion-weight:focus,
-.input-creacion-adopcion-size:focus,
-.input-creacion-adopcion-type:focus {
-  border-color: #007bff;
+.input-creacion-adopcion-locality:focus,
+.textarea-creacion-adopcion-descripcion:focus,
+.input-creacion-adopcion-direction:focus,
+.input-creacion-adopcion-title:focus{
+  border-color: #b9f1e4;
   outline: none;
+}
+
+.form-row textarea{
+  width: 100%;
+  padding: 10px; 
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  margin-bottom: 5px;
+  transition: border-color 0.3s ease;
+  background-color: #bdd3ce;
+  height: 10rem;
+  resize: none;
 }
 
 .photo-container-creacion-adopcion {
@@ -125,10 +127,19 @@
 
 .photo-container-img {
   width: 150px;
-  height: auto;
+  height: 150px;
   border-radius: 100%;
   border: 2px solid #ccc;
+  object-fit: cover;
 }
+
+.form-row-nombre-mascota{
+  width: 100%;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+
 /* Estilos generales para el botón */
 .btn-crear-adopcion {
   display: flex;
@@ -153,6 +164,7 @@
   font-size: 24px;
 }
 
+
 /* Animación de salto continuo en hover */
 @keyframes saltar {
   0% {
@@ -168,4 +180,46 @@
 
 .btn-crear-adopcion:hover .huella-icon {
   animation: saltar 0.6s infinite ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .crear-adopcion-container {
+    width: 95%;
+  }
+
+  .logo-img {
+    max-width: 80%;
+  }
+
+  .photo-container-img {
+    width: 80px;
+    height: 80px;
+  }
+  .logo-container{
+    padding-top: 30%;
+  }
+
+  .crear-adopcion-container{
+    margin-bottom: 10%;
+  }
+}
+
+@media (max-width: 480px) {
+  .btn-crear-adopcion {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+
+  .photo-container-img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .logo-container{
+    padding-top: 30%;
+  }
+
+  .crear-adopcion-container{
+    margin-bottom: 10%;
+  }
 }

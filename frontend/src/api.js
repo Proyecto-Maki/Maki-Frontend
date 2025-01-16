@@ -9,7 +9,7 @@ const api = axios.create({
 
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem(ACCESS_TOKEN);
+    const token = sessionStorage.getItem(ACCESS_TOKEN);
     if (token) {
       config.headers["Authorization"] = `Bearer ${token}`;
     }
@@ -17,6 +17,17 @@ api.interceptors.request.use(
   },
   (error) => {
     return Promise.reject(error);
+  }
+);
+
+api.interceptors.response.use(
+  response => response,
+  error => {
+    if (error.response && error.response.status === 401 && error.response.data.detail === "Given token not valid for any token type") {
+      sessionStorage.clear();
+      window.location.href = "/login";
+    }
+    return Promise.reject(error); // Asegúrate de rechazar el error
   }
 );
 

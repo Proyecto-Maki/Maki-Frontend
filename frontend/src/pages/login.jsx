@@ -53,9 +53,9 @@ const Login = () => {
         }
       })
       .catch((error) => {
-        console.error(error.response ? error.response.data : error.message);
-        console.log(error.response.data.detail);
-        setError(error.response.data.detail);
+        console.error(error.response ? error.response.data : "Error en el servidor");
+        console.log("Error: ",error);
+        setError(error.response ? error.response.data.detail : "Error en el servidor");
         setShowErrorModal(true);
       });
   };

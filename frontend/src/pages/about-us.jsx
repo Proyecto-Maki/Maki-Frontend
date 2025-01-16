@@ -8,7 +8,7 @@ import fundaciones_foto from "../img/fundaciones-acercade.jpg";
 import { use } from "react";
 import fotoAngel from "../img/AboutUs/FotoAngel.jpeg";
 import fotoCatalina from "../img/AboutUs/FotoCatalina.jpeg";
-import fotoIvana from "../img/AboutUs/FotoIvana.jpeg";
+import fotoIvana from "../img/AboutUs/FotoIvana.jpg";
 import fotoKelly from "../img/AboutUs/FotoKelly.jpeg";
 import { ImLinkedin } from "react-icons/im";
 import { FaGithub } from "react-icons/fa";
@@ -159,6 +159,7 @@ function AboutUs() {
               <div className="about-us-team-member-text">
                 <h4>Catalina Gómez M.</h4>
                 <p>Desarrolladora Frontend</p>
+                <p className="member-cite">"Quien mira hacia afuera: sueña; quien mira hacia adentro, despierta" - Carl Jung</p>
                 <div className="about-us-team-member-social">
                   <a
                     href="https://www.linkedin.com/in/cat-gomez/"
@@ -184,6 +185,7 @@ function AboutUs() {
               <div className="about-us-team-member-text">
                 <h4>Ivana A. Pedraza H.</h4>
                 <p>Desarrolladora Frontend</p>
+                <p className="member-cite">"Empieza a ser quién eres, en vez de calcular quién serás" - Franz Kafka</p>
                 <div className="about-us-team-member-social">
                   <a
                     href="https://www.linkedin.com/in/ivana-alejandra-pedraza-hernandez-a268011b3/"
@@ -209,6 +211,8 @@ function AboutUs() {
               <div className="about-us-team-member-text">
                 <h4>Ángel D. Piñeros S.</h4>
                 <p>Desarrollador Backend</p>
+                <p className="member-cite">"Siempre cosas"
+                - Danilo Amerise</p>
                 <div className="about-us-team-member-social">
                   <a
                     href="https://www.linkedin.com/in/apineross/"
@@ -234,6 +238,7 @@ function AboutUs() {
               <div className="about-us-team-member-text">
                 <h4>Kelly J. Solano C.</h4>
                 <p>Desarrolladora Backend</p>
+                <p className="member-cite">"Todo cambiará, no te resistas a crecer" - Karmadame (Zoé)</p>
                 <div className="about-us-team-member-social">
                   <a
                     href="https://www.linkedin.com/in/kelly-solano/"

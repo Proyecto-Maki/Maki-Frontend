@@ -117,7 +117,7 @@ const PasswordRecovery = () => {
       })
       .catch((error) => {
         console.log(error.response.data);
-        setError(error.response.data.message);
+        setError(error.response ? error.response.data.detail : error.message);
         setShowErrorModal(true);
       });
   };

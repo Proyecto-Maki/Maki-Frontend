@@ -8,6 +8,7 @@ import api from "../api";
 import SuccessModal from "../components/SuccessModal";
 import ErrorModal from "../components/ErrorModal";
 import ConfirmationModal from "../components/ConfirmationModal";
+import defaultImgFile from "../img/dog.png";  
 
 const RegisterPetClient = () => {
 
@@ -17,12 +18,14 @@ const RegisterPetClient = () => {
     navigate('/login');
   }
 
+  const tipoUsuario = sessionStorage.getItem('is_cliente') === 'true' ? 'dueño de mascotas' : 'fundacion';
+
   const email = sessionStorage.getItem('email');
   const token = sessionStorage.getItem('token');
   const refresh = sessionStorage.getItem('refresh');
 
   const [isLoading, setIsLoading] = useState(true);
-  const defaultImg = "../src/img/dog.png";
+  const defaultImg = defaultImgFile;
   const [profilePetImg, setProfilePetImg] = useState(defaultImg);
   const [nombre, setNombre] = useState("");
   const [sexo, setSexo] = useState("");
@@ -246,7 +249,7 @@ const RegisterPetClient = () => {
                     error_vali = true;
                     console.log(error);
                     // alert("Error al registrar padecimiento");
-                    setError(error.response.data.message);
+                    setError(error.response ? error.response.data.detail : error.message);
                     setShowErrorModal(true);
                   });
 
@@ -337,7 +340,7 @@ const RegisterPetClient = () => {
         <div className="register-pet-container">
           <form >
             <h2>
-              ¡Hola! Eres dueño de mascotas ¡Nos gustaría que la registraras!
+              ¡Hola! Eres {tipoUsuario} ¡Nos gustaría que la registraras!
             </h2>
 
             <div className="photo-container">

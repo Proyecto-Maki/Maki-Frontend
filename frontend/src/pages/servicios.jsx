@@ -80,7 +80,7 @@ function Servicios() {
                 })
                 .catch((error) => {
                     console.log("Error al cargar las fundaciones");
-                    setError(error.response.data.detail);
+                    setError(error.response ? error.response.data.detail : error.message);
                     setShowErrorModal(true);
                 });
         }

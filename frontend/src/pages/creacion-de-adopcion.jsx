@@ -1,44 +1,189 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../components/navbar";
 import "../styles/creacion-de-adopcion.css";
 import logo from "../img/Logotipo Maki.png"; // Ruta al logo
+import { useLocation, useNavigate } from "react-router-dom";
+import SuccessModal from "../components/SuccessModal";
+import ErrorModal from "../components/ErrorModal";
+import ConfirmationModal from "../components/ConfirmationModal";
+import LoadingPage from "../components/loading-page";
+import api from "../api.js";
+
 const CreacionAdopcion = () => {
-    const datosMascota = {
-        imagen: '../src/img/catPfp.jpeg',
-        nombre: 'Miau',
-        tipo: 'Gato',
-        raza: 'Siames',
-        salud: 'Excelente',
-        sexo: 'Macho',
-        edad: '2 años',
-        tamaño: 'Mediano',
-        peso: '4 kg',
-        ubicacion: 'Ciudad de México',
-        personalidad: 'Juguetón, amigable y cariñoso'
-    };
+    // const datosMascota = {
+    //     imagen: '../src/img/catPfp.jpeg',
+    //     Localidad: 'Teusaquillo',
+    //     direccion: 'cra26',
+    //     descripcion: 'Juguetón, amigable y cariñoso'
+    // };
+
+    const [isLoading, setIsLoading] = useState(true);
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
+    const [showErrorModal, setShowErrorModal] = useState(false);
+    const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+    const [error, setError] = useState('');
+    const [response, setResponse] = useState("");
+    const [dirNavigate, setDirNavigate] = useState("");
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    if (!sessionStorage.getItem("email") || !sessionStorage.getItem("token") || !sessionStorage.getItem("refresh") || !sessionStorage.getItem("is_cliente") || !sessionStorage.getItem("is_fundacion")) {
+        window.location.href = "/login";
+    }
+
+    const email = sessionStorage.getItem("email");
+    const token = sessionStorage.getItem("token");
+    const refresh = sessionStorage.getItem("refresh");
+    const is_cliente = sessionStorage.getItem("is_cliente");
+    const is_fundacion = sessionStorage.getItem("is_fundacion");
 
     // Estado para manejar el formulario
-    const [nombre, setNombre] = useState(datosMascota.nombre);
-    const [tipo, setTipo] = useState(datosMascota.tipo);
-    const [raza, setRaza] = useState(datosMascota.raza);
-    const [estadoSalud, setEstadoSalud] = useState(datosMascota.salud);
-    const [sexo, setSexo] = useState(datosMascota.sexo);
-    const [edad, setEdad] = useState(datosMascota.edad);
-    const [tamano, setTamano] = useState(datosMascota.tamaño);
-    const [peso, setPeso] = useState(datosMascota.peso);
-    const [ubicacion, setUbicacion] = useState('');
-    const [personalidad, setPersonalidad] = useState('');
+    const [mascotaImagen, setMascotaImagen] = useState('');
+    const [nombreMascota, setNombreMascota] = useState('');
+    const [titulo, setTitulo] = useState('');
+    const [localidad, setLocalidad] = useState('');
+    const [direccion, setDireccion] = useState('');
+    const [descripcion, setDescripcion] = useState('');
 
+    const { mascota } = location.state || {};
+
+    if (!mascota) {
+        window.location.href = "/pet-profile-foundation";
+        return;
+    }
+
+    useEffect(() => {
+        console.log(mascota);
+        setMascotaImagen(mascota.imagen);
+        setNombreMascota(mascota.nombre);
+    }, [mascota]);
+
+    const validateTitulo = (titulo) => {
+        const hasLetters = /[a-zA-Z]/.test(titulo);
+        const hasNumbers = /\d/.test(titulo);
+        const isValidLength = titulo.length >= 5;
+
+        return hasLetters && isValidLength;
+    }
+
+    const validateDescripcion = (descripcion) => {
+        const hasLetters = /[a-zA-Z]/.test(descripcion);
+        const hasNumbers = /\d/.test(descripcion);
+        const isValidLength = descripcion.length >= 5;
+
+        return hasLetters && isValidLength;
+    }
+
+
+
+    const handleCrearPublicacion = async (e) => {
+        e.preventDefault();
+
+        if (!titulo || !localidad || !direccion || !descripcion) {
+            setError("Por favor llene todos los campos");
+            setShowErrorModal(true);
+            return;
+        }
+
+        if (!validateTitulo(titulo)) {
+            setError("El título debe tener al menos 5 caracteres y contener letras");
+            setShowErrorModal(true);
+            return;
+        }
+
+        if (!validateDescripcion(descripcion)) {
+            setError("La descripción debe tener al menos 5 caracteres y contener letras");
+            setShowErrorModal(true);
+            return;
+        }
+
+        const datosPublicacion = {
+            email: email,
+            id_mascota: mascota.id,
+            titulo: titulo,
+            id_localidad: parseInt(localidad),
+            direccion: direccion,
+            descripcion: descripcion
+        };
+
+        console.log(datosPublicacion);
+
+
+        api
+            .post('publicaciones/create/', datosPublicacion, {
+                headers: {
+                    'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
+                }
+            })
+            .then((res) => {
+                if (res.status === 201) {
+                    setResponse("Publicación creada exitosamente");
+                    setShowSuccessModal(true);
+                    setDirNavigate("/pet-profile-foundation");
+                } else {
+                    setError(res.data.message);
+                    setShowErrorModal(true);
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+                setError(err.response ? err.response.data.detail : err.message);
+                setShowErrorModal(true);
+            });
+
+    }
+
+    const handleCloseSuccessModal = () => {
+        setShowSuccessModal(false);
+        setError("");
+        setResponse("");
+    }
+
+    const handleCloseErrorModal = () => {
+        setShowErrorModal(false);
+        setError("");
+    }
+
+    const handleYesConfirmationModal = async (e) => {
+        setIsLoading(true);
+        await new Promise(r => setTimeout(r, 2000));
+        await handleCrearPublicacion(e);
+        setIsLoading(false);
+        handleNoConfirmationModal();
+    }
+
+    const handleNoConfirmationModal = () => {
+        setShowConfirmationModal(false);
+    }
+
+    const handleOpenConfirmationModal = (e) => {
+        e.preventDefault();
+        setShowConfirmationModal(true);
+    }
+
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+        }, 3000);
+
+        return () => clearTimeout(timer);
+    }, []);
+
+    if (isLoading) {
+        return <LoadingPage />;
+    }
 
     return (
         <div className="absolute-container-creacion-adopcion">
             {/* Navbar */}
             <Navbar />
             <div className="background-container-creacion-adopcion">
+
                 {/* Logo Maki encima del formulario */}
                 <div className="logo-container">
                     <img
-                        src={logo} // Usando la imagen de datosMascota
+                        src={logo}
                         alt="Logo Maki"
                         className="logo-img"
                         style={{ height: "100px" }}
@@ -46,85 +191,84 @@ const CreacionAdopcion = () => {
                 </div>
                 <div className="crear-adopcion-container">
                     <form >
-                        {/* Foto de la mascota */}
                         <div className="photo-container-creacion-adopcion">
                             <img
-                                src={datosMascota.imagen}
+                                src={mascotaImagen}
                                 alt="Foto-Mascota"
                                 className="photo-container-img"
                             />
                         </div>
 
-                        <div className="form-group">
-                            <label className="label-creacion-adopcion-breed">Imagen</label>
-                            <div className="tooltip-creacion-adopcion">
-                                <input
-                                    accept="image/png,image/jpeg"
-                                    type="file"
-                                    className="input-creacion-adopcion-breed"
-                                    placeholder="Ingresa la raza de tu mascota"
-                                    name="imagen"
-                                    id="imagen-mascota"
-                                />
-                            </div>
+                        <div className="form-row-nombre-mascota">
+                            <h3>{nombreMascota}</h3>
                         </div>
-
-                        {/* Nombre de la mascota */}
-                        <div className="form-group">
-                            <label className="label-creacion-adopcion-name">
-                                ¿Cómo se llama tu mascota?
-                            </label>
-                            <div className="input-photo-container">
+                        <div className="form-row">
+                            <div className="form-group col-md-12">
+                                <label className="label-creacion-adopcion-title">
+                                    Dale un título a tu publicación
+                                </label>
                                 <div className="tooltip-creacion-adopcion">
                                     <input
                                         type="text"
-                                        className="input-creacion-adopcion-name"
-                                        placeholder="Ingresa el nombre de tu mascota"
-                                        name="nombre"
-                                        value={nombre}
-                                        onChange={(e) => setNombre(e.target.value)}
-                                        required
-                                    />
+                                        className="input-creacion-adopcion-title"
+                                        placeholder="Ingresa el titulo de tu publicación"
+                                        name="titulo"
+                                        value={titulo}
+                                        onChange={(e) => setTitulo(e.target.value)}
+                                        required>
+                                    </input>
                                 </div>
                             </div>
                         </div>
-
                         <div className="form-row">
-                            {/* Tipo de mascota */}
                             <div className="form-group col-md-6">
-                                <label className="label-creacion-adopcion-type">
-                                    ¿Qué tipo de mascota tienes?
+                                <label className="label-creacion-adopcion-locality">
+                                    Localidad de residencia
                                 </label>
                                 <div className="tooltip-creacion-adopcion">
                                     <select
-                                        className="input-creacion-adopcion-type"
-                                        name="tipo"
-                                        value={tipo}
-                                        onChange={(e) => setTipo(e.target.value)}
+                                        className="input-creacion-adopcion-locality"
+                                        name="localidad"
+                                        value={localidad}
+                                        onChange={(e) => setLocalidad(e.target.value)}
                                         required
                                     >
                                         <option defaultValue>Selecciona...</option>
-                                        <option>Perro</option>
-                                        <option>Gato</option>
-                                        <option>Roedor</option>
-                                        <option>Ave</option>
-                                        <option>Reptil</option>
-                                        <option>Pez</option>
+                                        <option value={1}>Usaquén</option>
+                                        <option value={2}>Chapinero</option>
+                                        <option value={3}>Santa Fe</option>
+                                        <option value={4}>San Cristóbal</option>
+                                        <option value={5}>Usme</option>
+                                        <option value={6}>Tunjuelito</option>
+                                        <option value={7}>Bosa</option>
+                                        <option value={8}>Kennedy</option>
+                                        <option value={9}>Fontibón</option>
+                                        <option value={10}>Engativá</option>
+                                        <option value={11}>Suba</option>
+                                        <option value={12}>Barrios Unidos</option>
+                                        <option value={13}>Teusaquillo</option>
+                                        <option value={14}>Los Mártires</option>
+                                        <option value={15}>Antonio Nariño</option>
+                                        <option value={16}>Puente Aranda</option>
+                                        <option value={17}>La Candelaria</option>
+                                        <option value={18}>Rafael Uribe Uribe</option>
+                                        <option value={19}>Ciudad Bolívar</option>
+                                        <option value={20}>Sumapaz</option>
                                     </select>
                                 </div>
                             </div>
 
-                            {/* Raza de la mascota */}
+                            {/* dirección */}
                             <div className="form-group col-md-6">
-                                <label className="label-creacion-adopcion-breed">Raza</label>
+                                <label className="label-creacion-adopcion-direction">Dirección</label>
                                 <div className="tooltip-creacion-adopcion">
                                     <input
                                         type="text"
-                                        className="input-creacion-adopcion-race"
-                                        placeholder="Ingresa la raza de tu mascota"
-                                        name="raza"
-                                        value={raza}
-                                        onChange={(e) => setRaza(e.target.value)}
+                                        className="input-creacion-adopcion-direction"
+                                        placeholder="Ingresa tu dirección exacta"
+                                        name="direccion"
+                                        value={direccion}
+                                        onChange={(e) => setDireccion(e.target.value)}
                                         required
                                     />
                                 </div>
@@ -132,149 +276,21 @@ const CreacionAdopcion = () => {
                         </div>
 
                         <div className="form-row">
-                            {/* Estado de salud */}
-                            <div className="form-group col-md-6">
-                                <label className="label-creacion-adopcion-type">
-                                    Estado de salud
-                                </label>
-                                <div className="tooltip-creacion-adopcion">
-                                    <select
-                                        className="input-creacion-adopcion-type"
-                                        name="estado_salud"
-                                        value={estadoSalud}
-                                        onChange={(e) => setEstadoSalud(e.target.value)}
-                                        required
-                                    >
-                                        <option defaultValue>Selecciona...</option>
-                                        <option>Saludable</option>
-                                        <option>Enfermo</option>
-                                        <option>Recuperación</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            {/* Sexo de la mascota */}
-                            <div className="form-group col-md-6">
-                                <label htmlFor="input-pet-size" className="label-creacion-adopcion-size">
-                                    Sexo
-                                </label>
-                                <div className="tooltip-creacion-adopcion">
-                                    <select
-                                        id="input-pet-sexo"
-                                        className="input-creacion-adopcion-size"
-                                        name="sexo"
-                                        value={sexo}
-                                        onChange={(e) => setSexo(e.target.value)}
-                                        required
-                                    >
-                                        <option defaultValue>Selecciona...</option>
-                                        <option value="M">Macho</option>
-                                        <option value="H">Hembra</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="form-row">
-                            {/* Edad de la mascota */}
-                            <div className="form-group col-md-6">
-                                <label htmlFor="input-pet-age" className="label-creacion-adopcion-age">
-                                    Edad
-                                </label>
-                                <div className="tooltip-creacion-adopcion">
-                                    <input
-                                        type="number"
-                                        className="input-creacion-adopcion-age"
-                                        id="input-pet-age"
-                                        placeholder="Ingresa la edad de tu mascota"
-                                        name="edad"
-                                        value={edad}
-                                        onChange={(e) => setEdad(e.target.value)}
-                                        required
-                                        min={0}
-                                        max={50}
-                                    />
-                                </div>
-                            </div>
-
-                            {/* Tamaño de la mascota */}
-                            <div className="form-group col-md-4">
-                                <label htmlFor="input-pet-size" className="label-creacion-adopcion-size">
-                                    Tamaño
-                                </label>
-                                <div className="tooltip-creacion-adopcion">
-                                    <select
-                                        id="input-pet-size"
-                                        className="input-creacion-adopcion-size"
-                                        name="tamano"
-                                        value={tamano}
-                                        onChange={(e) => setTamano(e.target.value)}
-                                        required
-                                    >
-                                        <option defaultValue>Selecciona...</option>
-                                        <option value="P">Pequeño</option>
-                                        <option value="M">Mediano</option>
-                                        <option value="G">Grande</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            {/* Peso de la mascota */}
-                            <div className="form-group col-md-2">
-                                <label htmlFor="input-pet-weight" className="label-creacion-adopcion-weight">
-                                    Peso
-                                </label>
-                                <div className="tooltip-creacion-adopcion">
-                                    <input
-                                        type="number"
-                                        className="input-creacion-adopcion-weight"
-                                        id="input-pet-weight"
-                                        placeholder="Peso en kg"
-                                        name="peso"
-                                        value={peso}
-                                        onChange={(e) => setPeso(e.target.value)}
-                                        min={0.1}
-                                        max={120}
-                                        required
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="form-row">
-                            {/* Ubicación de la mascota */}
-                            <div className="form-group col-md-6">
-                                <label className="label-creacion-adopcion-ubicacion">
-                                    Ubicación
+                            {/*descripcion*/}
+                            <div className="form-group col-md-12">
+                                <label className="label-creacion-adopcion-descripcion">
+                                    Descripción
                                 </label>
                                 <div className="input-photo-container">
                                     <div className="tooltip-creacion-adopcion">
-                                        <input
-                                            type="text"
-                                            className="input-creacion-adopcion-ubicacion"
-                                            placeholder="Ingresa la ubicacion de tu mascota"
-                                            name="ubicacion"
-                                            value={ubicacion}
-                                            onChange={(e) => setUbicacion(e.target.value)}
+                                        <textarea
+                                            className="textarea-creacion-adopcion-descripcion"
+                                            placeholder="Ingresa una descripción para la publicación de tu mascota"
+                                            name="descripcion"
+                                            value={descripcion}
+                                            onChange={(e) => setDescripcion(e.target.value)}
                                             required
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="form-group col-md-6">
-                                <label className="label-creacion-adopcion-personalidad">
-                                    Personalidad
-                                </label>
-                                <div className="input-photo-container">
-                                    <div className="tooltip-creacion-adopcion">
-                                        <input
-                                            type="text"
-                                            className="input-creacion-adopcion-personalidad"
-                                            placeholder="Ingresa la personalidad de tu mascota"
-                                            name="personalidad"
-                                            value={personalidad}
-                                            onChange={(e) => setPersonalidad(e.target.value)}
-                                            required
-                                        />
+                                        ></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -282,7 +298,7 @@ const CreacionAdopcion = () => {
 
                         {/* Botón para crear la adopción */}
                         <div className="form-group">
-                            <button class="btn-crear-adopcion">
+                            <button class="btn-crear-adopcion" onClick={handleOpenConfirmationModal}>
                                 <i class="fas fa-paw huella-icon"></i> ¡Crear!
                             </button>
                         </div>
@@ -290,6 +306,23 @@ const CreacionAdopcion = () => {
                     </form>
                 </div>
             </div>
+            <SuccessModal
+                show={showSuccessModal}
+                handleClose={handleCloseSuccessModal}
+                response={response}
+                dirNavigate={dirNavigate}
+            />
+            <ErrorModal
+                show={showErrorModal}
+                handleClose={handleCloseErrorModal}
+                error={error}
+            />
+            <ConfirmationModal
+                show={showConfirmationModal}
+                handleYes={handleYesConfirmationModal}
+                handleNo={handleNoConfirmationModal}
+                response="¿Estás seguro de publicar la adopción?"
+            />
         </div>
     );
 };
