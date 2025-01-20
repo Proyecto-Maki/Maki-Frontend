@@ -108,7 +108,21 @@ function Register() {
       return "El código postal debe tener 6 dígitos.";
     }
     return null;
-  }
+  };
+
+  const validateFechaNacimiento = (fechaNacimiento) => {
+    const today = new Date();
+    const birthDate = new Date(fechaNacimiento);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDifference = today.getMonth() - birthDate.getMonth();
+    if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    if (age < 18) {
+        return "Debes ser mayor de edad para registrarte.";
+    }
+    return null;
+};
 
   const handleChange = (e) => {
     setFormData({
@@ -172,10 +186,19 @@ function Register() {
       }
     }
 
-    if(formData.codigo_postal){
+    if (formData.codigo_postal) {
       const codigoPostalError = validateCodigoPostal(formData.codigo_postal);
       if (codigoPostalError) {
         setError(codigoPostalError);
+        setShowErrorModal(true);
+        return;
+      }
+    }
+
+    if (type === "user") {
+      const fechaNacimientoError = validateFechaNacimiento(formData.fecha_nacimiento);
+      if (fechaNacimientoError) {
+        setError(fechaNacimientoError);
         setShowErrorModal(true);
         return;
       }
@@ -399,6 +422,24 @@ function Register() {
                   </div>
                 </div>
                 <div className="form-group">
+                  <label>Fecha de nacimiento</label>
+                  <div className="tooltip-registro">
+                    <input
+                      className="input-field"
+                      type="date"
+                      name="fecha_nacimiento"
+                      placeholder="Fecha de nacimiento"
+                      onChange={handleChange}
+                      value={formData.fecha_nacimiento || ""}
+                      required
+                    />
+                    <span className="tooltip-registro-text-l">
+                      Este campo es obligatorio. Ingresa tu fecha de nacimiento.
+                      Recuerda que debes ser mayor de edad para registrarte.
+                    </span>
+                  </div>
+                </div>
+                <div className="form-group">
                   <label>Teléfono</label>
                   <div className="tooltip-registro">
                     <input
@@ -447,10 +488,17 @@ function Register() {
                       Este campo no es obligatorio. Ingresa tu código postal
                     </span>
                   </div>
-                </div><div className="form-group">
+                </div>
+                <div className="form-group">
                   <label>Localidad</label>
                   <div className="tooltip-registro">
-                    <select className="input-field" name="id_localidad" onChange={handleChange} value={formData.id_localidad || ""} required>
+                    <select
+                      className="input-field"
+                      name="id_localidad"
+                      onChange={handleChange}
+                      value={formData.id_localidad || ""}
+                      required
+                    >
                       <option defaultValue>Selecciona...</option>
                       <option value={1}>Usaquén</option>
                       <option value={2}>Chapinero</option>
@@ -639,10 +687,17 @@ function Register() {
                       Este campo no es obligatorio. Ingresa tu código postal
                     </span>
                   </div>
-                </div><div className="form-group">
+                </div>
+                <div className="form-group">
                   <label>Localidad</label>
                   <div className="tooltip-registro">
-                    <select className="input-field" name="id_localidad" onChange={handleChange} value={formData.id_localidad || ""} required>
+                    <select
+                      className="input-field"
+                      name="id_localidad"
+                      onChange={handleChange}
+                      value={formData.id_localidad || ""}
+                      required
+                    >
                       <option defaultValue>Selecciona...</option>
                       <option value={1}>Usaquén</option>
                       <option value={2}>Chapinero</option>
