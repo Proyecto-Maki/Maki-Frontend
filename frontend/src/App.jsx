@@ -25,6 +25,7 @@ import Pedidos from "./pages/mis-pedidos";
 import CreacionAdopcion from "./pages/creacion-de-adopcion";
 import Pedido from "./pages/pedido";
 import AboutUs from "./pages/about-us";
+import Membresias from "./pages/membresias";
 
 function App() {
   return (
@@ -64,6 +65,7 @@ function App() {
         <Route path="/crear-adopcion" element={<CreacionAdopcion />} />
         <Route path="/mi-pedido" element={<Pedido />} />
         <Route path="/sobre-maki" element={ <AboutUs />}></Route>
+        <Route path="/membresias" element={ <Membresias />}></Route>
       </Routes>
     </BrowserRouter>
   );

@@ -1,0 +1,189 @@
+.absolute-membership-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; 
+    overflow-y: scroll;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-color: #fcf3e3;
+  }
+
+  .absolute-membership-container::-webkit-scrollbar {
+    width: 10px;
+    color: #fcf3e3;
+  }
+  
+  .absolute-membership-container::-webkit-scrollbar-thumb {
+    background: #ffcc80;
+    border-radius: 80px;
+  }
+  
+  .absolute-membership-container::-webkit-scrollbar-thumb:hover {
+    background: #ffa726;
+  }
+  
+  .absolute-membership-container::-webkit-scrollbar-track {
+    background: none;
+  }
+  
+  .background-membership {
+    background-image: url("/fondo.svg");
+    background-size: contain;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    height: 30vh;
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
+    position: relative;
+    top: 4%;
+    flex-grow: 1;
+  }
+  
+  .membership-container {
+    border-radius: 20px;
+    border: 2px solid red;
+    padding: 100px;
+    padding-top: 30%;
+    position: relative;
+    top: 0%;
+    min-width: 90vw;
+    max-width: 90vw;
+    min-height: 80vh;
+    max-height: 80vh;
+    margin: 10px auto;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    box-sizing: border-box;
+  }
+
+  .logo-membership{
+    border: 2px solid red;
+    display: flex;
+    position: absolute;
+    top: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .type-user-membership {
+  font-size: 30px;
+  font-family: "Aoboshi One", sans-serif;
+  color: #ff7f50;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30%;
+  position: relative;
+  margin-top: 2%;
+}
+
+.membership-text{
+    font-size: 15px;
+    font-family: "Aoboshi One", sans-serif;
+    color: #302F2F;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 80%;
+    position: relative;
+    top: 0px;
+}
+
+.plan-table {
+    text-align: center;
+    margin-top: 30%;
+    max-width: 90%;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid #BDD3CE;
+    
+  }
+  
+  .plan-table h2 {
+    color: #ff7e1a;
+    padding: 10px 0;
+    margin: 0;
+    padding-bottom: 0%;
+    display: flex;
+    justify-content: center;
+    font-size: 48px;
+    font-family: "Koulen", sans-serif;
+  }
+
+  .plan {
+    color: #ff7e1a;
+    padding: 10px 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    font-size: 48px;
+    font-family: "Koulen", sans-serif;
+  }
+  
+  .table {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    background-color: #fcf3e3;
+    margin-bottom: 0%;
+    border: 2px solid red;
+  }
+  
+  .row {
+    display: contents;
+  }
+  
+  .cell {
+    padding: 15px;
+    text-align: center;
+    font-size: 16px;
+  }
+
+  .header .cell {
+    background-color: #D0DAD8;
+    color: #302F2F;
+  }
+  
+  .price h2 {
+    background-color: #D0DAD8;
+    color: #ff7e1a;
+    font-size: 40px;
+    max-height: 200px;
+  }
+  
+  .cell:first-child {
+    text-align: left;
+  }
+  
+  .cell:nth-child(2),
+  .cell:nth-child(3) {
+    font-size: 20px;
+  }
+  
+  .cell:nth-child(2)::after,
+  .cell:nth-child(3)::after {
+    margin-left: 8px;
+    font-size: 18px;
+  }
+  
+  .row.price .cell:nth-child(2)::after,
+  .row.price .cell:nth-child(3)::after {
+    content: "";
+  }
