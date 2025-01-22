@@ -216,7 +216,7 @@ const UserProfile = () => {
 
   const handleEliminarCuenta = async (e) => {
     e.preventDefault();
-    url_delete = es_cliente === "true" ? "cliente-profile-delete/" : "fundacion-profile-delete/";
+    const url_delete = es_cliente === "true" ? "cliente-profile-delete/" : "fundacion-profile-delete/";
 
     api
       .delete(url_delete, {
