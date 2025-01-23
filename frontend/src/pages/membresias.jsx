@@ -42,13 +42,62 @@ function Membresias() {
                         <h3 className="membership-text">Ofrecemos los siguientes planes con los siguientes beneficios para tu fundación de mascotas</h3>
                     </div>
                     <div className="plan-table">
-                        <div className="table">
-                            <div className="plan">Elige tu plan</div>
-                            <div className="plan column-personal">Personal</div>
-                            <div className="plan column-peludos">Peludos</div>
-                            <div className="row header">
-                                <div className="cell">Podrás ver y comprar nuestros productos.</div>
+                        <div className="table-wrapper">
+                            <div className="table">
+                                <div className="plan">Elige tu plan</div>
+                                <div className="plan column-personal">Personal</div>
+                                <div className="plan column-peludos">Peludos</div>
+                                <div className="row header">
+                                    <div className="cell">Podrás ver y comprar nuestros productos.</div>
+                                    <div className="cell column-personal">
+                                        <img
+                                            src={paw}
+                                            alt="paw"
+                                            className="paw-membership-img"
+                                            style={{ height: "50px", backgroundColor: "#D0DAD8"}}
+                                        />
+                                    </div>
+                                    <div className="cell column-peludos">
+                                        <img
+                                        src={paw}
+                                        alt="paw"
+                                        className="paw-membership-img"
+                                        style={{ height: "50px", backgroundColor: "#D0DAD8"}}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="row">
+                                <div className="cell">Podrás recibir donaciones de nuestros clientes.</div>
                                 <div className="cell column-personal">
+                                    <img
+                                            src={paw}
+                                            alt="paw"
+                                            className="paw-membership-img"
+                                            style={{ height: "50px", backgroundColor: "#fcf3e3"}}
+                                            />
+                                    </div>
+                                <div className="cell column-peludos">
+                                    <img
+                                            src={paw}
+                                            alt="paw"
+                                            className="paw-membership-img"
+                                            style={{ height: "50px", backgroundColor: "#fcf3e3"}}
+                                            />
+                                    </div>
+                                </div>
+                                <div className="row header">
+                                <div className="cell">
+                                    Podrás publicar tus animales en adopción en nuestra plataforma.
+                                </div>
+                                <div className="cell column-personal">
+                                    <img
+                                        src={minus}
+                                        alt="minus"
+                                        className="minus-membership-img"
+                                        style={{ height: "25px", width: "50px",backgroundColor: "#D0DAD8",justifySelf: "center"}}
+                                    />
+                                </div>
+                                <div className="cell column-peludos">
                                     <img
                                         src={paw}
                                         alt="paw"
@@ -56,82 +105,38 @@ function Membresias() {
                                         style={{ height: "50px", backgroundColor: "#D0DAD8"}}
                                     />
                                 </div>
-                                <div className="cell column-peludos">
+                                </div>
+                                <div className="row">
+                                <div className="cell">
+                                    Obtendrás un 25% de descuento en nuestros productos.
+                                </div>
+                                <div className="cell column-personal">
                                     <img
-                                    src={paw}
-                                    alt="paw"
-                                    className="paw-membership-img"
-                                    style={{ height: "50px", backgroundColor: "#D0DAD8"}}
+                                        src={minus}
+                                        alt="minus"
+                                        className="minus-membership-img"
+                                        style={{ height: "25px", width: "50px",backgroundColor: "#fcf3e3",justifySelf: "center"}}
                                     />
                                 </div>
-                            </div>
-                            <div className="row">
-                            <div className="cell">Podrás recibir donaciones de nuestros clientes.</div>
-                            <div className="cell column-personal">
-                                <img
+                                <div className="cell column-peludos">
+                                    <img
                                         src={paw}
                                         alt="paw"
                                         className="paw-membership-img"
                                         style={{ height: "50px", backgroundColor: "#fcf3e3"}}
-                                        />
+                                    />
                                 </div>
-                            <div className="cell column-peludos">
-                                <img
-                                        src={paw}
-                                        alt="paw"
-                                        className="paw-membership-img"
-                                        style={{ height: "50px", backgroundColor: "#fcf3e3"}}
-                                        />
                                 </div>
-                            </div>
-                            <div className="row header">
-                            <div className="cell">
-                                Podrás publicar tus animales en adopción en nuestra plataforma.
-                            </div>
-                            <div className="cell column-personal">
-                                <img
-                                    src={minus}
-                                    alt="minus"
-                                    className="minus-membership-img"
-                                    style={{ height: "25px", width: "50px",backgroundColor: "#D0DAD8",justifySelf: "center"}}
-                                />
-                            </div>
-                            <div className="cell column-peludos">
-                                <img
-                                    src={paw}
-                                    alt="paw"
-                                    className="paw-membership-img"
-                                    style={{ height: "50px", backgroundColor: "#D0DAD8"}}
-                                />
-                            </div>
-                            </div>
-                            <div className="row">
-                            <div className="cell">
-                                Obtendrás un 25% de descuento en nuestros productos.
-                            </div>
-                            <div className="cell column-personal">
-                                <img
-                                    src={minus}
-                                    alt="minus"
-                                    className="minus-membership-img"
-                                    style={{ height: "25px", width: "50px",backgroundColor: "#fcf3e3",justifySelf: "center"}}
-                                />
-                            </div>
-                            <div className="cell column-peludos">
-                                <img
-                                    src={paw}
-                                    alt="paw"
-                                    className="paw-membership-img"
-                                    style={{ height: "50px", backgroundColor: "#fcf3e3"}}
-                                />
-                            </div>
-                            </div>
-                            <div className="row price">
-                                <h2 >Precio</h2>
-                                <button className="price-personal">$0 COP</button>
-                                <button className="price-peludos">$26.000 COP</button>
+                                <div className="row price">
+                                    <h2 >Precio</h2>
+                                    <button className="price-personal">$0 COP</button>
+                                    <button className="price-peludos">$26.000 COP</button>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                    <div className="container-button-later">
+                        <button className="button-later">Recuérdame más tarde</button>
                     </div>
                 </div>
             </div>
