@@ -26,6 +26,7 @@ import CreacionAdopcion from "./pages/creacion-de-adopcion";
 import Pedido from "./pages/pedido";
 import AboutUs from "./pages/about-us";
 import Membresias from "./pages/membresias";
+import ResumenAdopcion from "./pages/resumen-adopcion";
 
 function App() {
   return (
@@ -66,6 +67,7 @@ function App() {
         <Route path="/mi-pedido" element={<Pedido />} />
         <Route path="/sobre-maki" element={ <AboutUs />}></Route>
         <Route path="/membresias" element={ <Membresias />}></Route>
+        <Route path="/resumen-adopcion" element={ <ResumenAdopcion />}></Route>
       </Routes>
     </BrowserRouter>
   );
