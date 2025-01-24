@@ -45,6 +45,18 @@
 
 }
 
+
+.normativas-label {
+  font-size: 14px;
+  flex: 17;
+}
+
+.terms-checkbox-normativas {
+  width: 20px;
+  height: 20px;
+  flex: 1;
+}
+
 .logo-container{
   display: flex;
   justify-content: center;

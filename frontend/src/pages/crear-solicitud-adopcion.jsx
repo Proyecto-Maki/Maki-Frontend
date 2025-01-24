@@ -72,8 +72,8 @@ function CrearSolicitudAdopcion() {
                             </div>
                             <h2 className="name-pet">{selectedPet.name}</h2>
                             <p className="text-create-adoption">
-                            Nos alegra que hayas decidido adoptar a este animalito. Por
-                            favor dinos el motivo de tu adopción:
+                            Nos alegra que hayas decidido adoptar a {selectedPet.name}. Por
+                            favor cuéntanos el motivo de tu adopción:
                             </p>
                             <div className="input-container">
                             <div className="tooltip-create-adoption">
@@ -89,6 +89,26 @@ function CrearSolicitudAdopcion() {
                                 </span>
                             </div>
                             </div>
+                            <div className="form-group-normativas" style={{ marginBottom: "10px" }}>
+                              <input
+                                  className="terms-checkbox-normativas"
+                                  type="checkbox"
+                                  id="terms"
+                              />
+                            </div>
+                                <label htmlFor="terms" className="normativas-label">
+                                  Acepto y estoy de acuerdo con las{" "}
+                                  <a
+                                    href="/normativas" /*hay que creear esa vista, yo la hago*/
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    style={{ color: "#ff7f50" }}
+                                  >
+                                    normativas
+                                  </a>{" "}
+                                  de Maki
+                                </label>
+                              
                         </form>
                     </div>
                 ) : (
