@@ -106,8 +106,8 @@ function Servicios() {
     }, [idLocalidad]);
 
 
-    const handleAdoptar = (email_fundacion) => {
-        if (email === null || token === null || refresh === null) {
+    const handleAdoptar = (fundacion) => {
+        if (email === null || token === null || refresh === null || is_cliente === null || is_fundacion === null) {
             setWarning("Para ver las adopciones disponibles, debes iniciar sesión. ¿Deseas iniciar sesión?");
             setDirNavigate("/login");
             setShowWarningModal(true);
@@ -116,7 +116,7 @@ function Servicios() {
             setDirNavigate("/login");
             setShowWarningModal(true);
         } else {
-            navigate("/adopcion", {state: {email_fundacion}});
+            navigate("/adopcion", {state: {fundacion}});
         }
         
 
@@ -201,7 +201,7 @@ function Servicios() {
                                     <h3>Misión</h3>
                                     <p>{fundacion.descripcion}</p>
                                     <div className="fundacion-actions">
-                                        <button className="btn btn-success" onClick={() => handleAdoptar(fundacion.email)}>Adoptar</button>
+                                        <button className="btn btn-success" onClick={() => handleAdoptar(fundacion)}>Adoptar</button>
                                         <button className="btn btn-info">Donar</button>
                                     </div>
                                 </div>
