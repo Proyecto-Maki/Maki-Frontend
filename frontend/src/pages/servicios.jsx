@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import "../styles/servicios.css";
 import ErrorModal from '../components/ErrorModal';
 import SuccessModal from "../components/SuccessModal";
+import WarningModal from "../components/WarningModal";
 import ConfirmationModal from "../components/ConfirmationModal";
 import { useNavigate } from "react-router-dom";
 import api from "../api";
@@ -15,11 +16,20 @@ function Servicios() {
     const navigate = useNavigate();
     const [showSuccessModal, setShowSuccessModal] = useState(false);
     const [showErrorModal, setShowErrorModal] = useState(false);
+    const [showWarningModal, setShowWarningModal] = useState(false);
     const [error, setError] = useState('');
     const [response, setResponse] = useState("");
+    const [warning, setWarning] = useState("");
+    const [dirNavigate, setDirNavigate] = useState("");
     const [localidadUser, setLocalidadUser] = useState("");
     const [idLocalidad, setIdLocalidad] = useState(0);
     const [fundaciones, setFundaciones] = useState([]);
+
+    const email = sessionStorage.getItem("email");
+    const token = sessionStorage.getItem("token");
+    const refresh = sessionStorage.getItem("refresh");
+    const is_cliente = sessionStorage.getItem("is_cliente");
+    const is_fundacion = sessionStorage.getItem("is_fundacion");
 
     // Simula datos de fundaciones (puedes reemplazar esto con una API)
     // const [fundaciones, setFundaciones] = useState([
@@ -95,77 +105,22 @@ function Servicios() {
         console.log("Localidad seleccionada: ", idLocalidad);
     }, [idLocalidad]);
 
-    // useEffect(() => {
-    //     api
-    //         .get(`current_user/`, {
-    //             headers: {
-    //                 'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
-    //             },
-    //         })
-    //         .then((res) => {
-    //             if (res.status === 200) {
-    //                 const tem_email = res.data.email;
-    //                 if (res.data.is_cliente === true) {
-    //                     api
-    //                         .get(`client-profile/`, {
-    //                             params: {
-    //                                 email: tem_email,
-    //                             },
-    //                             headers: {
-    //                                 'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
-    //                             },
-    //                         })
-    //                         .then((res) => {
-    //                             if (res.status === 200){
-    //                                 setLocalidadUser(res.data.localidad);
-    //                             } else {
-    //                                 console.log("Error al cargar el perfil del cliente");
-    //                                 setError(res.data.message);
-    //                                 setShowErrorModal(true);
-    //                             }
-    //                         })
-    //                         .catch((error) => {
-    //                             console.log("Error al cargar el perfil del cliente");
-    //                             setError(error.response.data.detail);
-    //                             setShowErrorModal(true);
-    //                         })
-    //                 } else if (res.data.is_fundacion === true){
-    //                     api
-    //                         .get(`fundacion-profile/`, {
-    //                             params: {
-    //                                 email: tem_email,
-    //                             },
-    //                             headers: {
-    //                                 'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
-    //                             },
-    //                         })
-    //                         .then((res) => {
-    //                             if (res.status === 200){
-    //                                 setLocalidadUser(res.data.localidad);
-    //                             } else {
-    //                                 console.log("Error al cargar el perfil de la fundación");
-    //                                 setError(res.data.message);
-    //                                 setShowErrorModal(true);
-    //                             }
-    //                         })
-    //                         .catch((error) => {
-    //                             console.log("Error al cargar el perfil de la fundación");
-    //                             setError(error.response.data.detail);
-    //                             setShowErrorModal(true);
-    //                         })
-    //                 } else {
-    //                     console.log("El usuario no tiene rol asignado");
-    //                     setError(res.data.message);
-    //                     setShowErrorModal(true);
-    //                 }
 
-    //             } else {
-    //                 console.log("Error al cargar el usuario actual");
-    //                 setError(res.data.message);
-    //                 setShowErrorModal(true);
-    //             }
-    //         })
-    // }, []);
+    const handleAdoptar = (email_fundacion) => {
+        if (email === null || token === null || refresh === null) {
+            setWarning("Para ver las adopciones disponibles, debes iniciar sesión. ¿Deseas iniciar sesión?");
+            setDirNavigate("/login");
+            setShowWarningModal(true);
+        } else if (is_fundacion === "true") {
+            setWarning("Debes iniciar sesión como cliente para poder adoptar mascotas. ¿Deseas iniciar sesión?");
+            setDirNavigate("/login");
+            setShowWarningModal(true);
+        } else {
+            navigate("/adopcion", {state: {email_fundacion}});
+        }
+        
+
+    }
 
     const handleCloseSuccessModal = () => {
         setShowSuccessModal(false);
@@ -178,6 +133,10 @@ function Servicios() {
         setError("");
     }
 
+    const handleCloseWarningModal = () => {
+        setShowWarningModal(false);
+        setWarning("");
+    }
 
     return (
         <div>
@@ -242,7 +201,7 @@ function Servicios() {
                                     <h3>Misión</h3>
                                     <p>{fundacion.descripcion}</p>
                                     <div className="fundacion-actions">
-                                        <button className="btn btn-success">Adoptar</button>
+                                        <button className="btn btn-success" onClick={() => handleAdoptar(fundacion.email)}>Adoptar</button>
                                         <button className="btn btn-info">Donar</button>
                                     </div>
                                 </div>
@@ -261,6 +220,12 @@ function Servicios() {
                 show={showSuccessModal}
                 handleClose={handleCloseSuccessModal}
                 response={response}
+            />
+            <WarningModal 
+                show={showWarningModal}
+                handleClose={handleCloseWarningModal}
+                warning={warning}
+                dirNavigate={dirNavigate}
             />
         </div>
     );

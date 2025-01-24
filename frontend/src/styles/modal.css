@@ -60,3 +60,36 @@
   background-color: #f5c6cb;
   color: #721c24;
 }
+
+.modal-warning-content .modal-content{
+  background-color: #fff3cd;
+  color: #856404;
+  border: none;
+}
+
+.modal-warning-header {
+  background-color: #fff3cd;
+  color: #856404;
+  border-color: #fff3cd;
+}
+
+.modal-warning-body {
+  background-color: #fff3cd;
+  color: #856404;
+  border-color: #fff3cd;
+}
+
+.modal-warning-footer {
+  background-color: #fff3cd;
+  border-color: #fff3cd;
+}
+
+.modal-warning-button-secondary {
+  background-color: #ffeeba;
+  color: #856404;
+}
+
+.modal-warning-button-primary {
+  background-color: #ffc107;
+  color: #856404;
+}

@@ -27,6 +27,8 @@ import Pedido from "./pages/pedido";
 import AboutUs from "./pages/about-us";
 import Carrito from "./pages/carrito";
 import TerminosYCondiciones from "./pages/terms-and-conditions";
+import Membresias from "./pages/membresias";
+import ResumenAdopcion from "./pages/resumen-adopcion";
 
 function App() {
   const [numItemsCarrito, setNumeroItemsCarrito] = useState(0);
@@ -94,6 +96,8 @@ function App() {
           path="/terminos-y-condiciones"
           element={<TerminosYCondiciones />}
         />
+        <Route path="/membresias" element={<Membresias />}></Route>
+        <Route path="/resumen-adopcion" element={<ResumenAdopcion />}></Route>
       </Routes>
     </BrowserRouter>
   );
