@@ -17,8 +17,8 @@ const LoadingPage = () => {
             <div className="legs left"></div>
             <div className="legs right"></div>
           </div>
-          <div className="hands left"></div>
-          <div className="hands right"></div>
+            <div className="hands left"></div>
+            <div className="hands right"></div>
         </div>
       </div>
     </>

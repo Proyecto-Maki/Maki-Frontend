@@ -192,15 +192,17 @@ body {
 }
 
 .loading-cat .hands.left {
-  top: 144px;
-  right: 161px;
+  top: 38%;
+  right: 26%;
   transform: rotate(-20deg);
+  position: absolute;
 }
 
 .loading-cat .hands.right {
-  top: 123px;
-  right: 130px;
+  top: 40%;
+  right: 33%;
   transform: rotate(-25deg);
+  position: absolute;
 }
 
 .loading-cat .legs {
@@ -346,4 +348,10 @@ body {
 
 .loading-cat .foot {
   animation: 2.74s linear infinite foot;
+}
+
+@media (max-width: 768px) {
+  .loading-cat .hands{
+    display: none;
+  }
 }
