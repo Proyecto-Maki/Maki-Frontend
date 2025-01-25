@@ -68,7 +68,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
   padding: 30px;
   width: 100%;
-  max-height: 90%;
+  min-height: 90%;
   max-width: 55vw; 
   z-index: 10; 
   background-color: #fdf0e6;
@@ -101,7 +101,7 @@
 }
 
 .input-container{
-    width: 80%;
+    width: 90%;
     height: auto;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     border-radius: 20px;
@@ -112,9 +112,9 @@
 }
 
 /* Estilo para los campos de entrada */
-.input-container input {
+.input-container textarea {
   width: 100%; /* Ancho completo */
-  height: 60px;
+  height: 150px;
   border: none;
   border-radius: 20px; /* Bordes redondeados */
   padding: 0px; /* Espaciado interno */
@@ -124,6 +124,8 @@
   background-color: #FFFBF4;
   color: #302f2fda;
   font-family: "Aoboshi One", sans-serif;
+  padding: 3%;
+  resize: none;
 }
 
 /* Estilo para el placeholder */
@@ -160,6 +162,8 @@
   width: 50%;
   height: 50px;
   justify-self: center;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
 
 .btn-adopt-pet {

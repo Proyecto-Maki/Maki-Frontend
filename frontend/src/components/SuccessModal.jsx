@@ -5,7 +5,7 @@ import "../styles/modal.css";
 
 function SuccessModal({ show, handleClose, response, dirNavigate }) {
   const navigate = useNavigate();
-  console.log(dirNavigate);
+  // console.log(dirNavigate);
 
   return (
     <Modal

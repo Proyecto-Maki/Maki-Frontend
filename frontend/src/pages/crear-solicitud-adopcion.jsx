@@ -9,6 +9,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import SuccessModal from "../components/SuccessModal";
 import ErrorModal from "../components/ErrorModal";
+import ConfirmationModal from "../components/ConfirmationModal";
 
 function CrearSolicitudAdopcion() {
   const [isLoading, setIsLoading] = useState(true);
@@ -17,6 +18,7 @@ function CrearSolicitudAdopcion() {
 
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [error, setError] = useState("");
   const [response, setResponse] = useState("");
   const [dirNavigate, setDirNavigate] = useState("");
@@ -80,26 +82,29 @@ function CrearSolicitudAdopcion() {
   // const selectedPet = pets.length > 0 ? pets[0] : null;
 
   const validateMotivo = (motivo) => {
+    let error = "";
     if (motivo.length < 10) {
-      return "El motivo debe tener al menos 10 caracteres.";
+      error += " El motivo debe tener al menos 10 caracteres.";
     }
 
     if (motivo > 255) {
-      return "El motivo debe tener más de 255 caracteres.";
+      error += " El motivo debe tener más de 255 caracteres.";
     }
 
     if (motivo.length === 0) {
-      return "El motivo no puede estar vacío.";
+      error += " El motivo no puede estar vacío.";
     }
 
-    const regex = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚñÑ]+$/;
+    const regex = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚñÑ.,]+$/;
     if (!regex.test(motivo)) {
-      return "El motivo solo puede contener letras y números.";
+      error += " El motivo solo puede contener letras y números.";
     }
+
+    return error;
   }
 
   const validateTerminos = (terminos) => {
-    if(!terminos) {
+    if (!terminos) {
       return "Debes aceptar las normativas de adopciones de Maki para continuar.";
     }
   }
@@ -108,21 +113,21 @@ function CrearSolicitudAdopcion() {
     e.preventDefault();
 
     const validacionTerminos = validateTerminos(terminos);
-    if(validacionTerminos) {
+    if (validacionTerminos) {
       setError(validacionTerminos);
       setShowErrorModal(true);
     }
 
     const validacionMotivo = validateMotivo(motivo);
-    if(validacionMotivo) {
+    if (validacionMotivo) {
       setError(validacionMotivo);
       setShowErrorModal(true);
     }
 
     const data = {
-      email : email,
-      id_publicacion : id_publicacion,
-      motivo : motivo,
+      email: email,
+      id_publicacion: id_publicacion,
+      motivo: motivo,
     }
 
     api
@@ -132,20 +137,22 @@ function CrearSolicitudAdopcion() {
         }
       })
       .then((res) => {
-        if (res.status === 201){
+        if (res.status === 201) {
           setResponse(res.data.message);
           setShowSuccessModal(true);
           setDirNavigate("/servicios");
         } else {
+          console.log(res.data);
           setError(res.data.message);
           setShowErrorModal(true);
         }
       })
       .catch((error) => {
-        setError(error.response ? error.response.data.detail : error.message);
+        console.log(error);
+        setError(error.response ? error.response.data.message : error.message);
         setShowErrorModal(true);
       });
-    
+
   }
 
   const handleCloseSuccessModal = () => {
@@ -159,6 +166,22 @@ function CrearSolicitudAdopcion() {
     setResponse("");
   };
 
+  const handleYesConfirmationModal = async (e) => {
+    setIsLoading(true);
+    await new Promise(r => setTimeout(r, 2000));
+    await handleEnviarSolicitud(e);
+    setIsLoading(false);
+    handleNoConfirmationModal();
+  };
+
+  const handleNoConfirmationModal = () => {
+    setShowConfirmationModal(false);
+  };
+
+  const handleOpenConfirmationModal = (e) => {
+    e.preventDefault();
+    setShowConfirmationModal(true);
+  };
 
   return (
     <div className="absolute-container-create-adoption">
@@ -191,7 +214,7 @@ function CrearSolicitudAdopcion() {
                 </p>
                 <div className="input-container">
                   <div className="tooltip-create-adoption">
-                    <input
+                    <textarea
                       type="text"
                       className="input-reason-adoption"
                       placeholder="Cuéntanos porqué decidiste adoptar"
@@ -234,7 +257,7 @@ function CrearSolicitudAdopcion() {
             <p>No hay mascotas disponibles para adoptar.</p>
           )}
           <div className="container-btn-adopt-pet">
-            <button type="submit" className="btn-adopt-pet">
+            <button type="submit" className="btn-adopt-pet" onClick={handleOpenConfirmationModal}>
               <i className="fas fa-paw"></i> ¡Adoptar!
             </button>
           </div>
@@ -250,6 +273,12 @@ function CrearSolicitudAdopcion() {
         show={showErrorModal}
         handleClose={handleCloseErrorModal}
         error={error}
+      />
+      <ConfirmationModal
+        show={showConfirmationModal}
+        handleYes={handleYesConfirmationModal}
+        handleNo={handleNoConfirmationModal}
+        response={`¿Estás seguro enviar esta solicitud de adopción para ${mascota.nombre}?`}
       />
     </div>
   );
