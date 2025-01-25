@@ -7,12 +7,19 @@ import mascota from "../img/mascotaAdopcion1.png";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import SuccessModal from "../components/SuccessModal";
+import ErrorModal from "../components/ErrorModal";
 
 function CrearSolicitudAdopcion() {
   const [isLoading, setIsLoading] = useState(true);
-  const [pet, setPet] = useState([]);
   const location = useLocation();
   const navigate = useNavigate();
+
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showErrorModal, setShowErrorModal] = useState(false);
+  const [error, setError] = useState("");
+  const [response, setResponse] = useState("");
+  const [dirNavigate, setDirNavigate] = useState("");
 
   const email = sessionStorage.getItem("email");
   const token = sessionStorage.getItem("token");
@@ -24,13 +31,22 @@ function CrearSolicitudAdopcion() {
     window.location.href = "/login";
   }
 
+  if (is_cliente === "false") {
+    window.location.href = "/servicios";
+  }
+
   const { mascota } = location.state || {};
-  if (!mascota) {
+  const { id_publicacion } = location.state || {};
+  if (!mascota || !id_publicacion) {
     window.location.href = "/servicios";
     return;
   }
 
-  
+
+
+  // Estados del formulario
+  const [motivo, setMotivo] = useState("");
+  const [terminos, setTerminos] = useState(false);
 
 
 
@@ -43,7 +59,7 @@ function CrearSolicitudAdopcion() {
   }, []);
 
 
-  
+
 
   // useEffect(() => {
   //   const fetchPets = async () => {
@@ -63,83 +79,178 @@ function CrearSolicitudAdopcion() {
   // }
   // const selectedPet = pets.length > 0 ? pets[0] : null;
 
- 
+  const validateMotivo = (motivo) => {
+    if (motivo.length < 10) {
+      return "El motivo debe tener al menos 10 caracteres.";
+    }
+
+    if (motivo > 255) {
+      return "El motivo debe tener más de 255 caracteres.";
+    }
+
+    if (motivo.length === 0) {
+      return "El motivo no puede estar vacío.";
+    }
+
+    const regex = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚñÑ]+$/;
+    if (!regex.test(motivo)) {
+      return "El motivo solo puede contener letras y números.";
+    }
+  }
+
+  const validateTerminos = (terminos) => {
+    if(!terminos) {
+      return "Debes aceptar las normativas de adopciones de Maki para continuar.";
+    }
+  }
+
+  const handleEnviarSolicitud = async (e) => {
+    e.preventDefault();
+
+    const validacionTerminos = validateTerminos(terminos);
+    if(validacionTerminos) {
+      setError(validacionTerminos);
+      setShowErrorModal(true);
+    }
+
+    const validacionMotivo = validateMotivo(motivo);
+    if(validacionMotivo) {
+      setError(validacionMotivo);
+      setShowErrorModal(true);
+    }
+
+    const data = {
+      email : email,
+      id_publicacion : id_publicacion,
+      motivo : motivo,
+    }
+
+    api
+      .post('solicitud-adopcion/create/', data, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        }
+      })
+      .then((res) => {
+        if (res.status === 201){
+          setResponse(res.data.message);
+          setShowSuccessModal(true);
+          setDirNavigate("/servicios");
+        } else {
+          setError(res.data.message);
+          setShowErrorModal(true);
+        }
+      })
+      .catch((error) => {
+        setError(error.response ? error.response.data.detail : error.message);
+        setShowErrorModal(true);
+      });
+    
+  }
+
+  const handleCloseSuccessModal = () => {
+    setShowSuccessModal(false);
+    setError("");
+    setResponse("");
+  };
+  const handleCloseErrorModal = () => {
+    setShowErrorModal(false);
+    setError("");
+    setResponse("");
+  };
+
+
   return (
     <div className="absolute-container-create-adoption">
       {/* Navbar */}
       <Navbar />
-        <div className="total-container-create-adoption">
-            <div className="background-container-create-adoption">
-                <div className="logo-container">
-                <img
-                    src={logo}
-                    alt="Logo Maki"
-                    className="logo-img"
-                    style={{ height: "100px" }}
-                />
+      <div className="total-container-create-adoption">
+        <div className="background-container-create-adoption">
+          <div className="logo-container">
+            <img
+              src={logo}
+              alt="Logo Maki"
+              className="logo-img"
+              style={{ height: "100px" }}
+            />
+          </div>
+          {mascota ? (
+            <div className="create-adoption">
+              <form className="form-create-adoption">
+                <div className="photo-container">
+                  <img
+                    src={mascota.imagen}
+                    alt="Mascota"
+                    className="photo-container-img"
+                  />
                 </div>
-                {selectedPet ? (
-                    <div className="create-adoption">
-                        <form className="form-create-adoption">
-                            <div className="photo-container">
-                            <img
-                                src={mascota}
-                                alt="Mascota"
-                                className="pet-img"
-                                style={{ height: "100px" }}
-                            />
-                            </div>
-                            <h2 className="name-pet">{selectedPet.name}</h2>
-                            <p className="text-create-adoption">
-                            Nos alegra que hayas decidido adoptar a {selectedPet.name}. Por
-                            favor cuéntanos el motivo de tu adopción:
-                            </p>
-                            <div className="input-container">
-                            <div className="tooltip-create-adoption">
-                                <input
-                                type="text"
-                                className="input-reason-adoption"
-                                placeholder="Cuéntanos porqué decidiste adoptar"
-                                name="reason"
-                                required
-                                />
-                                <span className="tooltip-create-adoption-message">
-                                Este campo es obligatorio. Ingresa el motivo de adopción.
-                                </span>
-                            </div>
-                            </div>
-                            <div className="form-group-normativas" style={{ marginBottom: "10px" }}>
-                              <input
-                                  className="terms-checkbox-normativas"
-                                  type="checkbox"
-                                  id="terms"
-                              />
-                            </div>
-                                <label htmlFor="terms" className="normativas-label">
-                                  Acepto y estoy de acuerdo con las{" "}
-                                  <a
-                                    href="/normativas" /*hay que creear esa vista, yo la hago*/
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    style={{ color: "#ff7f50" }}
-                                  >
-                                    normativas
-                                  </a>{" "}
-                                  de Maki
-                                </label>
-                              
-                        </form>
-                    </div>
-                ) : (
-                    <p>No hay mascotas disponibles para adoptar.</p>
-                )}
-                <div className="container-btn-adopt-pet">
-                    <button type="submit" className="btn-adopt-pet">
-                    <i className="fas fa-paw"></i> Adoptar!
-                    </button>
+                <h2 className="name-pet">{mascota.nombre}</h2>
+                <p className="text-create-adoption">
+                  Nos alegra que hayas decidido adoptar a {mascota.nombre}. Por
+                  favor cuéntanos el motivo de tu adopción:
+                </p>
+                <div className="input-container">
+                  <div className="tooltip-create-adoption">
+                    <input
+                      type="text"
+                      className="input-reason-adoption"
+                      placeholder="Cuéntanos porqué decidiste adoptar"
+                      name="motivo"
+                      value={motivo}
+                      onChange={(e) => setMotivo(e.target.value)}
+                      required
+                    />
+                    <span className="tooltip-create-adoption-message">
+                      Este campo es obligatorio. Ingresa el motivo de adopción.
+                    </span>
+                  </div>
                 </div>
+                <div className="form-group-normativas" style={{ marginBottom: "10px" }}>
+                  <input
+                    className="terms-checkbox-normativas"
+                    type="checkbox"
+                    id="terms"
+                    checked={terminos}
+                    onChange={(e) => setTerminos(e.target.checked)}
+                    required
+                  />
+                </div>
+                <label htmlFor="terms" className="normativas-label">
+                  Acepto y estoy de acuerdo con las{" "}
+                  <a
+                    href="/normativas" /*hay que creear esa vista, yo la hago*/
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ color: "#ff7f50" }}
+                  >
+                    normativas
+                  </a>{" "}
+                  de Maki
+                </label>
+
+              </form>
             </div>
+          ) : (
+            <p>No hay mascotas disponibles para adoptar.</p>
+          )}
+          <div className="container-btn-adopt-pet">
+            <button type="submit" className="btn-adopt-pet">
+              <i className="fas fa-paw"></i> ¡Adoptar!
+            </button>
+          </div>
         </div>
+      </div>
+      <SuccessModal
+        show={showSuccessModal}
+        handleClose={handleCloseSuccessModal}
+        response={response}
+        dirNavigate={dirNavigate}
+      />
+      <ErrorModal
+        show={showErrorModal}
+        handleClose={handleCloseErrorModal}
+        error={error}
+      />
     </div>
   );
 }

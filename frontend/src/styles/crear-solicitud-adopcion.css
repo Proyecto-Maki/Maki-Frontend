@@ -135,7 +135,7 @@
 
 .text-create-adoption{
     font-family: "Aoboshi One", sans-serif;
-    font-size: 24px;
+    font-size: 20px;
     margin: 10px 0; /* Espaciado arriba y abajo */
     text-align: left; /* Centra el texto */
     line-height: 1.5;
@@ -148,8 +148,8 @@
 }
 
 .photo-container .photo-container-img{
-  width: 250px;
-  height: 250px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   border: 2px solid #f4a258;
   object-fit: cover;
@@ -347,7 +347,7 @@
     }
     
     .text-create-adoption {
-        font-size: 18px; 
+        font-size: 15px; 
         margin: 5px 0; 
     }
     
