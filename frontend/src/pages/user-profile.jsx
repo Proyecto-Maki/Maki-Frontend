@@ -334,7 +334,7 @@ const UserProfile = () => {
                       ></path>
                     </g>
                   </svg>
-                  <span className="lable">Edit</span>
+                  <span className="lable">Editar</span>
                 </button>
               </div>
             </div>
