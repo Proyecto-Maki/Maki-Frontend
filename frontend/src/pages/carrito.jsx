@@ -9,48 +9,145 @@ const Carrito = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchCart = async () => {
+    console.log("Iniciando fetchCart...");
     try {
-      const codigoCarrito = localStorage.getItem("codigo_carrito"); // Recuperar el código del carrito
+      const codigoCarrito = localStorage.getItem("codigo_carrito");
+      console.log("Código del carrito obtenido:", codigoCarrito);
+
       const response = await api.get(
         `/get_estado_carrito?codigo_carrito=${codigoCarrito}`
       );
+      console.log("Respuesta del backend (carrito):", response.data);
+
       const productos = response.data.productos.map((item) => ({
-        id: item.id,
-        name: item.producto.nombre,
-        price: parseFloat(item.producto.precio),
-        image: `https://res.cloudinary.com/dlktjxg1a/${item.producto.imagen}`,
+        id: item.id, // Este ID ahora corresponde al Producto.id real
+        name: item.name,
+        price: parseFloat(item.price),
+        image: item.image,
         quantity: item.cantidad,
       }));
+
+      console.log("Productos mapeados del backend:", productos);
       setCart(productos);
     } catch (error) {
       console.error("Error al obtener los productos del carrito:", error);
     } finally {
       setIsLoading(false);
+      console.log("Finalizado fetchCart.");
     }
   };
 
-  const removeFromCart = (id) => {
-    setCart(cart.filter((product) => product.id !== id));
+  // Actualizar cantidad de un producto
+  const updateProductQuantity = async (id, quantity) => {
+    console.log(`Iniciando updateProductQuantity para producto ID ${id}...`);
+    try {
+      const codigoCarrito = localStorage.getItem("codigo_carrito");
+      console.log("Código del carrito para actualización:", codigoCarrito);
+
+      console.log("Datos enviados al backend:", {
+        codigo_carrito: codigoCarrito,
+        producto_id: id,
+        cantidad: quantity,
+      });
+
+      const response = await api.post("/update_cantidad_producto/", {
+        codigo_carrito: codigoCarrito,
+        producto_id: id,
+        cantidad: quantity,
+      });
+
+      console.log(
+        `Respuesta del backend para updateProductQuantity (ID ${id}):`,
+        response.data
+      );
+    } catch (error) {
+      console.error("Error al actualizar la cantidad del producto:", error);
+    }
   };
 
+  // Incrementar cantidad
   const increaseQuantity = (id) => {
-    setCart(
-      cart.map((product) =>
-        product.id === id
-          ? { ...product, quantity: product.quantity + 1 }
-          : product
-      )
+    console.log(`Incrementando cantidad para producto ID ${id}...`);
+    const updatedCart = cart.map((product) =>
+      product.id === id
+        ? { ...product, quantity: product.quantity + 1 }
+        : product
     );
+
+    console.log("Carrito actualizado localmente (incrementar):", updatedCart);
+    setCart(updatedCart);
+
+    const product = updatedCart.find((product) => product.id === id);
+    console.log(
+      `Cantidad nueva del producto ID ${id}:`,
+      product ? product.quantity : "No encontrado"
+    );
+
+    updateProductQuantity(id, product.quantity);
   };
 
+  // Decrementar cantidad
   const decreaseQuantity = (id) => {
-    setCart(
-      cart.map((product) =>
-        product.id === id && product.quantity > 1
-          ? { ...product, quantity: product.quantity - 1 }
-          : product
-      )
+    console.log(`Decrementando cantidad para producto ID ${id}...`);
+    const updatedCart = cart.map((product) =>
+      product.id === id && product.quantity > 1
+        ? { ...product, quantity: product.quantity - 1 }
+        : product
     );
+
+    console.log("Carrito actualizado localmente (decrementar):", updatedCart);
+    setCart(updatedCart);
+
+    const product = updatedCart.find((product) => product.id === id);
+    console.log(
+      `Cantidad nueva del producto ID ${id}:`,
+      product ? product.quantity : "No encontrado"
+    );
+
+    if (product && product.quantity > 0) {
+      updateProductQuantity(id, product.quantity);
+    }
+  };
+
+  // Eliminar producto del carrito
+  const removeFromCart = async (id) => {
+    console.log(`Iniciando eliminación del producto ID ${id} del carrito...`);
+    try {
+      const codigoCarrito = localStorage.getItem("codigo_carrito");
+      console.log("Código del carrito obtenido:", codigoCarrito);
+
+      const requestData = {
+        codigo_carrito: codigoCarrito,
+        producto_id: id,
+      };
+
+      console.log("Datos enviados al backend para eliminación:", requestData);
+
+      // Llamada al backend para eliminar el producto
+      const response = await api.post(
+        "/remove_product_from_cart/",
+        requestData
+      );
+
+      console.log(
+        `Respuesta del backend para eliminar producto ID ${id}:`,
+        response.data
+      );
+
+      // Actualizar el estado local después de eliminar
+      const updatedCart = cart.filter((product) => product.id !== id);
+      console.log("Carrito actualizado localmente (eliminar):", updatedCart);
+      setCart(updatedCart);
+    } catch (error) {
+      console.error("Error al eliminar el producto del carrito:", error);
+      if (error.response) {
+        console.log(
+          "Datos de respuesta del backend (error):",
+          error.response.data
+        );
+        console.log("Estado de la respuesta:", error.response.status);
+      }
+    }
   };
 
   const totalPrice = cart.reduce(
@@ -89,47 +186,53 @@ const Carrito = () => {
             </div>
 
             {/* Lista de productos */}
-            {cart.map((product) => (
-              <div key={product.id} className="product-card">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="product-image"
-                />
-                <div className="product-details">
-                  <h3 className="product-name">{product.name}</h3>
-                  <p className="product-price">
-                    ${(product.price * product.quantity).toLocaleString()}
-                  </p>
-                </div>
-                <div className="d-flex flex-column">
-                  <div className="quantity-controls">
+            {cart.length === 0 ? (
+              <p>Carrito vacío :(</p>
+            ) : (
+              cart.map((product) => (
+                <div key={product.id} className="product-card">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="product-image"
+                  />
+                  <div className="product-details">
+                    <h3 className="product-name">{product.name}</h3>
+                    <p className="product-price">
+                      ${(product.price * product.quantity).toLocaleString()}
+                    </p>
+                  </div>
+                  <div className="d-flex flex-column">
+                    <div className="quantity-controls">
+                      <button
+                        className="quantity-button"
+                        onClick={() => decreaseQuantity(product.id)}
+                      >
+                        -
+                      </button>
+                      <span className="quantity-display">
+                        {product.quantity}
+                      </span>
+                      <button
+                        className="quantity-button"
+                        onClick={() => increaseQuantity(product.id)}
+                      >
+                        +
+                      </button>
+                    </div>
                     <button
-                      className="quantity-button"
-                      onClick={() => decreaseQuantity(product.id)}
+                      className="remove-button"
+                      onClick={() => removeFromCart(product.id)}
                     >
-                      -
-                    </button>
-                    <span className="quantity-display">{product.quantity}</span>
-                    <button
-                      className="quantity-button"
-                      onClick={() => increaseQuantity(product.id)}
-                    >
-                      +
+                      <i className="fas fa-trash-alt remove-icon"></i>{" "}
+                      {/* Ícono de eliminar de Font Awesome */}
+                      <span className="remove-text">Remover</span>{" "}
+                      {/* Texto "Remover" */}
                     </button>
                   </div>
-                  <button
-                    className="remove-button"
-                    onClick={() => removeFromCart(product.id)}
-                  >
-                    <i className="fas fa-trash-alt remove-icon"></i>{" "}
-                    {/* Ícono de eliminar de Font Awesome */}
-                    <span className="remove-text">Remover</span>{" "}
-                    {/* Texto "Remover" */}
-                  </button>
                 </div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
 
           {/* Columna derecha */}
