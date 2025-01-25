@@ -86,6 +86,10 @@ const Adoptions = () => {
             })
     }, []);
 
+    const handleAdoptarMascota = (mascota) => {
+        navigate("/crear-solicitud-adopcion", { state: { mascota: mascota } });
+    }
+
     return (
         <>
             <Navbar />
@@ -106,7 +110,7 @@ const Adoptions = () => {
                             <p><strong>Dirección:</strong> {publicacion.direccion}</p>
                             {/* <p><strong>Detalle:</strong> {pet.details}</p> */}
                         </div>
-                        <button className="adopt-button" title="Adoptar">
+                        <button className="adopt-button" title="Adoptar" onClick={() => handleAdoptarMascota(publicacion.mascota)}>
                             <i className="fas fa-paw"></i> Adoptar
                         </button>
                     </div>

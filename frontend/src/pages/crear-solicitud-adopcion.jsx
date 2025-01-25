@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import Navbar from "../components/navbar";
 import LoadingPage from "../components/loading-page";
 import "../styles/crear-solicitud-adopcion.css";
@@ -7,10 +6,33 @@ import logo from "../img/Logotipo Maki.png";
 import mascota from "../img/mascotaAdopcion1.png";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function CrearSolicitudAdopcion() {
   const [isLoading, setIsLoading] = useState(true);
-  const [pets, setPets] = useState([]);
+  const [pet, setPet] = useState([]);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const email = sessionStorage.getItem("email");
+  const token = sessionStorage.getItem("token");
+  const refresh = sessionStorage.getItem("refresh");
+  const is_cliente = sessionStorage.getItem("is_cliente");
+  const is_fundacion = sessionStorage.getItem("is_fundacion");
+
+  if (!email || !token || !refresh || !is_cliente || !is_fundacion) {
+    window.location.href = "/login";
+  }
+
+  const { mascota } = location.state || {};
+  if (!mascota) {
+    window.location.href = "/servicios";
+    return;
+  }
+
+  
+
+
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -20,29 +42,26 @@ function CrearSolicitudAdopcion() {
     return () => clearTimeout(timer);
   }, []);
 
+
   
 
-  useEffect(() => {
-    const fetchPets = async () => {
-      const fakeData = [
-        {
-          id: 1,
-          name: "Roberto",
-        },
-        {
-          id: 2,
-          name: "Mia",
-        },
-      ];
-      setPets(fakeData);
-    };
-    fetchPets();
-  }, []);
+  // useEffect(() => {
+  //   const fetchPets = async () => {
+  //     const fakeData = [
+  //       {
+  //         id: 1,
+  //         name: "Roberto",
+  //       },
+  //     ];
+  //     setPets(fakeData);
+  //   };
+  //   fetchPets();
+  // }, []);
 
-  if (isLoading) {
-    return <LoadingPage />;
-  }
-  const selectedPet = pets.length > 0 ? pets[0] : null;
+  // if (isLoading) {
+  //   return <LoadingPage />;
+  // }
+  // const selectedPet = pets.length > 0 ? pets[0] : null;
 
  
   return (
