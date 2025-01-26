@@ -28,6 +28,7 @@ import AboutUs from "./pages/about-us";
 import Membresias from "./pages/membresias";
 import CrearSolicitudAdopcion from "./pages/crear-solicitud-adopcion";
 import ResumenAdopcion from "./pages/resumen-adopcion";
+import SolicitudesAdopcion from "./pages/solicitudes-adopcion";
 
 function App() {
   return (
@@ -70,6 +71,7 @@ function App() {
         <Route path="/membresias" element={ <Membresias />}></Route>
         <Route path="/crear-solicitud-adopcion" element={ <CrearSolicitudAdopcion />}></Route>
         <Route path="/resumen-adopcion" element={ <ResumenAdopcion />}></Route>
+        <Route path="/solicitudes-de-adopcion" element={ <SolicitudesAdopcion />}></Route>
       </Routes>
     </BrowserRouter>
   );
