@@ -196,7 +196,7 @@
 
 .tooltip-create-adoption-message{
   position: absolute;
-  top: -100%;
+  top: -30%;
   left: 50%;
   visibility: hidden;
   background-color: #ffa8269d;
@@ -208,9 +208,10 @@
   display: flex;
   margin-bottom: 10%;
   z-index: 100;
+  padding: 0.5rem;
 }
 
-.tooltip-registro-mascota-text-m{
+.tooltip-create-adoption-message-m{
   position: absolute;
   top: -160%;
   left: 50%;
@@ -225,7 +226,7 @@
   z-index: 100;
 }
 
-.tooltip-registro-mascota-text-l{
+.tooltip-create-adoption-message-l{
   position: absolute;
   top: -200%;
   left: 50%;
@@ -240,7 +241,7 @@
   z-index: 100;
 }
 
-.tooltip-registro-mascota-text-xl{
+.tooltip-create-adoption-message-xl{
   position: absolute;
   top: -200%;
   left: 0%;
@@ -255,7 +256,7 @@
   z-index: 100;
 }
 
-.tooltip-registro-mascota .tooltip-registro-mascota-text::after {
+.tooltip-create-adoption .tooltip-create-adoption-message::after {
   content: "";
   position: absolute;
   top: 100%;
@@ -266,7 +267,7 @@
   border-color: #ffa726 transparent transparent transparent;
 }
 
-.tooltip-registro-mascota .tooltip-registro-mascota-text-m::after {
+.tooltip-create-adoption .tooltip-create-adoption-message-m::after {
   content: "";
   position: absolute;
   top: 100%;
@@ -277,7 +278,7 @@
   border-color: #ffa726 transparent transparent transparent;
 }
 
-.tooltip-registro-mascota .tooltip-registro-mascota-text-l::after {
+.tooltip-create-adoption .tooltip-create-adoption-message-l::after {
   content: "";
   position: absolute;
   top: 100%;
@@ -288,7 +289,7 @@
   border-color: #ffa726 transparent transparent transparent;
 }
 
-.tooltip-registro-mascota .tooltip-registro-mascota-text-xl::after {
+.tooltip-create-adoption .tooltip-create-adoption-message-xl::after {
   content: "";
   position: absolute;
   top: 100%;
@@ -299,19 +300,19 @@
   border-color: #ffa726 transparent transparent transparent;
 }
 
-.tooltip-registro-mascota:hover .tooltip-registro-mascota-text {
+.tooltip-create-adoption:hover .tooltip-create-adoption-message {
   visibility: visible;
 }
 
-.tooltip-registro-mascota:hover .tooltip-registro-mascota-text-m {
+.tooltip-create-adoption:hover .tooltip-create-adoption-message-m {
   visibility: visible;
 }
 
-.tooltip-registro-mascota:hover .tooltip-registro-mascota-text-l {
+.tooltip-create-adoption:hover .tooltip-create-adoption-message-l {
   visibility: visible;
 }
 
-.tooltip-registro-mascota:hover .tooltip-registro-mascota-text-xl {
+.tooltip-create-adoption:hover .tooltip-create-adoption-message-xl {
   visibility: visible;
 }
 

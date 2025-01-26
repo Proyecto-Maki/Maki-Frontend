@@ -217,14 +217,14 @@ function CrearSolicitudAdopcion() {
                     <textarea
                       type="text"
                       className="input-reason-adoption"
-                      placeholder="Cuéntanos porqué decidiste adoptar"
+                      placeholder={`Cuéntanos porqué decidiste adoptar y porqué crees que eres la persona indicada para ${mascota.nombre}...`}
                       name="motivo"
                       value={motivo}
                       onChange={(e) => setMotivo(e.target.value)}
                       required
                     />
                     <span className="tooltip-create-adoption-message">
-                      Este campo es obligatorio. Ingresa el motivo de adopción.
+                      Este campo es obligatorio. Ingresa el motivo de adopción. 
                     </span>
                   </div>
                 </div>
