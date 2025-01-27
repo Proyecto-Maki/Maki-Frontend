@@ -8,6 +8,15 @@ import "../styles/info-producto.css";
 const InfoProduct = () => {
   const { slug } = useParams(); // Obtiene el slug desde la URL
   const [mainImage, setMainImage] = useState(""); // Imagen principal
+  const cloudinaryBaseUrl = "https://res.cloudinary.com/dlktjxg1a/";
+  const [copia_main, setCopia_Main] = useState("");
+  const thumbnails = [
+    copia_main,
+    "/../src/img/foodimg/whiskas.png",
+    "/../src/img/foodimg/dogfood.png",
+    "/../src/img/foodimg/dogfood.png",
+    "/../src/img/foodimg/dogfood.png"
+  ]; // Vistas adicionales del producto
   const [product, setProduct] = useState(null); // Información del producto
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1); // Maneja la cantidad seleccionada
@@ -18,7 +27,7 @@ const InfoProduct = () => {
   }); // Estado para manejar si el producto está en el carrito
   const cart_code = localStorage.getItem("codigo_carrito"); // Obtén el código del carrito desde localStorage
 
-  const cloudinaryBaseUrl = "https://res.cloudinary.com/dlktjxg1a/";
+  
 
   // Obtiene información del producto
   useEffect(() => {
@@ -27,6 +36,7 @@ const InfoProduct = () => {
         const response = await api.get(`/productos/${slug}/`);
         setProduct(response.data);
         setMainImage(`${cloudinaryBaseUrl}${response.data.imagen}`);
+        setCopia_Main(`${cloudinaryBaseUrl}${response.data.imagen}`);
       } catch (error) {
         console.error("Error al cargar el producto:", error);
       } finally {
@@ -122,7 +132,7 @@ const InfoProduct = () => {
                   <img src={mainImage} alt={product.nombre} />
                 </div>
                 <div className="thumbnails">
-                  {product.thumbnails?.map((thumb, index) => (
+                  {/* {product.thumbnails?.map((thumb, index) => (
                     <img
                       key={index}
                       src={`${cloudinaryBaseUrl}${thumb}`}
@@ -132,7 +142,20 @@ const InfoProduct = () => {
                       }
                       className="thumbnail-image"
                     />
-                  ))}
+                  ))} */}
+                  {
+                    thumbnails.map((thumb, index) => (
+                      <img
+                        key={index}
+                        src={thumb}
+                        alt={`Vista ${index + 1}`}
+                        onClick={() =>
+                          setMainImage(thumb)
+                        }
+                        className="thumbnail-image"
+                      />
+                    ))
+                  }
                 </div>
               </div>
             </div>
