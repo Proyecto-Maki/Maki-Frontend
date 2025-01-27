@@ -49,7 +49,7 @@
 }
 
 /* Filas y columnas */
-.row {
+.row-info {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -57,7 +57,7 @@
   margin-bottom: 30px;
 }
 
-.column {
+.column-info {
   flex: 1;
   min-width: 300px;
 }

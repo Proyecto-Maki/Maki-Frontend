@@ -115,8 +115,8 @@ const InfoProduct = () => {
           {mensaje && <div className="alert alert-info">{mensaje}</div>}
 
           {/* Primera fila */}
-          <div className="row">
-            <div className="column">
+          <div className="row-info">
+            <div className="column-info">
               <div className="d-flex flex-row">
                 <div className="main-product-image">
                   <img src={mainImage} alt={product.nombre} />
@@ -136,7 +136,7 @@ const InfoProduct = () => {
                 </div>
               </div>
             </div>
-            <div className="column">
+            <div className="column-info">
               <h1>{product.nombre}</h1>
               <h2>${parseFloat(product.precio).toFixed(2)}</h2>
               <p>Selecciona la cantidad:</p>
@@ -177,12 +177,12 @@ const InfoProduct = () => {
           </div>
 
           {/* Segunda fila */}
-          <div className="row">
-            <div className="column">
+          <div className="row-info">
+            <div className="column-info">
               <h3>Acerca del Item</h3>
               <p>{product.descripcion}</p>
             </div>
-            <div className="column">
+            <div className="column-info">
               <h3>Ingredientes/Materiales</h3>
               <p>{product.ingredientes || "Información no disponible."}</p>
             </div>
