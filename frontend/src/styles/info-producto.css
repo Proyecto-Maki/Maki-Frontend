@@ -76,7 +76,7 @@
   box-sizing: border-box;
 }
 
-.row:first-of-type {
+.row-info:first-of-type {
   border-bottom: 3px solid #ffd96e;
 }
 
