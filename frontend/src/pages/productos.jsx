@@ -131,7 +131,7 @@ function Productos() {
 
           {/* Renderizamos los productos */}
           {productos.length > 0 ? (
-            <div className="row">
+            <div className="row-productos">
               {productos.map((producto) => (
                 <div key={producto.slug} className="col-md-4 mb-4">
                   <div className="card h-100 shadow-sm border-0 login-content">

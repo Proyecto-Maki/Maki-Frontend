@@ -323,7 +323,7 @@
 }
 
 /* Estilo del contenedor de productos */
-.row {
+.row-productos {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
