@@ -110,14 +110,14 @@ function AboutUs() {
             </div>
           </div>
           <div className="about-us-mision-text">
-            <div className="about-us-mision-text-mision">
-              <h4>Misión {user}</h4>
-              <p>{mision}</p>
-            </div>
-            <div className="vertical-line"></div>
             <div className="about-us-mision-text-vision">
               <h4>Visión {user}</h4>
               <p>{vision}</p>
+            </div>
+            <div className="vertical-line"></div>
+            <div className="about-us-mision-text-mision">
+              <h4>Misión {user}</h4>
+              <p>{mision}</p>
             </div>
           </div>
           <div></div>
@@ -161,10 +161,18 @@ function AboutUs() {
                 <p>Desarrolladora Frontend</p>
                 <p className="member-cite">"Quien mira hacia afuera: sueña; quien mira hacia adentro, despierta" - Carl Jung</p>
                 <div className="about-us-team-member-social">
-                  <a href="https://www.linkedin.com/in/cat-gomez/" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://www.linkedin.com/in/cat-gomez/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <ImLinkedin />
                   </a>
-                  <a href="https://github.com/CatGmz" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://github.com/CatGmz"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <FaGithub />
                   </a>
                 </div>
@@ -179,10 +187,18 @@ function AboutUs() {
                 <p>Desarrolladora Frontend</p>
                 <p className="member-cite">"Empieza a ser quién eres, en vez de calcular quién serás" - Franz Kafka</p>
                 <div className="about-us-team-member-social">
-                  <a href="https://www.linkedin.com/in/ivana-alejandra-pedraza-hernandez-a268011b3/" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://www.linkedin.com/in/ivana-alejandra-pedraza-hernandez-a268011b3/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <ImLinkedin />
                   </a>
-                  <a href="https://github.com/IvanaPedraza" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://github.com/IvanaPedraza"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <FaGithub />
                   </a>
                 </div>
@@ -198,10 +214,18 @@ function AboutUs() {
                 <p className="member-cite">"Siempre cosas"
                 - Danilo Amerise</p>
                 <div className="about-us-team-member-social">
-                  <a href="https://www.linkedin.com/in/apineross/" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://www.linkedin.com/in/apineross/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <ImLinkedin />
                   </a>
-                  <a href="https://github.com/Locotin" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://github.com/Locotin"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <FaGithub />
                   </a>
                 </div>
@@ -216,10 +240,18 @@ function AboutUs() {
                 <p>Desarrolladora Backend</p>
                 <p className="member-cite">"Todo cambiará, no te resistas a crecer" - Karmadame (Zoé)</p>
                 <div className="about-us-team-member-social">
-                  <a href="https://www.linkedin.com/in/kelly-solano/" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://www.linkedin.com/in/kelly-solano/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <ImLinkedin />
                   </a>
-                  <a href="https://github.com/kellysolanomt" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://github.com/kellysolanomt"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <FaGithub />
                   </a>
                 </div>

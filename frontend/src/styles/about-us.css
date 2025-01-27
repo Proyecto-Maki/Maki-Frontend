@@ -250,7 +250,6 @@
 }
 
 .about-us-team-member {
-  
   width: 18%;
   display: flex;
   flex-direction: column;
@@ -363,8 +362,7 @@
 /* Responsive */
 
 @media only screen and (max-width: 992px) {
-
-  .about-us-container{
+  .about-us-container {
     padding-top: 20%;
   }
 
@@ -372,92 +370,90 @@
     flex-direction: column;
   }
 
-  .about-us-content-image{
+  .about-us-content-image {
     width: 50%;
     margin-right: 0;
     margin-bottom: 5%;
   }
 
-  .about-us-content-text{
+  .about-us-content-text {
     width: 80%;
   }
 
-  .about-us-mision-clientes{
+  .about-us-mision-clientes {
     width: 25%;
     margin-right: 5%;
   }
 
-  .about-us-mision-fundaciones{
+  .about-us-mision-fundaciones {
     width: 25%;
   }
 
-  .about-us-mision-text{
+  .about-us-mision-text {
     width: 80%;
     flex-direction: column;
   }
 
-  .about-us-mision-text-mision{
+  .about-us-mision-text-mision {
     width: 100%;
     margin-bottom: 5%;
   }
-  .vertical-line{
+  .vertical-line {
     border-bottom: 2px solid #fff9e6;
     margin-bottom: 5%;
   }
 
-  .about-us-mision-text-vision{
+  .about-us-mision-text-vision {
     width: 100%;
   }
 
-  .about-us-team-content{
+  .about-us-team-content {
     flex-direction: column;
     align-items: center;
   }
 
-  .about-us-team-member{
+  .about-us-team-member {
     width: 50%;
     margin-bottom: 5%;
   }
 
-  .footer{
+  .footer {
     padding: 0;
   }
-
 }
 
 @media only screen and (max-width: 600px) {
+  .about-us-container {
+    padding-top: 25%;
+  }
 
-    .about-us-container{
-        padding-top: 25%;
-    }
+  .about-us-content-image {
+    width: 80%;
+  }
 
-    .about-us-content-image{
-        width: 80%;
-    }
+  .about-us-mision-img {
+    flex-direction: column;
+    align-items: center;
+  }
 
-    .about-us-mision-img{
-        flex-direction: column;
-        align-items: center;
-    }
+  .about-us-mision-clientes {
+    width: 50%;
+    margin-right: 0;
+    margin-bottom: 5%;
+  }
 
-    .about-us-mision-clientes{
-        width: 50%;
-        margin-right: 0;
-        margin-bottom: 5%;
-    }
+  .about-us-mision-fundaciones {
+    width: 50%;
+    margin-bottom: 5%;
+  }
 
-    .about-us-mision-fundaciones{
-        width: 50%;
-        margin-bottom: 5%;
-    }
+  .about-us-team-member {
+    width: 80%;
+    margin-bottom: 10%;
+  }
 
-    .about-us-team-member{
-        width: 80%;
-        margin-bottom: 10%;
-    }
-
-    .divider-footer{
-        background-color: #7BB66D;
-        padding-bottom: 20%;
-    }
+  .divider-footer {
+    background-color: #7bb66d;
+    padding-bottom: 20%;
+  }
 }
