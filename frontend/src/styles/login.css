@@ -30,9 +30,8 @@
   min-width: 70vw;
   display: flex;
   align-items: center;
-  padding-top: 50px;
   position: relative;
-  top: 60%;
+  top: 40%;
   flex-grow: 1;
   background-color: #fdf0e6;
   padding: 10px 20px;
@@ -187,7 +186,6 @@
   text-decoration: underline;
 }
 
-/* Welcome Text */
 .welcome-text-login {
   color: #f4a258;
   font-size: clamp(48px, 8vw, 128px);
@@ -215,7 +213,6 @@
   position: absolute;
   top: -95%;
   left: 50%;
-  /* transform: translateX(-50%); */
   visibility: hidden;
   background-color: #ffa8269d;
   color: #302f2f;

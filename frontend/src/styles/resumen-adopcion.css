@@ -118,7 +118,7 @@
     border-radius: 10px;
     padding: 1.5rem;
     width: 77vw;
-    display: flex;            /* Cambia a flex para disposición en fila */
+    display: flex;            
     gap: 2rem;   
 }
 
@@ -133,12 +133,12 @@
     display: flex;
     width: 100%;
     gap: 2rem;
-    align-items: flex-start;  /* Asegura que las columnas estén alineadas desde el principio */
+    align-items: flex-start;  
 }
 
 .columna-izquierda,
 .columna-derecha {
-    flex: 1;  /* Ambas columnas ocuparán el mismo espacio */
+    flex: 1;  
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -166,7 +166,7 @@
     border-radius: 10px;
     padding: 1.5rem;
     width: 77vw;
-    display: flex;            /* Cambia a flex para disposición en fila */
+    display: flex;          
     gap: 2rem;     
     
 }
@@ -216,13 +216,13 @@
 }
 
 .ver-detalles-adopcion {
-    background-color: transparent;  /* Fondo del botón transparente */
-    color: #F4A258;                     /* Color de la fuente roja */
-    border: none;                   /* Sin borde */
-    font-size: 16px;                /* Ajuste de tamaño de la fuente */
-    display: flex;                  /* Usamos flex para centrar el ícono y el texto */
-    align-items: center;            /* Alineación vertical del contenido */
-    cursor: pointer;               /* Cursor tipo puntero al pasar sobre el botón */
+    background-color: transparent;  
+    color: #F4A258;                     
+    border: none;                   
+    font-size: 16px;                
+    display: flex;                  
+    align-items: center;            
+    cursor: pointer;              
 }
 
 .ver-detalles-adopcion i {
