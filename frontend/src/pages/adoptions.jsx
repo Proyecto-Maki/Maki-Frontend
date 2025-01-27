@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../components/navbar"; 
+import Navbar from "../components/navbar";
 import "../styles/adoptions.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import api from "../api";
@@ -10,14 +10,16 @@ const Adoptions = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const[showErrorModal, setShowErrorModal] = useState(false);
-    const[error, setError] = useState("");
+    const [showErrorModal, setShowErrorModal] = useState(false);
+    const [error, setError] = useState("");
 
     const email = sessionStorage.getItem("email");
     const token = sessionStorage.getItem("token");
     const refresh = sessionStorage.getItem("refresh");
     const is_cliente = sessionStorage.getItem("is_cliente");
     const is_fundacion = sessionStorage.getItem("is_fundacion");
+
+
 
     if (!email || !token || !refresh || !is_cliente || !is_fundacion) {
         window.location.href = "/login";
@@ -66,14 +68,14 @@ const Adoptions = () => {
     useEffect(() => {
         api
             .get("publicaciones-adopcion/", {
-                params:{
+                params: {
                     email_fundacion: fundacion.email
                 },
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             }).then((res) => {
-                if(res.status === 200){
+                if (res.status === 200) {
                     setPublicacionesAdopcion(res.data);
                 } else {
                     setError(res.data.message);
@@ -89,26 +91,87 @@ const Adoptions = () => {
     const handleAdoptarMascota = (mascota) => {
         navigate("/crear-solicitud-adopcion", { state: { mascota: mascota } });
     }
+    //Para el boton de ver más
+    const [tarjetaSeleccionada, setTarjetaSeleccionada] = useState(null);
+
+    const toggleDetalles = (id) => {
+        setTarjetaSeleccionada(tarjetaSeleccionada === id ? null : id);
+    };
+
 
     return (
-        <>
+        <div className="absolute-lista-adopcion-container">
             <Navbar />
-            <div className="adoptions-container">
-                {publicacionesAdopcion.map((publicacion) => (
-                    <div className="pet-card" key={publicacion.id}>
-                        <div className="pet-image">
-                            <img src={publicacion.mascota.imagen} alt={publicacion.mascota.nombre} />
-                        </div>
-                        <div className="pet-details">
-                            <h2>{publicacion.mascota.nombre}</h2>
-                            <p><strong>Tipo:</strong> {publicacion.mascota.tipo}</p>
-                            <p><strong>Sexo:</strong> {publicacion.mascota.sexo}</p>
-                            <p><strong>Tamaño:</strong> {publicacion.mascota.tamano === 'P' ? 'Pequeño' : publicacion.mascota.tamano === 'M' ? 'Mediano' : 'Grande'}</p>
-                            <p><strong>Edad:</strong> {publicacion.mascota.edad} año(s)</p>
-                            <p><strong>Peso:</strong> {publicacion.mascota.peso} kg</p>
-                            <p><strong>Descripción:</strong> {publicacion.descripcion}</p>
-                            <p><strong>Dirección:</strong> {publicacion.direccion}</p>
-                            {/* <p><strong>Detalle:</strong> {pet.details}</p> */}
+            <div className="lista-adopcion-container">
+                {publicacionesAdopcion.map((publicacion, index) => (
+                    <div className="lista-adopcion-card-content-mascota" key={publicacion.id}>
+                        <h2 className="lista-adopcion-titlulo-publicacion">{publicacion.titulo}</h2>
+                        <div className="lista-adopcion-mascota-details-general">
+                            <div className="lista-adopcion-pet-image">
+                                <img src={publicacion.mascota.imagen} alt={publicacion.mascota.nombre} />
+                            </div>
+                            <div className="lista-adopcion-mascota-info">
+                                <div className="lista-adopcion-mascota-header">
+                                    <h2>{publicacion.mascota.nombre}</h2>
+                                    <button
+                                        className="lista-adopcion-ver-detalles-adopcion"
+                                        onClick={() => toggleDetalles(index)} // Usa el índice como identificador
+                                    >
+                                        <i className={`fas fa-chevron-${tarjetaSeleccionada === index ? 'down' : 'right'}`}></i>
+                                        Ver más
+                                    </button>
+                                </div>
+
+                                {/* Contenedor que se ajusta al diseño de columna */}
+                                <div className="lista-adopcion-mascota-details">
+                                    <div className="lista-adopcion-columna-izquierda">
+                                        {tarjetaSeleccionada === index ? (
+                                            // Información alterna
+                                            <>
+                                                <p className="lista-adopcion-info-oculta"><i className="fas fa-paw"></i> Apto para niños: Sí</p>
+                                                <p className="lista-adopcion-info-oculta"><i className="fas fa-paw"></i> Tipo de espacio: Grande</p>
+                                                <p className="lista-adopcion-info-oculta"><i className="fas fa-paw"></i> Desparasitado: Sí</p>
+                                                <p className="lista-adopcion-info-oculta"><i className="fas fa-paw"></i> Vacunas al día: Sí</p>
+                                            </>
+                                        ) : (
+                                            // Información original
+                                            <>
+                                                <p>{publicacion.mascota.tipo}</p>
+                                                <p>{publicacion.mascota.sexo === 'M' ? 'Macho' : 'Hembra'}</p>
+                                                <p>
+                                                    {publicacion.mascota.tamano === 'P'
+                                                        ? 'Pequeño'
+                                                        : publicacion.mascota.tamano === 'M'
+                                                            ? 'Mediano'
+                                                            : 'Grande'}
+                                                </p>
+                                            </>
+                                        )}
+                                    </div>
+                                    <div className="lista-adopcion-columna-derecha">
+                                        {tarjetaSeleccionada === index ? (
+                                            // Información alterna
+                                            <>
+                                                <p className="lista-adopcion-info-oculta"><i className="fas fa-paw"></i>Apto para ruido: Sí</p>
+                                                <p className="lista-adopcion-info-oculta"><i className="fas fa-paw"></i>Apto para otras mascotas: Sí</p>
+                                                <p className="lista-adopcion-info-oculta"><i className="fas fa-paw"></i>Esterilizado: No</p>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <p>Edad: {publicacion.mascota.edad} año(s)</p>
+                                                <p>Peso: {publicacion.mascota.peso} kg</p>
+                                                <p>Personalidad: Juguetón</p>
+                                                <p>Dirección: {publicacion.direccion}</p>
+                                            </>
+                                        )}
+                                    </div>
+                                </div>
+                                {tarjetaSeleccionada === index && (
+                                    <div className="lista-adopcion-descripcion">
+                                        <p><strong>Descripción:</strong> {publicacion.descripcion}</p>
+                                    </div>
+                                )}
+                            </div>
                         </div>
                         <button className="adopt-button" title="Adoptar" onClick={() => handleAdoptarMascota(publicacion.mascota)}>
                             <i className="fas fa-paw"></i> Adoptar
@@ -116,8 +179,12 @@ const Adoptions = () => {
                     </div>
                 ))}
             </div>
-        </>
+        </div>
+
     );
+
+
+
 };
 
 export default Adoptions;

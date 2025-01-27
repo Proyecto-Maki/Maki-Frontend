@@ -1,93 +1,184 @@
-.adoptions-container {
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    gap: 20px; 
-    padding: 20px;
-    width: 95%; 
-    max-width: 1600px; 
-    height: calc(100vh - 80px); 
-    padding-top: 10%;
-    margin: 0 auto; 
-}
-
-/* Configuración de las tarjetas */
-.pet-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #e7f6f3;
-    border-radius: 10px;
-    padding: 20px;
-    width: 100%; 
-    max-width: 1000px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin-bottom: 20px; 
-}
-
-
-/* Configuración de la imagen dentro de las tarjetas */
-.pet-image img {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 20px;
-}
-
-/* Detalles de la mascota dentro de la tarjeta */
-.pet-details {
-    flex-grow: 1;
-    margin-right: 20px;
-}
-
-.pet-details h2 {
-    margin: 0 0 10px 0;
-    font-size: 1.5rem;
-    color: #333;
-}
-
-.pet-details p {
-    margin: 5px 0;
-    font-size: 1rem;
-    color: #555;
-}
-
-/* Botón de adopción */
-.adopt-button {
-    background-color: transparent;
-    color: #ffa726;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 10px; 
+.absolute-lista-adopcion-container {
+    width: 100vw;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
     position: relative;
+    padding-top: 5%;
+    background-color: #fdf0e6;
+    font-family: "Aoboshi One", sans-serif;
+}
+
+.lista-adopcion-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+    background-color: transparent;
+    align-items: center;
+}
+.lista-adopcion-titlulo-publicacion{
+    color: black;
+    font-size: 2.25rem;
+    padding-bottom: 0.5rem;
+}
+
+.lista-adopcion-mascota-details-general {
+    background-color: #BDD3CE;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 1.5rem;
+    width: 60vw;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    display: flex;
+}
+
+.lista-adopcion-mascota-info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.lista-adopcion-mascota-header {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;  
+    width: 100%;
+}
+
+.lista-adopcion-ver-detalles-adopcion {
+    margin-left: auto; 
+    white-space: nowrap;  
+    padding: 5px 10px;
+}
+
+.lista-adopcion-mascota-header h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 3rem;
+    color: #f5f5f5;
+}
+
+.lista-adopcion-mascota-details {
+    display: flex;
+    margin: 0; 
+    padding: 0;
+    justify-content: space-between;
+    width: 100%; 
+}
+
+.lista-adopcion-columna-izquierda,
+.lista-adopcion-columna-derecha {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    color: #f5f5f5;
+    font-size: 1.25rem;
+}
+
+.lista-adopcion-columna-izquierda p,
+.lista-adopcion-columna-derecha p {
+    margin: 0; 
+    padding: 0;
+}
+
+.lista-adopcion-ver-detalles-adopcion {
+    background-color: transparent;
+    color: #F4A258;
+    border: none;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.lista-adopcion-ver-detalles-adopcion i {
+    background-color: white;
+    color: black;
+    border-radius: 100%;
+    padding: 0.5rem;
+    margin-right: 0.5rem;
+    font-size: 10px;
+    
+}
+
+.lista-adopcion-pet-image {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
     overflow: hidden;
 }
 
-/* Configuración del ícono de huella */
+.lista-adopcion-pet-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.lista-adopcion-card-content-mascota {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px; 
+}
+
+.lista-adopcion-descripcion {
+    margin-top: 15px;
+    padding: 10px;
+    font-size: 1.3rem;
+    color: #302f2f;
+}
+
+.lista-adopcion-info-oculta {
+    color: #302f2f;
+}
+.lista-adopcion-info-oculta i {
+    color: white;
+    margin-right: 10px
+}
+.adopt-button {
+    position: absolute;
+    right: -14rem; 
+    top: 60%; 
+    transform: translateY(-50%); 
+    background-color: transparent;
+    color: #ffa726;
+    border: none;
+    font-size: 2.5rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+}
+
 .adopt-button i {
-    font-size: 3rem; /* Tamaño de la huella */
+    font-size: 5rem;
     transition: transform 0.3s ease-in-out;
 }
 
-/* Animación de salto */
 .adopt-button:hover i {
     animation: pawJump 0.6s ease-in-out infinite;
 }
 
-/* Animación para hacer que la huella salte */
 @keyframes pawJump {
     0%, 100% {
-        transform: translateY(0); /* Posición inicial */
+        transform: translateY(0);
     }
     50% {
-        transform: translateY(-10px); /* Salto hacia arriba */
+        transform: translateY(-10px);
     }
 }
-
 
