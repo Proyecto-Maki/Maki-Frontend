@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../components/navbar";
+import Navbar from "../components/navbar"; 
 import "../styles/adoptions.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import api from "../api";
@@ -12,16 +12,14 @@ const Adoptions = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const  [showErrorModal, setShowErrorModal] = useState(false);
-    const  [error, setError] = useState("");
+    const [showErrorModal, setShowErrorModal] = useState(false);
+    const [error, setError] = useState("");
 
     const email = sessionStorage.getItem("email");
     const token = sessionStorage.getItem("token");
     const refresh = sessionStorage.getItem("refresh");
     const is_cliente = sessionStorage.getItem("is_cliente");
     const is_fundacion = sessionStorage.getItem("is_fundacion");
-
-
 
     if (!email || !token || !refresh || !is_cliente || !is_fundacion) {
         window.location.href = "/login";
@@ -227,10 +225,6 @@ const Adoptions = () => {
             </div>
         </div>
     );
-
-
-
 };
 
 export default Adoptions;
-

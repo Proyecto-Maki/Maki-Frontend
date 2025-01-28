@@ -15,8 +15,13 @@
   overflow-y: auto;
   overflow-x: hidden;
   position: relative;
-  padding-top: 6%;
   background-color: #fdf0e6;
+  
+}
+
+.products-container{
+  margin-top: calc(var(--navbar-height, 80px));
+  min-height: calc(100vh - var(--navbar-height, 80px)); 
 }
 
 .absolute-products-container::-webkit-scrollbar {
@@ -52,6 +57,7 @@
   overflow-y: auto;
   position: relative;
   flex: 1;
+  
 }
 
 .main-content-products::-webkit-scrollbar {
