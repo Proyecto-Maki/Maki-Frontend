@@ -5,7 +5,9 @@ import Footer from "../components/Footer";
 import api from "../api";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/productos.css";
-import generateRandomAlphaNumericCode from "../GenerateCardCode";
+import generateRandomAlphaNumericCode, {
+  randomValue,
+} from "../GenerateCardCode";
 import ProductSlider from "../pages/product-slider";
 import Categories from "../components/categories";
 
@@ -17,8 +19,6 @@ function Productos() {
     return savedCart ? JSON.parse(savedCart) : {};
   }); // Estado para manejar si cada producto está en el carrito
   const cloudinaryBaseUrl = "https://res.cloudinary.com/dlktjxg1a/";
-
-  // Genera o recupera el código del carrito
   const codigo_carrito =
     localStorage.getItem("codigo_carrito") ||
     (() => {
@@ -28,7 +28,6 @@ function Productos() {
     })();
   console.log("Código del carrito generado:", codigo_carrito);
 
-  // Función para agregar productos al carrito
   const agregar_producto = (producto) => {
     const nuevoProducto = {
       codigo: codigo_carrito, // Código del carrito
@@ -36,7 +35,7 @@ function Productos() {
     };
 
     // Log para verificar los datos enviados
-    console.log("Datos enviados al backend para agregar:", nuevoProducto);
+    console.log("Datos enviados:", nuevoProducto);
 
     api
       .post("agregar_producto/", nuevoProducto)
@@ -57,53 +56,18 @@ function Productos() {
       });
   };
 
-  // Función para obtener los productos del backend
   const getProductos = () => {
     api
       .get("/productos/")
       .then((res) => {
         setProductos(res.data); // Guardamos los productos en el estado
-        console.log("Productos obtenidos del backend:", res.data);
+        console.log("Productos:", res.data); // Verificamos los datos en consola
       })
       .catch((err) => alert("Error al obtener productos: " + err));
   };
 
-  // Función para sincronizar el estado del carrito
-  const syncCart = async () => {
-    try {
-      const response = await api.get(
-        `/get_estado_carrito?codigo_carrito=${codigo_carrito}`
-      );
-      console.log("Estado del carrito del backend:", response.data);
-
-      if (response.data.productos.length === 0) {
-        console.log("El carrito está vacío. Limpiando estado inCart...");
-        setInCart({});
-        localStorage.removeItem("inCart");
-        return;
-      }
-
-      const cartItems = response.data.productos.map((item) => item.producto.id);
-      console.log("IDs de productos en el carrito:", cartItems);
-
-      setInCart((prev) => {
-        const updatedCart = { ...prev };
-        cartItems.forEach((id) => {
-          updatedCart[id] = true;
-        });
-        console.log("Estado sincronizado del carrito (inCart):", updatedCart);
-        localStorage.setItem("inCart", JSON.stringify(updatedCart));
-        return updatedCart;
-      });
-    } catch (error) {
-      console.error("Error al sincronizar el carrito:", error.message);
-    }
-  };
-
-  // useEffect para cargar los productos y sincronizar el carrito
   useEffect(() => {
     getProductos();
-    syncCart();
   }, []);
 
   return (
@@ -134,7 +98,7 @@ function Productos() {
             <div className="row-productos">
               {productos.map((producto) => (
                 <div key={producto.slug} className="col-md-4 mb-4">
-                  <div className="card h-100 shadow-sm border-0 login-content">
+                  <div className="card-productos">
                     <Link to={`/productos/${producto.slug}`}>
                       <img
                         src={`${cloudinaryBaseUrl}${producto.imagen}`} // Concatenamos la URL base con la ruta de la imagen
@@ -150,7 +114,7 @@ function Productos() {
                         to={`/productos/${producto.slug}`}
                         className="btn card-button"
                       >
-                        <button className="details">
+                        <button class="details">
                           <span>Ver detalles</span>
                           <svg width="15px" height="10px" viewBox="0 0 13 10">
                             <path d="M1,5 L11,5"></path>
@@ -169,11 +133,11 @@ function Productos() {
                             width="20"
                             height="20"
                             stroke="#ffffff"
-                            strokeWidth="2"
+                            stroke-width="2"
                             fill="none"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            className="cart-icon"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="cart-icon"
                           >
                             <circle cx="9" cy="21" r="1"></circle>
                             <circle cx="20" cy="21" r="1"></circle>
@@ -185,7 +149,7 @@ function Productos() {
                               : "Agregar al carrito"}
                           </span>
                         </div>
-                        <div className="hover-btn">
+                        <div class="hover-btn">
                           <svg
                             viewBox="0 0 320 512"
                             width="12.5"

@@ -1,4 +1,3 @@
-
 .absolute-products-container {
   /*display: flex;
   flex-direction: column;
@@ -20,32 +19,30 @@
   background-color: #fdf0e6;
 }
 
-.absolute-products-container::-webkit-scrollbar{
+.absolute-products-container::-webkit-scrollbar {
   width: 10px;
-  color: #FCF3E3;
+  color: #fcf3e3;
 }
 .absolute-products-container::-webkit-scrollbar-thumb {
-  background: #ffcc80; 
-  border-radius: 80px; 
+  background: #ffcc80;
+  border-radius: 80px;
 }
 .absolute-products-container::-webkit-scrollbar-thumb:hover {
-  background: #ffa726; 
+  background: #ffa726;
 }
 .absolute-products-container::-webkit-scrollbar-track {
-  background: none; 
+  background: none;
 }
 
-.footer-container-productos{
+.footer-container-productos {
   text-align: center;
   padding: 0 0;
   width: 100%;
   position: relative;
   overflow: visible;
-  background-color: #7BB66D;
+  background-color: #7bb66d;
   top: 50%;
-  
 }
-
 
 /* Estilo para el contenido principal */
 .main-content-products {
@@ -54,25 +51,23 @@
   display: absolute;
   overflow-y: auto;
   position: relative;
-  flex: 1; 
+  flex: 1;
 }
 
-.main-content-products::-webkit-scrollbar{
+.main-content-products::-webkit-scrollbar {
   width: 10px;
-  color: #7BB66D;
+  color: #7bb66d;
 }
 .main-content-products::-webkit-scrollbar-thumb {
-  background: #7BB66D; 
-  border-radius: 80px; 
+  background: #7bb66d;
+  border-radius: 80px;
 }
 .main-content-products::-webkit-scrollbar-thumb:hover {
-  background: #7BB66D; 
+  background: #7bb66d;
 }
 .main-content-products::-webkit-scrollbar-track {
-  background: none; 
+  background: none;
 }
-
-
 
 .welcome-text {
   font-family: "Koulen", sans-serif;
@@ -98,7 +93,7 @@
   left: 0;
   display: block;
   border-radius: 50px;
-  background: #7BB668;
+  background: #7bb668;
   width: 45px;
   height: 45px;
   transition: all 0.3s ease;
@@ -110,7 +105,7 @@
   font-size: 15px;
   font-weight: 700;
   letter-spacing: 0.05em;
-  color: #FCF3E3;
+  color: #fcf3e3;
 }
 
 .details svg {
@@ -120,7 +115,7 @@
   fill: none;
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke: #FCF3E3;
+  stroke: #fcf3e3;
   stroke-width: 2;
   transform: translateX(-5px);
   transition: all 0.3s ease;
@@ -139,17 +134,18 @@
   transform: scale(0.95);
 }
 
-
-.card {
+.card-productos {
   border: none;
   border-radius: 15px; /* Bordes redondeados */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
   background-color: #bdd3cec3; /* Fondo blanco para las tarjetas */
   transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animación para efecto hover */
   overflow: hidden;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   display: flex;
+  width: 100%;
 }
 
 .card:hover {
@@ -182,7 +178,7 @@
 
 /* Título del producto */
 .card-title {
-  font-family: 'Koulen', sans-serif;
+  font-family: "Koulen", sans-serif;
   color: #f39029;
   font-size: 1.2rem;
   margin-bottom: 15px;
@@ -204,7 +200,7 @@
 .card-price {
   font-size: 1.2rem;
   font-weight: bold;
-  color: #FCF3E3;
+  color: #fcf3e3;
   margin-bottom: 20px;
 }
 
@@ -216,21 +212,13 @@
   cursor: pointer;
   border-radius: 15px;
   border: none;
-  background-image: linear-gradient(
-    90.1deg,
-    #f6ad6d 0.2%,
-    #ff7700  99.9%
-  );
+  background-image: linear-gradient(90.1deg, #f6ad6d 0.2%, #ff7700 99.9%);
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
 .default-btn {
-  background-image: linear-gradient(
-    90.1deg,
-    #f6ad6d 0.2%,
-    #ff7700 99.9%
-  );
+  background-image: linear-gradient(90.1deg, #f6ad6d 0.2%, #ff7700 99.9%);
 }
 
 .default-btn,
@@ -256,11 +244,8 @@
   font-size: 16px;
   padding: 1em 3em;
   text-align: center;
-  background: #7BB66D;
-  background: linear-gradient(
-    63deg,
-    #7BB668
-  );
+  background: #7bb66d;
+  background: linear-gradient(63deg, #7bb668);
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   transform: translate(0%, 100%);
@@ -282,7 +267,6 @@
 .btn-cart-products:hover .hover-btn {
   transform: translate(0%, 0%);
 }
-
 
 /*.card-button {
   width: 100%;
@@ -330,24 +314,20 @@
   justify-content: center;
 }
 
-
-@media (max-width: 768px){
-  .absolute-products-container{
+@media (max-width: 768px) {
+  .absolute-products-container {
     margin-top: 20%;
   }
-  .main-content{
+  .main-content {
     top: 10%;
   }
 }
 
-
-@media (max-width: 480px){
-  .absolute-products-container{
+@media (max-width: 480px) {
+  .absolute-products-container {
     margin-top: 30%;
   }
-  .main-content{
+  .main-content {
     top: 10%;
   }
 }
-
-
