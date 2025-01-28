@@ -107,9 +107,8 @@
 
 .details span {
   position: relative;
-  font-family: "Ubuntu", sans-serif;
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: 0.05em;
   color: #fcf3e3;
 }

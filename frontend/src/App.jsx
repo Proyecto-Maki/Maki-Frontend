@@ -30,7 +30,9 @@ import Membresias from "./pages/membresias";
 import CrearSolicitudAdopcion from "./pages/crear-solicitud-adopcion";
 import ResumenAdopcion from "./pages/resumen-adopcion";
 import SolicitudesAdopcion from "./pages/solicitudes-adopcion";
-import AdoptionsFun from "./pages/adopciones-fundacion";import Adoptions from "./pages/adoptions";
+import AdoptionsFun from "./pages/adopciones-fundacion";
+import Adoptions from "./pages/adoptions";
+import Makipaws from "./pages/makipaws";
 
 
 
@@ -106,6 +108,7 @@ function App() {
         <Route path="/mascotas-adopcion" element={ <Adoptions />}></Route>
         <Route path="/solicitudes-de-adopcion" element={ <SolicitudesAdopcion />}></Route>
         <Route path="/adopciones-fundacion" element={ <AdoptionsFun />}></Route>
+        <Route path="/makipaws" element={ <Makipaws />}></Route>
       </Routes>
     </BrowserRouter>
   );
