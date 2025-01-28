@@ -1,52 +1,60 @@
-.absolute-lista-adopcion-container {
+.absolute-container-adoptions{
     width: 100vw;
     height: 100vh;
     overflow-y: auto;
     overflow-x: hidden;
     position: relative;
-    padding-top: 5%;
     background-color: #fdf0e6;
-    font-family: "Aoboshi One", sans-serif;
-}
+  }
 
-.lista-adopcion-container {
+  .absolute-container-adoptions::-webkit-scrollbar{
+    width: 8px;
+    right: 5%;
+    color: #FCF3E3;
+  }
+  
+  .absolute-container-adoptions::-webkit-scrollbar-thumb {
+    background: #ffcc80; 
+    border-radius: 80px; 
+  }
+  
+  .absolute-container-adoptions::-webkit-scrollbar-thumb:hover {
+    background: #ffa726; 
+  }
+  
+  .absolute-container-adoptions::-webkit-scrollbar-track {
+    background: none; 
+  }
+
+.adoptions-container {
+    margin: 0 auto; 
+    margin-top: calc(var(--navbar-height, 80px));
+    min-height: calc(100vh - var(--navbar-height, 80px)); 
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    padding: 2rem;
-    background-color: transparent;
+    justify-content: flex-start;
     align-items: center;
-}
-.lista-adopcion-titlulo-publicacion{
-    color: black;
-    font-size: 2.25rem;
-    padding-bottom: 0.5rem;
+    width: 100vw;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
-.lista-adopcion-mascota-details-general {
-    background-color: #BDD3CE;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    padding: 1.5rem;
-    width: 60vw;
-    display: flex;
-    gap: 2rem;
-    align-items: center;
-    display: flex;
-}
-
-.lista-adopcion-mascota-info {
-    display: flex;
-    flex-direction: column;
+.cards-container{
     width: 100%;
-    gap: 0;
-    margin: 0;
-    padding: 0;
+    max-width: 90%;
+    display: grid;
+    grid-template-columns: 1fr 300px; 
+    grid-template-rows: auto;
+    gap: 20px;
+    margin-top: 2%;
 }
 
-.lista-adopcion-mascota-header {
-    margin-bottom: 0;
-    padding-bottom: 0;
+.cards-container h2{
+    font-size: 36px;
+    color: #302F2F;
+}
+
+.pet-card-adoptions {
     display: flex;
     align-items: center;
     justify-content: flex-start;  
@@ -71,52 +79,23 @@
     margin: 0; 
     padding: 0;
     justify-content: space-between;
+    background-color: #BDD3CE;
+    border-radius: 15px;
+    padding: 30px;
     width: 100%; 
+    max-width: 1000px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 60px; 
+    margin-top: 2%;
+    position: relative;
+    grid-column: 1 / 2;
 }
 
-.lista-adopcion-columna-izquierda,
-.lista-adopcion-columna-derecha {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    color: #f5f5f5;
-    font-size: 1.25rem;
-}
 
-.lista-adopcion-columna-izquierda p,
-.lista-adopcion-columna-derecha p {
-    margin: 0; 
-    padding: 0;
-}
-
-.lista-adopcion-ver-detalles-adopcion {
-    background-color: transparent;
-    color: #F4A258;
-    border: none;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
-
-.lista-adopcion-ver-detalles-adopcion i {
-    background-color: white;
-    color: black;
-    border-radius: 100%;
-    padding: 0.5rem;
-    margin-right: 0.5rem;
-    font-size: 10px;
-    
-}
-
-.lista-adopcion-pet-image {
-    flex: 0 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 150px;
-    width: 150px;
+/* Configuración de la imagen dentro de las tarjetas */
+.pet-image img {
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     overflow: hidden;
 }
@@ -135,20 +114,31 @@
     margin-bottom: 20px; 
 }
 
-.lista-adopcion-descripcion {
-    margin-top: 15px;
-    padding: 10px;
-    font-size: 1.3rem;
-    color: #302f2f;
+.pet-details h2 {
+    margin: 0 0 10px 0;
+    font-size: 1.5rem;
+    color: #302F2F;
 }
 
-.lista-adopcion-info-oculta {
-    color: #302f2f;
+.pet-details p {
+    margin: 5px 0;
+    font-size: 1rem;
+    color: #302F2F;
 }
-.lista-adopcion-info-oculta i {
-    color: white;
-    margin-right: 10px
+
+.pet-more-details{
+    color: #302F2F;
+    width: 50%;
+
 }
+
+.pet-more-details .see-more-button{
+    margin-bottom: 20%;
+}
+
+
+
+/* Botón de adopción */
 .adopt-button {
     position: absolute;
     right: -14rem; 
@@ -160,8 +150,19 @@
     font-size: 2.5rem;
     cursor: pointer;
     display: flex;
-    flex-direction: column; 
-    align-items: center; 
+    align-items: center;
+    gap: 10px; 
+    /*position: absolute;
+    right: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;*/
+    min-width: 120px;
+    grid-column: 2 / 3;
+    margin-left: -40%;
+    justify-self: center; 
+    transition: all 0.3s ease-in-out;
 }
 
 .adopt-button i {
@@ -171,6 +172,7 @@
 
 .adopt-button:hover i {
     animation: pawJump 0.6s ease-in-out infinite;
+    color: #fff;
 }
 
 @keyframes pawJump {
@@ -182,3 +184,141 @@
     }
 }
 
+/*boton de ver mas/ver menos*/
+.see-more-button {
+    position: relative;
+    margin: auto;
+    padding: 12px 18px;
+    transition: all 0.2s ease;
+    background: none;
+    cursor: pointer;
+    border: none;
+    justify-content: center;
+    justify-self: flex-start;
+    margin-bottom: 17%;
+  }
+  
+  .see-more-button:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    border-radius: 50px;
+    background: #F4A258;
+    width: 45px;
+    height: 45px;
+    transition: all 0.3s ease;
+  }
+  
+  .see-more-button span {
+    position: relative;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: #fcf3e3;
+  }
+  
+  .see-more-button svg {
+    position: relative;
+    top: 0;
+    margin-left: 10px;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke: #fcf3e3;
+    stroke-width: 2;
+    transform: translateX(-5px);
+    transition: all 0.3s ease;
+  }
+  
+  .see-more-button:hover:before {
+    width: 100%;
+    background: #F4A258;
+  }
+  
+  .see-more-button:hover svg {
+    transform: translateX(0);
+  }
+  
+  .see-more-button:active {
+    transform: scale(0.95);
+  }
+  
+  @media (max-width: 768px) {
+    .cards-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .pet-card-adoptions {
+        flex-direction: column; 
+        padding: 15px;
+        align-items: center;
+    }
+
+    .pet-image img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .pet-details h2 {
+        font-size: 1.1rem;
+    }
+
+    .see-more-button {
+        padding: 10px 12px;
+    }
+
+    .adopt-button {
+        position: static;
+        transform: none;
+        margin-top: 10px; 
+        margin-bottom: 50px; 
+        font-size: 1rem; 
+        min-width: auto; 
+        width: 100%; 
+        flex-direction: column;
+        margin-left: 0%;
+        display: flex;
+    }
+
+    .adopt-button i {
+        font-size: 1.8rem; 
+    }
+}
+
+
+@media (max-width: 480px) {
+    .cards-container h2 {
+        font-size: 1.2rem; 
+    }
+
+    .pet-card-adoptions {
+        margin-bottom: 15px;
+        padding: 10px;
+    }
+
+    .pet-details p {
+        font-size: 0.9rem; 
+    }
+
+    .adopt-button {
+        font-size: 0.9rem; 
+        flex-direction: column;
+        margin-left: 0%;
+    }
+
+    .adopt-button i {
+        font-size: 1.5rem; 
+    }
+}
+
+
+@media (min-width: 1024px) {
+    .pet-card-adoptions {
+        max-width: 80%;
+    }
+
+}

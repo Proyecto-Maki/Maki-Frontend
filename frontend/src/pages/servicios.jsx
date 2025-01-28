@@ -116,7 +116,7 @@ function Servicios() {
             setDirNavigate("/login");
             setShowWarningModal(true);
         } else {
-            navigate("/adopcion", {state: {fundacion}});
+            navigate("/mascotas-adopcion", {state: {fundacion}});
         }
         
 

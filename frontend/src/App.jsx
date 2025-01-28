@@ -18,7 +18,6 @@ import InfoProduct from "./pages/info-producto";
 import Footer from "./components/Footer";
 import Navbar from "./components/navbar";
 import Productos from "./pages/productos";
-import Adoptions from "./pages/adoptions";
 import PetProfileFoundation from "./pages/pet-profile-foundation";
 import Servicios from "./pages/servicios";
 import Pedidos from "./pages/mis-pedidos";
@@ -31,7 +30,10 @@ import Membresias from "./pages/membresias";
 import CrearSolicitudAdopcion from "./pages/crear-solicitud-adopcion";
 import ResumenAdopcion from "./pages/resumen-adopcion";
 import SolicitudesAdopcion from "./pages/solicitudes-adopcion";
-import AdoptionsFun from "./pages/adopciones-fundacion";
+import AdoptionsFun from "./pages/adopciones-fundacion";import Adoptions from "./pages/adoptions";
+
+
+
 function App() {
   const [numItemsCarrito, setNumeroItemsCarrito] = useState(0);
   const codigo = localStorage.getItem("codigo_carrito");
@@ -101,6 +103,7 @@ function App() {
         <Route path="/membresias" element={<Membresias />}></Route>
         <Route path="/crear-solicitud-adopcion" element={ <CrearSolicitudAdopcion />}></Route>
         <Route path="/resumen-adopcion" element={<ResumenAdopcion />}></Route>
+        <Route path="/mascotas-adopcion" element={ <Adoptions />}></Route>
         <Route path="/solicitudes-de-adopcion" element={ <SolicitudesAdopcion />}></Route>
         <Route path="/adopciones-fundacion" element={ <AdoptionsFun />}></Route>
       </Routes>

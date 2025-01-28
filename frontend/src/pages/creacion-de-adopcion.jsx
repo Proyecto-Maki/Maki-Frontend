@@ -44,6 +44,12 @@ const CreacionAdopcion = () => {
     const [localidad, setLocalidad] = useState('');
     const [direccion, setDireccion] = useState('');
     const [descripcion, setDescripcion] = useState('');
+    const [ninnos, setNinnos] = useState('');
+    const [vacunado, setVacunado] = useState('');
+    const [espacio, setEspacio] = useState('');
+    const [desparacitado, setDesparacitado] = useState('');
+    const [esterilizado, setEsterilizado] = useState('');
+    const [convive, setConvive] = useState('');
 
     const { mascota } = location.state || {};
 
@@ -292,6 +298,112 @@ const CreacionAdopcion = () => {
                                             required
                                         ></textarea>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="form-row">
+                            {/*detalles*/}
+                            <div className="form-group col-md-12">
+                                <label className="label-creacion-adopcion-details">
+                                    Detalles de la mascota
+                                </label>
+                                <div className="input-details-container">
+                                    <label className="label-creacion-adopcion-niños">
+                                        Apto para niños:
+                                        <div className="tooltip-creacion-adopcion">
+                                            <select
+                                                className="input-creacion-adopcion-locality"
+                                                name="ninnos"
+                                                value={ninnos}
+                                                onChange={(e) => setNinnos(e.target.value)}
+                                                required
+                                            >
+                                                <option defaultValue>Selecciona...</option>
+                                                <option value={1}>Si</option>
+                                                <option value={2}>No</option>
+                                            </select>
+                                        </div>
+                                    </label>
+                                    <label className="label-creacion-adopcion-vacuna">
+                                        Vacunado:
+                                        <div className="tooltip-creacion-adopcion">
+                                            <select
+                                                className="input-creacion-adopcion-locality"
+                                                name="vacunado"
+                                                value={vacunado}
+                                                onChange={(e) => setVacunado(e.target.value)}
+                                                required
+                                            >
+                                                <option defaultValue>Selecciona...</option>
+                                                <option value={1}>Si</option>
+                                                <option value={2}>No</option>
+                                            </select>
+                                        </div>
+                                    </label>
+                                    <label className="label-creacion-adopcion-espacio">
+                                        Tipo de espacio:
+                                        <div className="tooltip-creacion-adopcion">
+                                            <select
+                                                className="input-creacion-adopcion-locality"
+                                                name="espacio"
+                                                value={espacio}
+                                                onChange={(e) => setEspacio(e.target.value)}
+                                                required
+                                            >
+                                                <option defaultValue>Selecciona...</option>
+                                                <option value={1}>Pequeño</option>
+                                                <option value={2}>Grande</option>
+                                            </select>
+                                        </div>
+                                    </label>
+                                    <label className="label-creacion-adopcion-desparacitado">
+                                        Desparacitado:
+                                        <div className="tooltip-creacion-adopcion">
+                                            <select
+                                                className="input-creacion-adopcion-locality"
+                                                name="desparacitado"
+                                                value={desparacitado}
+                                                onChange={(e) => setDesparacitado(e.target.value)}
+                                                required
+                                            >
+                                                <option defaultValue>Selecciona...</option>
+                                                <option value={1}>Si</option>
+                                                <option value={2}>No</option>
+                                            </select>
+                                        </div>
+                                    </label>
+                                    <label className="label-creacion-adopcion-esterilizado">
+                                        Esterilizado:
+                                        <div className="tooltip-creacion-adopcion">
+                                            <select
+                                                className="input-creacion-adopcion-locality"
+                                                name="esterilizado"
+                                                value={esterilizado}
+                                                onChange={(e) => setEsterilizado(e.target.value)}
+                                                required
+                                            >
+                                                <option defaultValue>Selecciona...</option>
+                                                <option value={1}>Si</option>
+                                                <option value={2}>No</option>
+                                            </select>
+                                        </div>
+                                    </label>
+                                    <label className="label-creacion-adopcion-convive">
+                                        Convive con mascotas:
+                                        <div className="tooltip-creacion-adopcion">
+                                            <select
+                                                className="input-creacion-adopcion-locality"
+                                                name="convive"
+                                                value={convive}
+                                                onChange={(e) => setConvive(e.target.value)}
+                                                required
+                                            >
+                                                <option defaultValue>Selecciona...</option>
+                                                <option value={1}>Si</option>
+                                                <option value={2}>No</option>
+                                            </select>
+                                        </div>
+                                    </label>
                                 </div>
                             </div>
                         </div>
