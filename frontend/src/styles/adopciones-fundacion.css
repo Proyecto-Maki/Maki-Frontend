@@ -4,7 +4,6 @@
     overflow-y: auto;
     overflow-x: hidden;
     position: relative;
-    padding-top: 5%;
     background-color: #fdf0e6;
     font-family: "Aoboshi One", sans-serif;
 }
@@ -16,6 +15,8 @@
     padding: 2rem;
     background-color: transparent;
     align-items: center;
+    margin-top: calc(var(--navbar-height, 80px));
+    min-height: calc(100vh - var(--navbar-height, 80px));
 }
 .lista-adopcion-fundacion-titlulo-publicacion{
     color: black;
