@@ -31,7 +31,7 @@
   display: flex;
   align-items: center;
   position: relative;
-  top: 40%;
+  top: 50%;
   flex-grow: 1;
   background-color: #fdf0e6;
   padding: 10px 20px;
@@ -40,7 +40,8 @@
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: nowrap;
-  padding-top: 5%;
+  margin-top: calc(var(--navbar-height, 80px));
+  min-height: calc(100vh - var(--navbar-height, 80px)); 
 }
 
 /* Contenedor del contenido */
@@ -60,9 +61,8 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  position: relative;
-  top: -30%;
-  margin-top: 10px;
+  margin-top: calc(var(--navbar-height, 80px));
+  min-height: calc(100vh - var(--navbar-height, 80px)); 
 }
 
 .login-content img {
@@ -170,7 +170,7 @@
 .forgot-password-text,
 .signup-text {
   font-size: clamp(12px, 2vw, 14px);
-  margin-top: 5px;
+  margin-top: 50px;
   color: #4a4a4a;
   font-family: "Aoboshi One", sans-serif;
 }
@@ -339,15 +339,16 @@
 }
 
 
-.absolute-login-container {
+.absolute-login-container{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh; 
   overflow-x: hidden;
-  position: relative;
-  width: 100%;
   height: 100vh;
   background-color: #fdf0e6;
+  margin-top: calc(var(--navbar-height, 80px));
+  min-height: calc(100vh - var(--navbar-height, 80px)); 
+  border: 10px solid red;
 }
