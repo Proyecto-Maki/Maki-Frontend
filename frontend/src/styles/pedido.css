@@ -1,12 +1,11 @@
 /* General */
 .absolute-container-resumen-pedido {
     width: 100vw;
-    height: calc(100vh - 50px);
     overflow-y: auto;
     overflow-x: hidden;
-    margin-top: 5%;
     position: relative;
     top: 0;
+    background-color: #fdf0e6;
 }
 
 .background-container-resumen-pedido {
@@ -17,7 +16,8 @@
     justify-content: center;
     align-items: flex-start;
     flex-wrap: nowrap;
-    padding-top: 5%;
+    margin-top: calc(var(--navbar-height, 90px));
+    min-height: calc(100vh - var(--navbar-height, 90px)); 
 }
 
 .content-container-resumen {
