@@ -128,6 +128,13 @@
     color: #fff;
 }
 
+.no-adoptions-container{
+    display: flex;
+    height: calc(100vh - var(--navbar-height, 80px));
+    justify-content: center;
+    align-items: center;
+}
+
 @keyframes pawJump {
     0%, 100% {
         transform: translateY(0); /* Posición inicial */
