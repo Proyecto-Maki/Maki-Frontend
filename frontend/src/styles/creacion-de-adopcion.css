@@ -85,12 +85,15 @@
 .label-creacion-adopcion-espacio,
 .label-creacion-adopcion-desparacitado,
 .label-creacion-adopcion-esterilizado,
-.label-creacion-adopcion-convive {
+.label-creacion-adopcion-convive,
+.label-creacion-adopcion-ruido {
   display: block;
   font-size: 1rem;
   margin-bottom: 8px;
   color: #333;
 }
+
+
 
 .input-creacion-adopcion-locality,
 .textarea-creacion-adopcion-descripcion,
@@ -230,6 +233,7 @@
   .input-details-container{
     grid-template-columns: 1fr;
   }
+
 }
 
 @media (max-width: 480px) {

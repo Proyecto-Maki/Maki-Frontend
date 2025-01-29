@@ -44,12 +44,13 @@ const CreacionAdopcion = () => {
     const [localidad, setLocalidad] = useState('');
     const [direccion, setDireccion] = useState('');
     const [descripcion, setDescripcion] = useState('');
-    const [ninnos, setNinnos] = useState('');
-    const [vacunado, setVacunado] = useState('');
-    const [espacio, setEspacio] = useState('');
-    const [desparacitado, setDesparacitado] = useState('');
-    const [esterilizado, setEsterilizado] = useState('');
-    const [convive, setConvive] = useState('');
+    const [ninnos, setNinnos] = useState(false);
+    const [vacunado, setVacunado] = useState(false);
+    const [espacio, setEspacio] = useState('P');
+    const [desparacitado, setDesparacitado] = useState(false);
+    const [esterilizado, setEsterilizado] = useState(false);
+    const [convive, setConvive] = useState(false);
+    const [ruido, setRuido] = useState(false);
 
     const { mascota } = location.state || {};
 
@@ -80,6 +81,14 @@ const CreacionAdopcion = () => {
         return hasLetters && isValidLength;
     }
 
+    const validateDireccion = (direccion) => {
+        const hasLetters = /[a-zA-Z]/.test(direccion);
+        const hasNumbers = /\d/.test(direccion);
+        const isValidLength = direccion.length >= 5;
+
+        return hasLetters && isValidLength;
+    }
+
 
 
     const handleCrearPublicacion = async (e) => {
@@ -103,6 +112,23 @@ const CreacionAdopcion = () => {
             return;
         }
 
+        if (!validateDireccion(direccion)) {
+            setError("La dirección debe tener al menos 5 caracteres y contener letras");
+            setShowErrorModal(true);
+            return;
+        }
+
+        const datosDetalleMascota = {
+            id_mascota: mascota.id,
+            apto_ninos: ninnos,
+            apto_ruido: ruido,
+            espacio: espacio,
+            apto_otras_mascotas: convive,
+            desparacitado: desparacitado,
+            vacunado: vacunado,
+            esterilizado: esterilizado,
+        }
+
         const datosPublicacion = {
             email: email,
             id_mascota: mascota.id,
@@ -113,19 +139,38 @@ const CreacionAdopcion = () => {
         };
 
         console.log(datosPublicacion);
-
+        console.log(datosDetalleMascota);
 
         api
-            .post('publicaciones/create/', datosPublicacion, {
+            .post('detalle-mascota/create/', datosDetalleMascota, {
                 headers: {
                     'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
                 }
             })
             .then((res) => {
                 if (res.status === 201) {
-                    setResponse("Publicación creada exitosamente");
-                    setShowSuccessModal(true);
-                    setDirNavigate("/pet-profile-foundation");
+                    console.log("Detalle mascota creado exitosamente");
+                    api
+                        .post('publicaciones/create/', datosPublicacion, {
+                            headers: {
+                                'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
+                            }
+                        })
+                        .then((res) => {
+                            if (res.status === 201) {
+                                setResponse("Publicación creada exitosamente");
+                                setShowSuccessModal(true);
+                                setDirNavigate("/pet-profile-foundation");
+                            } else {
+                                setError(res.data.message);
+                                setShowErrorModal(true);
+                            }
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                            setError(err.response ? err.response.data.detail : err.message);
+                            setShowErrorModal(true);
+                        });
                 } else {
                     setError(res.data.message);
                     setShowErrorModal(true);
@@ -136,7 +181,6 @@ const CreacionAdopcion = () => {
                 setError(err.response ? err.response.data.detail : err.message);
                 setShowErrorModal(true);
             });
-
     }
 
     const handleCloseSuccessModal = () => {
@@ -319,8 +363,24 @@ const CreacionAdopcion = () => {
                                                 required
                                             >
                                                 <option defaultValue>Selecciona...</option>
-                                                <option value={1}>Si</option>
-                                                <option value={2}>No</option>
+                                                <option value={true}>Si</option>
+                                                <option value={false}>No</option>
+                                            </select>
+                                        </div>
+                                    </label>
+                                    <label className="label-creacion-adopcion-ruido">
+                                        Apto con ruido:
+                                        <div className="tooltip-creacion-adopcion">
+                                            <select
+                                                className="input-creacion-adopcion-locality"
+                                                name="ninnos"
+                                                value={ruido}
+                                                onChange={(e) => setRuido(e.target.value)}
+                                                required
+                                            >
+                                                <option defaultValue>Selecciona...</option>
+                                                <option value={true}>Si</option>
+                                                <option value={false}>No</option>
                                             </select>
                                         </div>
                                     </label>
@@ -335,8 +395,8 @@ const CreacionAdopcion = () => {
                                                 required
                                             >
                                                 <option defaultValue>Selecciona...</option>
-                                                <option value={1}>Si</option>
-                                                <option value={2}>No</option>
+                                                <option value={true}>Si</option>
+                                                <option value={false}>No</option>
                                             </select>
                                         </div>
                                     </label>
@@ -351,8 +411,8 @@ const CreacionAdopcion = () => {
                                                 required
                                             >
                                                 <option defaultValue>Selecciona...</option>
-                                                <option value={1}>Pequeño</option>
-                                                <option value={2}>Grande</option>
+                                                <option value={'P'}>Pequeño</option>
+                                                <option value={'G'}>Grande</option>
                                             </select>
                                         </div>
                                     </label>
@@ -367,8 +427,8 @@ const CreacionAdopcion = () => {
                                                 required
                                             >
                                                 <option defaultValue>Selecciona...</option>
-                                                <option value={1}>Si</option>
-                                                <option value={2}>No</option>
+                                                <option value={true}>Si</option>
+                                                <option value={false}>No</option>
                                             </select>
                                         </div>
                                     </label>
@@ -383,8 +443,8 @@ const CreacionAdopcion = () => {
                                                 required
                                             >
                                                 <option defaultValue>Selecciona...</option>
-                                                <option value={1}>Si</option>
-                                                <option value={2}>No</option>
+                                                <option value={true}>Si</option>
+                                                <option value={false}>No</option>
                                             </select>
                                         </div>
                                     </label>
@@ -399,8 +459,8 @@ const CreacionAdopcion = () => {
                                                 required
                                             >
                                                 <option defaultValue>Selecciona...</option>
-                                                <option value={1}>Si</option>
-                                                <option value={2}>No</option>
+                                                <option value={true}>Si</option>
+                                                <option value={false}>No</option>
                                             </select>
                                         </div>
                                     </label>
