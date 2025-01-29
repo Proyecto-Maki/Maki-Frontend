@@ -24,12 +24,43 @@ function Servicios() {
     const [localidadUser, setLocalidadUser] = useState("");
     const [idLocalidad, setIdLocalidad] = useState(0);
     const [fundaciones, setFundaciones] = useState([]);
+    const [fundacion, setFundacion] = useState({});
 
     const email = sessionStorage.getItem("email");
     const token = sessionStorage.getItem("token");
     const refresh = sessionStorage.getItem("refresh");
     const is_cliente = sessionStorage.getItem("is_cliente");
     const is_fundacion = sessionStorage.getItem("is_fundacion");
+
+    useEffect(() => {
+        if(is_fundacion === 'true'){
+            api
+            .get('fundacion-profile/', {
+                params: {
+                    email: email,
+                },
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            .then((res) => {
+                if (res.status === 200) {
+                    setFundacion(res.data);
+                    console.log("Fundación: ", res.data);
+                } else {
+                    console.log("Error al cargar la fundación");
+                    setError(res.data.message);
+                    setShowErrorModal(true);
+                }
+            })
+            .catch((error) => {
+                console.log("Error al cargar la fundación");
+                setError(error.response.data.detail);
+                setShowErrorModal(true);
+            });
+
+        }
+    }, [is_fundacion]);
 
     // Simula datos de fundaciones (puedes reemplazar esto con una API)
     // const [fundaciones, setFundaciones] = useState([
@@ -116,9 +147,9 @@ function Servicios() {
             setDirNavigate("/login");
             setShowWarningModal(true);
         } else {
-            navigate("/mascotas-adopcion", {state: {fundacion}});
+            navigate("/mascotas-adopcion", { state: { fundacion } });
         }
-        
+
 
     }
 
@@ -152,65 +183,89 @@ function Servicios() {
                     </div>
 
                 </section>
-
-                <section className="servicios-filtros">
-                    <div className="filtro-localidad">
-                        <h3>Filtrar por localidad:</h3>
-                        <select name="id_localidad" id="id_localidad" value={idLocalidad} onChange={handleLocalidadChange}>
-                            <option value={0}>Todas las localidades</option>
-                            <option value={1}>Usaquén</option>
-                            <option value={2}>Chapinero</option>
-                            <option value={3}>Santa Fe</option>
-                            <option value={4}>San Cristóbal</option>
-                            <option value={5}>Usme</option>
-                            <option value={6}>Tunjuelito</option>
-                            <option value={7}>Bosa</option>
-                            <option value={8}>Kennedy</option>
-                            <option value={9}>Fontibón</option>
-                            <option value={10}>Engativá</option>
-                            <option value={11}>Suba</option>
-                            <option value={12}>Barrios Unidos</option>
-                            <option value={13}>Teusaquillo</option>
-                            <option value={14}>Los Mártires</option>
-                            <option value={15}>Antonio Nariño</option>
-                            <option value={16}>Puente Aranda</option>
-                            <option value={17}>La Candelaria</option>
-                            <option value={18}>Rafael Uribe Uribe</option>
-                            <option value={19}>Ciudad Bolívar</option>
-                            <option value={20}>Sumapaz</option>
-                        </select>
-                    </div>
-                </section>
-
-                <section className="fundaciones">
-
-                    {fundaciones.length === 0 ?
-                        (<h3 className="no-fundaciones">No hay fundaciones</h3>) :
-                        (fundaciones.map((fundacion, index) => (
-                            <div key={index} className="fundacion-row">
-                                {/* Tarjeta de información de la fundación */}
-                                <div className="fundacion-info">
-                                    <h3>{fundacion.nombre}</h3>
-                                    <p><strong>Teléfono:</strong> {fundacion.telefono}</p>
-                                    <p><strong>Dirección:</strong> {fundacion.direccion} | {fundacion.localidad} | {fundacion.codigo_postal ? fundacion.codigo_postal : 'No hay código postal'}</p>
-                                    <p><strong>Teléfono:</strong> {fundacion.telefono}</p>
-                                    <p><strong>Email:</strong> {fundacion.email}</p>
-                                </div>
-                                {/* Tarjeta de misión y acciones */}
-                                <div className="fundacion-mision">
-                                    <h3>Misión</h3>
-                                    <p>{fundacion.descripcion}</p>
-                                    <div className="fundacion-actions">
-                                        <button className="btn btn-success" onClick={() => handleAdoptar(fundacion)}>Adoptar</button>
-                                        <button className="btn btn-info">Donar</button>
-                                    </div>
-                                </div>
+                {is_fundacion === "true" ? (
+                    <div className="fundacion-row">
+                        {/* Tarjeta de información de la fundación */}
+                        <div className="fundacion-info">
+                            <h3>{fundacion.nombre}</h3>
+                            <p><strong>Teléfono:</strong> {fundacion.telefono}</p>
+                            <p><strong>Dirección:</strong> {fundacion.direccion} | {fundacion.localidad} | {fundacion.codigo_postal ? fundacion.codigo_postal : 'No hay código postal'}</p>
+                            <p><strong>Teléfono:</strong> {fundacion.telefono}</p>
+                            <p><strong>Email:</strong> {fundacion.email}</p>
+                        </div>
+                        {/* Tarjeta de misión y acciones */}
+                        <div className="fundacion-mision">
+                            <h3>Misión</h3>
+                            <p>{fundacion.descripcion}</p>
+                            <div className="fundacion-actions">
+                                <button className="btn btn-success" onClick={() => handleAdoptar(fundacion)}>Adoptar</button>
+                        
                             </div>
-                        )))
-                    }
-                </section>
+                        </div>
+                    </div>
+                ) : (
+                    <div>
+                        <section className="servicios-filtros">
+                            <div className="filtro-localidad">
+                                <h3>Filtrar por localidad:</h3>
+                                <select name="id_localidad" id="id_localidad" value={idLocalidad} onChange={handleLocalidadChange}>
+                                    <option value={0}>Todas las localidades</option>
+                                    <option value={1}>Usaquén</option>
+                                    <option value={2}>Chapinero</option>
+                                    <option value={3}>Santa Fe</option>
+                                    <option value={4}>San Cristóbal</option>
+                                    <option value={5}>Usme</option>
+                                    <option value={6}>Tunjuelito</option>
+                                    <option value={7}>Bosa</option>
+                                    <option value={8}>Kennedy</option>
+                                    <option value={9}>Fontibón</option>
+                                    <option value={10}>Engativá</option>
+                                    <option value={11}>Suba</option>
+                                    <option value={12}>Barrios Unidos</option>
+                                    <option value={13}>Teusaquillo</option>
+                                    <option value={14}>Los Mártires</option>
+                                    <option value={15}>Antonio Nariño</option>
+                                    <option value={16}>Puente Aranda</option>
+                                    <option value={17}>La Candelaria</option>
+                                    <option value={18}>Rafael Uribe Uribe</option>
+                                    <option value={19}>Ciudad Bolívar</option>
+                                    <option value={20}>Sumapaz</option>
+                                </select>
+                            </div>
+                        </section>
+
+                        <section className="fundaciones">
+
+                            {fundaciones.length === 0 ?
+                                (<h3 className="no-fundaciones">No hay fundaciones</h3>) :
+                                (fundaciones.map((fundacion, index) => (
+                                    <div key={index} className="fundacion-row">
+                                        {/* Tarjeta de información de la fundación */}
+                                        <div className="fundacion-info">
+                                            <h3>{fundacion.nombre}</h3>
+                                            <p><strong>Teléfono:</strong> {fundacion.telefono}</p>
+                                            <p><strong>Dirección:</strong> {fundacion.direccion} | {fundacion.localidad} | {fundacion.codigo_postal ? fundacion.codigo_postal : 'No hay código postal'}</p>
+                                            <p><strong>Teléfono:</strong> {fundacion.telefono}</p>
+                                            <p><strong>Email:</strong> {fundacion.email}</p>
+                                        </div>
+                                        {/* Tarjeta de misión y acciones */}
+                                        <div className="fundacion-mision">
+                                            <h3>Misión</h3>
+                                            <p>{fundacion.descripcion}</p>
+                                            <div className="fundacion-actions">
+                                                <button className="btn btn-success" onClick={() => handleAdoptar(fundacion)}>Adoptar</button>
+                                                <button className="btn btn-info">Donar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )))
+                            }
+                        </section>
+                    </div>
+                )}
+
             </div>
-            
+
             <ErrorModal
                 show={showErrorModal}
                 handleClose={handleCloseErrorModal}
@@ -221,7 +276,7 @@ function Servicios() {
                 handleClose={handleCloseSuccessModal}
                 response={response}
             />
-            <WarningModal 
+            <WarningModal
                 show={showWarningModal}
                 handleClose={handleCloseWarningModal}
                 warning={warning}
