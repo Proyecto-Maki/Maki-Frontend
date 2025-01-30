@@ -158,6 +158,10 @@ function Servicios() {
     }
   };
 
+  const handleAdopciones = () => {
+    navigate("/adopciones-fundacion");
+  };
+
   const handleCloseSuccessModal = () => {
     setShowSuccessModal(false);
     setError("");
@@ -224,7 +228,7 @@ function Servicios() {
                   <h3>Misión</h3>
                   <div className="actions-fun">
                     <button>
-                      <i className="fas fa-pencil-alt"></i>
+                      <i className="fas fa-edit"></i>
                     </button>
                   </div>
                 </div>
@@ -234,7 +238,7 @@ function Servicios() {
               </div>
             </div>
             <div className="fundacion-actions-adopciones">
-              <button className="adopciones-button" title="Adoptar">
+              <button className="adopciones-button" title="Adoptar" onClick={() => handleAdopciones()}>
                 <i className="fas fa-paw"></i> Adopciones
               </button>
             </div>
