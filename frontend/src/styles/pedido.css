@@ -4,8 +4,9 @@
     overflow-y: auto;
     overflow-x: hidden;
     position: relative;
-    top: 0;
     background-color: #fdf0e6;
+    margin-top: calc(var(--navbar-height, 80px));
+    min-height: calc(100vh - var(--navbar-height, 80px)); 
 }
 
 .background-container-resumen-pedido {
@@ -15,10 +16,30 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    overflow-y: auto;
     flex-wrap: nowrap;
-    margin-top: calc(var(--navbar-height, 90px));
-    min-height: calc(100vh - var(--navbar-height, 90px)); 
+    padding-top: 2%;
+    margin-top: calc(var(--navbar-height, 80px));
+    min-height: calc(100vh - var(--navbar-height, 80px)); 
 }
+
+.absolute-container-resumen-pedido::-webkit-scrollbar {
+    width: 10px;
+    color: #FCF3E3;
+  }
+  
+  .absolute-container-resumen-pedido::-webkit-scrollbar-thumb {
+    background: #ffcc80;
+    border-radius: 80px;
+  }
+  
+  .absolute-container-resumen-pedido::-webkit-scrollbar-thumb:hover {
+    background: #ffa726;
+  }
+  
+  .absolute-container-resumen-pedido::-webkit-scrollbar-track {
+    background: none;
+  }
 
 .content-container-resumen {
     width: 100%;
@@ -26,6 +47,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: calc(var(--navbar-height, 80px));
+    min-height: calc(100vh - var(--navbar-height, 80px)); 
 }
 
 .info-pedido-card {
@@ -184,4 +207,53 @@
     color: #7BB66D; 
     margin: 0;
 }
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .info-pedido-card, .productos-container {
+        width: 95%;
+    }
+    .producto-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .producto-imagen {
+        margin-bottom: 10px;
+    }
+
+    .absolute-container-resumen-pedido{
+        margin-top: calc(var(--navbar-height, 90px));
+        min-height: calc(100vh - var(--navbar-height, 90px)); 
+        overflow-y: auto;
+    }
+}
+
+@media (max-width: 468px) {
+    .background-container-resumen-pedido {
+      padding-top: 70px; 
+    }
+    .content-container-resumen {
+      width: 100%;
+      padding: 10px;
+    }
+    .info-pedido-card, .productos-container {
+      width: 100%;
+      padding: 15px;
+    }
+    .producto-imagen {
+      width: 80px;
+      height: 80px;
+    }
+    .producto-detalles h3 {
+      font-size: 14px;
+    }
+    .producto-precio {
+      font-size: 12px;
+    }
+    .cantidad-text {
+      font-size: 12px;
+    }
+  }
+  
 
