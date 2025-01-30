@@ -73,7 +73,7 @@ const Home = () => {
           </div>
         </ParallaxLayer>
         <ParallaxLayer
-          offset={1}
+          offset={1.83}
           speed={1}
           className="footer-container-home-parallax"
           style={{ display: "flex", justifyContent: "center", alignItems: "center" }}
