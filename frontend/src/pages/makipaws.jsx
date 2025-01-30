@@ -133,22 +133,24 @@ function Makipaws() {
             {cuidadores.map((cuidador) => (
               <div className="columns-makipaws" key={cuidador.id}>
                 <div className="card-makipaws">
-                  <img
-                    src={cuidador.imagen}
-                    alt={cuidador.nombre}
-                    className="card-img-top img-fluid logo-img-login"
-                    style={{ borderRadius: "10px" }}
-                  />
+                  <div className="image-cuidador">
+                    <img
+                      src={cuidador.imagen}
+                      alt={cuidador.nombre}
+                      className="card-img-top"
+                      style={{ borderRadius: "50%", marginTop: "5%"}}
+                    />
+                  </div>
                   <div className="card-body">
                     <h5 className="card-name">{cuidador.nombre}</h5>
                       <div className="card-information">
                         <p className="card-ocupation">
-                          <img
-                            src={item}
-                            alt="item"
-                            className="item"
-                            style={{ height: "20px", marginRight: "10px" }}
-                          />
+                        <img
+                              src={item}
+                              alt="item"
+                              className="item"
+                              style={{ height: "20px", marginRight: "10px" }}
+                        />
                         <strong>
                           Ocupación:
                         </strong>

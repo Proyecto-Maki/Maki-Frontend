@@ -13,7 +13,8 @@
   flex-direction: column;
   gap: 2rem;
   padding: 2rem;
-  background-color: transparent;
+  margin-top: calc(var(--navbar-height, 80px));
+  min-height: calc(100vh - var(--navbar-height, 80px)); 
 }
 
 .tarjeta-pedido-mi {
