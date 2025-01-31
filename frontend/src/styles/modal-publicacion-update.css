@@ -91,6 +91,64 @@ body {
   resize: none;
 }
 
+.textarea-update-publicacion::-webkit-scrollbar{
+  width: 10px;
+  color: #fcf3e3;  
+}
+
+.textarea-update-publicacion::-webkit-scrollbar-thumb {
+  background: #ffcc80;
+  border-radius: 80px;
+}
+
+.textarea-update-publicacion::-webkit-scrollbar-thumb:hover {
+  background: #ffa726;
+}
+
+.textarea-update-publicacion::-webkit-scrollbar-track {
+  background: none;
+}
+
+.btn-actualizar-publicacion{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: #F4A258;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease;
+  margin: 0 auto;
+  margin-top: 1rem;
+}
+
+.btn-actualizar-publicacion .huella-icon {
+  margin-right: 10px;
+  font-size: 24px;
+}
+
+/* Animación de salto continuo en hover */
+@keyframes saltar {
+  0% {
+      transform: translateY(0);
+  }
+  50% {
+      transform: translateY(-10px);
+  }
+  100% {
+      transform: translateY(0);
+  }
+}
+
+.btn-actualizar-publicacion:hover .huella-icon {
+  animation: saltar 0.6s infinite ease-in-out;
+}
+
 input,
 select {
   width: 100%;
