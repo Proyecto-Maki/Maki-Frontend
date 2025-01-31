@@ -5,36 +5,10 @@ import { useLocation, useNavigate } from "react-router-dom";
 import api from "../api";
 import ErrorModal from "../components/ErrorModal";
 import SuccessModal from "../components/SuccessModal";
+import PublicacionAdopcionUpdate from "../components/forms/publicacion-adopcion-update";
 
 const AdoptionsFun = () => {
-  // const mascotas = [{
-  //     "id": 2,
-  //     "titulo": "Dale una segunda oportunidad a Lucas",
-  //     "descripcion": "Lucas es un perrito rescatado, que busca el amor de una nueva familia. Lucas es muy juguetón y activo. Es amigable con los niños y le gusta compartir su ambiente con otros perritos.",
-  //     "direccion": "Calle 24 # 86 - 30 FONTIBÓN",
-  //     "fecha": "2025-01-14T03:22:29.365763Z",
-  //     "mascota": {
-  //         "id": 68,
-  //         "nombre": "Lucas",
-  //         "sexo": "M",
-  //         "tipo": "Perro",
-  //         "raza": "Mestizo",
-  //         "edad": 6,
-  //         "estado_salud": "Saludable",
-  //         "tamano": "P",
-  //         "peso": "7.00",
-  //         "imagen": "http://res.cloudinary.com/dlktjxg1a/image/upload/v1736567830/iq1fthgzbdmvtizvaq6o.jpg"
-  //     },
-  //     "detalle_mascota": {
-  //         "id": 1,
-  //         "apto_ninos": true,
-  //         "espacio": "P",
-  //         "apto_otras_mascotas": false,
-  //         "desparacitado": true,
-  //         "vacunado": true,
-  //         "esterilizado": true
-  //     }
-  // }];
+  
   const email = sessionStorage.getItem("email");
   const token = sessionStorage.getItem("token");
   const refresh = sessionStorage.getItem("refresh");
@@ -44,6 +18,8 @@ const AdoptionsFun = () => {
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [error, setError] = useState("");
   const [response, setResponse] = useState("");
+  const [publicacionEditar, setPublicacionEditar] = useState({});
+  const [isEditarOpen, setIsEditarOpen] = useState(false);
 
   if (!email || !token || !refresh || !is_cliente || !is_fundacion) {
     window.location.href = "/login";
@@ -95,6 +71,17 @@ const AdoptionsFun = () => {
   const handleCloseErrorModal = () => {
     setShowErrorModal(false);
     setError("");
+  };
+
+  const abrirEditar = async (publicacion) => {
+    let publicacionData = publicacion;
+    console.log(publicacionData)
+    setPublicacionEditar(publicacionData);
+    setIsEditarOpen(true);
+  }
+
+  const cerrarEditar = () => {
+    setIsEditarOpen(false);
   };
 
   return (
@@ -206,7 +193,7 @@ const AdoptionsFun = () => {
 
             {/* Contenedor para los íconos de editar y eliminar */}
             <div className="lista-adopcion-fundacion-icons-container">
-              <button className="lista-adopcion-fundacion-edit-button">
+              <button className="lista-adopcion-fundacion-edit-button" onClick={() => abrirEditar(publicacion)}>
                 <i className="fas fa-edit"></i>
               </button>
               <button className="lista-adopcion-fundacion-delete-button">
@@ -216,6 +203,18 @@ const AdoptionsFun = () => {
           </div>
         ))}
       </div>
+      {isEditarOpen && (
+        <div className="modal-editar-publicacion">
+          <div className="modal-editar-publicacion-content">
+            {/* <span className="close">&times;</span> */}
+            <PublicacionAdopcionUpdate 
+              isEditarOpen = {isEditarOpen}
+              cerrarEditar = {cerrarEditar}
+              publicacionEditar = {publicacionEditar}
+            />
+          </div>
+        </div>
+      )}
       <ErrorModal
         show={showErrorModal}
         handleClose={handleCloseErrorModal}
