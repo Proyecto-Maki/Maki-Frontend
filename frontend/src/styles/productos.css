@@ -135,6 +135,7 @@
 }
 
 .card-productos {
+  display: flex;
   border: none;
   border-radius: 15px; /* Bordes redondeados */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
@@ -146,6 +147,8 @@
   align-items: center;
   display: flex;
   width: 100%;
+  height: 100%;
+  min-height: 380px;
 }
 
 .card:hover {
