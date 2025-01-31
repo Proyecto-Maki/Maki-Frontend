@@ -89,7 +89,7 @@ function Makipaws() {
       ocupacion: "Cuidadora especializada en gatos.",
       categoriaMascotas: "Gatos",
       localidad: "Usaquén",
-      experiencia: "Julián es un técnico enfocado en"
+      experiencia: "Julián es un técnico enfocado en el cuidado de lagartos. Contó con experiencia trabajando en zoológicos y santuarios de animales."
     },
     {
       id: 3,
@@ -98,7 +98,7 @@ function Makipaws() {
       ocupacion: "Cuidador con experiencia en aves y exóticos.",
       categoriaMascotas: "Aves",
       localidad: "Galerías",
-      experiencia: "J de lagartos. Contó con experiencia trabajando en zoológicos y santuarios de animales."
+      experiencia: "Julián es un técnico enfocado en el cuidado de lagartos. Contó con experiencia trabajando en zoológicos y santuarios de animales."
     },
     {
       id: 4,
@@ -195,7 +195,8 @@ function Makipaws() {
                           </strong>
                           {cuidador.experiencia}
                         </p>
-                        <Link to={`/info-cuidador/${cuidador.id}`} className="btn card-button">
+                      </div>
+                      <Link to={`/info-cuidador/${cuidador.id}`} className="btn card-button">
                           <button className="details-cuidador">
                             <span>¡Me interesa!</span>
                             <svg width="15px" height="10px" viewBox="0 0 13 10">
@@ -204,8 +205,6 @@ function Makipaws() {
                             </svg>
                           </button>
                         </Link>
-                      </div>
-                    
                   </div>
                 </div>
               </div>

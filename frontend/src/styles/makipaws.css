@@ -212,7 +212,9 @@
   }
 
   .card-information button{
-    align-self: end;
+    align-items: center;
+    align-self: center;
+    flex-direction: column;
   }
 
   .card-name{
