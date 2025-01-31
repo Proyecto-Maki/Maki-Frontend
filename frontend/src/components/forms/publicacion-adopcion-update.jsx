@@ -5,6 +5,9 @@ import ConfirmationModal from "../ConfirmationModal";
 import "../../styles/modal-publicacion-update.css";
 import { useNavigate } from "react-router-dom";
 import api from "../../api.js";
+import SuccessModal from "../components/SuccessModal";
+import ErrorModal from "../components/ErrorModal";
+import ConfirmationModal from "../components/ConfirmationModal";
 
 function PublicacionAdopcionUpdate({
   isEditarOpen,
@@ -47,6 +50,173 @@ function PublicacionAdopcionUpdate({
     publicacionEditar.detalle_mascota.esterilizado
   );
 
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showErrorModal, setShowErrorModal] = useState(false);
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const [error, setError] = useState("");
+  const [response, setResponse] = useState("");
+  const [dirNavigate, setDirNavigate] = useState("");
+
+  const validateTitulo = (titulo) => {
+    const hasLetters = /[a-zA-Z]/.test(titulo);
+    const hasNumbers = /\d/.test(titulo);
+    const isValidLength = titulo.length >= 5;
+
+    return hasLetters && isValidLength;
+  };
+
+  const validateDescripcion = (descripcion) => {
+    const hasLetters = /[a-zA-Z]/.test(descripcion);
+    const hasNumbers = /\d/.test(descripcion);
+    const isValidLength = descripcion.length >= 5;
+
+    return hasLetters && isValidLength;
+  };
+
+  const validateDireccion = (direccion) => {
+    const hasLetters = /[a-zA-Z]/.test(direccion);
+    const hasNumbers = /\d/.test(direccion);
+    const isValidLength = direccion.length >= 5;
+
+    return hasLetters && isValidLength;
+  };
+
+  const handleActualizarPublicacion = async (e) => {
+    e.preventDefault();
+
+    if (
+      !titulo ||
+      !descripcion ||
+      !direccionDir ||
+      !localidad ||
+      !aptoNinos ||
+      !aptoRuido ||
+      !espacio ||
+      !apto_otras_mascotas ||
+      !desparasitado ||
+      !vacunado ||
+      !esterilizado
+    ) {
+      setError("Por favor, completa todos los campos.");
+      setShowErrorModal(true);
+      return;
+    }
+
+    if (!validateTitulo(titulo)) {
+      setError("El título debe tener al menos 5 caracteres y contener letras");
+      setShowErrorModal(true);
+      return;
+    }
+
+    if (!validateDescripcion(descripcion)) {
+      setError(
+        "La descripción debe tener al menos 5 caracteres y contener letras"
+      );
+      setShowErrorModal(true);
+      return;
+    }
+
+    if (!validateDireccion(direccionDir)) {
+      setError(
+        "La dirección debe tener al menos 5 caracteres y contener letras"
+      );
+      setShowErrorModal(true);
+      return;
+    }
+
+    const datosPublicacion = {
+      direccion: direccionDir,
+      id_localidad: localidad,
+      titulo: titulo,
+      descripcion: descripcion,
+    };
+
+    const detalleMascota = {
+      apto_ninos: aptoNinos,
+      apto_ruido: aptoRuido,
+      espacio: espacio,
+      apto_otras_mascotas: apto_otras_mascotas,
+      desparasitado: desparasitado,
+      vacunado: vacunado,
+      esterilizado: esterilizado,
+    };
+
+    let error_validacion = false;
+
+    api
+      .put(`/publicaciones/update/${publicacionEditar.id}/`, datosPublicacion. {
+        headers: {
+          'Authorization': `Token ${sessionStorage.getItem("token")}`,
+          'Content-Type': 'multipart/form-data',
+        }
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          console.log("Publicación actualizada correctamente");
+            api 
+              .put(`/detalle_mascota/update/${publicacionEditar.detalle_mascota.id}/`, detalleMascota, {
+                headers: {
+                  'Authorization': `Token ${sessionStorage.getItem("token")}`,
+                  'Content-Type': 'multipart/form-data',
+                }
+              })
+              .then((res) => {
+                if (res.status === 200) {
+                  console.log("Detalle mascota actualizado correctamente");
+                  // setResponse("Publicación actualizada correctamente");
+                  // setShowSuccessModal(true);
+                } else {
+                  error_validacion = true;
+                  setError(res.data.message);
+                  setShowErrorModal(true);
+                }
+              })
+        } else {
+            error_validacion = true;
+            setError(res.data.message);
+            setShowErrorModal(true);
+        }
+      })
+      .catch((error) => {
+        error_validacion = true;
+        setError(error),
+        setShowErrorModal(true);
+      });
+
+      if (error_validacion === false){
+        setResponse("Publicación actualizada correctamente");
+        setShowSuccessModal(true);
+      }
+  };
+
+  const handleCloseSuccessModal = () => {
+    setShowSuccessModal(false);
+    setError("");
+    setResponse("");
+  };
+
+  const handleCloseErrorModal = () => {
+    setShowErrorModal(false);
+    setError("");
+  };
+
+  const handleYesConfirmationModal = async (e) => {
+    setIsLoading(true);
+    await new Promise((r) => setTimeout(r, 2000));
+    await handleCrearPublicacion(e);
+    setIsLoading(false);
+    handleNoConfirmationModal();
+  };
+
+  const handleNoConfirmationModal = () => {
+    setShowConfirmationModal(false);
+  };
+
+  const handleOpenConfirmationModal = (e) => {
+    e.preventDefault();
+    setShowConfirmationModal(true);
+  };
+
   return (
     isEditarOpen && (
       <div className="modal-editar-publicacion">
@@ -88,15 +258,21 @@ function PublicacionAdopcionUpdate({
                     </tr>
                     <tr>
                       <td className="tabla-celda-label">Tipo de mascota:</td>
-                      <td className="tabla-celda-valor">{publicacionEditar.mascota.tipo}</td>
+                      <td className="tabla-celda-valor">
+                        {publicacionEditar.mascota.tipo}
+                      </td>
                     </tr>
                     <tr>
                       <td className="tabla-celda-label">Raza de la mascota:</td>
-                      <td className="tabla-celda-valor">{publicacionEditar.mascota.raza}</td>
+                      <td className="tabla-celda-valor">
+                        {publicacionEditar.mascota.raza}
+                      </td>
                     </tr>
                     <tr>
                       <td className="tabla-celda-label">Edad:</td>
-                      <td className="tabla-celda-valor">{publicacionEditar.mascota.edad} año(s)</td>
+                      <td className="tabla-celda-valor">
+                        {publicacionEditar.mascota.edad} año(s)
+                      </td>
                     </tr>
                   </tbody>
                 </table>
@@ -312,8 +488,30 @@ function PublicacionAdopcionUpdate({
                 </label>
               </div>
             </div>
+            <div className="form-group">
+              <button class="btn-actualizar-publicacion">
+                <i class="fas fa-paw huella-icon"></i> Actualizar publicación
+              </button>
+            </div>
           </form>
         </div>
+        <SuccessModal
+          show={showSuccessModal}
+          handleClose={handleCloseSuccessModal}
+          response={response}
+          dirNavigate={dirNavigate}
+        />
+        <ErrorModal
+          show={showErrorModal}
+          handleClose={handleCloseErrorModal}
+          error={error}
+        />
+        <ConfirmationModal
+          show={showConfirmationModal}
+          handleYes={handleYesConfirmationModal}
+          handleNo={handleNoConfirmationModal}
+          response="¿Estás seguro de actualizar la publicación?"
+        />
       </div>
     )
   );
