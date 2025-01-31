@@ -80,7 +80,7 @@ const Home = () => {
             <div className="welcome-article-container">
               <div className="left-text-container-2">
                 <h2><img src={paw} alt="paw" className="paw" style={{width:"50px", justifySelf:"center",paddingRight: "10px"}} />
-                  ¡Bienvenido a Maki! {" "}
+                  ¡Bienvenid@ a Maki! {" "}
                   <img src={paw} alt="paw" className="paw" style={{width:"50px", justifySelf:"center",paddingRight: "10px"}} />
                 </h2>
                 <p className="subheading-2">
@@ -92,6 +92,7 @@ const Home = () => {
                   y lleno de amor por los animales. 
                 </p>
               </div>
+              
               <div className="right-text-container-2">
                 <img src={maki} alt="maki" className="maki" />
               </div>
