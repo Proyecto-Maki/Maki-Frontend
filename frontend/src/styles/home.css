@@ -167,12 +167,10 @@
   width: 100%;
   color: #ff793f;
   text-align: left;
-  border: 2px solid red;
   
 }
 
 .right-text-container-2{
-  border: 2px solid red;
   color: #ff793f;
   text-align: center;
 }
@@ -193,7 +191,6 @@
   gap: 20px;
   text-align: center;
   padding: 20px;
-  border: 2px solid red;
   padding-bottom: 50px;
   height: auto;  /* Asegura que el contenedor se ajuste a su contenido */
   margin-bottom: 20px;
@@ -453,8 +450,11 @@
       overflow: hidden;
     }
 
+    .animation-container{
+      page: 2.5;
+    }
     .footer-container-home-parallax {
-      offset: 1.5; /* Ajusta el valor del offset según sea necesario */
+      offset: 20;
     }
   }
   

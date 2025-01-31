@@ -15,7 +15,6 @@ import React, { useEffect, useState } from "react";
 
 const Home = () => {
   const location = useLocation(); // Obtenemos la ubicación actual de la ruta
-
   // Comprobamos si estamos en la página de Login
   const isLoginPage = location.pathname === "/login";
 
@@ -24,26 +23,7 @@ const Home = () => {
 
   // Aquí podrías agregar la URL de la foto de perfil o pasarla como prop
   const userProfileImage = "../src/img/catPfp.jpeg";
-  const [footerOffset, setFooterOffset] = useState(1.83); // Valor predeterminado del offset
 
-  useEffect(() => {
-    // Función que actualiza el offset según el tamaño de la ventana
-    const updateOffset = () => {
-      if (window.innerWidth <= 768) {
-        setFooterOffset(1.5); // Reduce el offset en pantallas más pequeñas
-      } else {
-        setFooterOffset(1.83); // Offset predeterminado en pantallas más grandes
-      }
-    };
-
-    // Llama a la función cuando se cargue el componente o cambie el tamaño de la ventana
-    updateOffset();
-    window.addEventListener("resize", updateOffset);
-
-    // Limpia el listener al desmontar el componente
-    return () => window.removeEventListener("resize", updateOffset);
-  }, []); // Solo se ejecuta una vez cuando el componente se monta
-  
 
   useEffect(function () {
     if (localStorage.getItem("codigo") === null) {
@@ -54,8 +34,9 @@ const Home = () => {
   return (
     <div className="absolute-home-container">
       {/* Navbar */}
+      
+      <Parallax pages={2.2} className="animation-container">
       <Navbar />
-      <Parallax pages={2} className="animation-container">
         <ParallaxLayer offset={0} speed={1.8}>
           <div className="home-container">
             <div className="dog__animation" id="backgroun-dog">
@@ -94,7 +75,7 @@ const Home = () => {
             </div>
           </div>
         </ParallaxLayer>
-        <ParallaxLayer offset={0.999} speed={0.8}>
+        <ParallaxLayer offset={0.999} speed={0.8} className="parallax-article">
           <div className="home-content-2">
             <div className="welcome-article-container">
               <div className="left-text-container-2">
@@ -118,7 +99,7 @@ const Home = () => {
           </div>
         </ParallaxLayer>
         <ParallaxLayer
-          offset={footerOffset}
+          offset={1.4}
           speed={1}
           className="footer-container-home-parallax"
           style={{ display: "flex", justifyContent: "center", alignItems: "center" }}
