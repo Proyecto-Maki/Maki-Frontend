@@ -115,8 +115,6 @@ const Adoptions = () => {
       .then((res) => {
         if (res.status === 200) {
           setPublicacionesAdopcion(res.data);
-          publicacion_creada = res.data.publicacion;
-          console.log(publicacion_creada);
         } else {
           setError(res.data.message);
           setShowErrorModal(true);
