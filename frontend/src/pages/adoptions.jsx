@@ -192,8 +192,40 @@ const Adoptions = () => {
                         className="item"
                         style={{ height: "20px", marginRight: "10px" }}
                       />
+                      <strong>Apto en ambientes con ruido:</strong>{" "}
+                      {publicacion.detalle_mascota.apto_ruido ? "Sí" : "No"}
+                    </p>
+                    <p>
+                      <img
+                        src={item}
+                        alt="item"
+                        className="item"
+                        style={{ height: "20px", marginRight: "10px" }}
+                      />
+                      <strong>Habita en espacios:</strong>{" "}
+                      {publicacion.detalle_mascota.espacio === 'P' ? "Pequeño" : "Grande"}
+                    </p>
+                    <p>
+                      <img
+                        src={item}
+                        alt="item"
+                        className="item"
+                        style={{ height: "20px", marginRight: "10px" }}
+                      />
                       <strong>Apto para otras mascotas:</strong>{" "}
                       {publicacion.detalle_mascota.apto_otras_mascotas
+                        ? "Sí"
+                        : "No"}
+                    </p>
+                    <p>
+                      <img
+                        src={item}
+                        alt="item"
+                        className="item"
+                        style={{ height: "20px", marginRight: "10px" }}
+                      />
+                      <strong>Desparasitado:</strong>{" "}
+                      {publicacion.detalle_mascota.desparasitado
                         ? "Sí"
                         : "No"}
                     </p>
