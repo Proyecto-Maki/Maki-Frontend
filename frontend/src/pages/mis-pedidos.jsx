@@ -5,6 +5,7 @@ import { GiSittingDog } from "react-icons/gi";
 import { useNavigate } from "react-router-dom";
 import ErrorModal from "../components/ErrorModal";
 import api from "../api.js";
+import { formatDateTime  } from "../functions.js";
 
 const Pedidos = () => {
 
@@ -103,15 +104,7 @@ const Pedidos = () => {
               <div className="fila-inferior-mi">
                 <p className="fecha-mi">
                   Fecha de compra:{" "}
-                  {new Date(pedido.fecha).toLocaleString("es-ES", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                    hour: "numeric",
-                    minute: "numeric",
-                    second: "numeric",
-                    hour12: true,
-                  })}
+                  {formatDateTime(pedido.fecha)}
                 </p>
               </div>
             </div>
