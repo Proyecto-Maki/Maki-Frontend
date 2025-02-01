@@ -112,7 +112,7 @@ const ResumenAdopcion = () => {
         .then((res) => {
           if (res.status === 200) {
             setEstadoSolicitud(nuevoEstado);
-            setResponse("Estado de la solicitud de adopción actualizado correctamente");
+            setResponse("Estado de la solicitud de adopción actualizado correctamente. Se le envió un correo al cliente con la actualización.");
             setShowSuccessModal(true);
           } else {
             setError("Error al actualizar el estado de la solicitud de adopción");
