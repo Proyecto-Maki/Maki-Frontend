@@ -25,52 +25,42 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const loginUrl = "login/";
-    const backendUrl = `${api.defaults.baseURL}${loginUrl}`;
-    console.log("Request URL:", backendUrl);
-
     api
-      .post(loginUrl, { email, password })
+      .post("login/", { email, password })
       .then((response) => {
         console.log("Response:", response);
         if (response.status === 200) {
-          console.log("✅ Login successful:", response.data);
+          console.log(" Login successful:", response.data);
 
-          const userId = response.data.data.user_id; // 📌 Asegurar que se obtiene el user_id
-          if (!userId) {
-            console.error(
-              "❌ No se recibió user_id en la respuesta del backend"
-            );
-          } else {
-            localStorage.setItem("user_id", userId); // 📌 Guardar user_id en localStorage
+          const user_id = response.data.data.id; // 📌 Asegurar que el backend devuelve el ID del usuario
+
+          if (!user_id) {
+            console.error("No se recibió user_id en la respuesta del backend");
+            return;
           }
 
-          setResponse("¡Bienvenido!");
+          sessionStorage.setItem("user_id", user_id); // ✅ Guardamos el user_id en sessionStorage
+          sessionStorage.setItem("token", response.data.data.access);
+          sessionStorage.setItem("refresh", response.data.data.refresh);
+          sessionStorage.setItem("email", email);
+          sessionStorage.setItem("is_cliente", response.data.data.is_cliente);
+          sessionStorage.setItem(
+            "is_fundacion",
+            response.data.data.is_fundacion
+          );
+
           setShowSuccessModal(true);
           setTimeout(() => {
-            sessionStorage.setItem("token", response.data.data.access);
-            sessionStorage.setItem("refresh", response.data.data.refresh);
-            sessionStorage.setItem("email", email);
-            sessionStorage.setItem("is_cliente", response.data.data.is_cliente);
-            sessionStorage.setItem(
-              "is_fundacion",
-              response.data.data.is_fundacion
-            );
-            navigate("/"); // Redirige a la página principal
+            navigate("/");
           }, 5000);
         } else {
-          console.log("❌ Error en el login");
-          console.log(response.data.message);
-          setResponse(response.data.message);
+          console.log("Error en el login");
           setShowErrorModal(true);
         }
       })
       .catch((error) => {
         console.error(
           error.response ? error.response.data : "Error en el servidor"
-        );
-        setError(
-          error.response ? error.response.data.detail : "Error en el servidor"
         );
         setShowErrorModal(true);
       });
