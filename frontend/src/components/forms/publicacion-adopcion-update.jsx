@@ -47,20 +47,6 @@ function PublicacionAdopcionUpdate({
     publicacionEditar.detalle_mascota.esterilizado
   );
 
-  const email = sessionStorage.getItem("email");
-  const token = sessionStorage.getItem("token");
-  const refresh = sessionStorage.getItem("refresh");
-  const is_cliente = sessionStorage.getItem("is_cliente");
-  const is_fundacion = sessionStorage.getItem("is_fundacion");
-
-  if (!email || !token || !refresh || !is_cliente || !is_fundacion) {
-    window.location.href = "/login";
-  }
-
-  if (is_cliente === "true") {
-    window.location.href = "/login";
-  }
-
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
@@ -96,18 +82,19 @@ function PublicacionAdopcionUpdate({
     e.preventDefault();
 
     if (
-      titulo === "" ||
-      descripcion === "" ||
-      direccionDir === "" ||
-      localidad === "" ||
-      aptoNinos === "" ||
-      aptoRuido === "" ||
-      espacio === "" ||
-      apto_otras_mascotas === "" ||
-      desparasitado === "" ||
-      vacunado === "" ||
-      esterilizado === ""
+      !titulo ||
+      !descripcion ||
+      !direccionDir ||
+      !localidad ||
+      !aptoNinos ||
+      !aptoRuido ||
+      !espacio ||
+      !apto_otras_mascotas ||
+      !desparasitado ||
+      !vacunado ||
+      !esterilizado
     ) {
+      setError("Por favor, completa todos los campos.");
       setShowErrorModal(true);
       return;
     }
@@ -135,8 +122,6 @@ function PublicacionAdopcionUpdate({
     }
 
     const datosPublicacion = {
-      email: email,
-      id_mascota: publicacionEditar.mascota.id,
       direccion: direccionDir,
       id_localidad: localidad,
       titulo: titulo,
@@ -144,7 +129,6 @@ function PublicacionAdopcionUpdate({
     };
 
     const detalleMascota = {
-      id_mascota: publicacionEditar.mascota.id,
       apto_ninos: aptoNinos,
       apto_ruido: aptoRuido,
       espacio: espacio,
@@ -156,49 +140,50 @@ function PublicacionAdopcionUpdate({
 
     let error_validacion = false;
 
-    api 
-      .put(`publicaciones/update/${publicacionEditar.id}/`, datosPublicacion, {
+    api
+      .put(`/publicaciones/update/${publicacionEditar.id}/`, datosPublicacion. {
         headers: {
-          'Authorization': `Bearer ${token}`,
+          'Authorization': `Token ${sessionStorage.getItem("token")}`,
           'Content-Type': 'multipart/form-data',
-        },
+        }
       })
       .then((res) => {
         if (res.status === 200) {
           console.log("Publicación actualizada correctamente");
-          api
-          .put(`detalle-mascota/update/${publicacionEditar.detalle_mascota.id}/`, detalleMascota, {
-            headers: {
-              'Authorization': `Bearer ${token}`,
-            }
-          })
-          .then((res) => {
-            if (res.status === 200) {
-              console.log("Detalle mascota actualizado correctamente");
-            } else {
-              error_validacion = true;
-              setError(res.data.message);
-              setShowErrorModal(true);
-            }
-          })
+            api 
+              .put(`/detalle_mascota/update/${publicacionEditar.detalle_mascota.id}/`, detalleMascota, {
+                headers: {
+                  'Authorization': `Token ${sessionStorage.getItem("token")}`,
+                  'Content-Type': 'multipart/form-data',
+                }
+              })
+              .then((res) => {
+                if (res.status === 200) {
+                  console.log("Detalle mascota actualizado correctamente");
+                  // setResponse("Publicación actualizada correctamente");
+                  // setShowSuccessModal(true);
+                } else {
+                  error_validacion = true;
+                  setError(res.data.message);
+                  setShowErrorModal(true);
+                }
+              })
         } else {
-          error_validacion = true;
-          console.log(res.data);
-          setError(res.data.message);
-          setShowErrorModal(true);
+            error_validacion = true;
+            setError(res.data.message);
+            setShowErrorModal(true);
         }
       })
       .catch((error) => {
         error_validacion = true;
-        console.log(error);
-        setError(error.response ? error.response.data.detail : error.message);
+        setError(error),
         setShowErrorModal(true);
-      })
+      });
 
-    if (error_validacion === false) {
-      setResponse("Publicación actualizada correctamente");
-      setShowSuccessModal(true);
-    }
+      if (error_validacion === false){
+        setResponse("Publicación actualizada correctamente");
+        setShowSuccessModal(true);
+      }
   };
 
   const handleCloseSuccessModal = () => {
@@ -213,10 +198,10 @@ function PublicacionAdopcionUpdate({
   };
 
   const handleYesConfirmationModal = async (e) => {
-    // setIsLoading(true);
+    setIsLoading(true);
     await new Promise((r) => setTimeout(r, 2000));
-    await handleActualizarPublicacion(e);
-    // setIsLoading(false);
+    await handleCrearPublicacion(e);
+    setIsLoading(false);
     handleNoConfirmationModal();
   };
 
@@ -270,21 +255,15 @@ function PublicacionAdopcionUpdate({
                     </tr>
                     <tr>
                       <td className="tabla-celda-label">Tipo de mascota:</td>
-                      <td className="tabla-celda-valor">
-                        {publicacionEditar.mascota.tipo}
-                      </td>
+                      <td className="tabla-celda-valor">{publicacionEditar.mascota.tipo}</td>
                     </tr>
                     <tr>
                       <td className="tabla-celda-label">Raza de la mascota:</td>
-                      <td className="tabla-celda-valor">
-                        {publicacionEditar.mascota.raza}
-                      </td>
+                      <td className="tabla-celda-valor">{publicacionEditar.mascota.raza}</td>
                     </tr>
                     <tr>
                       <td className="tabla-celda-label">Edad:</td>
-                      <td className="tabla-celda-valor">
-                        {publicacionEditar.mascota.edad} año(s)
-                      </td>
+                      <td className="tabla-celda-valor">{publicacionEditar.mascota.edad} año(s)</td>
                     </tr>
                   </tbody>
                 </table>
@@ -501,16 +480,17 @@ function PublicacionAdopcionUpdate({
               </div>
             </div>
             <div className="form-group">
-              <button class="btn-actualizar-publicacion" onClick={handleOpenConfirmationModal}>
+              <button class="btn-actualizar-publicacion">
                 <i class="fas fa-paw huella-icon"></i> Actualizar publicación
               </button>
             </div>
           </form>
         </div>
-        <SuccessModalReload
+        <SuccessModal
           show={showSuccessModal}
           handleClose={handleCloseSuccessModal}
           response={response}
+          dirNavigate={dirNavigate}
         />
         <ErrorModal
           show={showErrorModal}

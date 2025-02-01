@@ -4,16 +4,17 @@ import "../styles/home.css";
 import perro_home from "../img/Perro_Home.png";
 import instagram from "../img/instagram.png";
 import tiktok from "../img/tiktok.png";
-import React, { useEffect } from "react";
+import rama from "../img/rama.png";
+import paw from "../img/paw-item-adoption.png";
+import maki from "../img/MAKI (1).png";
 import { useLocation } from "react-router-dom";
 import logo from "../img/Logotipo Maki.png";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
-import { use } from "react";
 import { randomValue } from "../GenerateCardCode";
+import React, { useEffect, useState } from "react";
 
 const Home = () => {
   const location = useLocation(); // Obtenemos la ubicación actual de la ruta
-
   // Comprobamos si estamos en la página de Login
   const isLoginPage = location.pathname === "/login";
 
@@ -22,6 +23,7 @@ const Home = () => {
 
   // Aquí podrías agregar la URL de la foto de perfil o pasarla como prop
   const userProfileImage = "../src/img/catPfp.jpeg";
+
 
   useEffect(function () {
     if (localStorage.getItem("codigo") === null) {
@@ -32,8 +34,9 @@ const Home = () => {
   return (
     <div className="absolute-home-container">
       {/* Navbar */}
+      
+      <Parallax pages={2.2} className="animation-container">
       <Navbar />
-      <Parallax pages={2} className="animation-container">
         <ParallaxLayer offset={0} speed={1.8}>
           <div className="home-container">
             <div className="dog__animation" id="backgroun-dog">
@@ -72,8 +75,32 @@ const Home = () => {
             </div>
           </div>
         </ParallaxLayer>
+        <ParallaxLayer offset={0.999} speed={0.8} className="parallax-article">
+          <div className="home-content-2">
+            <div className="welcome-article-container">
+              <div className="left-text-container-2">
+                <h2><img src={paw} alt="paw" className="paw" style={{width:"50px", justifySelf:"center",paddingRight: "10px"}} />
+                  ¡Bienvenid@ a Maki! {" "}
+                  <img src={paw} alt="paw" className="paw" style={{width:"50px", justifySelf:"center",paddingRight: "10px"}} />
+                </h2>
+                <p className="subheading-2">
+                  En Maki, creemos que el bienestar de tu mascota y el cuidado del planeta van de la mano. 
+                  Podrás encontrar alimentos naturales libres de químicos, accesorios ecológicos, servicios especializados de cuidado
+                  y fundaciones de la ciudad de Bogotá, con las cuales podrás adoptar y/o donar. <p style={{color:"#fcf3e3"}}> ¡Así podrás contribuir al bienestar animal! </p>
+                  <br />  
+                  Únete a nuestra comunidad y sé parte del cambio. Con Maki, cada compra y servicio que eliges contribuye a un mundo más sostenible
+                  y lleno de amor por los animales. 
+                </p>
+              </div>
+              
+              <div className="right-text-container-2">
+                <img src={maki} alt="maki" className="maki" />
+              </div>
+            </div>
+          </div>
+        </ParallaxLayer>
         <ParallaxLayer
-          offset={1}
+          offset={1.4}
           speed={1}
           className="footer-container-home-parallax"
           style={{ display: "flex", justifyContent: "center", alignItems: "center" }}

@@ -15,13 +15,13 @@
   overflow-y: auto;
   overflow-x: hidden;
   position: relative;
+  margin-top: 2%;
   background-color: #fdf0e6;
-  
 }
 
-.products-container{
+.products-container {
   margin-top: calc(var(--navbar-height, 80px));
-  min-height: calc(100vh - var(--navbar-height, 80px)); 
+  min-height: calc(100vh - var(--navbar-height, 80px));
 }
 
 .absolute-products-container::-webkit-scrollbar {
@@ -57,7 +57,6 @@
   overflow-y: auto;
   position: relative;
   flex: 1;
-  
 }
 
 .main-content-products::-webkit-scrollbar {
@@ -140,6 +139,7 @@
 }
 
 .card-productos {
+  display: flex;
   border: none;
   border-radius: 15px; /* Bordes redondeados */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
@@ -151,6 +151,8 @@
   align-items: center;
   display: flex;
   width: 100%;
+  height: 100%;
+  min-height: 380px;
 }
 
 .card:hover {
@@ -179,6 +181,11 @@
 .card-body {
   padding: 20px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  background-color: transparent; /* Asegúrate de que no haya un fondo no deseado */
 }
 
 /* Título del producto */

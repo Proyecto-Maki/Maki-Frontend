@@ -39,6 +39,12 @@ const Carrito = () => {
 
   const handlePayment = async () => {
     try {
+      const userId = localStorage.getItem("user_id"); // 📌 Obtiene el user_id del localStorage o donde lo almacenes
+      if (!userId) {
+        console.error("❌ Error: No se encontró user_id en localStorage");
+        return;
+      }
+
       const items = cart.map((product) => ({
         title: product.name,
         quantity: product.quantity,
@@ -46,23 +52,29 @@ const Carrito = () => {
         currency_id: "COP",
       }));
 
-      console.log("Datos enviados al backend para crear la preferencia:", {
+      console.log("📌 Datos enviados al backend para crear la preferencia:", {
+        user_id: userId, // 📌 Se envía user_id
         items,
       });
 
       // Llama al backend para crear la preferencia
-      const response = await api.post("/create_preference/", { items });
+      const response = await api.post("/create_preference/", {
+        user_id: userId,
+        items,
+      });
 
       const initPoint = response.data.init_point; // Obtiene el init_point del backend
-      console.log("URL de Mercado Pago (init_point):", initPoint);
+      console.log("✅ URL de Mercado Pago (init_point):", initPoint);
 
       if (initPoint) {
         window.location.href = initPoint; // Redirige al usuario al checkout de Mercado Pago
       } else {
-        console.error("No se encontró init_point en la respuesta del backend.");
+        console.error(
+          "❌ No se encontró init_point en la respuesta del backend."
+        );
       }
     } catch (error) {
-      console.error("Error al iniciar el pago:", error);
+      console.error("❌ Error al iniciar el pago:", error);
     }
   };
 
