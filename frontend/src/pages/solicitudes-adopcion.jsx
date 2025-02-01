@@ -109,13 +109,7 @@ const SolicitudesAdopcion = () => {
               <div className="fila-intermedia-sa">
                 <div className="nombre-y-apellido-sa">
                   {is_cliente === "true" ? (
-                    <p className="nombre-cliente-sa">
-                      Nombre de mascota:{" "}
-                      <span className="nombre-cliente-content-sa">
-                        {" "}
-                        {solicitudAdopcion.publicacion.mascota.nombre}
-                      </span>
-                    </p>
+                    <></>
                   ) : (
                     <>
                       <p className="nombre-cliente-sa">

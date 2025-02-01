@@ -6,6 +6,7 @@ import foto_cliente from "../img/Foto_Perfil_Clientes.svg";
 import dogImage from "../img/dog.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import api from "../api.js";
+import item from "../img/paw-item-adoption.png";
 
 const ResumenAdopcion = () => {
   // Datos estáticos
@@ -131,16 +132,118 @@ const ResumenAdopcion = () => {
               <div className="card-content-mascota-interior">
                 <div className="image-container">
                   <img
-                    src={dogImage}
+                    src={solicitudAdopcion.publicacion.mascota.imagen}
                     alt={solicitudAdopcion.publicacion.mascota.nombre}
                   />
                 </div>
                 <div className="mascota-details">
                   {mostrarMasDetalles[solicitudAdopcion.id] ? (
                     <>
-                        <div className="columna-izquierda">
-                            
-                        </div>
+                      <div className="columna-izquierda">
+                        <p>
+                          <img
+                            src={item}
+                            alt="item"
+                            className="item"
+                            style={{ height: "20px", marginRight: "10px" }}
+                          />
+                          <strong>Apto para niños: </strong>
+                          {solicitudAdopcion.publicacion.detalle_mascota
+                            .apto_ninos
+                            ? "Sí"
+                            : "No"}
+                        </p>
+                        <p>
+                          <img
+                            src={item}
+                            alt="item"
+                            className="item"
+                            style={{ height: "20px", marginRight: "10px" }}
+                          />
+                          <strong>Apto en ambientes con ruido: </strong>
+                          {solicitudAdopcion.publicacion.detalle_mascota
+                            .apto_ruido
+                            ? "Sí"
+                            : "No"}
+                        </p>
+                        <p>
+                          <img
+                            src={item}
+                            alt="item"
+                            className="item"
+                            style={{ height: "20px", marginRight: "10px" }}
+                          />
+                          <strong>Habita en espacios:</strong>{" "}
+                          {solicitudAdopcion.publicacion.detalle_mascota
+                            .espacio === "P"
+                            ? "Pequeño"
+                            : "Grande"}
+                        </p>
+                        <p>
+                          <img
+                            src={item}
+                            alt="item"
+                            className="item"
+                            style={{ height: "20px", marginRight: "10px" }}
+                          />
+                          <strong>Apto para otras mascotas:</strong>{" "}
+                          {solicitudAdopcion.publicacion.detalle_mascota
+                            .apto_otras_mascotas
+                            ? "Sí"
+                            : "No"}
+                        </p>
+                      </div>
+                      <div className="columna-derecha">
+                        <p>
+                          <img
+                            src={item}
+                            alt="item"
+                            className="item"
+                            style={{ height: "20px", marginRight: "10px" }}
+                          />
+                          <strong>Desparasitado:</strong>{" "}
+                          {solicitudAdopcion.publicacion.detalle_mascota
+                            .desparasitado
+                            ? "Sí"
+                            : "No"}
+                        </p>
+                        <p>
+                          <img
+                            src={item}
+                            alt="item"
+                            className="item"
+                            style={{ height: "20px", marginRight: "10px" }}
+                          />
+                          <strong>Esterilizado:</strong>{" "}
+                          {solicitudAdopcion.publicacion.detalle_mascota
+                            .esterilizado
+                            ? "Sí"
+                            : "No"}
+                        </p>
+                        <p>
+                          <img
+                            src={item}
+                            alt="item"
+                            className="item"
+                            style={{ height: "20px", marginRight: "10px" }}
+                          />
+                          <strong>Vacunado:</strong>{" "}
+                          {solicitudAdopcion.publicacion.detalle_mascota
+                            .vacunado
+                            ? "Sí"
+                            : "No"}
+                        </p>
+                        <p>
+                          <img
+                            src={item}
+                            alt="item"
+                            className="item"
+                            style={{ height: "20px", marginRight: "10px" }}
+                          />
+                          <strong>Descripción:</strong>{" "}
+                          {solicitudAdopcion.publicacion.descripcion}
+                        </p>
+                      </div>
                     </>
                   ) : (
                     <>
@@ -190,8 +293,19 @@ const ResumenAdopcion = () => {
                   )}
 
                   <div className="columna-3">
-                    <button className="ver-detalles-adopcion">
-                      <i className="fas fa-chevron-right"></i> Ver más
+                    <button
+                      className="ver-detalles-adopcion"
+                      onClick={() => toggleMostrarMas(solicitudAdopcion.id)}
+                    >
+                      <span>
+                        {mostrarMasDetalles[solicitudAdopcion.id]
+                          ? "Ver menos"
+                          : "Ver más"}{" "}
+                      </span>
+                      <svg width="15px" height="10px" viewBox="0 0 13 10">
+                        <path d="M1,5 L11,5"></path>
+                        <polyline points="8 1 12 5 8 9"></polyline>
+                      </svg>
                     </button>
                   </div>
                 </div>
