@@ -79,12 +79,21 @@
 .label-creacion-adopcion-direction,
 .label-creacion-adopcion-locality,
 .label-creacion-adopcion-descripcion, 
-.label-creacion-adopcion-title {
+.label-creacion-adopcion-title,
+.label-creacion-adopcion-details,
+.label-creacion-adopcion-niños,
+.label-creacion-adopcion-espacio,
+.label-creacion-adopcion-desparacitado,
+.label-creacion-adopcion-esterilizado,
+.label-creacion-adopcion-convive,
+.label-creacion-adopcion-ruido {
   display: block;
   font-size: 1rem;
   margin-bottom: 8px;
   color: #333;
 }
+
+
 
 .input-creacion-adopcion-locality,
 .textarea-creacion-adopcion-descripcion,
@@ -97,6 +106,24 @@
   border-radius: 20px;
   margin-bottom: 5px;
   transition: border-color 0.3s ease;
+}
+
+.input-details-container {
+  width: 100%;
+  padding: 30px; 
+  font-size: 1rem;
+  border: none;
+  border-radius: 20px;
+  margin-bottom: 5px;
+  transition: border-color 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  column-gap: 20%;
+  align-items: start;
+  
 }
 
 .input-creacion-adopcion-locality:focus,
@@ -202,6 +229,11 @@
   .crear-adopcion-container{
     margin-bottom: 10%;
   }
+
+  .input-details-container{
+    grid-template-columns: 1fr;
+  }
+
 }
 
 @media (max-width: 480px) {

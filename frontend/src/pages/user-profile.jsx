@@ -53,6 +53,8 @@ const UserProfile = () => {
     es_cliente === "true" ? "pet-profile-client/" : "pet-profile-foundation/";
   const pedidos_url = "mis-pedidos/";
   console.log(mascotas_url);
+
+  const adopciones_url = "solicitudes-de-adopcion/";
   const [userData, setUserData] = useState({
     name: "",
     email: "",
@@ -216,7 +218,10 @@ const UserProfile = () => {
 
   const handleEliminarCuenta = async (e) => {
     e.preventDefault();
-    const url_delete = es_cliente === "true" ? "cliente-profile-delete/" : "fundacion-profile-delete/";
+    const url_delete =
+      es_cliente === "true"
+        ? "cliente-profile-delete/"
+        : "fundacion-profile-delete/";
 
     api
       .delete(url_delete, {
@@ -365,13 +370,17 @@ const UserProfile = () => {
               />
             </button>
           </a>
+          <a href={adopciones_url}>
+            <button className="btn-adopciones-user-profile">
+              <ProfileIcon
+                src={adopciones_img}
+                alt="Adopciones"
+                title="Adopciones"
+                className="icon-user-profile"
+              />
+            </button>
+          </a>
 
-          <ProfileIcon
-            src={adopciones_img}
-            alt="Adopciones"
-            title="Adopciones"
-            className="icon-user-profile"
-          />
           <ProfileIcon
             src={donaciones_img}
             alt="Donaciones"

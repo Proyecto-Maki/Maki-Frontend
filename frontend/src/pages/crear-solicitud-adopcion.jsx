@@ -228,28 +228,30 @@ function CrearSolicitudAdopcion() {
                     </span>
                   </div>
                 </div>
-                <div className="form-group-normativas" style={{ marginBottom: "10px" }}>
-                  <input
-                    className="terms-checkbox-normativas"
-                    type="checkbox"
-                    id="terms"
-                    checked={terminos}
-                    onChange={(e) => setTerminos(e.target.checked)}
-                    required
-                  />
+                <div className="normative-maki" style={{ display: "grid", gridTemplateColumns: "50px 1fr"}}>
+                  <div className="form-group-normativas" style={{ marginBottom: "10px"}}>
+                    <input
+                      className="terms-checkbox-normativas"
+                      type="checkbox"
+                      id="terms"
+                      checked={terminos}
+                      onChange={(e) => setTerminos(e.target.checked)}
+                      required
+                    />
+                  </div>
+                  <label htmlFor="terms" className="normativas-label">
+                    Acepto y estoy de acuerdo con las{" "}
+                    <a
+                      href="/normativas" /*hay que creear esa vista, yo la hago*/
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ color: "#ff7f50" }}
+                    >
+                      normativas
+                    </a>{" "}
+                    de Maki
+                  </label>
                 </div>
-                <label htmlFor="terms" className="normativas-label">
-                  Acepto y estoy de acuerdo con las{" "}
-                  <a
-                    href="/normativas" /*hay que creear esa vista, yo la hago*/
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ color: "#ff7f50" }}
-                  >
-                    normativas
-                  </a>{" "}
-                  de Maki
-                </label>
 
               </form>
             </div>

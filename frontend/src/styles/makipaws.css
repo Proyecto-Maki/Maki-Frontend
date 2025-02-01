@@ -1,0 +1,267 @@
+.absolute-makipaws-container {
+    /*display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; 
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-color: #fdf0e6;*/
+    width: 100vw;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    background-color: #fdf0e6;
+    
+  }
+  
+  .makipaws-container{
+    margin-top: calc(var(--navbar-height, 80px));
+    min-height: calc(100vh - var(--navbar-height, 80px)); 
+  }
+  
+  .absolute-makipaws-container::-webkit-scrollbar {
+    width: 10px;
+    color: #fcf3e3;
+  }
+  .absolute-makipaws-container::-webkit-scrollbar-thumb {
+    background: #ffcc80;
+    border-radius: 80px;
+  }
+  .absolute-makipaws-container::-webkit-scrollbar-thumb:hover {
+    background: #ffa726;
+  }
+  .absolute-makipaws-container::-webkit-scrollbar-track {
+    background: none;
+  }
+  
+  .footer-container-makipaws {
+    text-align: center;
+    padding: 0 0;
+    width: 100%;
+    position: relative;
+    overflow: visible;
+    background-color: #7bb66d;
+    top: 50%;
+  }
+  
+  /* Estilo para el contenido principal */
+  .main-content-makipaws {
+    align-items: center;
+    flex-direction: column;
+    display: absolute;
+    overflow-y: auto;
+    position: relative;
+    flex: 1;
+    
+  }
+  
+  .main-content-makipaws::-webkit-scrollbar {
+    width: 10px;
+    color: #7bb66d;
+  }
+  .main-content-makipaws::-webkit-scrollbar-thumb {
+    background: #7bb66d;
+    border-radius: 80px;
+  }
+  .main-content-makipaws::-webkit-scrollbar-thumb:hover {
+    background: #7bb66d;
+  }
+  .main-content-makipaws::-webkit-scrollbar-track {
+    background: none;
+  }
+  
+  .details-cuidador {
+    position: relative;
+    margin: auto;
+    padding: 12px 18px;
+    transition: all 0.2s ease;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+  
+  .details-cuidador:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    border-radius: 50px;
+    background: #7bb668;
+    width: 45px;
+    height: 45px;
+    transition: all 0.3s ease;
+  }
+  
+  .details-cuidador span {
+    position: relative;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    color: #fcf3e3;
+  }
+  
+  .details-cuidador svg {
+    position: relative;
+    top: 0;
+    margin-left: 10px;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke: #fcf3e3;
+    stroke-width: 2;
+    transform: translateX(-5px);
+    transition: all 0.3s ease;
+  }
+  
+  .details-cuidador:hover:before {
+    width: 100%;
+    background: #84ca6a;
+  }
+  
+  .details-cuidador:hover svg {
+    transform: translateX(0);
+  }
+  
+  .details-cuidador:active {
+    transform: scale(0.95);
+  }
+  
+  .card-makipaws {
+    border-radius: 15px; /* Bordes redondeados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    background-color: #bdd3cec3; /* Fondo blanco para las tarjetas */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animación para efecto hover */
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 100%;
+    padding: 25px;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px); /* Efecto de elevarse */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Sombra más intensa en hover */
+  }
+  
+  /* Imagen del cuidador */
+
+.image-cuidador img{
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+
+}
+  .card-img-top {
+    width: 200px;
+    height: 200px;
+    object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+    transition: transform 0.3s ease; /* Efecto zoom en hover */
+    border-radius: 50%;
+    margin-left: 0;
+  }
+  
+  .card-img-top:hover {
+    transform: scale(1.05); /* Efecto de zoom en la imagen */
+  }
+  
+  /* Contenido de la tarjeta */
+  .card-body {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  /* Título del producto */
+  .card-title {
+    font-family: "Koulen", sans-serif;
+    color: #f39029;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    transition: color 0.3s ease;
+  }
+  
+  .card-title:hover {
+    color: #ff9800; /* Cambio de color en hover */
+  }
+  
+  /* Descripción del producto */
+  .card-text {
+    font-size: 0.9rem;
+    color: #757575;
+    margin-bottom: 15px;
+  }
+
+  .card-information{
+    display: flex;
+    justify-self: left;
+    text-align: left;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .card-name{
+    text-align: center;
+    color: #ffff;
+    font-size: 40px;
+  }
+
+  .row-makipaws {
+    width: 100%;
+    max-width: 90vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: auto;
+    gap: 30px;
+    justify-content: center;
+  }
+  
+  
+  /* Aseguramos que las tarjetas tengan un aspecto responsivo */
+  @media (max-width: 768px) {
+    .card-img-top {
+      height: 180px; /* Reducción del tamaño de la imagen */
+    }
+  
+    .card-body {
+      padding: 15px;
+    }
+  
+    .card-title {
+      font-size: 1rem;
+    }
+  
+    .card-price {
+      font-size: 1rem;
+    }
+
+    .row-makipaws{
+      grid-template-columns: 1fr; 
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .absolute-products-container {
+      margin-top: 20%;
+    }
+    .main-content {
+      top: 10%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .absolute-products-container {
+      margin-top: 30%;
+    }
+    .main-content {
+      top: 10%;
+    }
+  }
+  

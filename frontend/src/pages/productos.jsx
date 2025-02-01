@@ -72,6 +72,7 @@ function Productos() {
 
   return (
     <div className="absolute-products-container">
+      <div className="products-container">
       <Navbar />
       <ProductSlider />
       <Categories />
@@ -102,7 +103,7 @@ function Productos() {
                     <Link to={`/productos/${producto.slug}`}>
                       <img
                         src={`${cloudinaryBaseUrl}${producto.imagen}`} // Concatenamos la URL base con la ruta de la imagen
-                        alt={producto.nombre} // Usamos "nombre" según tu API
+                        alt={producto.nombre}
                         className="card-img-top img-fluid logo-img-login"
                         style={{ borderRadius: "10px" }}
                       />
@@ -177,6 +178,8 @@ function Productos() {
       <div className="footer-container-productos">
         <Footer />
       </div>
+      </div>
+      
     </div>
   );
 }

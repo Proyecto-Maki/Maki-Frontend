@@ -159,9 +159,9 @@ const Pedido = () => {
   };
 
   return (
-		<div className="absolute-container-resumen-pedido">
+		  <div className="absolute-container-resumen-pedido">
 				<Navbar />
-				<div className="background-container-resumen-pedido">
+				  <div className="background-container-resumen-pedido">
 						<div className="content-container-resumen">
 								<div className="info-pedido-card">
 										<div className="fila-superior">
@@ -209,8 +209,8 @@ const Pedido = () => {
 								</div>
 
 						</div>
-				</div>
-		</div>
+				  </div>
+		  </div>
 );
 };
 
