@@ -108,6 +108,25 @@
   font-weight: bold;
 }
 
+.estado-adopcion-select{
+  background-color: #4caf50;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  width: auto;
+  font-style: normal;
+}
+
+.estado-adopcion-select option{
+  background-color: #4caf50;
+  color: white;
+  font-style: normal;
+}
+
+
 .card-content-mascota {
   background-color: #fff;
   border: 1px solid #ddd;

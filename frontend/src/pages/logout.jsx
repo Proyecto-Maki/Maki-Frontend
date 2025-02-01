@@ -34,7 +34,7 @@ const Logout = () => {
             }
         })
         .catch((error) => {
-            console.log(error.response ? error.response.data.detail : error.message);
+            console.log(error.response ? error.response.data.detail : "Error in the server");
             console.log(error.response.data.detail);
         });
 }

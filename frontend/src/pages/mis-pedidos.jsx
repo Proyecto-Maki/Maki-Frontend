@@ -54,15 +54,16 @@ const Pedidos = () => {
         if (response.status === 200) {
           setPedidos(response.data);
         } else {
-          setError(response.data.message);
+          console.error("Error al obtener los pedidos:", response);
+          setError("Error al obtener los pedidos");
           setShowErrorModal(true);
         }
       })
       .catch((error) => {
         console.error(
-          error.response ? error.response.data.detail : error.message
+          error.response ? error.response.data.detail : "Error en el servidor"
         );
-        setError(error.response ? error.response.data.detail : error.message);
+        setError(error.response.data.detail ? error.response.data.detail : "Error en el servidor");
         setShowErrorModal(true);
       });
   }, []);

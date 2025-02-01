@@ -36,7 +36,6 @@ const Pedido = () => {
     return;
   }
 
-
   useEffect(() => {
     api
       .get(`detalles-pedido/pedido/${pedido.id}/`, {
@@ -49,21 +48,23 @@ const Pedido = () => {
           setDetalles(res.data);
           console.log(detalles);
         } else {
-          setError(res.data.message);
+          console.error("Error al obtener los detalles del pedido:", res);
+          setError("Error al obtener los detalles del pedido");
           setShowErrorModal(true);
         }
       })
       .catch((error) => {
-        console.error(
-          error.response ? error.response.data.detail : error.message
+        console.error(error.response);
+        setError(
+          error.response.data.detail
+            ? error.response.data.detail
+            : "Error al obtener los detalles del pedido"
         );
-        setError(error.response ? error.response.data.detail : error.message);
         setShowErrorModal(true);
       });
   }, []);
 
-
-	const order = {
+  const order = {
     id: pedido.id,
     total: pedido.total,
     fechaCompra: new Date(pedido.fecha).toLocaleString("es-ES", {
@@ -75,7 +76,7 @@ const Pedido = () => {
       second: "numeric",
       hour12: true,
     }),
-		productos: detalles.map((detalle) => ({
+    productos: detalles.map((detalle) => ({
       id: detalle.id,
       name: detalle.producto.nombre,
       price: detalle.producto.precio,
@@ -84,10 +85,9 @@ const Pedido = () => {
     })),
   };
 
-
-	useEffect(() => {
-		console.log("La orden es: ", order);
-	}, [order]);
+  useEffect(() => {
+    console.log("La orden es: ", order);
+  }, [order]);
 
   //   const order = {
   //     id: "2343242",
@@ -159,59 +159,61 @@ const Pedido = () => {
   };
 
   return (
-		  <div className="absolute-container-resumen-pedido">
-				<Navbar />
-				  <div className="background-container-resumen-pedido">
-						<div className="content-container-resumen">
-								<div className="info-pedido-card">
-										<div className="fila-superior">
-												<h4 className="pedido-id"># {order.id}</h4>
-										</div>
-										<div className="fila-intermedia">
-												<p className="pedido-total">Total: {order.total}</p>
-												<p className="pedido-fecha">Fecha de compra: {order.fechaCompra}</p>
-										</div>
-								</div>
+    <div className="absolute-container-resumen-pedido">
+      <Navbar />
+      <div className="background-container-resumen-pedido">
+        <div className="content-container-resumen">
+          <div className="info-pedido-card">
+            <div className="fila-superior">
+              <h4 className="pedido-id"># {order.id}</h4>
+            </div>
+            <div className="fila-intermedia">
+              <p className="pedido-total">Total: {order.total}</p>
+              <p className="pedido-fecha">
+                Fecha de compra: {order.fechaCompra}
+              </p>
+            </div>
+          </div>
 
-								{/* Contenedor grande para los productos */}
-								<div className="productos-container">
-										{/* Título "Resumen" dentro del contenedor de productos */}
-										<div className="resumen-titulo">
-												<h2>Resumen</h2>
-										</div>
+          {/* Contenedor grande para los productos */}
+          <div className="productos-container">
+            {/* Título "Resumen" dentro del contenedor de productos */}
+            <div className="resumen-titulo">
+              <h2>Resumen</h2>
+            </div>
 
-										{order.productos.map((product) => (
-												<div key={product.id} className="producto-card">
-														<img
-																src={`https://res.cloudinary.com/dlktjxg1a/${product.image}`}
-																alt={product.name}
-																className="producto-imagen"
-														/>
-														<div className="producto-detalles">
-																<h3 className="producto-nombre">{product.name}</h3>
-																<p className="producto-precio">${product.price}</p>
-														</div>
-														{/* Sección para mostrar la cantidad */}
-														<div className="producto-cantidad">
-																<p className="cantidad-text">
-																		Cantidad: <span className="cantidad-numero">{product.quantity}</span>
-																</p>
-														</div>
-												</div>
-										))}
-								</div>
+            {order.productos.map((product) => (
+              <div key={product.id} className="producto-card">
+                <img
+                  src={`https://res.cloudinary.com/dlktjxg1a/${product.image}`}
+                  alt={product.name}
+                  className="producto-imagen"
+                />
+                <div className="producto-detalles">
+                  <h3 className="producto-nombre">{product.name}</h3>
+                  <p className="producto-precio">${product.price}</p>
+                </div>
+                {/* Sección para mostrar la cantidad */}
+                <div className="producto-cantidad">
+                  <p className="cantidad-text">
+                    Cantidad:{" "}
+                    <span className="cantidad-numero">{product.quantity}</span>
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
 
-								{/* Botón de Eliminar Pedido */}
-								<div className="eliminar-pedido-container">
-										<button className="eliminar-pedido-btn">
-												<i className="fas fa-times"></i> Eliminar Pedido
-										</button>
-								</div>
-
-						</div>
-				  </div>
-		  </div>
-);
+          {/* Botón de Eliminar Pedido */}
+          <div className="eliminar-pedido-container">
+            <button className="eliminar-pedido-btn">
+              <i className="fas fa-times"></i> Eliminar Pedido
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Pedido;

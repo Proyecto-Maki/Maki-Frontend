@@ -130,13 +130,13 @@ function PetProfileFoundation() {
           setMascotasUser(response.data);
         } else {
           console.log(response.data.message);
-          setError(response.data.message);
+          setError("Error al obtener las mascotas");
           setShowErrorModal(true);
         }
       })
       .catch((error) => {
-        console.error(error.response ? error.response.data : error.message);
-        setError(error.response.data.detail);
+        console.error(error.response);
+        setError(error.response.data.detail ? error.response.data.detail : "Error al obtener las mascotas");
         setShowErrorModal(true);
       });
   }, []);
@@ -165,18 +165,19 @@ function PetProfileFoundation() {
             setResponse("Mascota eliminada exitosamente");
             setShowSuccessModal(true);
           } else {
-            setError(res.data.message);
+            console.error(res.data.message);
+            setError("Error al eliminar la mascota");
             setShowErrorModal(true);
           }
         })
         .catch((error) => {
-          console.error(error.response ? error.response.data : error.message);
-          setError(error.response.data.detail);
+          console.error(error.response ? error.response.data : "Error al eliminar la mascota");
+          setError(error.response.data.detail ? error.response.data.detail : "Error al eliminar la mascota");
           setShowErrorModal(true);
         })
     } catch (error) {
-      console.error(error.response ? error.response.data : error.message);
-      setError(error.response.data.detail);
+      console.error(error.response ? error.response.data : "Error al eliminar la mascota");
+      setError(error.response.data.detail ? error.response.data.detail : "Error al eliminar la mascota");
       setShowErrorModal(true);
     }
   };
@@ -221,13 +222,14 @@ function PetProfileFoundation() {
           mascotaData.padecimiento = res.data.padecimiento;
           console.log("El padecimiento es ", mascotaData.padecimiento);
         } else {
-          setError(res.data.message);
+          console.log(res.data.message);
+          setError("Error al obtener el padecimiento");
           setShowErrorModal(true);
           return;
         }
       } catch (error) {
         console.log(error);
-        setError(error.response ? error.response.data.detail : error.message);
+        setError(error.response.data.detail ? error.response.data.detail : "Error al obtener el padecimiento");
         setShowErrorModal(true);
         return;
       }

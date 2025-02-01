@@ -80,6 +80,7 @@ const SolicitudesAdopcion = () => {
     navigate("/resumen-adopcion", { state: { solicitudAdopcion } });
   }
 
+
   return (
     <div className="absolute-solicitudes-adopcion-container">
       <Navbar />

@@ -7,6 +7,9 @@ import dogImage from "../img/dog.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import api from "../api.js";
 import item from "../img/paw-item-adoption.png";
+import { use } from "react";
+import SuccessModalNoReload  from "../components/SuccessModalNoReload";
+import ErrorModal from "../components/ErrorModal.jsx";
 
 const ResumenAdopcion = () => {
   // Datos estáticos
@@ -69,7 +72,15 @@ const ResumenAdopcion = () => {
   const navigate = useNavigate();
   const [mostrarMasDetalles, setMostrarMasDetalles] = useState(false);
   const { solicitudAdopcion } = location.state || {};
-  console.log(solicitudAdopcion);
+  const [estadoSolicitud, setEstadoSolicitud] = useState(
+    solicitudAdopcion.estado
+  );
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [response, setResponse] = useState({});
+  const [showErrorModal, setShowErrorModal] = useState(false);
+  const [error, setError] = useState({});
+
+
   if (!solicitudAdopcion) {
     window.location.href = "/solicitudes-de-adopcion";
     return;
@@ -81,6 +92,64 @@ const ResumenAdopcion = () => {
       [id]: !prevEstados[id],
     }));
   };
+
+  const handleActualizarEstado = async (nuevoEstado) => {
+    const data = {
+      estado: nuevoEstado,
+    };
+    try {
+      api
+        .patch(
+          `solicitud-adopcion-fundacion/update-estado/${solicitudAdopcion.id}/`,
+          data,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((res) => {
+          if (res.status === 200) {
+            setEstadoSolicitud(nuevoEstado);
+            setResponse("Estado de la solicitud de adopción actualizado correctamente");
+            setShowSuccessModal(true);
+          } else {
+            setError("Error al actualizar el estado de la solicitud de adopción");
+            setShowErrorModal(true);
+          }
+        })
+        .catch((error) => {
+          setError(error.response.data.detail ? error.response.data.detail : "Error al actualizar el estado de la solicitud de adopción");
+          setShowErrorModal(true);
+        });
+    } catch (error) {
+
+      console.error(
+        "Error al actualizar el estado de la solicitud de adopción:",
+        error
+      );
+      setError(
+        error.response.data.detail
+          ? error.response.data.detail
+          : "Error al actualizar el estado de la solicitud de adopción"
+      );
+      setShowErrorModal(true);
+    }
+  };
+
+  const handleEstadoChange = (e) => {
+    const nuevoEstado = e.target.value;
+    handleActualizarEstado(nuevoEstado);
+  }
+
+  const handleCloseSuccessModal = () => {
+    setShowSuccessModal(false);
+  }
+
+  const handleCloseErrorModal = () => {
+    setShowErrorModal(false);
+  }
 
   return (
     <div className="absolute-resumen-adopcion-container">
@@ -114,9 +183,19 @@ const ResumenAdopcion = () => {
                 </p>
               </div>
             </div>
-            <button className="estado-adopcion">
-              {solicitudAdopcion.estado}
-            </button>
+            {is_cliente === "true" ? (
+              <button className="estado-adopcion">{estadoSolicitud}</button>
+            ) : (
+              <>
+                <select className="estado-adopcion-select" value={estadoSolicitud} onChange={(e) => handleEstadoChange(e)}>
+                  <option value={'Pendiente'}>Pendiente</option>
+                  <option value={'Aceptada'}>Aceptada</option>
+                  <option value={'Rechazada'}>Rechazada</option>
+                  <option value={'Cancelada'}>Cancelada</option>
+                  <option value={'Completada'}>Completada</option>
+                </select>
+              </>
+            )}
           </div>
         </div>
 
@@ -375,6 +454,16 @@ const ResumenAdopcion = () => {
           </div>
         </div>
       </div>
+      <SuccessModalNoReload
+        show={showSuccessModal}
+        handleClose={handleCloseSuccessModal}
+        response={response}
+      />
+      <ErrorModal
+        show={showErrorModal}
+        handleClose={handleCloseErrorModal}
+        error={error}
+      />
     </div>
   );
 };
