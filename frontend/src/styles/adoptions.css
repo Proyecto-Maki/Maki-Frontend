@@ -80,6 +80,8 @@
     margin-right: 20px;
 }
 
+
+
 .pet-details h2 {
     margin: 0 0 10px 0;
     font-size: 1.5rem;
@@ -94,9 +96,10 @@
 .pet-more-details{
     color: #302F2F;
     width: 50%;
+    margin-right: auto;
 }
 .pet-more-details .see-more-button{
-    margin-bottom: 20%;
+    top: 0;
 }
 
 .adopt-button {
@@ -146,7 +149,8 @@
 
 .see-more-button {
     position: relative;
-    margin: auto;
+    margin-top: 0;
+    margin-bottom: auto;
     padding: 12px 18px;
     transition: all 0.2s ease;
     background: none;
@@ -154,7 +158,9 @@
     border: none;
     justify-content: center;
     justify-self: flex-start;
-    margin-bottom: 17%;
+    /* margin-bottom: 17%; 
+    */
+    top: 0;
   }
   
   .see-more-button:before {

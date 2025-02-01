@@ -4,11 +4,12 @@ import "../styles/adopciones-fundacion.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import api from "../api";
 import ErrorModal from "../components/ErrorModal";
-import SuccessModal from "../components/SuccessModal";
+import SuccessModalReload from "../components/SuccessModalReload";
 import PublicacionAdopcionUpdate from "../components/forms/publicacion-adopcion-update";
+import ConfirmationModal from "../components/ConfirmationModal";
+import LoadingPage from "../components/loading-page";
 
 const AdoptionsFun = () => {
-  
   const email = sessionStorage.getItem("email");
   const token = sessionStorage.getItem("token");
   const refresh = sessionStorage.getItem("refresh");
@@ -16,6 +17,9 @@ const AdoptionsFun = () => {
   const is_fundacion = sessionStorage.getItem("is_fundacion");
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const [publicacionIdEliminar, setPublicacionIdEliminar] = useState(0);
+  const [detalleMascotaIdEliminar, setDetalleMascotaIdEliminar] = useState(0);
   const [error, setError] = useState("");
   const [response, setResponse] = useState("");
   const [publicacionEditar, setPublicacionEditar] = useState({});
@@ -62,6 +66,97 @@ const AdoptionsFun = () => {
       });
   }, []);
 
+  const handleOpenConfirmationModal = (e, id_publicacion, id_detalle) => {
+    e.preventDefault();
+    setShowConfirmationModal(true);
+    setPublicacionIdEliminar(id_publicacion);
+    setDetalleMascotaIdEliminar(id_detalle);
+    console.log("Se abrió el modal de confirmación", id_publicacion, id_detalle);
+  };
+
+  const eliminarPublicacion = async (e) => {
+    e.preventDefault();
+    if (publicacionIdEliminar === 0) {
+      return;
+    }
+
+    console.log("Publicación a eliminar: ", publicacionIdEliminar);
+    console.log("Detalle mascota a eliminar: ", detalleMascotaIdEliminar);
+
+    let error_validacion = false;
+    try {
+      api
+        .delete(`detalle-mascota/delete/${detalleMascotaIdEliminar}/`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          if (res.status === 204) {
+            console.log("Detalle mascota eliminado");
+            api
+              .delete(`publicaciones/delete/${publicacionIdEliminar}/`, {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              })
+              .then((res) => {
+                if (res.status === 204) {
+                  console.log("Publicación eliminada");
+                } else {
+                  console.log(res.data);
+                  setError(res.data.message);
+                  setShowErrorModal(true);
+                  error_validacion = true;
+                }
+              })
+              .catch((error) => {
+                console.log(error);
+                setError(
+                  error.response ? error.response.data.detail : error.message
+                );
+                setShowErrorModal(true);
+                error_validacion = true;
+              });
+          } else {
+            console.log(res.data);
+            setError(res.data.message);
+            setShowErrorModal(true);
+            error_validacion = true;
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          setError(error.response ? error.response.data.detail : error.message);
+          setShowErrorModal(true);
+          error_validacion = true;
+        });
+    } catch (error) {
+      console.log(error);
+      setError(error.response ? error.response.data.detail : error.message);
+      setShowErrorModal(true);
+      error_validacion = true;
+    }
+
+    if (error_validacion === false) {
+      setResponse("Publicación eliminada correctamente");
+      setShowSuccessModal(true);
+    }
+  };
+
+  const handleYesConfirmationModal = async (e) => {
+    setShowConfirmationModal(false);
+    e.preventDefault();
+    await new Promise((r) => setTimeout(r, 2000));
+    await eliminarPublicacion(e);
+  };
+
+  const handleNoConfirmationModal = () => {
+    setShowConfirmationModal(false);
+    setPublicacionIdEliminar(0);
+    setDetalleMascotaIdEliminar(0);
+  };
+
   const handleCloseSuccessModal = () => {
     setShowSuccessModal(false);
     setError("");
@@ -75,14 +170,28 @@ const AdoptionsFun = () => {
 
   const abrirEditar = async (publicacion) => {
     let publicacionData = publicacion;
-    console.log(publicacionData)
+    console.log(publicacionData);
     setPublicacionEditar(publicacionData);
     setIsEditarOpen(true);
-  }
+  };
 
   const cerrarEditar = () => {
     setIsEditarOpen(false);
   };
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return <LoadingPage />;
+  }
 
   return (
     <div className="absolute-lista-adopcion-fundacion-container">
@@ -127,16 +236,16 @@ const AdoptionsFun = () => {
                     {tarjetaSeleccionada === index ? (
                       <>
                         <p className="lista-adopcion-fundacion-info-oculta">
-                          <i className="fas fa-paw"></i> Apto para niños: Sí
+                          <i className="fas fa-paw"></i> Apto para niños: {publicacion.detalle_mascota.apto_ninos === true ? "Sí" : "No"}
                         </p>
                         <p className="lista-adopcion-fundacion-info-oculta">
-                          <i className="fas fa-paw"></i> Tipo de espacio: Grande
+                          <i className="fas fa-paw"></i> Tipo de espacio: {publicacion.detalle_mascota.espacio === "P" ? "Pequeño" : "Grande"}
                         </p>
                         <p className="lista-adopcion-fundacion-info-oculta">
-                          <i className="fas fa-paw"></i> Desparacitado: Sí
+                          <i className="fas fa-paw"></i> Desparasitado: {publicacion.detalle_mascota.desparasitado === true ? "Sí" : "No"}
                         </p>
                         <p className="lista-adopcion-fundacion-info-oculta">
-                          <i className="fas fa-paw"></i> Vacunas al día: Sí
+                          <i className="fas fa-paw"></i> Vacunas al día: {publicacion.detalle_mascota.vacunado === true ? "Sí" : "No"}
                         </p>
                       </>
                     ) : (
@@ -161,21 +270,20 @@ const AdoptionsFun = () => {
                     {tarjetaSeleccionada === index ? (
                       <>
                         <p className="lista-adopcion-fundacion-info-oculta">
-                          <i className="fas fa-paw"></i>Apto para ruido: Sí
+                          <i className="fas fa-paw"></i>Apto para ruido: {publicacion.detalle_mascota.apto_ruido === true ? "Sí" : "No"}
                         </p>
                         <p className="lista-adopcion-fundacion-info-oculta">
                           <i className="fas fa-paw"></i>Apto para otras
-                          mascotas: Sí
+                          mascotas: {publicacion.detalle_mascota.apto_otras_mascotas === true ? "Sí" : "No"}
                         </p>
                         <p className="lista-adopcion-fundacion-info-oculta">
-                          <i className="fas fa-paw"></i>Esterilizado: No
+                          <i className="fas fa-paw"></i>Esterilizado: {publicacion.detalle_mascota.esterilizado === true ? "Sí" : "No"}
                         </p>
                       </>
                     ) : (
                       <>
                         <p>Edad: {publicacion.mascota.edad} año(s)</p>
                         <p>Peso: {publicacion.mascota.peso} kg</p>
-                        <p>Personalidad: Juguetón</p>
                         <p>Dirección: {publicacion.direccion}</p>
                       </>
                     )}
@@ -193,10 +301,16 @@ const AdoptionsFun = () => {
 
             {/* Contenedor para los íconos de editar y eliminar */}
             <div className="lista-adopcion-fundacion-icons-container">
-              <button className="lista-adopcion-fundacion-edit-button" onClick={() => abrirEditar(publicacion)}>
+              <button
+                className="lista-adopcion-fundacion-edit-button"
+                onClick={() => abrirEditar(publicacion)}
+              >
                 <i className="fas fa-edit"></i>
               </button>
-              <button className="lista-adopcion-fundacion-delete-button">
+              <button className="lista-adopcion-fundacion-delete-button" onClick={(e) => {
+                console.log("Se hizo click en eliminar", publicacion);
+                handleOpenConfirmationModal(e, publicacion.id, publicacion.detalle_mascota.id);
+              }}>
                 <i className="fas fa-trash-alt"></i>
               </button>
             </div>
@@ -207,10 +321,10 @@ const AdoptionsFun = () => {
         <div className="modal-editar-publicacion">
           <div className="modal-editar-publicacion-content">
             {/* <span className="close">&times;</span> */}
-            <PublicacionAdopcionUpdate 
-              isEditarOpen = {isEditarOpen}
-              cerrarEditar = {cerrarEditar}
-              publicacionEditar = {publicacionEditar}
+            <PublicacionAdopcionUpdate
+              isEditarOpen={isEditarOpen}
+              cerrarEditar={cerrarEditar}
+              publicacionEditar={publicacionEditar}
             />
           </div>
         </div>
@@ -220,10 +334,16 @@ const AdoptionsFun = () => {
         handleClose={handleCloseErrorModal}
         error={error}
       />
-      <SuccessModal
+      <SuccessModalReload
         show={showSuccessModal}
         handleClose={handleCloseSuccessModal}
         response={response}
+      />
+      <ConfirmationModal
+        show={showConfirmationModal}
+        handleYes={handleYesConfirmationModal}
+        handleNo={handleNoConfirmationModal}
+        response="¿Estás seguro de que deseas eliminar la publicación? Esta acción es irreversible."
       />
     </div>
   );

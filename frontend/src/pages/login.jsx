@@ -34,7 +34,17 @@ const Login = () => {
       .then((response) => {
         console.log("Response:", response);
         if (response.status === 200) {
-          console.log("Login successful:", response.data);
+          console.log("✅ Login successful:", response.data);
+
+          const userId = response.data.data.user_id; // 📌 Asegurar que se obtiene el user_id
+          if (!userId) {
+            console.error(
+              "❌ No se recibió user_id en la respuesta del backend"
+            );
+          } else {
+            localStorage.setItem("user_id", userId); // 📌 Guardar user_id en localStorage
+          }
+
           setResponse("¡Bienvenido!");
           setShowSuccessModal(true);
           setTimeout(() => {
@@ -42,20 +52,26 @@ const Login = () => {
             sessionStorage.setItem("refresh", response.data.data.refresh);
             sessionStorage.setItem("email", email);
             sessionStorage.setItem("is_cliente", response.data.data.is_cliente);
-            sessionStorage.setItem("is_fundacion", response.data.data.is_fundacion);
-            navigate("/"); // Redirige a la página de dashboard o la que corresponda
-          }, 5000); // Redirige después de 5 segundos
+            sessionStorage.setItem(
+              "is_fundacion",
+              response.data.data.is_fundacion
+            );
+            navigate("/"); // Redirige a la página principal
+          }, 5000);
         } else {
-          console.log("Error en el login");
+          console.log("❌ Error en el login");
           console.log(response.data.message);
           setResponse(response.data.message);
           setShowErrorModal(true);
         }
       })
       .catch((error) => {
-        console.error(error.response ? error.response.data : "Error en el servidor");
-        console.log("Error: ",error);
-        setError(error.response ? error.response.data.detail : "Error en el servidor");
+        console.error(
+          error.response ? error.response.data : "Error en el servidor"
+        );
+        setError(
+          error.response ? error.response.data.detail : "Error en el servidor"
+        );
         setShowErrorModal(true);
       });
   };
@@ -92,7 +108,6 @@ const Login = () => {
       <Navbar />
       <div className="background-container-login">
         <div className="login-container">
-
           <div className="login-content">
             <img
               src={logo}
@@ -151,7 +166,7 @@ const Login = () => {
       <WelcomeModal
         show={showSuccessModal}
         handleClose={handleCloseSuccessModal}
-        response={response} 
+        response={response}
       />
 
       <ErrorModal

@@ -195,6 +195,11 @@
   border: none;
 }
 
+.btn-adopciones-user-profile{
+  background-color: #fdf0e6;
+  border: none;
+}
+
 .button-edit {
   display: -webkit-box;
   display: -ms-flexbox;

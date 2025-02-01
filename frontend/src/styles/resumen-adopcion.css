@@ -12,9 +12,16 @@
 .contenedor-resumen-adopcion {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 3rem;
     padding: 2rem;
     background-color: transparent;
+    align-items: center;
+}
+
+.cards-container-container{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
     align-items: center;
 }
 
@@ -208,11 +215,11 @@
 }
 
 .columna-izquierda p, .columna-derecha p {
-    color: #FCF3E3; 
+    color: rgba(48, 47, 47, 0.7); 
 }
 
 .columna-izquierda strong, .columna-derecha strong {
-    color: #FCF3E3; 
+    color: #302F2F; 
 }
 
 .ver-detalles-adopcion {
