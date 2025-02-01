@@ -16,12 +16,11 @@
   overflow-x: hidden;
   position: relative;
   background-color: #fdf0e6;
-  
 }
 
-.products-container{
+.products-container {
   margin-top: calc(var(--navbar-height, 80px));
-  min-height: calc(100vh - var(--navbar-height, 80px)); 
+  min-height: calc(100vh - var(--navbar-height, 80px));
 }
 
 .absolute-products-container::-webkit-scrollbar {
@@ -57,7 +56,6 @@
   overflow-y: auto;
   position: relative;
   flex: 1;
-  
 }
 
 .main-content-products::-webkit-scrollbar {
@@ -182,6 +180,11 @@
 .card-body {
   padding: 20px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  background-color: transparent; /* Asegúrate de que no haya un fondo no deseado */
 }
 
 /* Título del producto */
