@@ -148,6 +148,7 @@ function PetProfileFoundation() {
 
   // Función para eliminar una mascota
   const eliminarMascota = async (e) => {
+    e.preventDefault();
     // setMascotas(mascotas.filter((mascota) => mascota.id !== id));
     if (mascotaIdEliminar === 0) {
       return;
