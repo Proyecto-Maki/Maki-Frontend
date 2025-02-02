@@ -11,7 +11,15 @@ const Carrito = () => {
   const fetchCart = async () => {
     console.log("Iniciando fetchCart...");
     try {
-      const codigoCarrito = localStorage.getItem("codigo_carrito");
+      let codigoCarrito = localStorage.getItem("codigo_carrito");
+      if (!codigoCarrito) {
+        console.warn(
+          "No se encontró un código de carrito, generando uno nuevo..."
+        );
+        codigoCarrito = generateRandomAlphaNumericCode(10); // Generar nuevo código
+        localStorage.setItem("codigo_carrito", codigoCarrito);
+      }
+
       console.log("Código del carrito obtenido:", codigoCarrito);
 
       const response = await api.get(
@@ -36,15 +44,19 @@ const Carrito = () => {
       console.log("Finalizado fetchCart.");
     }
   };
+  const handlePaymentSuccess = async () => {
+    try {
+      console.log("🚀 Redirigiendo a Mis Pedidos...");
+      localStorage.removeItem("codigo_carrito"); // Borrar carrito
+      sessionStorage.setItem("wasPaid", "true"); // Marcar que el pago fue exitoso
+      window.location.href = "/mis-pedidos/"; // Redirigir a la página de pedidos
+    } catch (error) {
+      console.error("Error al manejar el pago exitoso:", error);
+    }
+  };
 
   const handlePayment = async () => {
     try {
-      const userId = localStorage.getItem("user_id"); // 📌 Obtiene el user_id del localStorage o donde lo almacenes
-      if (!userId) {
-        console.error("❌ Error: No se encontró user_id en localStorage");
-        return;
-      }
-
       const items = cart.map((product) => ({
         title: product.name,
         quantity: product.quantity,
@@ -52,29 +64,29 @@ const Carrito = () => {
         currency_id: "COP",
       }));
 
-      console.log("📌 Datos enviados al backend para crear la preferencia:", {
-        user_id: userId, // 📌 Se envía user_id
+      console.log("Datos enviados al backend para crear la preferencia:", {
         items,
       });
 
-      // Llama al backend para crear la preferencia
       const response = await api.post("/create_preference/", {
-        user_id: userId,
         items,
+        user_id: sessionStorage.getItem("user_id"), // Asegurar que se envíe el user_id
       });
 
-      const initPoint = response.data.init_point; // Obtiene el init_point del backend
-      console.log("✅ URL de Mercado Pago (init_point):", initPoint);
+      const initPoint = response.data.init_point;
+      console.log("URL de Mercado Pago (init_point):", initPoint);
 
       if (initPoint) {
-        window.location.href = initPoint; // Redirige al usuario al checkout de Mercado Pago
+        // Eliminar el código de carrito ANTES de redirigir
+        localStorage.removeItem("codigo_carrito");
+
+        // Redirigir a Mercado Pago
+        window.location.href = initPoint;
       } else {
-        console.error(
-          "❌ No se encontró init_point en la respuesta del backend."
-        );
+        console.error("No se encontró init_point en la respuesta del backend.");
       }
     } catch (error) {
-      console.error("❌ Error al iniciar el pago:", error);
+      console.error("Error al iniciar el pago:", error);
     }
   };
 
@@ -197,7 +209,20 @@ const Carrito = () => {
   );
 
   useEffect(() => {
-    fetchCart();
+    if (sessionStorage.getItem("wasPaid")) {
+      handlePaymentSuccess();
+    }
+    fetchCart(); // Obtener el carrito al cargar la página
+
+    // Si el usuario regresa después del pago, verificar y limpiar carrito
+    const wasPaid = sessionStorage.getItem("wasPaid");
+    if (wasPaid) {
+      console.log("✅ Pago detectado, reseteando carrito...");
+      localStorage.removeItem("codigo_carrito");
+      sessionStorage.removeItem("wasPaid"); // Limpiar flag de pago
+      setCart([]);
+      fetchCart(); // Volver a obtener un carrito vacío
+    }
   }, []);
 
   if (isLoading) {

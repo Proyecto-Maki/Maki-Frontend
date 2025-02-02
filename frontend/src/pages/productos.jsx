@@ -12,6 +12,7 @@ import { use } from "react";
 import Categories from "../components/categories";
 
 function Productos() {
+  const [isLoading, setIsLoading] = useState(true);
   const [productos, setProductos] = useState([]);
   const [cartProducts, setCartProducts] = useState([]); // Almacena los productos del carrito
   const [mensaje, setMensaje] = useState(""); // Para mostrar mensajes al usuario
@@ -35,13 +36,23 @@ function Productos() {
 
   // Obtener los productos del carrito
   const fetchCart = async () => {
+    console.log("Iniciando fetchCart...");
     try {
+      let codigoCarrito = localStorage.getItem("codigo_carrito");
+      console.log("Código del carrito obtenido:", codigoCarrito);
+
       const response = await api.get(
-        `/get_estado_carrito?codigo_carrito=${codigo_carrito}`
+        `/get_estado_carrito?codigo_carrito=${codigoCarrito}`
       );
-      console.log("Productos en carrito:", response.data.productos);
+      console.log("Respuesta del backend (carrito):", response.data);
 
       const productosEnCarrito = response.data.productos.map((item) => item.id);
+      if (response.status === 404) {
+        console.warn("❌ No se encontró el carrito, generando uno nuevo...");
+        const nuevoCodigo = generateRandomAlphaNumericCode(10);
+        localStorage.setItem("codigo_carrito", nuevoCodigo);
+        return;
+      }
       setCartProducts(productosEnCarrito);
 
       // Marcar productos en el carrito
@@ -51,7 +62,10 @@ function Productos() {
         return updatedCart;
       });
     } catch (error) {
-      console.error("Error al obtener productos del carrito:", error);
+      console.error("❌ Error al obtener los productos del carrito:", error);
+    } finally {
+      setIsLoading(false);
+      console.log("Finalizado fetchCart.");
     }
   };
 
@@ -74,17 +88,26 @@ function Productos() {
 
   // Agregar producto al carrito
   const agregar_producto = (producto) => {
+    const userId = sessionStorage.getItem("user_id"); // Obtener user_id desde sessionStorage
+
+    if (!userId) {
+      console.error("❌ Error: No se encontró user_id en sessionStorage");
+      setMensaje("Error: No se encontró usuario. Inicia sesión.");
+      return;
+    }
+
     const nuevoProducto = {
       codigo: codigo_carrito,
       id_producto: producto.id,
+      user_id: userId, // Agregar user_id en la petición
     };
 
-    console.log("Enviando datos al backend:", nuevoProducto);
+    console.log("📌 Enviando datos al backend:", nuevoProducto);
 
     api
       .post("agregar_producto/", nuevoProducto)
       .then((res) => {
-        console.log("Respuesta del servidor:", res.data);
+        console.log("✅ Respuesta del servidor:", res.data);
         setMensaje("Producto agregado al carrito correctamente.");
         setTimeout(() => setMensaje(""), 3000);
 
@@ -98,7 +121,7 @@ function Productos() {
         setCartProducts((prev) => [...prev, producto.id]);
       })
       .catch((err) => {
-        console.error("Error al agregar producto:", err.message);
+        console.error("❌ Error al agregar producto:", err.message);
         setMensaje("Error al agregar el producto al carrito.");
         setTimeout(() => setMensaje(""), 3000);
       });
