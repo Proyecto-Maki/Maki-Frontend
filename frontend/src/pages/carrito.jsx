@@ -36,15 +36,39 @@ const Carrito = () => {
       console.log("Finalizado fetchCart.");
     }
   };
+  const handlePaymentSuccess = async () => {
+    try {
+      const codigoCarrito = localStorage.getItem("codigo_carrito");
+      console.log("Código del carrito antes del pago:", codigoCarrito);
+
+      // Consultar el backend después del pago
+      const response = await api.get(
+        `/get_estado_carrito?codigo_carrito=${codigoCarrito}`
+      );
+
+      console.log("Respuesta del backend después del pago:", response.data);
+
+      if (response.data.nuevo_codigo_carrito) {
+        localStorage.setItem(
+          "codigo_carrito",
+          response.data.nuevo_codigo_carrito
+        ); // 🔹 Guardar el nuevo código en localStorage
+        console.log(
+          "Nuevo código de carrito asignado:",
+          response.data.nuevo_codigo_carrito
+        );
+      } else {
+        console.warn(
+          "⚠️ No se recibió un nuevo código de carrito en la respuesta."
+        );
+      }
+    } catch (error) {
+      console.error("Error al actualizar el código de carrito:", error);
+    }
+  };
 
   const handlePayment = async () => {
     try {
-      const user_id = sessionStorage.getItem("user_id"); // ✅ Obtener el user_id desde sessionStorage
-      if (!user_id) {
-        console.error("❌ Error: No se encontró user_id en sessionStorage");
-        return;
-      }
-
       const items = cart.map((product) => ({
         title: product.name,
         quantity: product.quantity,
@@ -53,13 +77,12 @@ const Carrito = () => {
       }));
 
       console.log("Datos enviados al backend para crear la preferencia:", {
-        user_id, // ✅ Enviar user_id
         items,
       });
 
       const response = await api.post("/create_preference/", {
-        user_id,
         items,
+        user_id: sessionStorage.getItem("user_id"), // Asegurar que se envíe el user_id
       });
 
       const initPoint = response.data.init_point;
@@ -67,13 +90,16 @@ const Carrito = () => {
 
       if (initPoint) {
         window.location.href = initPoint;
+
+        // Esperar unos segundos y luego actualizar el carrito (esto se ejecuta después del pago)
+        setTimeout(() => {
+          handlePaymentSuccess();
+        }, 5000); // 🔹 Ajusta este tiempo según sea necesario
       } else {
-        console.error(
-          "❌ No se encontró init_point en la respuesta del backend."
-        );
+        console.error("No se encontró init_point en la respuesta del backend.");
       }
     } catch (error) {
-      console.error("❌ Error al iniciar el pago:", error);
+      console.error("Error al iniciar el pago:", error);
     }
   };
 

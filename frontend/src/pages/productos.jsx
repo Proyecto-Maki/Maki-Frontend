@@ -10,6 +10,7 @@ import ProductSlider from "../pages/product-slider";
 import Categories from "../components/categories";
 
 function Productos() {
+  const [isLoading, setIsLoading] = useState(true);
   const [productos, setProductos] = useState([]);
   const [cartProducts, setCartProducts] = useState([]); // Almacena los productos del carrito
   const [mensaje, setMensaje] = useState(""); // Para mostrar mensajes al usuario
@@ -29,13 +30,23 @@ function Productos() {
 
   // Obtener los productos del carrito
   const fetchCart = async () => {
+    console.log("Iniciando fetchCart...");
     try {
+      let codigoCarrito = localStorage.getItem("codigo_carrito");
+      console.log("Código del carrito obtenido:", codigoCarrito);
+
       const response = await api.get(
-        `/get_estado_carrito?codigo_carrito=${codigo_carrito}`
+        `/get_estado_carrito?codigo_carrito=${codigoCarrito}`
       );
-      console.log("Productos en carrito:", response.data.productos);
+      console.log("Respuesta del backend (carrito):", response.data);
 
       const productosEnCarrito = response.data.productos.map((item) => item.id);
+      if (response.status === 404) {
+        console.warn("❌ No se encontró el carrito, generando uno nuevo...");
+        const nuevoCodigo = generateRandomAlphaNumericCode(10);
+        localStorage.setItem("codigo_carrito", nuevoCodigo);
+        return;
+      }
       setCartProducts(productosEnCarrito);
 
       // Marcar productos en el carrito
@@ -45,7 +56,10 @@ function Productos() {
         return updatedCart;
       });
     } catch (error) {
-      console.error("Error al obtener productos del carrito:", error);
+      console.error("❌ Error al obtener los productos del carrito:", error);
+    } finally {
+      setIsLoading(false);
+      console.log("Finalizado fetchCart.");
     }
   };
 
