@@ -77,7 +77,7 @@ const ForgetPassword = () => {
         }
       })
       .catch((error) => {
-        setError(error.response.data.detail ? error.response.data.detail : "Error al enviar el correo electrónico");
+        setError(error.response ? error.response.data.detail : "Error al enviar el correo electrónico");
         setShowErrorModal(true);
       });
   };

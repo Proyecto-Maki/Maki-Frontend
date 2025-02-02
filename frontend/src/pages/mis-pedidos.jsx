@@ -63,7 +63,7 @@ const Pedidos = () => {
         console.error(
           error.response ? error.response.data.detail : "Error en el servidor"
         );
-        setError(error.response.data.detail ? error.response.data.detail : "Error en el servidor");
+        setError(error.response ? error.response.data.detail : "Error en el servidor");
         setShowErrorModal(true);
       });
   }, []);

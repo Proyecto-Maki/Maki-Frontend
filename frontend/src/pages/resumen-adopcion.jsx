@@ -120,7 +120,7 @@ const ResumenAdopcion = () => {
           }
         })
         .catch((error) => {
-          setError(error.response.data.detail ? error.response.data.detail : "Error al actualizar el estado de la solicitud de adopción");
+          setError(error.response ? error.response.data.detail : "Error al actualizar el estado de la solicitud de adopción");
           setShowErrorModal(true);
         });
     } catch (error) {
@@ -130,7 +130,7 @@ const ResumenAdopcion = () => {
         error
       );
       setError(
-        error.response.data.detail
+        error.response
           ? error.response.data.detail
           : "Error al actualizar el estado de la solicitud de adopción"
       );

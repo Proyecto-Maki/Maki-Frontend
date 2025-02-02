@@ -56,7 +56,7 @@ const Pedido = () => {
       .catch((error) => {
         console.error(error.response);
         setError(
-          error.response.data.detail
+          error.response
             ? error.response.data.detail
             : "Error al obtener los detalles del pedido"
         );

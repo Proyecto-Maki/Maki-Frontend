@@ -89,14 +89,14 @@ function Servicios() {
           if (res.status === 200) {
             setFundaciones(res.data);
           } else {
-            console.log("Error al cargar las fundaciones");
-            setError(res.data.message);
+            console.log(res.data.message);
+            setError("Error al cargar las fundaciones");
             setShowErrorModal(true);
           }
         })
         .catch((error) => {
           console.log("Error al cargar las fundaciones");
-          setError(error.response.data.detail);
+          setError(error.response ? error.response.data.detail : "Error al cargar las fundaciones");
           setShowErrorModal(true);
         });
     };
@@ -112,8 +112,8 @@ function Servicios() {
           if (res.status === 200) {
             setFundaciones(res.data);
           } else {
-            console.log("Error al cargar las fundaciones");
-            setError(res.data.message);
+            console.log(res.data.message);
+            setError("Error al cargar las fundaciones");
             setShowErrorModal(true);
           }
         })

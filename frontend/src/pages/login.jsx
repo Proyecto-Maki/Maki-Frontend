@@ -58,13 +58,14 @@ const Login = () => {
           }, 5000);
         } else {
           console.log("Error en el login");
+          setError("Error en el login");
           setShowErrorModal(true);
         }
       })
       .catch((error) => {
         console.error(error.response ? error.response.data : "Error en el servidor");
         console.log("Error: ",error);
-        setError(error.response.data.detail ? error.response.data.detail : "Error en el servidor");
+        setError(error.response ? error.response.data.detail : "Error en el servidor");
         setShowErrorModal(true);
       });
   };
