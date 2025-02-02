@@ -63,8 +63,8 @@ const Pedidos = () => {
 
           setPedidos(response.data);
         } else {
-          console.error("Error en la respuesta de la API:", response.data);
-          setError(response.data.message);
+          console.error("Error al obtener los pedidos:", response);
+          setError("Error al obtener los pedidos");
           setShowErrorModal(true);
         }
       })
@@ -73,7 +73,11 @@ const Pedidos = () => {
           "Error en la solicitud:",
           error.response ? error.response.data.detail : error.message
         );
-        setError(error.response ? error.response.data.detail : error.message);
+        setError(
+          error.response.data.detail
+            ? error.response.data.detail
+            : "Error en el servidor"
+        );
         setShowErrorModal(true);
       });
   }, [email, token]); // Asegúrate de que email y token son dependencias

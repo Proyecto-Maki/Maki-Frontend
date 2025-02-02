@@ -62,7 +62,7 @@ const ConfirmationRegister = () => {
         }
       })
       .catch((error) => {
-        setError(error.response ? error.response.data.detail : error.message);
+        setError(error.response.data.detail ? error.response.data.detail : "Error al verificar el correo electrónico");
         setShowErrorModal(true);
       });
   };

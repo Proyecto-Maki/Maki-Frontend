@@ -116,12 +116,13 @@ const Adoptions = () => {
         if (res.status === 200) {
           setPublicacionesAdopcion(res.data);
         } else {
-          setError(res.data.message);
+          console.error("Error al obtener las publicaciones de adopción:", res);
+          setError("Error al obtener las publicaciones de adopción");
           setShowErrorModal(true);
         }
       })
       .catch((error) => {
-        setError(error.response ? error.response.data.detail : error.message);
+        setError(error.response.data.detail ? error.response.data.detail : "Error al obtener las publicaciones de adopción");
         setShowErrorModal(true);
       });
   }, []);

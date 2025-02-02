@@ -34,8 +34,6 @@ import AdoptionsFun from "./pages/adopciones-fundacion";
 import Adoptions from "./pages/adoptions";
 import Makipaws from "./pages/makipaws";
 
-
-
 function App() {
   const [numItemsCarrito, setNumeroItemsCarrito] = useState(0);
   const codigo = localStorage.getItem("codigo_carrito");
@@ -103,12 +101,18 @@ function App() {
           element={<TerminosYCondiciones />}
         />
         <Route path="/membresias" element={<Membresias />}></Route>
-        <Route path="/crear-solicitud-adopcion" element={ <CrearSolicitudAdopcion />}></Route>
+        <Route
+          path="/crear-solicitud-adopcion"
+          element={<CrearSolicitudAdopcion />}
+        ></Route>
         <Route path="/resumen-adopcion" element={<ResumenAdopcion />}></Route>
-        <Route path="/mascotas-adopcion" element={ <Adoptions />}></Route>
-        <Route path="/solicitudes-de-adopcion" element={ <SolicitudesAdopcion />}></Route>
-        <Route path="/adopciones-fundacion" element={ <AdoptionsFun />}></Route>
-        <Route path="/makipaws" element={ <Makipaws />}></Route>
+        <Route path="/mascotas-adopcion" element={<Adoptions />}></Route>
+        <Route
+          path="/solicitudes-de-adopcion"
+          element={<SolicitudesAdopcion />}
+        ></Route>
+        <Route path="/adopciones-fundacion" element={<AdoptionsFun />}></Route>
+        <Route path="/makipaws" element={<Makipaws />}></Route>
       </Routes>
     </BrowserRouter>
   );

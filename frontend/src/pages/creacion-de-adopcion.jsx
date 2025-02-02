@@ -47,7 +47,7 @@ const CreacionAdopcion = () => {
     const [ninnos, setNinnos] = useState(false);
     const [vacunado, setVacunado] = useState(false);
     const [espacio, setEspacio] = useState('P');
-    const [desparacitado, setDesparacitado] = useState(false);
+    const [desparasitado, setDesparasitado] = useState(false);
     const [esterilizado, setEsterilizado] = useState(false);
     const [convive, setConvive] = useState(false);
     const [ruido, setRuido] = useState(false);
@@ -124,7 +124,7 @@ const CreacionAdopcion = () => {
             apto_ruido: ruido,
             espacio: espacio,
             apto_otras_mascotas: convive,
-            desparacitado: desparacitado,
+            desparasitado: desparasitado,
             vacunado: vacunado,
             esterilizado: esterilizado,
         }
@@ -168,7 +168,7 @@ const CreacionAdopcion = () => {
                         })
                         .catch((err) => {
                             console.log(err);
-                            setError(err.response ? err.response.data.detail : err.message);
+                            setError(err.response ? err.response.data.detail : "Error al crear la publicación");
                             setShowErrorModal(true);
                         });
                 } else {
@@ -178,7 +178,7 @@ const CreacionAdopcion = () => {
             })
             .catch((err) => {
                 console.log(err);
-                setError(err.response ? err.response.data.detail : err.message);
+                setError(err.response ? err.response.data.detail : "Error al crear el detalle de la mascota");
                 setShowErrorModal(true);
             });
     }
@@ -422,8 +422,8 @@ const CreacionAdopcion = () => {
                                             <select
                                                 className="input-creacion-adopcion-locality"
                                                 name="desparacitado"
-                                                value={desparacitado}
-                                                onChange={(e) => setDesparacitado(e.target.value)}
+                                                value={desparasitado}
+                                                onChange={(e) => setDesparasitado(e.target.value)}
                                                 required
                                             >
                                                 <option defaultValue>Selecciona...</option>

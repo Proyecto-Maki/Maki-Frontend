@@ -216,9 +216,6 @@ function Servicios() {
                     : "No hay código postal"}
                 </p>
                 <p>
-                  <strong>Teléfono:</strong> {fundacion.telefono}
-                </p>
-                <p>
                   <strong>Email:</strong> {fundacion.email}
                 </p>
               </div>
@@ -297,9 +294,6 @@ function Servicios() {
                         {fundacion.codigo_postal
                           ? fundacion.codigo_postal
                           : "No hay código postal"}
-                      </p>
-                      <p>
-                        <strong>Teléfono:</strong> {fundacion.telefono}
                       </p>
                       <p>
                         <strong>Email:</strong> {fundacion.email}

@@ -158,22 +158,11 @@
     border: none;
     justify-content: center;
     justify-self: flex-start;
-    /* margin-bottom: 17%; 
-    */
     top: 0;
   }
   
   .see-more-button:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    border-radius: 50px;
-    background: #F4A258;
-    width: 45px;
-    height: 45px;
-    transition: all 0.3s ease;
+
   }
   
   .see-more-button span {

@@ -143,13 +143,13 @@ function CrearSolicitudAdopcion() {
           setDirNavigate("/servicios");
         } else {
           console.log(res.data);
-          setError(res.data.message);
+          setError("Error al enviar la solicitud de adopción.");
           setShowErrorModal(true);
         }
       })
       .catch((error) => {
         console.log(error);
-        setError(error.response ? error.response.data.message : error.message);
+        setError(error.response.data.detail ? error.response.data.detail : "Error al enviar la solicitud de adopción.");
         setShowErrorModal(true);
       });
 

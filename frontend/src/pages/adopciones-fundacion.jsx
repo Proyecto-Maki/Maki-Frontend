@@ -56,12 +56,13 @@ const AdoptionsFun = () => {
         if (res.status === 200) {
           setPublicacionesFundacion(res.data);
         } else {
-          setError(res.data.message);
+          console.log(res.data);
+          setError("Error al obtener las publicaciones de adopción");
           setShowErrorModal(true);
         }
       })
       .catch((err) => {
-        setError(err.response ? err.response.data.detail : err.message);
+        setError(err.response.data.detail ? err.response.data.detail : "Error al obtener las publicaciones de adopción");
         setShowErrorModal(true);
       });
   }, []);
@@ -105,7 +106,7 @@ const AdoptionsFun = () => {
                   console.log("Publicación eliminada");
                 } else {
                   console.log(res.data);
-                  setError(res.data.message);
+                  setError("Error al eliminar la publicación");
                   setShowErrorModal(true);
                   error_validacion = true;
                 }
@@ -113,27 +114,27 @@ const AdoptionsFun = () => {
               .catch((error) => {
                 console.log(error);
                 setError(
-                  error.response ? error.response.data.detail : error.message
+                  error.response.data.detail ? error.response.data.detail : "Error al eliminar la publicación"
                 );
                 setShowErrorModal(true);
                 error_validacion = true;
               });
           } else {
             console.log(res.data);
-            setError(res.data.message);
+            setError("Error al eliminar el detalle de la mascota");
             setShowErrorModal(true);
             error_validacion = true;
           }
         })
         .catch((error) => {
           console.log(error);
-          setError(error.response ? error.response.data.detail : error.message);
+          setError(error.response.data.detail ? error.response.data.detail : "Error al eliminar el detalle de la mascota");
           setShowErrorModal(true);
           error_validacion = true;
         });
     } catch (error) {
       console.log(error);
-      setError(error.response ? error.response.data.detail : error.message);
+      setError(error.response.data.detail ? error.response.data.detail : "Error al eliminar la publicación");
       setShowErrorModal(true);
       error_validacion = true;
     }

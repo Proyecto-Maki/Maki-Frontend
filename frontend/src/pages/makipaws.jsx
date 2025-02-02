@@ -9,7 +9,7 @@ import generateRandomAlphaNumericCode, {
   randomValue,
 } from "../GenerateCardCode";
 import MakipawsSlider from "../pages/makipaws_banner";
-import Categories from "../components/categories";
+import CategoriesWithProvider from "../components/categories";
 import foto_perfil_cuidador from "../img/Mari Juliano.jpg";
 import item from "../img/paw-item-adoption.png";
 
@@ -117,7 +117,7 @@ function Makipaws() {
       <div className="makipaws-container">
       <Navbar />
       <MakipawsSlider />
-      <Categories />
+      <CategoriesWithProvider />
       <main className="main-content-makipaws">
         <div className="container py-5">
           {/* Mensaje de feedback */}
@@ -196,15 +196,15 @@ function Makipaws() {
                           {cuidador.experiencia}
                         </p>
                       </div>
-                    <Link to={`/info-cuidador/${cuidador.id}`} className="btn card-button">
-                      <button className="details-cuidador">
-                        <span>¡Me interesa!</span>
-                        <svg width="15px" height="10px" viewBox="0 0 13 10">
-                          <path d="M1,5 L11,5"></path>
-                          <polyline points="8 1 12 5 8 9"></polyline>
-                        </svg>
-                      </button>
-                    </Link>
+                      <Link to={`/info-cuidador/${cuidador.id}`} className="btn card-button">
+                          <button className="details-cuidador">
+                            <span>¡Me interesa!</span>
+                            <svg width="15px" height="10px" viewBox="0 0 13 10">
+                              <path d="M1,5 L11,5"></path>
+                              <polyline points="8 1 12 5 8 9"></polyline>
+                            </svg>
+                          </button>
+                        </Link>
                   </div>
                 </div>
               </div>

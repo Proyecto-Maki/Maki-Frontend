@@ -48,15 +48,18 @@ const Pedido = () => {
           setDetalles(res.data);
           console.log(detalles);
         } else {
-          setError(res.data.message);
+          console.error("Error al obtener los detalles del pedido:", res);
+          setError("Error al obtener los detalles del pedido");
           setShowErrorModal(true);
         }
       })
       .catch((error) => {
-        console.error(
-          error.response ? error.response.data.detail : error.message
+        console.error(error.response);
+        setError(
+          error.response.data.detail
+            ? error.response.data.detail
+            : "Error al obtener los detalles del pedido"
         );
-        setError(error.response ? error.response.data.detail : error.message);
         setShowErrorModal(true);
       });
   }, []);

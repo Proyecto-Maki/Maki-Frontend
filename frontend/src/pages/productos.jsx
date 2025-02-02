@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom"; // Importa Link para navegación
 import Navbar from "../components/navbar";
 import Footer from "../components/Footer";
@@ -7,6 +7,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/productos.css";
 import generateRandomAlphaNumericCode from "../GenerateCardCode";
 import ProductSlider from "../pages/product-slider";
+
+import { use } from "react";
 import Categories from "../components/categories";
 
 function Productos() {
@@ -15,7 +17,11 @@ function Productos() {
   const [cartProducts, setCartProducts] = useState([]); // Almacena los productos del carrito
   const [mensaje, setMensaje] = useState(""); // Para mostrar mensajes al usuario
   const [inCart, setInCart] = useState({}); // Estado para manejar productos en el carrito
+
   const cloudinaryBaseUrl = "https://res.cloudinary.com/dlktjxg1a/";
+  const [categoriaPrincipal, setCategoriaPrincipal] = useState(null);
+  const [categoria, setCategoria] = useState(null);
+  const [subcategoria, setSubcategoria] = useState(null);
 
   // Obtener código del carrito o generarlo si no existe
   const codigo_carrito =
@@ -64,11 +70,17 @@ function Productos() {
   };
 
   // Obtener los productos de la tienda
-  const getProductos = async () => {
+  const getProductos = () => {
     try {
-      const response = await api.get("/productos/");
-      setProductos(response.data);
-      console.log("Productos obtenidos:", response.data);
+      // const response = await api.get("/productos/");
+      // setProductos(response.data);
+      // console.log("Productos obtenidos:", response.data);
+      // const categoria_principal = selectedCategory;
+      // const categoria = selectedSubcategory;
+      // const subcategoria = selectedSubsubcategory;
+      // console.log("Categoría principal:", categoria_principal);
+      // console.log("Categoría:", categoria);
+      // console.log("Subcategoría:", subcategoria);
     } catch (error) {
       alert("Error al obtener productos: " + error);
     }
@@ -117,16 +129,51 @@ function Productos() {
 
   // Cargar productos y carrito al iniciar
   useEffect(() => {
-    getProductos();
-    fetchCart();
+    //getProductos();
+    //fetchCart();
   }, []);
+
+  useEffect(() => {
+    const categoria_principal_a = categoriaPrincipal ? categoriaPrincipal.name : null;
+    const categoria_a = categoria ? categoria.name : null;
+    const sub_categoria_a = subcategoria ? subcategoria.name : null;
+    console.log("Cambios en productos")
+    console.log("Categoría principal:", categoria_principal_a);
+    console.log("Categoría:", categoria_a);
+    console.log("Subcategoría:", sub_categoria_a);
+
+    const params = {
+      categoria_principal: categoria_principal_a,
+      categoria: categoria_a,
+      sub_categoria: sub_categoria_a,
+    }
+
+    api
+      .get("productos-clasificados/", {
+        params: params
+      })
+      .then((res) => {
+        console.log("Productos obtenidos:", res.data);
+        setProductos(res.data);
+      })
+      .catch((err) => {
+        console.error("Error al obtener productos:", err);
+      });
+  }, [categoriaPrincipal, categoria, subcategoria]);
 
   return (
     <div className="absolute-products-container">
       <div className="products-container">
         <Navbar />
         <ProductSlider />
-        <Categories />
+        <Categories
+          categoriaPrincipal={categoriaPrincipal}
+          setCategoriaPrincipal={setCategoriaPrincipal}
+          categoria={categoria}
+          setCategoria={setCategoria}
+          subcategoria={subcategoria}
+          setSubcategoria={setSubcategoria}
+        />
         <main className="main-content-products">
           <div className="container py-5">
             <header className="text-center mb-4">
