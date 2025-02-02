@@ -11,7 +11,15 @@ const Carrito = () => {
   const fetchCart = async () => {
     console.log("Iniciando fetchCart...");
     try {
-      const codigoCarrito = localStorage.getItem("codigo_carrito");
+      let codigoCarrito = localStorage.getItem("codigo_carrito");
+      if (!codigoCarrito) {
+        console.warn(
+          "No se encontró un código de carrito, generando uno nuevo..."
+        );
+        codigoCarrito = generateRandomAlphaNumericCode(10); // Generar nuevo código
+        localStorage.setItem("codigo_carrito", codigoCarrito);
+      }
+
       console.log("Código del carrito obtenido:", codigoCarrito);
 
       const response = await api.get(
@@ -38,32 +46,12 @@ const Carrito = () => {
   };
   const handlePaymentSuccess = async () => {
     try {
-      const codigoCarrito = localStorage.getItem("codigo_carrito");
-      console.log("Código del carrito antes del pago:", codigoCarrito);
-
-      // Consultar el backend después del pago
-      const response = await api.get(
-        `/get_estado_carrito?codigo_carrito=${codigoCarrito}`
-      );
-
-      console.log("Respuesta del backend después del pago:", response.data);
-
-      if (response.data.nuevo_codigo_carrito) {
-        localStorage.setItem(
-          "codigo_carrito",
-          response.data.nuevo_codigo_carrito
-        ); // 🔹 Guardar el nuevo código en localStorage
-        console.log(
-          "Nuevo código de carrito asignado:",
-          response.data.nuevo_codigo_carrito
-        );
-      } else {
-        console.warn(
-          "⚠️ No se recibió un nuevo código de carrito en la respuesta."
-        );
-      }
+      console.log("🚀 Redirigiendo a Mis Pedidos...");
+      localStorage.removeItem("codigo_carrito"); // Borrar carrito
+      sessionStorage.setItem("wasPaid", "true"); // Marcar que el pago fue exitoso
+      window.location.href = "/mis-pedidos/"; // Redirigir a la página de pedidos
     } catch (error) {
-      console.error("Error al actualizar el código de carrito:", error);
+      console.error("Error al manejar el pago exitoso:", error);
     }
   };
 
@@ -89,12 +77,11 @@ const Carrito = () => {
       console.log("URL de Mercado Pago (init_point):", initPoint);
 
       if (initPoint) {
-        window.location.href = initPoint;
+        // Eliminar el código de carrito ANTES de redirigir
+        localStorage.removeItem("codigo_carrito");
 
-        // Esperar unos segundos y luego actualizar el carrito (esto se ejecuta después del pago)
-        setTimeout(() => {
-          handlePaymentSuccess();
-        }, 5000); // 🔹 Ajusta este tiempo según sea necesario
+        // Redirigir a Mercado Pago
+        window.location.href = initPoint;
       } else {
         console.error("No se encontró init_point en la respuesta del backend.");
       }
@@ -222,7 +209,20 @@ const Carrito = () => {
   );
 
   useEffect(() => {
-    fetchCart();
+    if (sessionStorage.getItem("wasPaid")) {
+      handlePaymentSuccess();
+    }
+    fetchCart(); // Obtener el carrito al cargar la página
+
+    // Si el usuario regresa después del pago, verificar y limpiar carrito
+    const wasPaid = sessionStorage.getItem("wasPaid");
+    if (wasPaid) {
+      console.log("✅ Pago detectado, reseteando carrito...");
+      localStorage.removeItem("codigo_carrito");
+      sessionStorage.removeItem("wasPaid"); // Limpiar flag de pago
+      setCart([]);
+      fetchCart(); // Volver a obtener un carrito vacío
+    }
   }, []);
 
   if (isLoading) {
