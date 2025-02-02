@@ -222,6 +222,13 @@
     transform: scale(1.05);
     margin-bottom: 10%;
 }
+
+.sub-sub-item-cat.active {
+    border: 2px solid #ffa726;
+    background-color: #fdf0e6;
+    transform: scale(1.05);
+    margin-bottom: 10%;
+}
 /*subcategorias*/
 
 .subcategories-slider .sub-item-cat {

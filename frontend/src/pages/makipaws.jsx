@@ -9,7 +9,7 @@ import generateRandomAlphaNumericCode, {
   randomValue,
 } from "../GenerateCardCode";
 import MakipawsSlider from "../pages/makipaws_banner";
-import Categories from "../components/categories";
+import CategoriesWithProvider from "../components/categories";
 import foto_perfil_cuidador from "../img/Mari Juliano.jpg";
 import item from "../img/paw-item-adoption.png";
 
@@ -117,7 +117,7 @@ function Makipaws() {
       <div className="makipaws-container">
       <Navbar />
       <MakipawsSlider />
-      <Categories />
+      <CategoriesWithProvider />
       <main className="main-content-makipaws">
         <div className="container py-5">
           {/* Mensaje de feedback */}

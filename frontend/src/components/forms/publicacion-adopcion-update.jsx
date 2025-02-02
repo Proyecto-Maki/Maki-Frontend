@@ -141,7 +141,7 @@ function PublicacionAdopcionUpdate({
     let error_validacion = false;
 
     api
-      .put(`/publicaciones/update/${publicacionEditar.id}/`, datosPublicacion. {
+      .put(`/publicaciones/update/${publicacionEditar.id}/`, datosPublicacion, {
         headers: {
           'Authorization': `Token ${sessionStorage.getItem("token")}`,
           'Content-Type': 'multipart/form-data',
