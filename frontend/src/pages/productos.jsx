@@ -62,17 +62,26 @@ function Productos() {
 
   // Agregar producto al carrito
   const agregar_producto = (producto) => {
+    const userId = sessionStorage.getItem("user_id"); // Obtener user_id desde sessionStorage
+
+    if (!userId) {
+      console.error("❌ Error: No se encontró user_id en sessionStorage");
+      setMensaje("Error: No se encontró usuario. Inicia sesión.");
+      return;
+    }
+
     const nuevoProducto = {
       codigo: codigo_carrito,
       id_producto: producto.id,
+      user_id: userId, // Agregar user_id en la petición
     };
 
-    console.log("Enviando datos al backend:", nuevoProducto);
+    console.log("📌 Enviando datos al backend:", nuevoProducto);
 
     api
       .post("agregar_producto/", nuevoProducto)
       .then((res) => {
-        console.log("Respuesta del servidor:", res.data);
+        console.log("✅ Respuesta del servidor:", res.data);
         setMensaje("Producto agregado al carrito correctamente.");
         setTimeout(() => setMensaje(""), 3000);
 
@@ -86,7 +95,7 @@ function Productos() {
         setCartProducts((prev) => [...prev, producto.id]);
       })
       .catch((err) => {
-        console.error("Error al agregar producto:", err.message);
+        console.error("❌ Error al agregar producto:", err.message);
         setMensaje("Error al agregar el producto al carrito.");
         setTimeout(() => setMensaje(""), 3000);
       });

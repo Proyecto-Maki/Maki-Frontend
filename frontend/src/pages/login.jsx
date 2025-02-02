@@ -30,16 +30,17 @@ const Login = () => {
       .then((response) => {
         console.log("Response:", response);
         if (response.status === 200) {
-          console.log(" Login successful:", response.data);
+          console.log("✅ Login successful:", response.data);
 
           const user_id = response.data.data.id; // 📌 Asegurar que el backend devuelve el ID del usuario
-
           if (!user_id) {
-            console.error("No se recibió user_id en la respuesta del backend");
+            console.error(
+              "❌ No se recibió user_id en la respuesta del backend"
+            );
             return;
           }
 
-          sessionStorage.setItem("user_id", user_id); // ✅ Guardamos el user_id en sessionStorage
+          sessionStorage.setItem("user_id", user_id);
           sessionStorage.setItem("token", response.data.data.access);
           sessionStorage.setItem("refresh", response.data.data.refresh);
           sessionStorage.setItem("email", email);
@@ -49,6 +50,8 @@ const Login = () => {
             response.data.data.is_fundacion
           );
 
+          // 📌 Establecer el mensaje de respuesta ANTES de abrir el modal
+          setResponse("¡Bienvenido a Maki!");
           setShowSuccessModal(true);
           setTimeout(() => {
             navigate("/");
