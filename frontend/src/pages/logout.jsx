@@ -31,6 +31,7 @@ const Logout = () => {
             } else {
                 console.log('Error in logout');
                 console.log(res.data.message);
+                
             }
         })
         .catch((error) => {

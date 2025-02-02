@@ -122,7 +122,7 @@ const Adoptions = () => {
         }
       })
       .catch((error) => {
-        setError(error.response.data.detail ? error.response.data.detail : "Error al obtener las publicaciones de adopción");
+        setError(error.response ? error.response.data.detail : "Error al obtener las publicaciones de adopción");
         setShowErrorModal(true);
       });
   }, []);

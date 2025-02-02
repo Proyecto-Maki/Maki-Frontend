@@ -50,6 +50,7 @@ const SolicitudesAdopcion = () => {
             setSolicitudesAdopcion(res.data);
           } else {
             console.error("Error al obtener las solicitudes de adopción:", res);
+            
           }
         })
         .catch((error) => {

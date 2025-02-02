@@ -249,7 +249,7 @@ const RegisterPetClient = () => {
                     error_vali = true;
                     console.log(error);
                     // alert("Error al registrar padecimiento");
-                    setError(error.response ? error.response.data.detail : error.message);
+                    setError(error.response ? error.response.data.detail : "Error al registrar padecimiento");
                     setShowErrorModal(true);
                   });
 
@@ -267,7 +267,7 @@ const RegisterPetClient = () => {
             console.log(error);
             // alert("Error al registrar mascota");
             error_vali = true;
-            setError(error.response.data.message);
+            setError(error.response ? error.response.data.detail : "Error al registrar mascota");
             setShowErrorModal(true);
           });
 
@@ -275,7 +275,7 @@ const RegisterPetClient = () => {
     } catch (error) {
       console.log(error);
       error_vali = true;
-      setError(error.response.data.message);
+      setError(error.response ? error.response.data.detail : "Error al registrar mascota");
       setShowErrorModal(true);
       
       // alert("Error al registrar mascota");

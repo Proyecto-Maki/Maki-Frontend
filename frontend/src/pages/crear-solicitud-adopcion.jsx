@@ -149,7 +149,7 @@ function CrearSolicitudAdopcion() {
       })
       .catch((error) => {
         console.log(error);
-        setError(error.response.data.detail ? error.response.data.detail : "Error al enviar la solicitud de adopción.");
+        setError(error.response ? error.response.data.detail : "Error al enviar la solicitud de adopción.");
         setShowErrorModal(true);
       });
 

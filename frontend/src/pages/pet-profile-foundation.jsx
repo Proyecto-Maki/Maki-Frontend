@@ -136,7 +136,7 @@ function PetProfileFoundation() {
       })
       .catch((error) => {
         console.error(error.response);
-        setError(error.response.data.detail ? error.response.data.detail : "Error al obtener las mascotas");
+        setError(error.response ? error.response.data.detail : "Error al obtener las mascotas");
         setShowErrorModal(true);
       });
   }, []);
@@ -172,12 +172,12 @@ function PetProfileFoundation() {
         })
         .catch((error) => {
           console.error(error.response ? error.response.data : "Error al eliminar la mascota");
-          setError(error.response.data.detail ? error.response.data.detail : "Error al eliminar la mascota");
+          setError(error.response ? error.response.data.detail : "Error al eliminar la mascota");
           setShowErrorModal(true);
         })
     } catch (error) {
       console.error(error.response ? error.response.data : "Error al eliminar la mascota");
-      setError(error.response.data.detail ? error.response.data.detail : "Error al eliminar la mascota");
+      setError(error.response ? error.response.data.detail : "Error al eliminar la mascota");
       setShowErrorModal(true);
     }
   };
@@ -229,7 +229,7 @@ function PetProfileFoundation() {
         }
       } catch (error) {
         console.log(error);
-        setError(error.response.data.detail ? error.response.data.detail : "Error al obtener el padecimiento");
+        setError(error.response ? error.response.data.detail : "Error al obtener el padecimiento");
         setShowErrorModal(true);
         return;
       }

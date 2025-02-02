@@ -161,8 +161,17 @@
     top: 0;
   }
   
-  .see-more-button:before {
-
+  .see-more-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    border-radius: 50px;
+    background: #f4a258;
+    width: 45px;
+    height: 45px;
+    transition: all 0.3s ease;
   }
   
   .see-more-button span {

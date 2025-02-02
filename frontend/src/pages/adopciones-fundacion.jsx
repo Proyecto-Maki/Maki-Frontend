@@ -62,7 +62,7 @@ const AdoptionsFun = () => {
         }
       })
       .catch((err) => {
-        setError(err.response.data.detail ? err.response.data.detail : "Error al obtener las publicaciones de adopción");
+        setError(err.response ? err.response.data.detail : "Error al obtener las publicaciones de adopción");
         setShowErrorModal(true);
       });
   }, []);
@@ -114,7 +114,7 @@ const AdoptionsFun = () => {
               .catch((error) => {
                 console.log(error);
                 setError(
-                  error.response.data.detail ? error.response.data.detail : "Error al eliminar la publicación"
+                  error.response ? error.response.data.detail : "Error al eliminar la publicación"
                 );
                 setShowErrorModal(true);
                 error_validacion = true;
@@ -128,13 +128,13 @@ const AdoptionsFun = () => {
         })
         .catch((error) => {
           console.log(error);
-          setError(error.response.data.detail ? error.response.data.detail : "Error al eliminar el detalle de la mascota");
+          setError(error.response ? error.response.data.detail : "Error al eliminar el detalle de la mascota");
           setShowErrorModal(true);
           error_validacion = true;
         });
     } catch (error) {
       console.log(error);
-      setError(error.response.data.detail ? error.response.data.detail : "Error al eliminar la publicación");
+      setError(error.response ? error.response.data.detail : "Error al eliminar la publicación");
       setShowErrorModal(true);
       error_validacion = true;
     }
