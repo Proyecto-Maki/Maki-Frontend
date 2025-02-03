@@ -228,7 +228,7 @@ function Productos() {
                 </label>*/}
               </header>
               <div className="filter-prices">
-                <p> Filtra por precios: </p>
+                <p> Ordena por precios: </p>
                 <div className="select">
                     <div
                       class="selected"
