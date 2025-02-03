@@ -1,15 +1,4 @@
 .absolute-products-container {
-  /*display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh; 
-  overflow-x: hidden;
-  overflow-y: auto;
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  background-color: #fdf0e6;*/
   width: 100vw;
   height: 100vh;
   overflow-y: auto;
@@ -147,12 +136,11 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animación para efecto hover */
   overflow: hidden;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  display: flex;
-  width: 100%;
-  height: 100%;
-  min-height: 380px;
+  min-width: 100%;
+  min-height: 100%;
+  align-items: stretch;
 }
 
 .card:hover {
@@ -163,8 +151,8 @@
 /* Imagen del producto */
 .card-img-top {
   width: 100%;
-  height: 200px;
-  object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+  height: auto;
+  object-fit: cover; 
   transition: transform 0.3s ease; /* Efecto zoom en hover */
   border-radius: 15px 15px 0 0;
   overflow: hidden;
@@ -405,6 +393,10 @@
 
 
 @media (max-width: 768px) {
+
+  .card-productos{
+    max-width: 100%;
+  }
   .card-img-top {
     height: 180px; 
   }
@@ -452,10 +444,31 @@
 
 /* Estilo del contenedor de productos */
 .row-productos {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 20px;
   justify-content: center;
+  justify-items: center;
+  flex-direction: column;
+  align-items: center;
+  padding:10px;
+  max-width: 100%;
+}
+
+.col-cards-products{
+  width: 70%;
+  height: 100%;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-cards-products{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
 }
 
 @media (max-width: 768px) {
@@ -465,9 +478,23 @@
   .main-content {
     top: 10%;
   }
+
+  .row-productos{
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+  }
 }
 
 @media (max-width: 480px) {
+
+  .row-productos{
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .card-productos{
+    max-width: 80%;
+  } 
   .absolute-products-container {
     margin-top: 30%;
   }
@@ -476,7 +503,6 @@
   }
 
   .container-header-filter {
-    grid-template-columns: 1fr; 
     padding: 0 5px; 
   }
 
