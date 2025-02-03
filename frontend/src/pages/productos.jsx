@@ -204,7 +204,7 @@ function Productos() {
         <main className="main-content-products">
           <div className="container-content">
             <div className="container-header-filter">
-              <header className="text-center">
+              <header className="text-center-productos">
                 <h1
                   className="display-4 welcome-text"
                   style={{ fontFamily: "Koulen", color: "#8fc064" }}

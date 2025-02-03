@@ -44,6 +44,7 @@
   flex-direction: column;
   display: absolute;
   overflow-y: auto;
+  overflow-x: hidden;
   position: relative;
   flex: 1;
 }
@@ -288,7 +289,7 @@
 
 }
 
-.text-center{
+.text-center-productos{
   position: relative;
   right: -13%;
   align-items: center;
