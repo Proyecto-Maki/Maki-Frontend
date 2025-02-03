@@ -160,7 +160,7 @@
   }
 
   .navbar-collapse {
-    display: none;
+    display: block;
     flex-direction: column;
     background-color: #7bb66d;
     position: fixed;
@@ -192,6 +192,7 @@
   align-items: center;
   justify-content: flex-end;
 }
+
 
 /* Navbar para pantallas más pequeñas (por debajo de 576px) */
 @media (max-width: 576px) {

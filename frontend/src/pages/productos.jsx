@@ -175,15 +175,68 @@ function Productos() {
           setSubcategoria={setSubcategoria}
         />
         <main className="main-content-products">
-          <div className="container py-5">
-            <header className="text-center mb-4">
-              <h1
-                className="display-4 welcome-text"
-                style={{ fontFamily: "Koulen", color: "#8fc064" }}
-              >
-                Productos para tu Mascota
-              </h1>
-            </header>
+          <div className="container-content">
+            <div className="container-header-filter">
+              <header className="text-center">
+                <h1
+                  className="display-4 welcome-text"
+                  style={{ fontFamily: "Koulen", color: "#8fc064" }}
+                >
+                  Productos para tu Mascota
+                </h1>
+                
+                
+                {/*<label className="label-creacion-adopcion-niños">
+                Filtra por precios:
+                    <div className="tooltip-creacion-adopcion">
+                      <select
+                        className="input-creacion-adopcion-locality"
+                        name="ninnos"
+                      >
+                        <option defaultValue>Selecciona...</option>
+                        <option value={true}>Si</option>
+                        <option value={false}>No</option>
+                      </select>
+                    </div>
+                </label>*/}
+              </header>
+              <div className="filter-prices">
+                <p> Filtra por precios: </p>
+                <div class="select">
+                    <div
+                      class="selected"
+                      data-default="Todos"
+                      data-one="Menor a Mayor"
+                      data-two="Mayor a Menor"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        height="1em"
+                        viewBox="0 0 512 512"
+                        class="arrow"
+                      >
+                        <path
+                          d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div class="options">
+                      <div title="Todos">
+                        <input id="Todos" name="option" type="radio" checked="" />
+                        <label class="option" for="Todos" data-txt="Todos"></label>
+                      </div>
+                      <div title="Menor-a-Mayor">
+                        <input id="Menor-a-Mayor" name="option" type="radio" />
+                        <label class="option" for="Menor-a-Mayor" data-txt="Menor a Mayor"></label>
+                      </div>
+                      <div title="Mayor-a-Menor">
+                        <input id="Mayor-a-Menor" name="option" type="radio" />
+                        <label class="option" for="Mayor-a-Menor" data-txt="Mayor a Menor"></label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
 
             {/* Mensaje de feedback */}
             {mensaje && (
