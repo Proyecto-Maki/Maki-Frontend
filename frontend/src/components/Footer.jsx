@@ -69,7 +69,12 @@ const Footer = () => {
         <hr className="footer-divider" />
         <div className="footer-contact">
           <div className="footer-social">
-            <a href="https://www.instagram.com/makishop.live/" target="_blank" rel="noopener noreferrer" className="social-icon-footer instagram">
+            <a
+              href="https://www.instagram.com/makishop.live/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-icon-footer instagram"
+            >
               <img src={instagram} alt="instagram" className="instagram" />
             </a>
             <a href="#" className="social-icon-footer tiktok">
@@ -77,9 +82,7 @@ const Footer = () => {
             </a>
           </div>
           <p className="email-footer">makishopmanagement@gmail.com</p>
-          <p className="copyright-footer">
-            © 2024 Maki. All rights reserved
-          </p>
+          <p className="copyright-footer">© 2025 Maki. All rights reserved</p>
         </div>
       </div>
     </footer>

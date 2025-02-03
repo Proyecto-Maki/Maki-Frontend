@@ -5,11 +5,10 @@ import { GiSittingDog } from "react-icons/gi";
 import { useNavigate } from "react-router-dom";
 import ErrorModal from "../components/ErrorModal";
 import api from "../api.js";
-import { formatDateTime  } from "../functions.js";
+import { formatDateTime } from "../functions.js";
 
 const Pedidos = () => {
-
-	const navigate = useNavigate();
+  const navigate = useNavigate();
   if (
     !sessionStorage.getItem("email") ||
     !sessionStorage.getItem("token") ||
@@ -38,12 +37,19 @@ const Pedidos = () => {
   //   { id: "#2RYH7", total: 24000, fecha: "09/01/2025", estado: "Entregado" },
   // ];
 
-	const handleVerDetalle = (pedido) => {
-		console.log(`Ver detalle del pedido ${pedido.id}`);
-		navigate("/mi-pedido", { state: { pedido } });
-	}
+  const handleVerDetalle = (pedido) => {
+    console.log(`Ver detalle del pedido ${pedido.id}`);
+    navigate("/mi-pedido", { state: { pedido } });
+  };
 
   useEffect(() => {
+    if (!email) {
+      console.error("El email no está definido.");
+      return;
+    }
+
+    console.log(`Obteniendo pedidos para el usuario: ${email}`);
+
     api
       .get(`pedidos/user/${email}/`, {
         headers: {
@@ -52,6 +58,9 @@ const Pedidos = () => {
       })
       .then((response) => {
         if (response.status === 200) {
+          console.log("Pedidos recibidos:", response.data);
+          console.log("Datos recibidos de la API:", response.data);
+
           setPedidos(response.data);
         } else {
           console.error("Error al obtener los pedidos:", response);
@@ -61,12 +70,17 @@ const Pedidos = () => {
       })
       .catch((error) => {
         console.error(
-          error.response ? error.response.data.detail : "Error en el servidor"
+          "Error en la solicitud:",
+          error.response ? error.response.data.detail : error.message
         );
-        setError(error.response ? error.response.data.detail : "Error en el servidor");
+        setError(
+          error.response.data.detail
+            ? error.response.data.detail
+            : "Error en el servidor"
+        );
         setShowErrorModal(true);
       });
-  }, []);
+  }, [email, token]); // Asegúrate de que email y token son dependencias
 
   const handleCloseErrorModal = () => {
     setShowErrorModal(false);
@@ -91,7 +105,10 @@ const Pedidos = () => {
                 </div>
                 <div className="id-mi-container">
                   <h4 className="id-mi"># {pedido.id}</h4>
-                  <button className="ver-detalle-mi" onClick={() => handleVerDetalle(pedido)}>
+                  <button
+                    className="ver-detalle-mi"
+                    onClick={() => handleVerDetalle(pedido)}
+                  >
                     <i class="fa-solid fa-chevron-right" id="chevron"></i>
                   </button>
                 </div>
@@ -104,8 +121,7 @@ const Pedidos = () => {
               </div>
               <div className="fila-inferior-mi">
                 <p className="fecha-mi">
-                  Fecha de compra:{" "}
-                  {formatDateTime(pedido.fecha)}
+                  Fecha de compra: {formatDateTime(pedido.fecha)}
                 </p>
               </div>
             </div>

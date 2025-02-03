@@ -12,6 +12,7 @@ import MakipawsSlider from "../pages/makipaws_banner";
 import CategoriesWithProvider from "../components/categories";
 import foto_perfil_cuidador from "../img/Mari Juliano.jpg";
 import item from "../img/paw-item-adoption.png";
+import axios from "axios";
 
 function Makipaws() {
   /*const [productos, setProductos] = useState([]);
@@ -72,155 +73,154 @@ function Makipaws() {
     getProductos();
   }, []);*/
 
-  const cuidadores = [
-    {
-      id: 1,
-      nombre: "Julian",
-      imagen: foto_perfil_cuidador,
-      ocupacion: "Cuidador experto en perros pequeños.",
-      categoriaMascotas: "Perros",
-      localidad: "Chapinero",
-      experiencia: "Julián es un técnico enfocado en el cuidado de lagartos. Contó con experiencia trabajando en zoológicos y santuarios de animales."
-    },
-    {
-      id: 2,
-      nombre: "Mariana",
-      imagen: foto_perfil_cuidador,
-      ocupacion: "Cuidadora especializada en gatos.",
-      categoriaMascotas: "Gatos",
-      localidad: "Usaquén",
-      experiencia: "Julián es un técnico enfocado en el cuidado de lagartos. Contó con experiencia trabajando en zoológicos y santuarios de animales."
-    },
-    {
-      id: 3,
-      nombre: "Carlos",
-      imagen: foto_perfil_cuidador,
-      ocupacion: "Cuidador con experiencia en aves y exóticos.",
-      categoriaMascotas: "Aves",
-      localidad: "Galerías",
-      experiencia: "Julián es un técnico enfocado en el cuidado de lagartos. Contó con experiencia trabajando en zoológicos y santuarios de animales."
-    },
-    {
-      id: 4,
-      nombre: "Kelly",
-      imagen: foto_perfil_cuidador,
-      ocupacion: "Veterinaria.",
-      categoriaMascotas: "Gatos",
-      localidad: "Fontibón",
-      experiencia: "Julián es un técnico enfocado en el cuidado de lagartos. Contó con experiencia trabajando en zoológicos y santuarios de animales."
-    },
-  ];
-  
+  // const cuidadores = [
+  //   {
+  //     id: 1,
+  //     nombre: "Julian",
+  //     imagen: foto_perfil_cuidador,
+  //     ocupacion: "Cuidador experto en perros pequeños.",
+  //     categoriaMascotas: "Perros",
+  //     localidad: "Chapinero",
+  //     experiencia:
+  //       "Julián es un técnico enfocado en el cuidado de lagartos. Contó con experiencia trabajando en zoológicos y santuarios de animales.",
+  //   },
+  //   {
+  //     id: 2,
+  //     nombre: "Mariana",
+  //     imagen: foto_perfil_cuidador,
+  //     ocupacion: "Cuidadora especializada en gatos.",
+  //     categoriaMascotas: "Gatos",
+  //     localidad: "Usaquén",
+  //     experiencia:
+  //       "Julián es un técnico enfocado en el cuidado de lagartos. Contó con experiencia trabajando en zoológicos y santuarios de animales.",
+  //   },
+  //   {
+  //     id: 3,
+  //     nombre: "Carlos",
+  //     imagen: foto_perfil_cuidador,
+  //     ocupacion: "Cuidador con experiencia en aves y exóticos.",
+  //     categoriaMascotas: "Aves",
+  //     localidad: "Galerías",
+  //     experiencia:
+  //       "Julián es un técnico enfocado en el cuidado de lagartos. Contó con experiencia trabajando en zoológicos y santuarios de animales.",
+  //   },
+  //   {
+  //     id: 4,
+  //     nombre: "Kelly",
+  //     imagen: foto_perfil_cuidador,
+  //     ocupacion: "Veterinaria.",
+  //     categoriaMascotas: "Gatos",
+  //     localidad: "Fontibón",
+  //     experiencia:
+  //       "Julián es un técnico enfocado en el cuidado de lagartos. Contó con experiencia trabajando en zoológicos y santuarios de animales.",
+  //   },
+  // ];
+  const [cuidadores, setCuidadores] = useState([]);
+
+  useEffect(() => {
+    api
+      .get("/cuidadores/") // Usamos `api` en lugar de `axios`
+      .then((response) => {
+        setCuidadores(response.data);
+      })
+      .catch((error) => {
+        console.error("Error al obtener los cuidadores:", error);
+      });
+  }, []);
 
   return (
     <div className="absolute-makipaws-container">
       <div className="makipaws-container">
-      <Navbar />
-      <MakipawsSlider />
-      <CategoriesWithProvider />
-      <main className="main-content-makipaws">
-        <div className="container py-5">
-          {/* Mensaje de feedback */}
-          {/*{mensaje && (
-            <div className="alert alert-info text-center" role="alert">
-              {mensaje}
-            </div>
-          )}*/}
-
-          {/* Renderizamos los productos */}
-          {/*{productos.length > 0 ? (*/}
-          <div className="row-makipaws">
-            {cuidadores.map((cuidador) => (
-              <div className="columns-makipaws" key={cuidador.id}>
-                <div className="card-makipaws">
-                  <div className="image-cuidador">
-                    <img
-                      src={cuidador.imagen}
-                      alt={cuidador.nombre}
-                      className="card-img-top"
-                      style={{ borderRadius: "50%", marginTop: "5%"}}
-                    />
-                  </div>
-                  <div className="card-body">
-                    <h5 className="card-name">{cuidador.nombre}</h5>
+        <Navbar />
+        <MakipawsSlider />
+        <CategoriesWithProvider />
+        <main className="main-content-makipaws">
+          <div className="container py-5">
+            <div className="row-makipaws">
+              {cuidadores.map((cuidador) => (
+                <div className="columns-makipaws" key={cuidador.id}>
+                  <div className="card-makipaws">
+                    <div className="image-cuidador">
+                      <img
+                        src={cuidador.imagen}
+                        alt={cuidador.nombre}
+                        className="card-img-top"
+                        style={{
+                          borderRadius: "50%",
+                          marginTop: "5%",
+                          width: "150px",
+                          height: "150px",
+                          objectFit: "cover",
+                        }}
+                      />
+                    </div>
+                    <div className="card-body">
+                      <h5 className="card-name">{cuidador.nombre}</h5>
                       <div className="card-information">
                         <p className="card-ocupation">
-                        <img
-                              src={item}
-                              alt="item"
-                              className="item"
-                              style={{ height: "20px", marginRight: "10px" }}
-                        />
-                        <strong>
-                          Ocupación:
-                        </strong>
+                          <img
+                            src={item}
+                            alt="item"
+                            className="item"
+                            style={{ height: "20px", marginRight: "10px" }}
+                          />
+                          <strong>Ocupación: </strong>
                           {cuidador.ocupacion}
                         </p>
-
                         <p className="card-category">
                           <img
-                              src={item}
-                              alt="item"
-                              className="item"
-                              style={{ height: "20px", marginRight: "10px" }}
-                            />
-                          <strong>
-                            Categoría:
-                          </strong>
+                            src={item}
+                            alt="item"
+                            className="item"
+                            style={{ height: "20px", marginRight: "10px" }}
+                          />
+                          <strong>Categoría: </strong>
                           {cuidador.categoriaMascotas}
                         </p>
-
                         <p className="card-locality">
                           <img
-                              src={item}
-                              alt="item"
-                              className="item"
-                              style={{ height: "20px", marginRight: "10px" }}
-                            />
-                          <strong>
-                            Localidad:
-                          </strong>
+                            src={item}
+                            alt="item"
+                            className="item"
+                            style={{ height: "20px", marginRight: "10px" }}
+                          />
+                          <strong>Localidad: </strong>
                           {cuidador.localidad}
                         </p>
-
                         <p className="card-experience">
                           <img
-                              src={item}
-                              alt="item"
-                              className="item"
-                              style={{ height: "20px", marginRight: "10px" }}
-                            />
-                          <strong>
-                            Experiencia:
-                          </strong>
+                            src={item}
+                            alt="item"
+                            className="item"
+                            style={{ height: "20px", marginRight: "10px" }}
+                          />
+                          <strong>Experiencia: </strong>
                           {cuidador.experiencia}
                         </p>
                       </div>
-                      <Link to={`/info-cuidador/${cuidador.id}`} className="btn card-button">
-                          <button className="details-cuidador">
-                            <span>¡Me interesa!</span>
-                            <svg width="15px" height="10px" viewBox="0 0 13 10">
-                              <path d="M1,5 L11,5"></path>
-                              <polyline points="8 1 12 5 8 9"></polyline>
-                            </svg>
-                          </button>
-                        </Link>
+                      <Link
+                        to={`/info-cuidador/${cuidador.id}`}
+                        className="btn card-button"
+                      >
+                        <button className="details-cuidador">
+                          <span>¡Me interesa!</span>
+                          <svg width="15px" height="10px" viewBox="0 0 13 10">
+                            <path d="M1,5 L11,5"></path>
+                            <polyline points="8 1 12 5 8 9"></polyline>
+                          </svg>
+                        </button>
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-
-          {/*}) : (
-            <p className="text-center">No hay cuidadores disponibles.</p>
-          )}*/}
+        </main>
+        <div className="footer-container-makipaws">
+          <Footer />
         </div>
-      </main>
-      <div className="footer-container-makipaws">
-        <Footer />
       </div>
-      </div>
-      
     </div>
   );
 }

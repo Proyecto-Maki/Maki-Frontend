@@ -157,6 +157,52 @@ const Pedido = () => {
     setShowErrorModal(false);
     setError("");
   };
+  const handleCancelarPedido = async () => {
+    const confirmacion = window.confirm(
+      "¿Estás seguro de que deseas cancelar este pedido? Se reembolsará el total a tu saldo."
+    );
+
+    if (!confirmacion) return; // Si el usuario cancela, no hace la petición
+
+    console.log(
+      `Intentando cancelar pedido en: pedidos/${pedido.id}/cancelar/`
+    );
+
+    try {
+      const response = await api.put(
+        `pedidos/${pedido.id}/cancelar/`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      console.log("Respuesta de la API:", response);
+
+      if (response.status === 200) {
+        alert(
+          "Pedido cancelado exitosamente. Se ha reembolsado el monto a tu saldo."
+        );
+
+        // Actualizar el saldo en sessionStorage
+        const saldoActual = parseFloat(sessionStorage.getItem("saldo")) || 0;
+        sessionStorage.setItem("saldo", saldoActual + parseFloat(pedido.total));
+
+        // Redirigir a la lista de pedidos en lugar de intentar modificar `setPedidos`
+        navigate("/mis-pedidos");
+      } else {
+        setError(response.data.message);
+        setShowErrorModal(true);
+      }
+    } catch (error) {
+      console.log(
+        "Error en la API:",
+        error.response ? error.response.data : error.message
+      );
+      setError(error.response ? error.response.data.detail : error.message);
+      setShowErrorModal(true);
+    }
+  };
 
   return (
     <div className="absolute-container-resumen-pedido">
@@ -206,8 +252,11 @@ const Pedido = () => {
 
           {/* Botón de Eliminar Pedido */}
           <div className="eliminar-pedido-container">
-            <button className="eliminar-pedido-btn">
-              <i className="fas fa-times"></i> Eliminar Pedido
+            <button
+              className="eliminar-pedido-btn"
+              onClick={handleCancelarPedido}
+            >
+              <i className="fas fa-times"></i> Cancelar Pedido
             </button>
           </div>
         </div>
