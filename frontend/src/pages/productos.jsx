@@ -22,6 +22,7 @@ function Productos() {
   const [categoriaPrincipal, setCategoriaPrincipal] = useState(null);
   const [categoria, setCategoria] = useState(null);
   const [subcategoria, setSubcategoria] = useState(null);
+  const [filtroPrecio, setFiltroPrecio] = useState("Todos");
 
   // Obtener código del carrito o generarlo si no existe
   const codigo_carrito =
@@ -130,7 +131,7 @@ function Productos() {
   // Cargar productos y carrito al iniciar
   useEffect(() => {
     //getProductos();
-    //fetchCart();
+    fetchCart();
   }, []);
 
   useEffect(() => {
@@ -155,11 +156,37 @@ function Productos() {
       .then((res) => {
         console.log("Productos obtenidos:", res.data);
         setProductos(res.data);
+        setFiltroPrecio("Todos");
       })
       .catch((err) => {
         console.error("Error al obtener productos:", err);
       });
+
   }, [categoriaPrincipal, categoria, subcategoria]);
+
+  const handleFiltroPrecio = (e) => {
+    console.log("Filtro precio:", e.target.id);
+    setFiltroPrecio(e.target.id);
+  }
+
+  const ordenarProductos = () => {
+    console.log("Filtro de precios:", filtroPrecio);
+    let productosOrdenados = [...productos];
+    if (filtroPrecio === "Todos") {
+      return;
+    } else if (filtroPrecio === "Menor-a-Mayor") {
+      productosOrdenados.sort((a, b) => a.precio - b.precio);
+    } else if (filtroPrecio === "Mayor-a-Menor") {
+      productosOrdenados.sort((a, b) => b.precio - a.precio);
+    }
+
+    setProductos(productosOrdenados);
+    console.log("Productos ordenados de:", filtroPrecio, productosOrdenados);
+  }
+
+  useEffect(() => {
+    ordenarProductos();
+  }, [filtroPrecio]);
 
   return (
     <div className="absolute-products-container">
@@ -222,15 +249,15 @@ function Productos() {
                     </div>
                     <div class="options">
                       <div title="Todos">
-                        <input id="Todos" name="option" type="radio" checked="" />
+                        <input id="Todos" name="option" type="radio" checked={filtroPrecio === "Todos"} onChange={handleFiltroPrecio}/>
                         <label class="option" for="Todos" data-txt="Todos"></label>
                       </div>
                       <div title="Menor-a-Mayor">
-                        <input id="Menor-a-Mayor" name="option" type="radio" />
+                        <input id="Menor-a-Mayor" name="option" type="radio" checked={filtroPrecio === "Menor-a-Mayor"} onChange={handleFiltroPrecio}/>
                         <label class="option" for="Menor-a-Mayor" data-txt="Menor a Mayor"></label>
                       </div>
                       <div title="Mayor-a-Menor">
-                        <input id="Mayor-a-Menor" name="option" type="radio" />
+                        <input id="Mayor-a-Menor" name="option" type="radio" checked={filtroPrecio === "Mayor-a-Menor"} onChange={handleFiltroPrecio}/>
                         <label class="option" for="Mayor-a-Menor" data-txt="Mayor a Menor"></label>
                       </div>
                     </div>
