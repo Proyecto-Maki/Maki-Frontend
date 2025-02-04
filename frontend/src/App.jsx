@@ -7,7 +7,7 @@ import ConfirmationRegister from "./pages/confirmation-register";
 import PasswordRecovery from "./pages/password-recovery";
 import ForgetPassword from "./pages/forget-password";
 import UserProfile from "./pages/user-profile";
-import Home from "./pages/home";
+import Bienvenido from "./pages/home";
 import LoadingPage from "./components/loading-page";
 import RegisterPet from "./pages/pet-register";
 import PetProfileClient from "./pages/pet-profile-client";
@@ -57,7 +57,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Bienvenido />} />
         <Route path="/register" element={<Register />} />
         <Route
           path="/confirmation-register"

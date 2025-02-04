@@ -147,6 +147,152 @@ function AboutUs() {
           </svg>
         </div>
 
+          <div class="FAQ-container">
+            <div className="accordion">
+              <div class="accordion-item">
+                <input type="radio" id="section1" name="accordion" />
+                <label for="section1" class="accordion-header">
+                  <label class="accordion-title">¿Maki es gratuito o tiene algún costo?</label>
+                  <div class="accordion-icon">
+                    <svg
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      height="16"
+                      width="16"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M4.293 5.293a1 1 0 0 1 1.414 0L8 7.586l2.293-2.293a1 1 0 0 1 1.414 1.414l-3 3a1 1 0 0 1-1.414 0l-3-3a1 1 0 0 1 0-1.414z"
+                        fill="currentColor"
+                      ></path>
+                    </svg>
+                  </div>
+                </label>
+                <div class="content">
+                  <p>Lorem ipsum </p>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <input  type="radio" id="section2" name="accordion" />
+                <label for="section2" class="accordion-header">
+                  <label class="accordion-title">¿Maki cumple con regulaciones de privacidad?</label>
+                  <div class="accordion-icon">
+                    <svg
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      height="16"
+                      width="16"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M4.293 5.293a1 1 0 0 1 1.414 0L8 7.586l2.293-2.293a1 1 0 0 1 1.414 1.414l-3 3a1 1 0 0 1-1.414 0l-3-3a1 1 0 0 1 0-1.414z"
+                        fill="currentColor"
+                      ></path>
+                    </svg>
+                  </div>
+                </label>
+                <div class="content">
+                  <p>This is the content for Section 2.</p>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <input type="radio" id="section3" name="accordion" />
+                <label for="section3" class="accordion-header">
+                  <label class="accordion-title">¿Cómo protege Maki mis datos personales?</label>
+                  <div class="accordion-icon">
+                    <svg
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      height="16"
+                      width="16"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M4.293 5.293a1 1 0 0 1 1.414 0L8 7.586l2.293-2.293a1 1 0 0 1 1.414 1.414l-3 3a1 1 0 0 1-1.414 0l-3-3a1 1 0 0 1 0-1.414z"
+                        fill="currentColor"
+                      ></path>
+                    </svg>
+                  </div>
+                </label>
+                <div class="content">
+                  <p>This is the content for Section 3.</p>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <input type="radio" id="section4" name="accordion" />
+                <label for="section4" class="accordion-header">
+                  <label class="accordion-title">¿Maki cómo beneficia a las fundaciones?</label>
+                  <div class="accordion-icon">
+                    <svg
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      height="16"
+                      width="16"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M4.293 5.293a1 1 0 0 1 1.414 0L8 7.586l2.293-2.293a1 1 0 0 1 1.414 1.414l-3 3a1 1 0 0 1-1.414 0l-3-3a1 1 0 0 1 0-1.414z"
+                        fill="currentColor"
+                      ></path>
+                    </svg>
+                  </div>
+                </label>
+                <div class="content">
+                  <p>This is the content for Section 3.</p>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <input type="radio" id="section5" name="accordion" />
+                <label for="section5" class="accordion-header">
+                  <label class="accordion-title">¿Qué es MakiPaws?</label>
+                  <div class="accordion-icon">
+                    <svg
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      height="16"
+                      width="16"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M4.293 5.293a1 1 0 0 1 1.414 0L8 7.586l2.293-2.293a1 1 0 0 1 1.414 1.414l-3 3a1 1 0 0 1-1.414 0l-3-3a1 1 0 0 1 0-1.414z"
+                        fill="currentColor"
+                      ></path>
+                    </svg>
+                  </div>
+                </label>
+                <div class="content">
+                  <p>This is the content for Section 3.</p>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <input type="radio" id="section6" name="accordion" />
+                <label for="section6" class="accordion-header">
+                  <label class="accordion-title">¿Qué productos vende Maki?</label>
+                  <div class="accordion-icon">
+                    <svg
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      height="16"
+                      width="16"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M4.293 5.293a1 1 0 0 1 1.414 0L8 7.586l2.293-2.293a1 1 0 0 1 1.414 1.414l-3 3a1 1 0 0 1-1.414 0l-3-3a1 1 0 0 1 0-1.414z"
+                        fill="currentColor"
+                      ></path>
+                    </svg>
+                  </div>
+                </label>
+                <div class="content">
+                  <p>This is the content for Section 3.</p>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+          
+
         <div className="about-us-team">
           <div className="about-us-team-title">
             <h3>Nuestro equipo</h3>
