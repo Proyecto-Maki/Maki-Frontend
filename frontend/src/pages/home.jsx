@@ -195,7 +195,7 @@ const Home = () => {
                   makishopmanagement@gmail.com
                 </p>
                 <p className="copyright-footer-home">
-                  © 2024 Maki. All rights reserved
+                  © 2025 Maki. All rights reserved
                 </p>
               </div>
             </div>

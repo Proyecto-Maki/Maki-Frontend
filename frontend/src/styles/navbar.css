@@ -166,17 +166,18 @@
     position: fixed;
     top: 80px;
     right: 0;
-    width: 250px;
     box-shadow: -2px 4px 6px rgba(0, 0, 0, 0.3);
     z-index: 1050;
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-out;
     transform: translateX(100%);
     opacity: 0;
   }
+
+
   .navbar-collapse.show {
     display: block;
     background-color: #7bb66d;
-    width: 30%;
+    width: 50%;
     height: 100vh;
     position: absolute;
     top: 80px;
@@ -188,14 +189,15 @@
 }
 
 .button-login {
-  display: flex;
+  display: contents;
   align-items: center;
   justify-content: flex-end;
+  border: 2px solid red;
 }
-
 
 /* Navbar para pantallas más pequeñas (por debajo de 576px) */
 @media (max-width: 576px) {
+
   .logo-img {
     height: 40px;
   }
@@ -217,6 +219,7 @@
 
   .profile-actions > div {
     margin-right: 8px;
+    display: contents;
   }
 
   .profile-photo-navbar img {

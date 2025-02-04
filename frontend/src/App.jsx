@@ -16,7 +16,6 @@ import Logout from "./pages/logout";
 import PublishReview from "./pages/publish-review";
 import InfoProduct from "./pages/info-producto";
 import Footer from "./components/Footer";
-import Navbar from "./components/navbar";
 import Productos from "./pages/productos";
 import PetProfileFoundation from "./pages/pet-profile-foundation";
 import Servicios from "./pages/servicios";
@@ -56,7 +55,6 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Navbar cartItems={numItemsCarrito} />
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Home />} />
