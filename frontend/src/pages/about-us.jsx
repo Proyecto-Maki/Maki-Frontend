@@ -10,6 +10,7 @@ import fotoAngel from "../img/AboutUs/FotoAngel.jpeg";
 import fotoCatalina from "../img/AboutUs/FotoCatalina.jpeg";
 import fotoIvana from "../img/AboutUs/FotoIvana.jpg";
 import fotoKelly from "../img/AboutUs/FotoKelly.jpeg";
+import fotoFaq from "../img/faq-image.png";
 import { ImLinkedin } from "react-icons/im";
 import { FaGithub } from "react-icons/fa";
 
@@ -146,7 +147,7 @@ function AboutUs() {
             ></path>
           </svg>
         </div>
-
+          <h2 style={{marginLeft: "25px", fontSize: "30px", fontStyle: "unset"}}>Preguntas frecuentes </h2>
           <div class="FAQ-container">
             <div className="accordion">
               <div class="accordion-item">
@@ -169,7 +170,11 @@ function AboutUs() {
                   </div>
                 </label>
                 <div class="content">
-                  <p>Lorem ipsum </p>
+                  <p>Para los dueños de mascotas, Maki es completamente gratuito. Los usuarios pueden navegar, comprar productos, hacer donaciones y adoptar sin ningún costo.
+                    Para las fundaciones, ofrecemos dos planes:
+                    <br></br><p style={{fontStyle:"italic"}}>➜ Plan Gratuito:  Permite a las fundaciones recibir donaciones en forma de tarjetas de regalo, y con las cuales podrán canjear productos dentro de la plataforma.</p> 
+                    <p style={{fontStyle:"italic"}}>➜ Plan Premium: Por una membresía de $29,000 COP, las fundaciones adquieren beneficios adicionales, como la publicación de sus mascotas para promocionarlas en adopción y un 25% de descuento en todos lops productos de Maki</p>
+                  </p>
                 </div>
               </div>
 
@@ -193,10 +198,12 @@ function AboutUs() {
                   </div>
                 </label>
                 <div class="content">
-                  <p>This is the content for Section 2.</p>
+                  <p>Maki sigue las normativas de protección de datos personales establecidas en la Ley Estatutaria 1581 de 2012, que regula el tratamiento de información en plataformas digitales. Nuestras políticas de privacidad garantizan un uso seguro y transparente de los datos de nuestros usuarios.
+                    
+                  </p>
                 </div>
               </div>
-              <div class="accordion-item">
+              {/*<div class="accordion-item">
                 <input type="radio" id="section3" name="accordion" />
                 <label for="section3" class="accordion-header">
                   <label class="accordion-title">¿Cómo protege Maki mis datos personales?</label>
@@ -218,7 +225,7 @@ function AboutUs() {
                 <div class="content">
                   <p>This is the content for Section 3.</p>
                 </div>
-              </div>
+              </div>*/}
               <div class="accordion-item">
                 <input type="radio" id="section4" name="accordion" />
                 <label for="section4" class="accordion-header">
@@ -239,7 +246,20 @@ function AboutUs() {
                   </div>
                 </label>
                 <div class="content">
-                  <p>This is the content for Section 3.</p>
+                  <p>Maki facilita el apoyo a las fundaciones a través de donaciones en forma de tarjetas de regalo, que pueden ser utilizadas para adquirir productos en la plataforma.
+                    <br></br><p style={{fontStyle:"italic", marginLeft: "10px"}}>➜ Tarjetas de regalo:  Los clientes pueden comprar y donar tarjetas con los siguientes valores:
+                    <p style={{marginLeft: "10px"}}>
+                      - Bronze: $20,000 COP
+                      <br></br> - Silver: $50,000 COP
+                      <br></br> - Gold: $80,000 COP
+                      <br></br> - Platinum: $110,000 COP
+                    </p>
+                  </p> 
+                  <p >
+                    Las fundaciones pueden redimir el saldo total de las tarjetas donadas para comprar productos en Maki. Si el pedido supera el saldo disponible, la diferencia puede pagarse
+                    con otros métodos de pago habilitados en la plataforma.
+                  </p>
+                  </p>
                 </div>
               </div>
               <div class="accordion-item">
@@ -262,7 +282,15 @@ function AboutUs() {
                   </div>
                 </label>
                 <div class="content">
-                  <p>This is the content for Section 3.</p>
+                  <p>MakiPaws es un servicio amigable que conecta a los dueños de mascotas con cuidadores de mascotas capacitados según la especie del animal. 
+                    Los usuarios pueden:
+                    <br></br><p style={{fontStyle:"italic", marginLeft: "10px"}}> 
+                      ➜ Especificar horarios según su disponibilidad.
+                      <br></br>➜ Indicar dietas especiales o condiciones de salud específicas.
+                      <br></br>➜ Seleccionar la modalidad de cuidado adecuada para su mascota
+                    </p>
+                    MakiPaws garantiza un servicio confiable y personalizado, asegurando el bienestar de cada mascota.
+                  </p>
                 </div>
               </div>
               <div class="accordion-item">
@@ -285,11 +313,20 @@ function AboutUs() {
                   </div>
                 </label>
                 <div class="content">
-                  <p>This is the content for Section 3.</p>
+                  <p> Maki ofrece una variedad de productos naturales y eco-amigables, priorizando el bienestar de las mascotas y el cuidado del medio ambiente. En nuestra plataforma, los usuarios pueden encontrar:
+                  <br></br><p style={{fontStyle:"italic", marginLeft: "10px"}}>
+                    ➜ Alimentos orgánicos y naturales.
+                    <br></br>➜ Accesorios biodegradables y ecológicos.
+                  </p>
+                      Todos los productos provienen de proveedores comprometidos con la sostenibilidad y la calidad.
+                  </p>
                 </div>
               </div>
             </div>
-            
+            <div className="FAQ-image-container">
+                <img src={fotoFaq}></img>
+                <p>Imagen de wirestock en Freepik</p>
+            </div>
           </div>
           
 

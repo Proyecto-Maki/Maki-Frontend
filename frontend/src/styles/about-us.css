@@ -364,65 +364,106 @@
 /*FAQ maki*/
 
 .FAQ-container{
-  border: 2px solid red;
-  width: 100%;
-  height: 100%;
-  align-items: stretch;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  justify-content: center;
+  justify-items: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  padding-right: 0;
+  max-width: 100%;
+}
+
+
+.FAQ-container img{
+  max-width: 90%;
+  height: auto;
+  object-fit: contain;
+  padding-left: 0;
+}
+
+.FAQ-image-container{
   display: flex;
   flex-direction: column;
-  
+  align-items: center;
+}
+
+.FAQ-image-container p{
+  font-style: italic;
+  color: #302f2fa6;
 }
 
 .accordion {
-  width: 300px;
+  width: 100%;
   margin: 0 auto;
-  border: 2px solid red;
+  --bs-accordion-border-color: none;
+}
+
+.accordion-header:focus,
+.accordion-header:focus-visible {
+  outline: none;
+}
+
+.accordion input[type="radio"]:focus {
+  outline: none;
 }
 
 .accordion-item {
   margin-bottom: 5px;
+  
 }
 
 .accordion-item .content {
-  font-size: 12px;
+  font-size: 15px;
 }
 
 .accordion input[type="radio"] {
   display: none;
+  outline: none;
 }
 
 .accordion .content {
   height: 0px;
   padding: 0px;
-  background-color: #fafafa;
-  border-top: 1px solid #ccc;
+  background-color: transparent;
+  border-top: 3px solid #7bb66d;
   overflow: hidden;
   transition: all 0.3s ease;
 }
 .accordion input[type="radio"]:checked + .accordion-header + .content {
   height: auto;
   padding: 15px;
+  outline: none;
 }
 .accordion-icon {
   display: flex;
   align-items: center;
   transition: all 0.5s ease;
 }
+
+.accordion-icon svg{
+  color: #7bb66d ;
+}
+
 .accordion input[type="radio"]:checked + .accordion-header .accordion-icon {
   transform: rotate(180deg);
+  outline: none;
 }
 .accordion-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 8px;
-  background-color: #f1f1f1;
+  background-color: #fdf0e6;
   cursor: pointer;
   font-weight: bold;
   text-align: left;
 }
 .accordion-header .accordion-title {
-  font-size: 14px;
+  font-size: 20px;
+  color: #7bb66d;
 }
 
 
@@ -430,6 +471,10 @@
 /* Responsive */
 
 @media only screen and (max-width: 992px) {
+  .FAQ-container{
+    grid-template-columns: 1fr;
+  }
+
   .about-us-container {
     padding-top: 20%;
   }
@@ -491,6 +536,10 @@
 }
 
 @media only screen and (max-width: 600px) {
+
+  .FAQ-container{
+    grid-template-columns: 1fr;
+  }
   .about-us-container {
     padding-top: 25%;
   }
