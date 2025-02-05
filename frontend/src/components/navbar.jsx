@@ -5,6 +5,7 @@ import "../styles/navbar.css";
 import { FaSearch, FaShoppingCart } from "react-icons/fa"; // Importamos los iconos de React Icons
 import clientes_img from "../img/Foto_Perfil_Clientes.svg";
 import fundaciones_img from "../img/Foto_Perfil_Fundaciones.svg";
+import { IoMenu } from "react-icons/io5";
 
 function Navbar() {
   const location = useLocation(); // Obtenemos la ubicación actual de la ruta
@@ -69,7 +70,8 @@ function Navbar() {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span className="navbar-toggler-icon">☰</span>
+          
+          <span className="navbar-toggler-icon"> <IoMenu /> </span>
         </button>
 
         {/* Links y botones */}
