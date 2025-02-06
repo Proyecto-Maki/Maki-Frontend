@@ -242,7 +242,7 @@ function CrearSolicitudAdopcion() {
                   <label htmlFor="terms" className="normativas-label">
                     Acepto y estoy de acuerdo con las{" "}
                     <a
-                      href="/normativas" /*hay que creear esa vista, yo la hago*/
+                      href="/terminos-y-condiciones" /*hay que creear esa vista, yo la hago*/
                       target="_blank"
                       rel="noopener noreferrer"
                       style={{ color: "#ff7f50" }}
