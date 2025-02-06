@@ -133,7 +133,7 @@ const Home = () => {
                   src={logo}
                   alt="Logo Maki"
                   className="logo-img"
-                  style={{ height: "80px", marginRight: "15px" }}
+                  style={{ height: "80px", marginRight: "15px", marginBottom:"30px" }}
                 />
               </div>
               <div className="footer-nav-home">

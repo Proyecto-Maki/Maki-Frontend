@@ -30,6 +30,10 @@
   fill: #fdf0e6
 }
 
+.footer-logo-home{
+  padding-bottom: 20px;
+}
+
 /*información del footer*/
 .footer {
   background-color: #7BB66D;
