@@ -105,9 +105,7 @@ function CrearSolicitudAdopcion() {
 
   const validateTerminos = (terminos) => {
     if (!terminos) {
-      setError("Debes aceptar las normativas de Maki.");
-      setShowErrorModal(true);
-      return;
+      return "Debes aceptar las normativas de Maki.";
     }
   }
 
