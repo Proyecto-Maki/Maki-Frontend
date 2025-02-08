@@ -41,6 +41,41 @@
   background-color: #fdf0e6;
 }
 
+.saldo-container{
+  width: 100%;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+}
+
+.saldo-subcontainer{
+  margin: 0.5% auto;
+  width: 90%;
+  max-width: 800px;
+  height: 60%;
+  
+}
+
+.saldo-subcontainer button{
+  background-color: #FFD96E;
+  border: none;
+  height: 100%;
+  border-radius: 20px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.saldo-text{
+  color: #7BB66D;
+  font-size: 22px;
+}
+
+.saldo-money{
+  padding-left: 1rem;
+}
+
 /* Contenedor para los botones de usuario */
 .button-container-userProfile {
   position: absolute;
