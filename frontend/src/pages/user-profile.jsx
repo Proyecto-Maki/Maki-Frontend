@@ -15,6 +15,7 @@ import donaciones_img from "../img/iconosProfile/donaciones.svg";
 import makipaws_img from "../img/iconosProfile/makipaws.svg";
 import clientes_img from "../img/Foto_Perfil_Clientes.svg";
 import fundaciones_img from "../img/Foto_Perfil_Fundaciones.svg";
+import { formatMoney } from "../functions";
 
 const ProfileIcon = ({ src, alt, title }) => {
   return (
@@ -63,6 +64,7 @@ const UserProfile = () => {
     postal_code: "",
     localidad: "",
     role: "",
+    saldo: "",
   });
 
   useEffect(() => {
@@ -101,6 +103,7 @@ const UserProfile = () => {
                       : "No hay código postal",
                     localidad: res.data.localidad,
                     role: "Dueño de mascota",
+                    saldo: res.data.saldo,
                   });
                   //console.log('Información del usuario:', userData);
                 } else {
@@ -146,6 +149,7 @@ const UserProfile = () => {
                       : "No hay código postal",
                     localidad: res.data.localidad,
                     role: "Fundación",
+                    saldo: res.data.saldo,
                   });
                   //console.log('Información del usuario:', userData);
                 } else {
@@ -343,6 +347,19 @@ const UserProfile = () => {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div className="saldo-container">
+        <div className="saldo-subcontainer">
+          <button>
+            <div className="saldo-text">
+              Tu saldo en Maki:
+            </div>
+            <div className="saldo-money">
+              $ {formatMoney(parseFloat(userData.saldo))} COP
+            </div>  
+          </button>
         </div>
       </div>
 
