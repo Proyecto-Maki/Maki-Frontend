@@ -12,10 +12,10 @@ const InfoProduct = () => {
   const [copia_main, setCopia_Main] = useState("");
   const thumbnails = [
     copia_main,
-    "/../src/img/foodimg/whiskas.png",
-    "/../src/img/foodimg/dogfood.png",
-    "/../src/img/foodimg/dogfood.png",
-    "/../src/img/foodimg/dogfood.png"
+    copia_main,
+    copia_main,
+    copia_main,
+    copia_main
   ]; // Vistas adicionales del producto
   const [product, setProduct] = useState(null); // Información del producto
   const [loading, setLoading] = useState(true);
