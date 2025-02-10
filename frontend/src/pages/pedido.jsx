@@ -2,12 +2,19 @@ import { React, useState, useEffect } from "react";
 import Navbar from "../components/navbar"; // Navbar personalizado
 import "../styles/pedido.css"; // Importa el archivo CSS
 import api from "../api.js"; // Importa el archivo api.js
-import ErrorModal from "../components/ErrorModal";
 import { useLocation, useNavigate } from "react-router-dom"; // Importa la función useNavigate de react-router-dom
+import ErrorModal from "../components/ErrorModal";
+import ConfirmationModal from "../components/ConfirmationModal";
+import SuccessModal from "../components/SuccessModal.jsx";
 
 const Pedido = () => {
   const [showErrorModal, setShowErrorModal] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [error, setError] = useState("");
+  const [response, setResponse] = useState("");
+  const [dirNavigate, setDirNavigate] = useState("");
+
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -153,20 +160,47 @@ const Pedido = () => {
   //     ],
   //   };
 
+  const handleOpenConfirmationModal = (e, mascotaId) => {
+    e.preventDefault();
+    setShowConfirmationModal(true);
+    setMascotaIdEliminar(mascotaId);
+    console.log("Se abrió el modal de confirmación", mascotaId);
+  };
+
+  const handleYesConfirmationModal = async (e) => {
+    setShowConfirmationModal(false);
+    e.preventDefault();
+    await new Promise((r) => setTimeout(r, 1000));
+    await handleCancelarPedido(e);
+  };
+
+  const handleNoConfirmationModal = () => {
+    setShowConfirmationModal(false);
+    setMascotaIdEliminar(0);
+  };
+
   const handleCloseErrorModal = () => {
     setShowErrorModal(false);
     setError("");
   };
-  const handleCancelarPedido = async () => {
-    const confirmacion = window.confirm(
-      "¿Estás seguro de que deseas cancelar este pedido? Se reembolsará el total a tu saldo."
-    );
 
-    if (!confirmacion) return; // Si el usuario cancela, no hace la petición
+  const handleCloseSuccessModal = () => {
+    setShowSuccessModal(false);
+    setError("");
+    setResponse("");
+  };
 
-    console.log(
-      `Intentando cancelar pedido en: pedidos/${pedido.id}/cancelar/`
-    );
+  const handleCancelarPedido = async (e) => {
+    e.preventDefault();
+    // const confirmacion = window.confirm(
+    //   "¿Estás seguro de que deseas cancelar este pedido? Se reembolsará el total a tu saldo."
+    // );
+
+    // if (!confirmacion) return; // Si el usuario cancela, no hace la petición
+
+    // console.log(
+    //   `Intentando cancelar pedido en: pedidos/${pedido.id}/cancelar/`
+    // );
 
     try {
       const response = await api.put(
@@ -180,16 +214,20 @@ const Pedido = () => {
       console.log("Respuesta de la API:", response);
 
       if (response.status === 200) {
-        alert(
-          "Pedido cancelado exitosamente. Se ha reembolsado el monto a tu saldo."
-        );
+        // alert(
+        //   "Pedido cancelado exitosamente. Se ha reembolsado el monto a tu saldo."
+        // );
 
         // Actualizar el saldo en sessionStorage
         const saldoActual = parseFloat(sessionStorage.getItem("saldo")) || 0;
         sessionStorage.setItem("saldo", saldoActual + parseFloat(pedido.total));
 
+        setResponse("Pedido cancelado exitosamente. Se ha reembolsado el monto a tu saldo.");
+        setDirNavigate("/mis-pedidos");
+        setShowSuccessModal(true);
+
         // Redirigir a la lista de pedidos en lugar de intentar modificar `setPedidos`
-        navigate("/mis-pedidos");
+        // navigate("/mis-pedidos");
       } else {
         setError(response.data.message);
         setShowErrorModal(true);
@@ -254,13 +292,30 @@ const Pedido = () => {
           <div className="eliminar-pedido-container">
             <button
               className="eliminar-pedido-btn"
-              onClick={handleCancelarPedido}
+              onClick={(e) => handleOpenConfirmationModal(e)}
             >
               <i className="fas fa-times"></i> Cancelar Pedido
             </button>
           </div>
         </div>
       </div>
+      <ErrorModal
+        show={showErrorModal}
+        handleClose={handleCloseErrorModal}
+        error={error}
+      />
+      <SuccessModal
+        show={showSuccessModal}
+        handleClose={handleCloseSuccessModal}
+        response={response}
+        dirNavigate={dirNavigate}
+      />
+      <ConfirmationModal
+        show={showConfirmationModal}
+        handleYes={handleYesConfirmationModal}
+        handleNo={handleNoConfirmationModal}
+        response="¿Estás seguro de que deseas cancelar el pedido?"
+      />
     </div>
   );
 };
