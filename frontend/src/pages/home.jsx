@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "../components/navbar";
 import "../styles/home.css";
 import perro_home from "../img/Perro_Home.png";
-import instagram from "../img/instagram.webp";
+import instagram from "../img-webp/instagram.webp";
 import tiktok from "../img/tiktok.png";
 import rama from "../img/rama.png";
 import paw from "../img/paw-item-adoption.png";

@@ -34,7 +34,7 @@
 
 .about-us-title h2 {
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 3.75rem;
   color: #ff793f;
   margin-bottom: 20px;
 }
@@ -67,13 +67,19 @@
 }
 
 .about-us-content-text p {
-  font-size: 1rem;
+  font-size: 1.5rem;
   color: #302f2f;
   margin-top: 5%;
 }
 
+.about-us-content-text h3 {
+  font-size: rem;
+  color: #ffa726;
+  margin-top: 5%;
+}
+
 .member-cite {
-  font-size: 1rem;
+  font-size: 2rem;
   color: #7e7e7e9a;
   margin-top: 5%;
 }
@@ -86,6 +92,12 @@
   margin-top: 5%;
   margin-bottom: 5%;
 }
+.about-us-mision-title h3 {
+  font-size: 2.5rem; 
+  color: #ff793f; 
+}
+
+
 
 .about-us-mision-img {
   display: flex;
@@ -182,6 +194,7 @@
   text-align: center;
 }
 
+
 .about-us-mision {
   display: flex;
   flex-direction: column;
@@ -192,13 +205,13 @@
 
 .about-us-mision-text h4 {
   color: #ffffff;
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   margin-bottom: 5%;
 }
 
 .about-us-mision-text p {
   color: #ffffff;
-  font-size: 1rem;
+  font-size: 1.2rem;
   text-align: center;
 }
 
@@ -304,7 +317,7 @@
 
 .about-us-team-member h4 {
   color: #302f2f;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   margin-bottom: 1rem;
 }
 
@@ -362,6 +375,12 @@
 }
 
 /*FAQ maki*/
+.h2-FAQ {
+  padding-left: 80px;
+  font-size: 2.5rem;
+  color: #ff793f; 
+
+}
 
 .FAQ-container{
   display: grid;
@@ -374,6 +393,7 @@
   padding: 20px;
   padding-right: 0;
   max-width: 100%;
+  padding-left: 100px ;
 }
 
 

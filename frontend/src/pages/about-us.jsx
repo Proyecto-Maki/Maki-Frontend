@@ -99,7 +99,7 @@ function AboutUs() {
 
               <a onClick={handleClientes}>
                 <h4>Dueños de mascotas</h4>
-              </a>
+              </a>  
             </div>
 
             <div className="about-us-mision-fundaciones">
@@ -147,7 +147,7 @@ function AboutUs() {
             ></path>
           </svg>
         </div>
-          <h2 style={{marginLeft: "25px", fontSize: "30px", fontStyle: "unset"}}>Preguntas frecuentes </h2>
+          <h2 style={{marginLeft: "25px", fontSize: "30px", fontStyle: "unset"}} className="h2-FAQ">Preguntas frecuentes </h2>
           <div class="FAQ-container">
             <div className="accordion">
               <div class="accordion-item">

@@ -32,7 +32,8 @@ import SolicitudesAdopcion from "./pages/solicitudes-adopcion";
 import AdoptionsFun from "./pages/adopciones-fundacion";
 import Adoptions from "./pages/adoptions";
 import Makipaws from "./pages/makipaws";
-
+import MisSolicitudesCuidado from "./pages/mis-solicitudes-cuidado";
+import DonacionesRecibidas from "./pages/donaciones-recibidas";
 function App() {
   const [numItemsCarrito, setNumeroItemsCarrito] = useState(0);
   const codigo = localStorage.getItem("codigo_carrito");
@@ -111,6 +112,8 @@ function App() {
         ></Route>
         <Route path="/adopciones-fundacion" element={<AdoptionsFun />}></Route>
         <Route path="/makipaws" element={<Makipaws />}></Route>
+        <Route path="/solicitudes-de-cuidado" element={<MisSolicitudesCuidado />}></Route>
+        <Route path="/donaciones-recibidas" element={<DonacionesRecibidas />}></Route>
       </Routes>
     </BrowserRouter>
   );

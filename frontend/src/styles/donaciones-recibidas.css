@@ -1,0 +1,10 @@
+.nombre-y-apellido-dr {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.8rem;
+    gap: 20px;
+}
+
+.recibiste-tarjeta-content-dr, .cantidad-content-dr{
+    margin-left: 10px;
+}
