@@ -3,7 +3,8 @@ import Navbar from "../components/navbar"; // Navbar personalizado
 import LoadingPage from "../components/loading-page";
 import api from "../api"; // Tu configuración de Axios para el backend
 import "../styles/carrito.css"; // Importa el archivo CSS
-
+import MercadoPagoimg from "../img/mercadopago.png";
+import LogoMakiimg from "../img/Logotipo Maki.png";
 const Carrito = () => {
   const [cart, setCart] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -234,79 +235,78 @@ const Carrito = () => {
       <Navbar />
       <div className="background-container-carrito">
         <div className="content-container-carrito">
-          {/* Columna izquierda */}
           <div className="left-column">
-            {/* Información de pago */}
-            <div className="payment-card">
-              <h3 className="card-title">Tu información de pago</h3>
-              <div className="payment-method">
-                <input
-                  type="radio"
-                  id="mercadoPago"
-                  name="payment"
-                  className="btn-payment"
-                  defaultChecked
-                />
-                <label htmlFor="mercadoPago">Mercado Pago</label>
-                <input
-                  type="radio"
-                  id="saldo"
-                  name="payment"
-                  className="btn-payment"
-                  defaultChecked
-                />
-                <label htmlFor="saldo">Saldo (disponible: $50.000)</label>
+            {/* Fila superior: Información de pago */}
+            <div className="top-row">
+              <div className="payment-card">
+                <h3 className="card-title">Tu información de pago</h3>
+                <div className="payment-method">
+                  <div className="payment-option">
+                    <input type="radio" id="mercadoPago" name="payment" className="btn-payment" defaultChecked />
+                    <label htmlFor="mercadoPago">
+                      <img src={MercadoPagoimg} alt="Mercado Pago" width="24" height="24" />
+                      Mercado Pago
+                    </label>
+                  </div>
+                  <div className="payment-option">
+                    <input type="radio" id="saldo" name="payment" className="btn-payment" />
+                    <label htmlFor="saldo">
+                      <img src={LogoMakiimg} alt="Maki" className="maki-icon" />
+                      Saldo (disponible: $50.000)
+                    </label>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Lista de productos */}
-            {cart.length === 0 ? (
-              <p>Carrito vacío :(</p>
-            ) : (
-              cart.map((product) => (
-                <div key={product.id} className="product-card">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="product-image"
-                  />
-                  <div className="product-details">
-                    <h3 className="product-name">{product.name}</h3>
-                    <p className="product-price">
-                      ${(product.price * product.quantity).toLocaleString()}
-                    </p>
-                  </div>
-                  <div className="d-flex flex-column">
-                    <div className="quantity-controls">
+            {/* Fila media: Lista de productos */}
+            <div className="middle-row">
+              {cart.length === 0 ? (
+                <p>Carrito vacío :(</p>
+              ) : (
+                cart.map((product) => (
+                  <div key={product.id} className="product-card">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="product-image"
+                    />
+                    <div className="product-details">
+                      <h3 className="product-name">{product.name}</h3>
+                      <p className="product-price">
+                        ${(product.price * product.quantity).toLocaleString()}
+                      </p>
+                    </div>
+                    <div className="d-flex flex-column">
+                      <div className="quantity-controls">
+                        <button
+                          className="quantity-button"
+                          onClick={() => decreaseQuantity(product.id)}
+                        >
+                          -
+                        </button>
+                        <span className="quantity-display">
+                          {product.quantity}
+                        </span>
+                        <button
+                          className="quantity-button"
+                          onClick={() => increaseQuantity(product.id)}
+                        >
+                          +
+                        </button>
+                      </div>
                       <button
-                        className="quantity-button"
-                        onClick={() => decreaseQuantity(product.id)}
+                        className="remove-button"
+                        onClick={() => removeFromCart(product.id)}
                       >
-                        -
-                      </button>
-                      <span className="quantity-display">
-                        {product.quantity}
-                      </span>
-                      <button
-                        className="quantity-button"
-                        onClick={() => increaseQuantity(product.id)}
-                      >
-                        +
+                        <i className="fas fa-trash-alt remove-icon"></i>{" "}
+                        <span className="remove-text">Remover</span>{" "}
                       </button>
                     </div>
-                    <button
-                      className="remove-button"
-                      onClick={() => removeFromCart(product.id)}
-                    >
-                      <i className="fas fa-trash-alt remove-icon"></i>{" "}
-                      {/* Ícono de eliminar de Font Awesome */}
-                      <span className="remove-text">Remover</span>{" "}
-                      {/* Texto "Remover" */}
-                    </button>
                   </div>
-                </div>
-              ))
-            )}
+                ))
+              )}
+            </div>
           </div>
 
           {/* Columna derecha */}

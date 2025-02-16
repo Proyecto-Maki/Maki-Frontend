@@ -111,3 +111,74 @@
   cursor: pointer;
   margin-top: 20px;
 }
+
+.top-row {
+  width: 100%; /* Ocupa todo el ancho disponible */
+  padding: 20px; /* Espaciado interno */
+  background-color: #ffffff; /* Fondo blanco */
+  border: 1px solid #ddd; /* Borde sutil */
+  border-radius: 10px; /* Esquinas redondeadas */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  margin-bottom: 20px; /* Espacio entre la fila superior y la media */
+}
+
+/* Estilos para el título de la tarjeta de pago */
+.top-row .card-title {
+  margin: 0 0 15px 0; /* Margen inferior para separar del contenido */
+  font-size: 20px; /* Tamaño de fuente más grande */
+  font-weight: bold; /* Texto en negrita */
+  color: #333; /* Color de texto oscuro */
+}
+
+/* Contenedor de las opciones de pago */
+/* Contenedor de las opciones de pago */
+.top-row .payment-method {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alinea todo a la izquierda */
+  gap: 10px; /* Espacio entre las opciones de pago */
+}
+
+/* Estilos para cada opción de pago */
+.top-row .payment-option {
+  display: flex;
+  align-items: center; /* Alinea verticalmente el radio button, el icono y el texto */
+  gap: 10px; /* Espacio entre los elementos */
+  padding: 12px; /* Espaciado interno */
+  border: 1px solid #ddd; /* Borde sutil */
+  border-radius: 8px; /* Esquinas redondeadas */
+  background-color: #f9f9f9; /* Fondo gris claro */
+  width: 100%; /* Ocupa todo el ancho disponible */
+  box-sizing: border-box; /* Incluye el padding en el ancho */
+}
+
+/* Estilos para el label (icono y texto) */
+.top-row label {
+  display: flex;
+  align-items: center; /* Alinea verticalmente el icono y el texto */
+  gap: 8px; /* Espacio entre el icono y el texto */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el label */
+  font-size: 16px; /* Tamaño de fuente */
+  color: #555; /* Color de texto gris */
+  white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+  margin: 0; /* Elimina el margen por defecto */
+  padding: 0; /* Elimina el padding por defecto */
+}
+
+
+/* Efecto hover para las opciones de pago */
+.top-row .payment-option:hover {
+  background-color: #f0f0f0; /* Cambia el fondo al pasar el mouse */
+}
+
+/* Estilos para el radio button */
+.top-row .btn-payment {
+  margin: 0; /* Elimina el margen por defecto */
+  padding: 0; /* Elimina el padding por defecto */
+}
+
+/* Tamaño personalizado para el ícono de Maki */
+.maki-icon {
+  width: 40px; /* Nuevo ancho */
+  height: 20px; /* Nuevo alto */
+}
