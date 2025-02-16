@@ -348,81 +348,86 @@ const UserProfile = () => {
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="saldo-container">
-        <div className="saldo-subcontainer">
-          <button>
-            <div className="saldo-text">
-              Tu saldo en Maki:
-            </div>
-            <div className="saldo-money">
-              $ {formatMoney(parseFloat(userData.saldo))} COP
-            </div>  
-          </button>
+        <div className="saldo-container">
+          <div className="saldo-subcontainer">
+            <button>
+              <div className="saldo-text">
+                Tu saldo en Maki:
+              </div>
+              <div className="saldo-money">
+                $ {formatMoney(parseFloat(userData.saldo))} COP
+              </div>  
+            </button>
+          </div>
         </div>
-      </div>
 
-      {/* Icons Section */}
-      <div className="icons-container">
-        <div className="d-flex flex-wrap justify-content-center">
-          <a href={mascotas_url}>
-            <button className="btn-mascotas-user-profile">
-              <ProfileIcon
-                src={mascotas_img}
-                alt="Mascotas"
-                title="Mascotas"
-                className="icon-user-profile"
-              />
-            </button>
-          </a>
-          <a href={pedidos_url}>
-            <button className="btn-pedidos-user-profile">
-              <ProfileIcon
-                src={pedidos_img}
-                alt="Pedidos"
-                title="Pedidos"
-                className="icon-user-profile"
-              />
-            </button>
-          </a>
-          <a href={adopciones_url}>
-            <button className="btn-adopciones-user-profile">
-              <ProfileIcon
-                src={adopciones_img}
-                alt="Adopciones"
-                title="Adopciones"
-                className="icon-user-profile"
-              />
-            </button>
-          </a>
+         {/* Icons Section */}
+        <div className="icons-container">
+          <div className="d-flex flex-wrap justify-content-center">
+            <a href={mascotas_url}>
+              <button className="btn-mascotas-user-profile">
+                <ProfileIcon
+                  src={mascotas_img}
+                  alt="Mascotas"
+                  title="Mascotas"
+                  className="icon-user-profile"
+                />
+              </button>
+            </a>
+            <a href={pedidos_url}>
+              <button className="btn-pedidos-user-profile">
+                <ProfileIcon
+                  src={pedidos_img}
+                  alt="Pedidos"
+                  title="Pedidos"
+                  className="icon-user-profile"
+                />
+              </button>
+            </a>
+            <a href={adopciones_url}>
+              <button className="btn-adopciones-user-profile">
+                <ProfileIcon
+                  src={adopciones_img}
+                  alt="Adopciones"
+                  title="Adopciones"
+                  className="icon-user-profile"
+                />
+              </button>
+            </a>
 
-          <ProfileIcon
-            src={donaciones_img}
-            alt="Donaciones"
-            title="Donaciones"
-            className="icon-user-profile"
-          />
-          {es_cliente === "true" && (
             <ProfileIcon
-              src={makipaws_img}
-              alt="Makipaws"
-              title="MakiPaws"
+              src={donaciones_img}
+              alt="Donaciones"
+              title="Donaciones"
               className="icon-user-profile"
             />
-          )}
+            {es_cliente === "true" && (
+              <ProfileIcon
+                src={makipaws_img}
+                alt="Makipaws"
+                title="MakiPaws"
+                className="icon-user-profile"
+              />
+            )}
+          </div>
         </div>
+        {/* Botón de Eliminar cuenta */}
+        <div className="d-flex justify-content-center mt-4">
+          <button
+            className="btn-delete-account"
+            title="Eliminar Cuenta"
+            onClick={handleOpenConfirmationModal}
+          >
+            <i className="fas fa-trash-alt"></i> Eliminar Cuenta
+          </button>
+        </div>
+
       </div>
-      {/* Botón de Eliminar cuenta */}
-      <div className="d-flex justify-content-center mt-4">
-        <button
-          className="btn-delete-account"
-          title="Eliminar Cuenta"
-          onClick={handleOpenConfirmationModal}
-        >
-          <i className="fas fa-trash-alt"></i> Eliminar Cuenta
-        </button>
-      </div>
+
+      
+
+     
 
       {/* <WelcomeModal show={showSuccessModal} handleClose={handleCloseSuccessModal} response={response} /> */}
       <SuccessModal
