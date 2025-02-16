@@ -248,6 +248,14 @@ const Carrito = () => {
                   defaultChecked
                 />
                 <label htmlFor="mercadoPago">Mercado Pago</label>
+                <input
+                  type="radio"
+                  id="saldo"
+                  name="payment"
+                  className="btn-payment"
+                  defaultChecked
+                />
+                <label htmlFor="saldo">Saldo (disponible: $50.000)</label>
               </div>
             </div>
 

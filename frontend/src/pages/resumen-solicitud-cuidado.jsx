@@ -128,7 +128,7 @@ const ResumenCuidado = () => {
                                         Total:
                                     </span>{" "}
                                     <span className="cliente-apellido">
-                                        {Number(detalles_cuidado.total).toLocaleString("es-CO", {
+                                    {Number(detalles_cuidado.total).toLocaleString("es-CO", {
                                             style: "currency",
                                             currency: "COP",
                                             minimumFractionDigits: 0,
@@ -137,16 +137,7 @@ const ResumenCuidado = () => {
                                 </p>
                             </div>
                         </div>
-                        <select
-                            className="estado-solicitud-cuidado-rsc"
-                            value={solicitudAdopcion.estado}
-                            onChange={(e) => actualizarEstado(e.target.value)}
-                        >
-                            <option value="pendiente">Pendiente</option>
-                            <option value="aprobado">Aprobado</option>
-                            <option value="rechazado">Rechazado</option>
-                        </select>
-
+                        <button className="estado-adopcion">{solicitudAdopcion.estado}</button>
                     </div>
                 </div>
 
@@ -347,7 +338,7 @@ const ResumenCuidado = () => {
                                                 style={{ height: "20px", marginRight: "10px" }}
                                             />
                                             <strong>Solicitda cuidado medico: </strong>
-                                            {detalles_cuidado.solicita_cuidado_medico}</p>
+                                             {detalles_cuidado.solicita_cuidado_medico}</p>
                                     </div>
                                     <div className="columna-derecha">
                                         <p>
