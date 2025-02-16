@@ -1,0 +1,27 @@
+.cancelar-cuidado {
+    background-color: #ff4d4d; 
+    color: white; 
+    border: none; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    font-size: 14px; 
+    font-weight: bold; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+.estado-solicitud-cuidado-rsc {
+    background-color: #4caf50; /* Verde */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: auto;
+  }
+  
+  .estado-solicitud-cuidado-rsc:hover {
+    background-color: #45a049; /* Verde más oscuro */
+  }
+  
