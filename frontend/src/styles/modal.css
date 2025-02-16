@@ -68,42 +68,27 @@
   border-color: #f8d7da;
 }
 
-.modal-error-button-secondary {
-  background-color: #f5c6cb;
-  color: #721c24;
-}
-
 .modal-warning-content .modal-content{
-  background-color: #fff3cd;
+  background-color: #ffffff;
   color: #856404;
   border: none;
 }
 
 .modal-warning-header {
-  background-color: #fff3cd;
-  color: #856404;
+  background-color: #ffffff;
+  color: #000000;
   border-color: #fff3cd;
 }
 
 .modal-warning-body {
-  background-color: #fff3cd;
-  color: #856404;
+  background-color: #ffffff;
+  color: #000000;
   border-color: #fff3cd;
 }
 
 .modal-warning-footer {
-  background-color: #fff3cd;
+  background-color: #ffffff;
   border-color: #fff3cd;
-}
-
-.modal-warning-button-secondary {
-  background-color: #ffeeba;
-  color: #856404;
-}
-
-.modal-warning-button-primary {
-  background-color: #ffc107;
-  color: #856404;
 }
 
 .modal-confirm-button-secondary {
@@ -136,15 +121,15 @@
 }
 
 .modal-footer .modal-confirm-button-secondary {
-  background-color: #d5d5d5; 
+  background-color: #999999;
+  color: #ffffff;
   padding: 10px 20px;
-  color: #000000;
-  border: #d5d5d5;
+  border-color: #999999;
 }
 
 .modal-footer .modal-confirm-button-secondary:hover {
-  background-color: #b9b9b9; 
-  border: #b9b9b9;
+  background-color: #7a7a7a;
+  border-color: #7a7a7a;
 }
 
 .modal-error-footer .modal-error-button-secondary{
@@ -155,4 +140,27 @@
 }
 
 
+.modal-warning-footer .modal-warning-button-secondary{
+  background-color: #999999;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-color: #999999;
+}
 
+.modal-warning-footer .modal-warning-button-secondary:hover{
+  background-color: #7a7a7a;
+  border-color: #7a7a7a;
+}
+
+.modal-warning-footer .modal-warning-button-primary{
+  background-color: #F4A258;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-color: #F4A258;
+}
+
+.modal-warning-footer .modal-warning-button-primary:hover{
+  background-color: #ce823f;
+  color: #ffffff;
+  border-color: #ce823f;
+}
