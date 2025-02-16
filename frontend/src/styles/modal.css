@@ -21,16 +21,28 @@
   border-color: #d4edda;
 }
 
-.modal-success-button-secondary {
-  background-color: #7cb66da2;
-  color: #d4edda;
+.modal-success-footer .modal-success-button-secondary {
+  background-color: #999999;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-color: #999999;
+}
+
+.modal-success-footer .modal-success-button-secondary:hover {
+  background-color: #7a7a7a;
+  border-color: #7a7a7a;
+}
+
+.modal-success-footer .modal-success-button-primary {
+  background-color: #7bb66d;
+  color: #ffffff;
+  padding: 10px 20px;
   border-color: #7bb66d;
 }
 
-.modal-success-button-primary {
-  background-color: #7bb66d;
-  color: #d4edda;
-  border-color: #7bb66d;
+.modal-success-footer .modal-success-button-primary:hover {
+  background-color: #5a924c;
+  border-color: #5a924c;
 }
 
 .modal-error-content .modal-content {
@@ -108,8 +120,6 @@
 
 .modal-footer .modal-confirm-button-primary-delete:hover {
   background-color: #ca443f; 
-  padding: 10px 20px;
-  color: #fff;
   border: #ca443f;
 }
 
@@ -122,8 +132,6 @@
 
 .modal-footer .modal-confirm-button-primary:hover {
   background-color: #458ac2; 
-  padding: 10px 20px;
-  color: #fff;
   border: #569eda;
 }
 
@@ -136,8 +144,6 @@
 
 .modal-footer .modal-confirm-button-secondary:hover {
   background-color: #b9b9b9; 
-  padding: 10px 20px;
-  color: #000000;
   border: #b9b9b9;
 }
 
@@ -147,3 +153,6 @@
   color: #fff;
   border: #ec5b56;
 }
+
+
+
