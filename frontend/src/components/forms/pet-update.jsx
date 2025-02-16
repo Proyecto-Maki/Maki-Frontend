@@ -487,6 +487,7 @@ function PetUpdate({ isEditarOpen, cerrarEditar, mascotaUser }) {
                     show={showConfirmationModal}
                     handleYes={handleYesConfirmationModal}
                     handleNo={handleNoConfirmationModal}
+                    action="Actualizar"
                     response="¿Estás seguro de que deseas editar?"
                 />
             </div>

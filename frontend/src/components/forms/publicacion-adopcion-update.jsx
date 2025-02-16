@@ -501,6 +501,7 @@ function PublicacionAdopcionUpdate({
           show={showConfirmationModal}
           handleYes={handleYesConfirmationModal}
           handleNo={handleNoConfirmationModal}
+          action="Actualizar"
           response="¿Estás seguro de actualizar la publicación?"
         />
       </div>

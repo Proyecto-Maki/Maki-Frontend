@@ -3,6 +3,8 @@ import { Modal, Button } from "react-bootstrap";
 import "../styles/modal.css";
 
 const ConfirmationModal = ({ show, handleYes, handleNo, action, response }) => {
+  const isDeleteAction = action && action.includes("Eliminar");
+  
   return (
     <Modal show={show} onHide={handleNo}>
       <Modal.Header closeButton>
@@ -10,12 +12,30 @@ const ConfirmationModal = ({ show, handleYes, handleNo, action, response }) => {
       </Modal.Header>
       <Modal.Body>{response}</Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" className="modal-confirm-button-secondary" onClick={handleNo}>
+        <Button
+          variant="secondary"
+          className="modal-confirm-button-secondary"
+          onClick={handleNo}
+        >
           No
         </Button>
-        <Button variant="primary" className="modal-confirm-button-primary"  onClick={handleYes}>
-          Sí, ¡{action}!
-        </Button>
+        {isDeleteAction ? (
+          <Button
+            variant="primary"
+            className="modal-confirm-button-primary-delete"
+            onClick={handleYes}
+          >
+            Sí, ¡{action}!
+          </Button>
+        ) : (
+          <Button
+            variant="primary"
+            className="modal-confirm-button-primary"
+            onClick={handleYes}
+          >
+            Sí, ¡{action}!
+          </Button>
+        )}
       </Modal.Footer>
     </Modal>
   );
