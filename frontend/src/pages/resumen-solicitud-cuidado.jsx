@@ -321,7 +321,7 @@ const ResumenCuidado = () => {
                                                 className="item"
                                                 style={{ height: "20px", marginRight: "10px" }}
                                             />
-                                            <strong>Fecha del cuidado </strong>{detalles_cuidado.fecha_cuidado}</p>
+                                            <strong>Fecha del cuidado: </strong>{detalles_cuidado.fecha_cuidado}</p>
                                         <p>
                                             <img
                                                 src={item}
@@ -329,7 +329,7 @@ const ResumenCuidado = () => {
                                                 className="item"
                                                 style={{ height: "20px", marginRight: "10px" }}
                                             />
-                                            <strong>Horas de cuidado </strong>{detalles_cuidado.hora_cuidado} horas</p>
+                                            <strong>Horas de cuidado: </strong>{detalles_cuidado.hora_cuidado} horas</p>
                                         <p>
                                             <img
                                                 src={item}

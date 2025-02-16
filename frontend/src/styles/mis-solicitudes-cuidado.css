@@ -1,4 +1,6 @@
 .titulo-solicitud-cuidado {
  font-size: 3rem;
  padding-left: 8%;
+ border: 2px solid red;
 }
+

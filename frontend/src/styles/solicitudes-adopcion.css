@@ -4,17 +4,14 @@
     overflow-y: auto;
     overflow-x: hidden;
     position: relative;
-    padding-top: 5%;
     background-color: #fdf0e6;
     font-family: "Aoboshi One", sans-serif;
+    margin-top: 5%;
 }
 
 .contenedor-solicitudes-adopcion {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    padding: 2rem;
-    background-color: transparent;
+    margin-top: calc(var(--navbar-height, 80px));
+    min-height: calc(100vh - var(--navbar-height, 80px)); 
 }
 
 .absolute-solicitudes-adopcion-container::-webkit-scrollbar {
@@ -165,4 +162,70 @@
 
 .no-solicitudes h3 {
     margin-bottom: 2rem;
+}
+
+@media (max-width:768px) {
+    .contenedor-solicitudes-adopcion{
+        padding: 0.5rem;
+    }
+
+    .tarjeta-solicitudes-adopcion-sa{
+        border: 2px solid red;
+        display: flex;
+        margin-top: 8%;
+        padding: 0.5rem;
+        gap: 0.5rem;
+        width: 90%;
+    }
+
+    .fila-superior-sa {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+        margin: 0 1rem;
+        padding-bottom: 0.5rem;
+    }
+
+    .fila-intermedia-sa {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin: 0 1rem;
+        gap: 0.5rem;
+    }
+
+   
+
+    .estado-sa {
+        align-self: center;
+        width: auto;
+        font-size: 0.9rem;
+        padding: 0.3rem 1rem;
+    }
+
+    .ver-detalle-sa {
+        font-size: 1rem;
+    }
+
+    .icono-sa {
+        font-size: 1.5rem;
+    }
+
+    .titulo-sa,
+    .id-sa {
+        font-size: 1.1rem;
+    }
+
+    .nombre-y-apellido-sa {
+        font-size: 0.9rem;
+    }
+
+    .no-solicitudes {
+        text-align: center;
+        font-size: 1.2rem;
+    }
+
+    .no-solicitudes h3 {
+        font-size: 1.5rem;
+    }
 }
