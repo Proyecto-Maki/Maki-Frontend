@@ -493,6 +493,7 @@ const CreacionAdopcion = () => {
                 show={showConfirmationModal}
                 handleYes={handleYesConfirmationModal}
                 handleNo={handleNoConfirmationModal}
+                action="Publicar"
                 response="¿Estás seguro de publicar la adopción?"
             />
         </div>

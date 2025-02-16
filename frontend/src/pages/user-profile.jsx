@@ -445,6 +445,7 @@ const UserProfile = () => {
         show={showConfirmationModal}
         handleYes={handleYesConfirmationModal}
         handleNo={handleNoConfirmationModal}
+        action="Eliminar cuenta"
         response="¿Estás seguro de eliminar tu cuenta? Esta acción no se puede deshacer."
       />
     </div>

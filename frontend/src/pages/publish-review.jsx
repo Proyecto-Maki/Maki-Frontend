@@ -279,6 +279,7 @@ const PublishReview = ({ id_producto, slug }) => {
                 show={showConfirmationModal}
                 handleYes={handleYesConfirmationModal}
                 handleNo={handleNoConfirmationModal}
+                action="Publicar"
                 response="¿Estás seguro de publicar la reseña?"
             />
         </div>

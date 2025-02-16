@@ -434,6 +434,7 @@ function PetProfileFoundation() {
         show={showConfirmationModal}
         handleYes={handleYesConfirmationModal}
         handleNo={handleNoConfirmationModal}
+        action="Eliminar"
         response="¿Estás seguro de que deseas eliminar a la mascota?"
       />
     </div>

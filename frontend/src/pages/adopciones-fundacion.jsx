@@ -344,6 +344,7 @@ const AdoptionsFun = () => {
         show={showConfirmationModal}
         handleYes={handleYesConfirmationModal}
         handleNo={handleNoConfirmationModal}
+        action="Eliminar"
         response="¿Estás seguro de que deseas eliminar la publicación? Esta acción es irreversible."
       />
     </div>

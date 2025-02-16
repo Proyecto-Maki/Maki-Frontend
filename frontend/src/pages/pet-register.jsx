@@ -628,6 +628,7 @@ const RegisterPetClient = () => {
         show={showConfirmationModal}
         handleYes={handleYesConfirmationModal}
         handleNo={handleNoConfirmationModal}
+        action="Registrar"
         response="¿Estás seguro de que deseas registrar a tus mascotas?"
       />
     </div>

@@ -93,3 +93,36 @@
   background-color: #ffc107;
   color: #856404;
 }
+
+.modal-confirm-button-secondary {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+.modal-footer .modal-confirm-button-primary {
+  background-color: #ec5b56; 
+  padding: 10px 20px;
+  color: #fff;
+  border: #ec5b56;
+}
+
+.modal-footer .modal-confirm-button-primary:hover {
+  background-color: #ca443f; 
+  padding: 10px 20px;
+  color: #fff;
+  border: #ca443f;
+}
+
+.modal-footer .modal-confirm-button-secondary {
+  background-color: #d5d5d5; 
+  padding: 10px 20px;
+  color: #000000;
+  border: #d5d5d5;
+}
+
+.modal-footer .modal-confirm-button-secondary:hover {
+  background-color: #b9b9b9; 
+  padding: 10px 20px;
+  color: #000000;
+  border: #b9b9b9;
+}

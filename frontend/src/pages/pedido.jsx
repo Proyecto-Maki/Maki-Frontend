@@ -314,6 +314,7 @@ const Pedido = () => {
         show={showConfirmationModal}
         handleYes={handleYesConfirmationModal}
         handleNo={handleNoConfirmationModal}
+        action="Cancelar pedido"
         response="¿Estás seguro de que deseas cancelar el pedido?"
       />
     </div>
