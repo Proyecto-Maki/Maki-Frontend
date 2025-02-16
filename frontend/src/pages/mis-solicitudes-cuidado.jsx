@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import ErrorModal from "../components/ErrorModal.jsx";
 import api from "../api.js";
 import { formatDateTime } from "../functions.js";
+import { Link } from "react-router-dom";
 
 const solicitudAdopcion = [
     { id: "2RYH6", costo: "87446", fecha: "09/01/2025", estado: "Aceptada", mascota: "Yoshi" },
@@ -42,10 +43,11 @@ const MisSolicitudesCuidado = () => {
                                         })}
                                     </h3>
 
-
-                                    <button className="ver-detalle-sa">
-                                        <FaChevronRight id="chevron" />
-                                    </button>
+                                    <Link to="/resumen-cuidado" className="ver-detalle-sa">
+                                        <button className="ver-detalle-sa">
+                                            <FaChevronRight id="chevron" />
+                                        </button>
+                                    </Link>
                                 </div>
                             </div>
 

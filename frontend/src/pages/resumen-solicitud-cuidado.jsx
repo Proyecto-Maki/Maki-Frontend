@@ -159,7 +159,7 @@ const ResumenCuidado = () => {
                                 </div>
                                 <div className="mascota-details">
                                     <div className="columna-izquierda">
-                                        <p>{solicitudAdopcion.publicacion.mascota.nombre}</p>
+                                        <p className="name">{solicitudAdopcion.publicacion.mascota.nombre}</p>
                                         <p>{solicitudAdopcion.publicacion.mascota.raza}</p>
                                         <p>
                                             {solicitudAdopcion.publicacion.mascota.sexo === "M"
