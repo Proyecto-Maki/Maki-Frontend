@@ -8,7 +8,7 @@ import item from "../img/paw-item-adoption.png";
 import ErrorModal from "../components/ErrorModal";
 import SuccessModal from "../components/SuccessModal";
 import imagenCuidador from "../img/Mari Juliano.jpg";
-import HojadeVida from "../img/PerritoPanzon.jpg";
+import HojadeVida from "../img/PlantillaHoja de vida - Cuidadores.jpg";
 import imageCvv from "../img/image_lateral_CVV.jpg";
 import ReactImageMagnify from 'react-image-magnify';
 
@@ -26,7 +26,7 @@ const InfoCuidadores = () => {
             fecha: "2025-01-14T03:22:29.365763Z", 
             imagen: imagenCuidador,
             nombre: "Julián",
-            ocupacion: "Cuidador ede masotas",
+            ocupacion: "Cuidador de masotas",
             localidad: "Chapinero",
             categoria_mascota: "Conejos",
             experiencia: "Julián es un técnico enfocado en el cuidado de lagartos. Contó con experiencia trabajando en zoológicos y santuarios de animales en cuidado. ",
