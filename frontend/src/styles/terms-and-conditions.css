@@ -1,11 +1,22 @@
-/* Contenedor principal */
+
+.absolute-container-terms-and-conditions{
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  background-color: #fdf0e6;
+  font-family: "Aoboshi One", sans-serif;
+  min-height: calc(100vh - var(--navbar-height, 80px));
+}
 .terms-and-conditions-container {
-  padding-top: 10%;
   width: 100vw;
   height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
   background-color: #fdf0e6;
+  padding-top: 0%;
+  margin-top: calc(var(--navbar-height, 80px));
+  min-height: calc(100vh - var(--navbar-height, 80px));
 }
 
 .terms-and-conditions-container::-webkit-scrollbar {
@@ -144,4 +155,11 @@
 .custom-shape-divider-bottom .shape-fill,
 .custom-shape-divider-top .shape-fill {
   fill: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .terms-and-conditions-container{
+    padding-top: 10%;
+  }
+  
 }
