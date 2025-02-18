@@ -8,8 +8,8 @@ import WarningModal from "../components/WarningModal";
 import ConfirmationModal from "../components/ConfirmationModal";
 import { useNavigate } from "react-router-dom";
 import api from "../api";
-import adopta_banner from "../img/adoptaBanner.png";
-import dona_banner from "../img/donaBanner.png";
+import adopta_banner from "../img/anuncio_3.png";
+import dona_banner from "../img/anuncio_4.png";
 
 function Servicios() {
   const navigate = useNavigate();
@@ -179,7 +179,7 @@ function Servicios() {
   };
 
   return (
-    <div>
+    <div className="absolute-container-services">
       <Navbar />
       <div className="servicios-container">
         <section className="banners">
