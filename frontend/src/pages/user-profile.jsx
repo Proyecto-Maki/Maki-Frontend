@@ -56,6 +56,7 @@ const UserProfile = () => {
   console.log(mascotas_url);
 
   const adopciones_url = "solicitudes-de-adopcion/";
+  const makipaws_url = "solicitudes-de-cuidado/";
   const [userData, setUserData] = useState({
     name: "",
     email: "",
@@ -407,7 +408,7 @@ const UserProfile = () => {
               className="icon-user-profile"
             />
             {es_cliente === "true" && (
-              <a>
+              <a href={makipaws_url}>
                 <button className="btn-makipaws-user-profile">
                   <ProfileIcon
                     src={makipaws_img}
