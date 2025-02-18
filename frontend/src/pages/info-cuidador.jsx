@@ -48,7 +48,7 @@ const InfoCuidadores = () => {
     const toggleShowMore = (id) => {
         setShowMoreStates((prevStates) => ({
           ...prevStates,
-          [id]: !prevStates[id], // Alterna el estado para la tarjeta correspondiente
+          [id]: !prevStates[id], 
         }));
       };
   return (

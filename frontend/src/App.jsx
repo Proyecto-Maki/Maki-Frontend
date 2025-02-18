@@ -37,6 +37,7 @@ import DonacionesRecibidas from "./pages/donaciones-recibidas";
 import ResumenCuidado from "./pages/resumen-solicitud-cuidado";
 import InfoCuidadores from "./pages/info-cuidador";
 import DonacionesRealizadas from "./pages/donaciones-realizadas";
+import CrearSolicitudCuidado from "./pages/crear-solicitud-cuidado";
 
 function App() {
   const [numItemsCarrito, setNumeroItemsCarrito] = useState(0);
@@ -121,6 +122,7 @@ function App() {
         <Route path="/resumen-cuidado" element={<ResumenCuidado />}></Route>
         <Route path="/info-cuidador" element={<InfoCuidadores />}></Route>
         <Route path="/donaciones-realizadas" element={<DonacionesRealizadas />}></Route>
+        <Route path="/crear-solicitud-cuidado" element={<CrearSolicitudCuidado />}></Route>
       </Routes>
     </BrowserRouter>
   );
