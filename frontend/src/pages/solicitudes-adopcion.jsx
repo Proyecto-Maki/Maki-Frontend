@@ -8,6 +8,7 @@ import api from "../api.js";
 import { use } from "react";
 import { formatDateTime } from "../functions.js";
 
+
 const SolicitudesAdopcion = () => {
   // const solicitudAdopcion = [
   //   { id: "2RYH6", titulo: "Chispa te necesita", fecha: "09/01/2025", estado: "En proceso", primer_nombre: "Juan", primer_apellido: "Pérez" },

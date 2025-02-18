@@ -5,7 +5,7 @@ import "../styles/terms-and-conditions.css";
 
 function TerminosYCondiciones() {
   return (
-    <div>
+    <div className="absolute-container-terms-and-conditions">
       <Navbar />
 
       <div className="terms-and-conditions-container">
@@ -465,6 +465,52 @@ function TerminosYCondiciones() {
                     se conecten directa- mente con las fundaciones, quienes son
                     responsables de garantizar que las adopcio- nes se realicen
                     bajo condiciones éticas y responsables.
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Uso de tarjetas de regalo donadas:
+                <ul>
+                  <li>
+                    Todas las donaciones realizadas a través de Maki serán utilizadas exclusivamente por las fundaciones beneficiarias para la adquisición de productos dentro de la plataforma Maki.
+                  </li>
+                  <li>
+                    Las fundaciones no podrán retirar el monto donado en efectivo ni destinarlo a la compra de productos fuera de Maki.
+                  </li>
+                  <li>
+                    Si un usuario desea realizar una donación de mayor volumen que las ofertadas o directamente a una fundación específica, deberá comunicarse directamente con la fundación de su interés, y no a través de Maki.
+                  </li>
+                  <li>
+                    Maki no será intermediario de donaciones externas a la plataforma, por lo que cualquier gestión externa deberá ser realizada entre el usuario y la fundación de forma independiente.
+                  </li>
+                  <li>
+                    Maki garantiza que las donaciones serán asignadas a las fundaciones beneficiarias de forma transparente y segura, sin intermediarios.
+                  </li>
+                  <li>
+                    Las fundaciones podrán acceder a los fondos donados únicamente para adquirir productos de Maki, asegurando que los recursos sean utilizados de manera efectiva y en beneficio de sus causas.
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Tarifa y Modalidad de Cobro cuidados de MakiPaws:
+                <ul>
+                  <li>
+                    El servicio de cuidado de MakiPaws tiene un costo fijo de $40,000 COP por día de cuidado.
+                  </li>
+                  <li>
+                    El cobro se aplicará por cada día calendario en el que la mascota permanezca bajo cuidado.
+                  </li>
+                  <li>
+                    Los usuarios pueden solicitar el servicio de cuidado por horas o por varios días, según sus necesidades.
+                  </li>
+                  <li>
+                    En caso que el servicio sea solicitado por un tiempo menor a 24 horas, el cobro aplicará igualmente como un día completo de cuidado ($40,000 COP).
+                  </li>
+                  <li>
+                   El usuario deberá proporcionar toda la información necesaria sobre la mascota al momento de solicitar el servicio, a través del formularioo de solicitud de cuidado.
+                  </li>
+                  <li>
+                    El tiempo de cuidado inicia en el momento en el que el cuidador llega al hogar de la mascota y finaliza en el momento en el que el cuidador se retira del hogar de la mascota.
                   </li>
                 </ul>
               </li>

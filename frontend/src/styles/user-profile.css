@@ -218,20 +218,15 @@
 /* ================================ Estilos para botones ================================ */
 
 /* Estilo para el botón de editar */
-.btn-mascotas-user-profile{
+.btn-adopciones-user-profile,
+.btn-mascotas-user-profile,
+.btn-pedidos-user-profile,
+.btn-makipaws-user-profile{
   background-color: #fdf0e6;
   border: none;
 }
 
-.btn-pedidos-user-profile{
-  background-color: #fdf0e6;
-  border: none;
-}
 
-.btn-adopciones-user-profile{
-  background-color: #fdf0e6;
-  border: none;
-}
 
 .button-edit {
   display: -webkit-box;

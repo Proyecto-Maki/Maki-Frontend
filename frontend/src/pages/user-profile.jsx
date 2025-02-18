@@ -56,6 +56,7 @@ const UserProfile = () => {
   console.log(mascotas_url);
 
   const adopciones_url = "solicitudes-de-adopcion/";
+  const makipaws_url = "solicitudes-de-cuidado/";
   const [userData, setUserData] = useState({
     name: "",
     email: "",
@@ -120,7 +121,9 @@ const UserProfile = () => {
                 console.error(
                   error.response ? error.response.data : error.message
                 );
-                setError(error.response ? error.response.data.detail : error.message);
+                setError(
+                  error.response ? error.response.data.detail : error.message
+                );
                 setShowErrorModal(true);
                 setTimeout(() => {
                   navigate("/login");
@@ -167,7 +170,9 @@ const UserProfile = () => {
                   error.response ? error.response.data : error.message
                 );
                 console.log(error.response);
-                setError(error.response ? error.response.data.detail : error.message);
+                setError(
+                  error.response ? error.response.data.detail : error.message
+                );
                 setShowErrorModal(true);
                 setTimeout(() => {
                   navigate("/login");
@@ -187,7 +192,9 @@ const UserProfile = () => {
             "Error en la traida de los datos, la petición no fue exitosa"
           );
           console.log(response.data.message);
-          setError("Error en la traida de los datos, la petición no fue exitosa");
+          setError(
+            "Error en la traida de los datos, la petición no fue exitosa"
+          );
           setShowErrorModal(true);
           setTimeout(() => {
             navigate("/login");
@@ -352,17 +359,15 @@ const UserProfile = () => {
         <div className="saldo-container">
           <div className="saldo-subcontainer">
             <button>
-              <div className="saldo-text">
-                Tu saldo en Maki:
-              </div>
+              <div className="saldo-text">Tu saldo en Maki:</div>
               <div className="saldo-money">
                 $ {formatMoney(parseFloat(userData.saldo))} COP
-              </div>  
+              </div>
             </button>
           </div>
         </div>
 
-         {/* Icons Section */}
+        {/* Icons Section */}
         <div className="icons-container">
           <div className="d-flex flex-wrap justify-content-center">
             <a href={mascotas_url}>
@@ -403,12 +408,16 @@ const UserProfile = () => {
               className="icon-user-profile"
             />
             {es_cliente === "true" && (
-              <ProfileIcon
-                src={makipaws_img}
-                alt="Makipaws"
-                title="MakiPaws"
-                className="icon-user-profile"
-              />
+              <a href={makipaws_url}>
+                <button className="btn-makipaws-user-profile">
+                  <ProfileIcon
+                    src={makipaws_img}
+                    alt="Makipaws"
+                    title="MakiPaws"
+                    className="icon-user-profile"
+                  />
+                </button>
+              </a>
             )}
           </div>
         </div>
@@ -422,12 +431,7 @@ const UserProfile = () => {
             <i className="fas fa-trash-alt"></i> Eliminar Cuenta
           </button>
         </div>
-
       </div>
-
-      
-
-     
 
       {/* <WelcomeModal show={showSuccessModal} handleClose={handleCloseSuccessModal} response={response} /> */}
       <SuccessModal
