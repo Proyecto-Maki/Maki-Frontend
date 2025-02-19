@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "Aoboshi One";
+    src: url("../fonts/AoboshiOne-Regular.ttf") format("truetype");
+  }
+  
 .absolute-container-cuidadores{
     width: 100vw;
     height: 100vh;
@@ -340,6 +345,121 @@
   .see-more-button-cuidador:active {
     transform: scale(0.95);
   }
+
+.container-reseñas-de-cuidador {
+    max-width: 1500px;
+    margin: auto;
+    font-family: Arial, sans-serif;
+    padding-bottom: 20px
+    
+}
+
+.reseñas-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.reseñas {
+    flex: 3;
+}
+
+.escribir-reseña {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 20%;
+    
+
+}
+
+.reseña {
+    border-bottom: 1px solid gold;
+    padding: 16px;
+    background-color: transparent;
+    border-radius: 8px;
+}
+
+.reseña-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.reseña-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.reseña-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.reseña-nombre {
+    font-weight: bold;
+}
+
+.reseña-fecha {
+    font-size: 0.85rem;
+    color: gray;
+}
+
+.reseña-stars {
+    color: gold;
+}
+
+.reseña-texto {
+    margin-top: 10px;
+}
+.reseña:last-child {
+    margin-bottom: 50px;
+}
+.titulo-escribir-reseña-cuidador {
+    font-size: 2rem;
+    color: #F4A258; 
+    margin-bottom: 8px; 
+    text-align: center; 
+    font-family: "Aoboshi One";
+ 
+  }
+  
+  .Subtitulo-escribir-reseña-cuidador {
+    font-size: 0.75rem;
+    color: #302F2F; 
+    margin-bottom: 16px; 
+    text-align: center; 
+    font-family: "Aoboshi One";
+  }
+  
+
+.boton-reseña {
+    background-color: #F4A258;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 5px;
+    width: auto;
+    height: 45px;
+    font-family: "Aoboshi One";
+}
+
+.boton-eliminar {
+    background: none;
+    border: none;
+    color: #F4A258;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+
+  
   
   @media (max-width: 768px) {
     .image-cvv-container{

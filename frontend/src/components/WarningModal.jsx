@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import "../styles/modal.css";
+import "../styles/modal.css"; // Asegúrate de importar el archivo CSS
 
 function WarningModal({ show, handleClose, warning, dirNavigate }) {
   const navigate = useNavigate();
