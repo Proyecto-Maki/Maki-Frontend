@@ -4,6 +4,7 @@ import Navbar from "../components/navbar";
 import LoadingPage from "../components/loading-page";
 import api from "../api"; // Axios configurado
 import imagenCuidador from "../img/Mari Juliano.jpg";
+import { useNavigate } from "react-router-dom";
 import "../styles/info-producto.css";
 
 const InfoProduct = () => {
@@ -27,8 +28,11 @@ const InfoProduct = () => {
     return savedCart ? JSON.parse(savedCart) : {};
   }); // Estado para manejar si el producto está en el carrito
   const cart_code = localStorage.getItem("codigo_carrito"); // Obtén el código del carrito desde localStorage
+  const navigate = useNavigate();
 
-  
+  const handleClick = () => {
+    navigate("/publish-review"); // Cambia "/otra-pagina" por la ruta deseada
+  };
 
   // Obtiene información del producto
   useEffect(() => {
@@ -276,7 +280,7 @@ const InfoProduct = () => {
                     <div className="escribir-reseña-prod">
                         <h2 className="titulo-escribir-reseña-producto"> ¿Deseas escribir una reseña? </h2>
                         <p className="Subtitulo-escribir-reseña-producto"> Comparte tus opiniones y experiencias con otros clientes ¡Nos ayudarías mucho!</p>
-                        <button className="boton-escribir-reseña-prod">Escríbela</button>
+                        <button className="boton-escribir-reseña-prod" onClick={handleClick}>Escríbela</button>
                     </div>
                 </div>
             </div>

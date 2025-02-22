@@ -51,12 +51,14 @@ const UserProfile = () => {
   const es_fundacion = sessionStorage.getItem("is_fundacion");
   console.log(es_cliente);
   const mascotas_url =
-    es_cliente === "true" ? "pet-profile-client/" : "pet-profile-foundation/";
+    es_cliente === "true" ? "perfil-mascota-cliente/" : "perfil-mascota-fundacion/";
   const pedidos_url = "mis-pedidos/";
   console.log(mascotas_url);
 
   const adopciones_url = "solicitudes-de-adopcion/";
   const makipaws_url = "solicitudes-de-cuidado/";
+  const donaciones_url = "donaciones-realizadas/";
+
   const [userData, setUserData] = useState({
     name: "",
     email: "",
@@ -400,13 +402,16 @@ const UserProfile = () => {
                 />
               </button>
             </a>
-
-            <ProfileIcon
-              src={donaciones_img}
-              alt="Donaciones"
-              title="Donaciones"
-              className="icon-user-profile"
-            />
+            <a href={donaciones_url}>
+              <button className="btn-donaciones-user-profile">
+                <ProfileIcon
+                  src={donaciones_img}
+                  alt="Donaciones"
+                  title="Donaciones"
+                  className="icon-user-profile"
+                />
+              </button>
+            </a>
             {es_cliente === "true" && (
               <a href={makipaws_url}>
                 <button className="btn-makipaws-user-profile">

@@ -141,10 +141,11 @@ const SolicitudesAdopcion = () => {
                       {formatDateTime(solicitudAdopcion.fecha)}{" "}
                     </span>
                   </p>
+                  <button className="estado-sa">
+                    {solicitudAdopcion.estado}
+                  </button>
                 </div>
-                <button className="estado-sa">
-                  {solicitudAdopcion.estado}
-                </button>
+                
               </div>
             </div>
           ))

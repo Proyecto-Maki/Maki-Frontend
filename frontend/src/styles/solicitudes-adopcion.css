@@ -135,6 +135,7 @@
     font-size: 0.8rem;
     align-self: flex-start;
     pointer-events: none;
+    margin-top: 3%;
 }
 
 .nombre-cliente-sa,

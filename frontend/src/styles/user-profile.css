@@ -221,7 +221,8 @@
 .btn-adopciones-user-profile,
 .btn-mascotas-user-profile,
 .btn-pedidos-user-profile,
-.btn-makipaws-user-profile{
+.btn-makipaws-user-profile,
+.btn-donaciones-user-profile{
   background-color: #fdf0e6;
   border: none;
 }
