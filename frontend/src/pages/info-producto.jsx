@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Navbar from "../components/navbar";
 import LoadingPage from "../components/loading-page";
 import api from "../api"; // Axios configurado
+import imagenCuidador from "../img/Mari Juliano.jpg";
 import "../styles/info-producto.css";
 
 const InfoProduct = () => {
@@ -46,6 +47,8 @@ const InfoProduct = () => {
 
     fetchProduct();
   }, [slug]);
+
+  
 
   // Verifica si el producto está en el carrito
   useEffect(() => {
@@ -93,10 +96,14 @@ const InfoProduct = () => {
     }
   };
 
+  
+
   // Incrementa o decrementa la cantidad
   const handleIncrement = () => setQuantity((prev) => prev + 1);
   const handleDecrement = () =>
     setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
+
+  
 
   if (loading) {
     return <LoadingPage />;
@@ -105,6 +112,33 @@ const InfoProduct = () => {
   if (!product) {
     return <p>No se encontró el producto.</p>;
   }
+
+  const reseñas = [
+    {
+        id: 1,
+        nombre: "Ivana P.",
+        fecha: "25/12/24",
+        estrellas: 4,
+        texto: "Así que mi cachorro tiene un estómago sensible y he probado muchas cosas diferentes...",
+        avatar: imagenCuidador
+    },
+    {
+        id: 2,
+        nombre: "Melissa",
+        fecha: "27/11/24",
+        estrellas: 3,
+        texto: "Nuestros dos perros han sido criados con cordero y arroz integral...",
+        avatar: imagenCuidador
+    },
+    {
+        id: 3,
+        nombre: "Rosa",
+        fecha: "10/11/24",
+        estrellas: 5,
+        texto: "Mi cachorro tenía tantas infecciones de oído que su veterinario sugirió cambiar su dieta...",
+        avatar: imagenCuidador
+    }
+];
 
   const increment = () => {
     setQuantity(quantity + 1);
@@ -115,6 +149,8 @@ const InfoProduct = () => {
       setQuantity(quantity - 1);
     }
   };
+
+  
 
   return (
     <div className="absolute-container-info-producto">
@@ -210,7 +246,42 @@ const InfoProduct = () => {
               <p>{product.ingredientes || "Información no disponible."}</p>
             </div>
           </div>
+          <h2 className="title-comments"> Criticas y reseñas </h2>
+            <div className="container-reseñas-de-producto">
+                <div className="producto-container">
+                    <div className="reseñas-prod">
+                        {reseñas.map((reseña) => (
+                            <div key={reseña.id} className="reseña-prod">
+                                <div className="reseña-prod-header">
+                                    <img src={reseña.avatar} alt={reseña.nombre} className="reseña-avatar-prod" />
+                                    <div className="reseña-info-prod">
+                                        <p className="reseña-nombre-prod">{reseña.nombre}</p>
+                                        <p className="reseña-fecha-prod">{reseña.fecha}</p>
+                                    </div>
+                                    <button className="boton-eliminar-prod" onClick={() => eliminarReseña(reseña.id)}>
+                                        <i className="fas fa-trash"></i>
+                                    </button>
+
+                                </div>
+                                <div className="reseña-stars-prod">
+                                    {Array.from({ length: 5 }).map((_, index) => (
+                                        <span key={index}>{index < reseña.estrellas ? "⭐" : "☆"}</span>
+                                    ))}
+                                </div>
+                                <p className="reseña-texto-prod">{reseña.texto}</p>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div className="escribir-reseña-prod">
+                        <h2 className="titulo-escribir-reseña-producto"> ¿Deseas escribir una reseña? </h2>
+                        <p className="Subtitulo-escribir-reseña-producto"> Comparte tus opiniones y experiencias con otros clientes ¡Nos ayudarías mucho!</p>
+                        <button className="boton-escribir-reseña-prod">Escríbela</button>
+                    </div>
+                </div>
+            </div>
         </div>
+        
       </div>
     </div>
   );
