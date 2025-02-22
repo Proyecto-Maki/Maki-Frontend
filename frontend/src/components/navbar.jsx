@@ -80,12 +80,12 @@ function Navbar() {
             <ul className="navbar-nav mx-auto">
               <li className="nav-item">
                 <a className="nav-link" href="/">
-                  Bienvenido
+                  Inicio
                 </a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/servicios">
-                  Servicios
+                  Fundaciones
                 </a>
               </li>
               <li className="nav-item">
