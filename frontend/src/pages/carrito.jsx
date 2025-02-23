@@ -5,225 +5,164 @@ import api from "../api"; // Tu configuración de Axios para el backend
 import "../styles/carrito.css"; // Importa el archivo CSS
 import MercadoPagoimg from "../img/mercadopago.png";
 import LogoMakiimg from "../img/Logotipo Maki.png";
+import { formatMoney } from "../functions";
+
 const Carrito = () => {
   const [cart, setCart] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [saldo, setSaldo] = useState(0);
+  const [metodoPago, setMetodoPago] = useState("mercadoPago"); // Estado para el método de pago
 
   const fetchCart = async () => {
-    console.log("Iniciando fetchCart...");
     try {
       let codigoCarrito = localStorage.getItem("codigo_carrito");
       if (!codigoCarrito) {
-        console.warn(
-          "No se encontró un código de carrito, generando uno nuevo..."
-        );
-        codigoCarrito = generateRandomAlphaNumericCode(10); // Generar nuevo código
+        codigoCarrito = generateRandomAlphaNumericCode(10);
         localStorage.setItem("codigo_carrito", codigoCarrito);
       }
-
-      console.log("Código del carrito obtenido:", codigoCarrito);
 
       const response = await api.get(
         `/get_estado_carrito?codigo_carrito=${codigoCarrito}`
       );
-      console.log("Respuesta del backend (carrito):", response.data);
 
       const productos = response.data.productos.map((item) => ({
-        id: item.id, // Este ID ahora corresponde al Producto.id real
+        id: item.id,
         name: item.name,
         price: parseFloat(item.price),
         image: item.image,
         quantity: item.cantidad,
       }));
 
-      console.log("Productos mapeados del backend:", productos);
       setCart(productos);
     } catch (error) {
       console.error("Error al obtener los productos del carrito:", error);
     } finally {
       setIsLoading(false);
-      console.log("Finalizado fetchCart.");
     }
   };
+
+  const fetchSaldo = async () => {
+    try {
+      const email = sessionStorage.getItem("email");
+      if (!email) return;
+
+      const esCliente = sessionStorage.getItem("is_cliente") === "true";
+      const esFundacion = sessionStorage.getItem("is_fundacion") === "true";
+      let endpoint = esCliente
+        ? `cliente-profile/?email=${email}`
+        : `fundacion-profile/?email=${email}`;
+
+      const response = await api.get(endpoint, {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
+      });
+
+      if (response.status === 200) {
+        setSaldo(parseFloat(response.data.saldo));
+      }
+    } catch (error) {
+      console.error("Error al obtener el saldo del usuario:", error);
+    }
+  };
+
   const handlePaymentSuccess = async () => {
     try {
-      console.log("🚀 Redirigiendo a Mis Pedidos...");
-      localStorage.removeItem("codigo_carrito"); // Borrar carrito
-      sessionStorage.setItem("wasPaid", "true"); // Marcar que el pago fue exitoso
-      window.location.href = "/mis-pedidos/"; // Redirigir a la página de pedidos
+      localStorage.removeItem("codigo_carrito");
+      sessionStorage.setItem("wasPaid", "true");
+      window.location.href = "/mis-pedidos/";
     } catch (error) {
       console.error("Error al manejar el pago exitoso:", error);
     }
   };
 
   const handlePayment = async () => {
-    try {
-      const items = cart.map((product) => ({
-        title: product.name,
-        quantity: product.quantity,
-        unit_price: product.price,
-        currency_id: "COP",
-      }));
+    const totalCompra = cart.reduce(
+      (total, product) => total + product.price * product.quantity,
+      0
+    );
 
-      console.log("Datos enviados al backend para crear la preferencia:", {
-        items,
-      });
+    const userId = sessionStorage.getItem("user_id");
+    const token = sessionStorage.getItem("token");
 
-      const response = await api.post("/create_preference/", {
-        items,
-        user_id: sessionStorage.getItem("user_id"), // Asegurar que se envíe el user_id
-      });
+    if (!userId || !token) {
+      alert("Error: No estás autenticado. Inicia sesión nuevamente.");
+      return;
+    }
 
-      const initPoint = response.data.init_point;
-      console.log("URL de Mercado Pago (init_point):", initPoint);
+    if (metodoPago === "saldo") {
+      if (saldo >= totalCompra) {
+        try {
+          const response = await api.post(
+            "/pagar_con_saldo_maki", // no me gustan las barras al final diosmio
+            {
+              codigo_carrito: localStorage.getItem("codigo_carrito"),
+              user_id: userId,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
 
-      if (initPoint) {
-        // Eliminar el código de carrito ANTES de redirigir
-        localStorage.removeItem("codigo_carrito");
-
-        // Redirigir a Mercado Pago
-        window.location.href = initPoint;
+          if (response.status === 200) {
+            alert("✅ Pago realizado con éxito usando saldo de Maki!");
+            localStorage.removeItem("codigo_carrito");
+            window.location.href = "/mis-pedidos/";
+          } else {
+            console.error("Error en la respuesta del servidor:", response);
+            alert("⚠️ Error al procesar el pago con saldo.");
+          }
+        } catch (error) {
+          console.error("Error al pagar con saldo:", error);
+          alert("❌ Ocurrió un error al procesar el pago con saldo.");
+        }
       } else {
-        console.error("No se encontró init_point en la respuesta del backend.");
+        alert("⚠️ Saldo insuficiente para completar la compra.");
       }
-    } catch (error) {
-      console.error("Error al iniciar el pago:", error);
-    }
-  };
+    } else {
+      try {
+        const items = cart.map((product) => ({
+          title: product.name,
+          quantity: product.quantity,
+          unit_price: product.price,
+          currency_id: "COP",
+        }));
 
-  // Actualizar cantidad de un producto
-  const updateProductQuantity = async (id, quantity) => {
-    console.log(`Iniciando updateProductQuantity para producto ID ${id}...`);
-    try {
-      const codigoCarrito = localStorage.getItem("codigo_carrito");
-      console.log("Código del carrito para actualización:", codigoCarrito);
-
-      console.log("Datos enviados al backend:", {
-        codigo_carrito: codigoCarrito,
-        producto_id: id,
-        cantidad: quantity,
-      });
-
-      const response = await api.post("/update_cantidad_producto/", {
-        codigo_carrito: codigoCarrito,
-        producto_id: id,
-        cantidad: quantity,
-      });
-
-      console.log(
-        `Respuesta del backend para updateProductQuantity (ID ${id}):`,
-        response.data
-      );
-    } catch (error) {
-      console.error("Error al actualizar la cantidad del producto:", error);
-    }
-  };
-
-  // Incrementar cantidad
-  const increaseQuantity = (id) => {
-    console.log(`Incrementando cantidad para producto ID ${id}...`);
-    const updatedCart = cart.map((product) =>
-      product.id === id
-        ? { ...product, quantity: product.quantity + 1 }
-        : product
-    );
-
-    console.log("Carrito actualizado localmente (incrementar):", updatedCart);
-    setCart(updatedCart);
-
-    const product = updatedCart.find((product) => product.id === id);
-    console.log(
-      `Cantidad nueva del producto ID ${id}:`,
-      product ? product.quantity : "No encontrado"
-    );
-
-    updateProductQuantity(id, product.quantity);
-  };
-
-  // Decrementar cantidad
-  const decreaseQuantity = (id) => {
-    console.log(`Decrementando cantidad para producto ID ${id}...`);
-    const updatedCart = cart.map((product) =>
-      product.id === id && product.quantity > 1
-        ? { ...product, quantity: product.quantity - 1 }
-        : product
-    );
-
-    console.log("Carrito actualizado localmente (decrementar):", updatedCart);
-    setCart(updatedCart);
-
-    const product = updatedCart.find((product) => product.id === id);
-    console.log(
-      `Cantidad nueva del producto ID ${id}:`,
-      product ? product.quantity : "No encontrado"
-    );
-
-    if (product && product.quantity > 0) {
-      updateProductQuantity(id, product.quantity);
-    }
-  };
-
-  // Eliminar producto del carrito
-  const removeFromCart = async (id) => {
-    console.log(`Iniciando eliminación del producto ID ${id} del carrito...`);
-    try {
-      const codigoCarrito = localStorage.getItem("codigo_carrito");
-      console.log("Código del carrito obtenido:", codigoCarrito);
-
-      const requestData = {
-        codigo_carrito: codigoCarrito,
-        producto_id: id,
-      };
-
-      console.log("Datos enviados al backend para eliminación:", requestData);
-
-      // Llamada al backend para eliminar el producto
-      const response = await api.post(
-        "/remove_product_from_cart/",
-        requestData
-      );
-
-      console.log(
-        `Respuesta del backend para eliminar producto ID ${id}:`,
-        response.data
-      );
-
-      // Actualizar el estado local después de eliminar
-      const updatedCart = cart.filter((product) => product.id !== id);
-      console.log("Carrito actualizado localmente (eliminar):", updatedCart);
-      setCart(updatedCart);
-    } catch (error) {
-      console.error("Error al eliminar el producto del carrito:", error);
-      if (error.response) {
-        console.log(
-          "Datos de respuesta del backend (error):",
-          error.response.data
+        const response = await api.post(
+          "/create_preference/",
+          {
+            items,
+            user_id: userId,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // También asegurar autenticación
+            },
+          }
         );
-        console.log("Estado de la respuesta:", error.response.status);
+
+        const initPoint = response.data.init_point;
+        if (initPoint) {
+          localStorage.removeItem("codigo_carrito");
+          window.location.href = initPoint;
+        } else {
+          alert("❌ Error: No se encontró el enlace de pago.");
+        }
+      } catch (error) {
+        console.error("Error al iniciar el pago:", error);
+        alert("❌ Error al procesar el pago con Mercado Pago.");
       }
     }
   };
-
-  const totalPrice = cart.reduce(
-    (total, product) => total + product.price * product.quantity,
-    0
-  );
 
   useEffect(() => {
     if (sessionStorage.getItem("wasPaid")) {
       handlePaymentSuccess();
     }
-    fetchCart(); // Obtener el carrito al cargar la página
-
-    // Si el usuario regresa después del pago, verificar y limpiar carrito
-    const wasPaid = sessionStorage.getItem("wasPaid");
-    if (wasPaid) {
-      console.log("✅ Pago detectado, reseteando carrito...");
-      localStorage.removeItem("codigo_carrito");
-      sessionStorage.removeItem("wasPaid"); // Limpiar flag de pago
-      setCart([]);
-      fetchCart(); // Volver a obtener un carrito vacío
-    }
+    fetchCart();
+    fetchSaldo();
   }, []);
 
   if (isLoading) {
@@ -236,30 +175,47 @@ const Carrito = () => {
       <div className="background-container-carrito">
         <div className="content-container-carrito">
           <div className="left-column">
-            {/* Fila superior: Información de pago */}
             <div className="top-row">
               <div className="payment-card">
                 <h3 className="card-title">Tu información de pago</h3>
                 <div className="payment-method">
                   <div className="payment-option">
-                    <input type="radio" id="mercadoPago" name="payment" className="btn-payment" defaultChecked />
+                    <input
+                      type="radio"
+                      id="mercadoPago"
+                      name="payment"
+                      className="btn-payment"
+                      checked={metodoPago === "mercadoPago"}
+                      onChange={() => setMetodoPago("mercadoPago")}
+                    />
                     <label htmlFor="mercadoPago">
-                      <img src={MercadoPagoimg} alt="Mercado Pago" width="24" height="24" />
+                      <img
+                        src={MercadoPagoimg}
+                        alt="Mercado Pago"
+                        width="24"
+                        height="24"
+                      />
                       Mercado Pago
                     </label>
                   </div>
                   <div className="payment-option">
-                    <input type="radio" id="saldo" name="payment" className="btn-payment" />
+                    <input
+                      type="radio"
+                      id="saldo"
+                      name="payment"
+                      className="btn-payment"
+                      checked={metodoPago === "saldo"}
+                      onChange={() => setMetodoPago("saldo")}
+                    />
                     <label htmlFor="saldo">
                       <img src={LogoMakiimg} alt="Maki" className="maki-icon" />
-                      Saldo (disponible: $50.000)
+                      Saldo (disponible: ${formatMoney(saldo)})
                     </label>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Fila media: Lista de productos */}
             <div className="middle-row">
               {cart.length === 0 ? (
                 <p>Carrito vacío :(</p>
@@ -277,52 +233,39 @@ const Carrito = () => {
                         ${(product.price * product.quantity).toLocaleString()}
                       </p>
                     </div>
-                    <div className="d-flex flex-column">
-                      <div className="quantity-controls">
-                        <button
-                          className="quantity-button"
-                          onClick={() => decreaseQuantity(product.id)}
-                        >
-                          -
-                        </button>
-                        <span className="quantity-display">
-                          {product.quantity}
-                        </span>
-                        <button
-                          className="quantity-button"
-                          onClick={() => increaseQuantity(product.id)}
-                        >
-                          +
-                        </button>
-                      </div>
-                      <button
-                        className="remove-button"
-                        onClick={() => removeFromCart(product.id)}
-                      >
-                        <i className="fas fa-trash-alt remove-icon"></i>{" "}
-                        <span className="remove-text">Remover</span>{" "}
-                      </button>
-                    </div>
                   </div>
                 ))
               )}
             </div>
           </div>
 
-          {/* Columna derecha */}
           <div className="right-column">
             <div className="summary-card">
               <h3 className="card-title">Resumen de compra</h3>
-              <p>Precio sin IVA: ${totalPrice.toLocaleString()}</p>
               <p>
-                <strong>TOTAL: ${totalPrice.toLocaleString()}</strong>
+                Precio sin IVA: $
+                {cart
+                  .reduce(
+                    (total, product) =>
+                      total + product.price * product.quantity,
+                    0
+                  )
+                  .toLocaleString()}
               </p>
-              {/* Botón de pagar */}
+              <p>
+                <strong>
+                  TOTAL: $
+                  {cart
+                    .reduce(
+                      (total, product) =>
+                        total + product.price * product.quantity,
+                      0
+                    )
+                    .toLocaleString()}
+                </strong>
+              </p>
               <button className="Btn-carrito-pay" onClick={handlePayment}>
                 Pagar
-                <svg className="svgIcon" viewBox="0 0 576 512">
-                  <path d="M512 80c8.8 0 16 7.2 16 16v32H48V96c0-8.8 7.2-16 16-16H512zm16 144V416c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V224H528zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm56 304c-13.3 0-24 10.7-24 24s10.7 24 24 24h48c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm128 0c-13.3 0-24 10.7-24 24s10.7 24 24 24H360c13.3 0 24-10.7 24-24s-10.7-24-24-24H248z"></path>
-                </svg>
               </button>
             </div>
           </div>
