@@ -9,7 +9,6 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "start": "serve dist -s -n -L -p $PORT"
-    // "postinstall": "npm install --legacy-peer-deps"
   },
   "dependencies": {
     "@blacklab/react-image-magnify": "^4.1.1",
