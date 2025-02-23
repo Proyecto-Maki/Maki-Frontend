@@ -32,12 +32,13 @@ const Carrito = () => {
         image: item.image,
         quantity: item.cantidad,
       }));
-
+      console.log("Productos del carrito:", productos);
       setCart(productos);
     } catch (error) {
       console.error("Error al obtener los productos del carrito:", error);
     } finally {
       setIsLoading(false);
+      console.log("Carrito cargado.");
     }
   };
 
@@ -157,11 +158,132 @@ const Carrito = () => {
     }
   };
 
+  const updateProductQuantity = async (id, quantity) => {
+    console.log(`Iniciando updateProductQuantity para producto ID ${id}...`);
+    try {
+      const codigoCarrito = localStorage.getItem("codigo_carrito");
+      console.log("Código del carrito para actualización:", codigoCarrito);
+
+      console.log("Datos enviados al backend:", {
+        codigo_carrito: codigoCarrito,
+        producto_id: id,
+        cantidad: quantity,
+      });
+
+      const response = await api.post("/update_cantidad_producto/", {
+        codigo_carrito: codigoCarrito,
+        producto_id: id,
+        cantidad: quantity,
+      });
+
+      console.log(
+        `Respuesta del backend para updateProductQuantity (ID ${id}):`,
+        response.data
+      );
+    } catch (error) {
+      console.error("Error al actualizar la cantidad del producto:", error);
+    }
+  };
+
+  // Incrementar cantidad
+  const increaseQuantity = (id) => {
+    console.log(`Incrementando cantidad para producto ID ${id}...`);
+    const updatedCart = cart.map((product) =>
+      product.id === id
+        ? { ...product, quantity: product.quantity + 1 }
+        : product
+    );
+
+    console.log("Carrito actualizado localmente (incrementar):", updatedCart);
+    setCart(updatedCart);
+
+    const product = updatedCart.find((product) => product.id === id);
+    console.log(
+      `Cantidad nueva del producto ID ${id}:`,
+      product ? product.quantity : "No encontrado"
+    );
+
+    updateProductQuantity(id, product.quantity);
+  };
+
+  // Decrementar cantidad
+  const decreaseQuantity = (id) => {
+    console.log(`Decrementando cantidad para producto ID ${id}...`);
+    const updatedCart = cart.map((product) =>
+      product.id === id && product.quantity > 1
+        ? { ...product, quantity: product.quantity - 1 }
+        : product
+    );
+
+    console.log("Carrito actualizado localmente (decrementar):", updatedCart);
+    setCart(updatedCart);
+
+    const product = updatedCart.find((product) => product.id === id);
+    console.log(
+      `Cantidad nueva del producto ID ${id}:`,
+      product ? product.quantity : "No encontrado"
+    );
+
+    if (product && product.quantity > 0) {
+      updateProductQuantity(id, product.quantity);
+    }
+  };
+
+  // Eliminar producto del carrito
+  const removeFromCart = async (id) => {
+    console.log(`Iniciando eliminación del producto ID ${id} del carrito...`);
+    try {
+      const codigoCarrito = localStorage.getItem("codigo_carrito");
+      console.log("Código del carrito obtenido:", codigoCarrito);
+
+      const requestData = {
+        codigo_carrito: codigoCarrito,
+        producto_id: id,
+      };
+
+      console.log("Datos enviados al backend para eliminación:", requestData);
+
+      // Llamada al backend para eliminar el producto
+      const response = await api.post(
+        "/remove_product_from_cart/",
+        requestData
+      );
+
+      console.log(
+        `Respuesta del backend para eliminar producto ID ${id}:`,
+        response.data
+      );
+
+      // Actualizar el estado local después de eliminar
+      const updatedCart = cart.filter((product) => product.id !== id);
+      console.log("Carrito actualizado localmente (eliminar):", updatedCart);
+      setCart(updatedCart);
+    } catch (error) {
+      console.error("Error al eliminar el producto del carrito:", error);
+      if (error.response) {
+        console.log(
+          "Datos de respuesta del backend (error):",
+          error.response.data
+        );
+        console.log("Estado de la respuesta:", error.response.status);
+      }
+    }
+  };
+
   useEffect(() => {
     if (sessionStorage.getItem("wasPaid")) {
       handlePaymentSuccess();
     }
     fetchCart();
+    const wasPaid = sessionStorage.getItem("wasPaid");
+    if (wasPaid) {
+      console.log("✅ Pago detectado, reseteando carrito...");
+      localStorage.removeItem("codigo_carrito");
+      sessionStorage.removeItem("wasPaid"); // Limpiar flag de pago
+      setCart([]);
+      fetchCart(); // Volver a obtener un carrito vacío
+    }
+
     fetchSaldo();
   }, []);
 
@@ -233,6 +355,35 @@ const Carrito = () => {
                         ${(product.price * product.quantity).toLocaleString()}
                       </p>
                     </div>
+                    <div className="d-flex flex-column">
+                      <div className="quantity-controls">
+                        <button
+                          className="quantity-button"
+                          onClick={() => decreaseQuantity(product.id)}
+                        >
+                          -
+                        </button>
+
+                        <span className="quantity-display">
+                          {product.quantity}
+                        </span>
+
+                        <button
+                          className="quantity-button"
+                          onClick={() => increaseQuantity(product.id)}
+                        >
+                          +
+                        </button>
+                      </div>
+
+                      <button
+                        className="remove-button"
+                        onClick={() => removeFromCart(product.id)}
+                      >
+                        <i className="fas fa-trash-alt remove-icon"></i>{" "}
+                        <span className="remove-text">Remover</span>{" "}
+                      </button>
+                    </div>
                   </div>
                 ))
               )}
@@ -266,6 +417,9 @@ const Carrito = () => {
               </p>
               <button className="Btn-carrito-pay" onClick={handlePayment}>
                 Pagar
+                <svg className="svgIcon" viewBox="0 0 576 512">
+                  <path d="M512 80c8.8 0 16 7.2 16 16v32H48V96c0-8.8 7.2-16 16-16H512zm16 144V416c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V224H528zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm56 304c-13.3 0-24 10.7-24 24s10.7 24 24 24h48c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm128 0c-13.3 0-24 10.7-24 24s10.7 24 24 24H360c13.3 0 24-10.7 24-24s-10.7-24-24-24H248z"></path>
+                </svg>
               </button>
             </div>
           </div>
