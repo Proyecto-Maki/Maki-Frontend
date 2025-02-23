@@ -62,9 +62,13 @@ const Login = () => {
         }
       })
       .catch((error) => {
-        console.error(error.response ? error.response.data : "Error en el servidor");
-        console.log("Error: ",error);
-        setError(error.response ? error.response.data.detail : "Error en el servidor");
+        console.error(
+          error.response ? error.response.data : "Error en el servidor"
+        );
+        console.log("Error: ", error);
+        setError(
+          error.response ? error.response.data.detail : "Error en el servidor"
+        );
         setShowErrorModal(true);
       });
   };
@@ -147,7 +151,7 @@ const Login = () => {
                 <a href="/forget-password">Olvidé mi contraseña</a>
               </p>
               <p className="signup-text">
-                ¿No tienes una cuenta aún? <a href="/register">Únete</a>
+                ¿No tienes una cuenta aún? <a href="/registrate">Únete</a>
               </p>
             </form>
           </div>
