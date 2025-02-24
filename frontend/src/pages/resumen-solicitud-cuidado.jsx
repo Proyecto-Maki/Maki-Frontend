@@ -26,7 +26,7 @@ const ResumenCuidado = () => {
     !sessionStorage.getItem("is_cliente") ||
     !sessionStorage.getItem("is_fundacion")
   ) {
-    window.location.href = "/login";
+    window.location.href = "/iniciar-sesion";
   }
 
   const location = useLocation();
@@ -169,13 +169,10 @@ const ResumenCuidado = () => {
           <div className="card-informacion-cliente">
             <div className="card-content-cliente">
               <h2 className="h2-tarjetas-adopcion">
-                {solicitudCuidado.cuidador.primer_nombre +
-                  " " +
-                  solicitudCuidado.cuidador.segundo_nombre +
-                  " " +
-                  solicitudCuidado.cuidador.primer_apellido +
-                  " " +
-                  solicitudCuidado.cuidador.segundo_apellido}
+                {solicitudCuidado.cuidador.primer_nombre}{" "}
+                {solicitudCuidado.cuidador.segundo_nombre}{" "}
+                {solicitudCuidado.cuidador.primer_apellido}{" "}
+                {solicitudCuidado.cuidador.segundo_apellido}
               </h2>
               <div className="card-content-cliente-interior">
                 <div className="image-container">
@@ -194,10 +191,6 @@ const ResumenCuidado = () => {
                           {solicitudCuidado.cuidador.telefono}
                         </p>
                         <p>
-                          <strong>Fecha de nacimiento:</strong>{" "}
-                          {solicitudCuidado.cuidador.fecha_nacimiento}{" "}
-                        </p>
-                        <p>
                           <strong>Correo:</strong>{" "}
                           {solicitudCuidado.cuidador.email}
                         </p>
@@ -213,8 +206,8 @@ const ResumenCuidado = () => {
                     <>
                       <div className="columna-izquierda">
                         <p>
-                          <strong>Ocupación:</strong> CC{" "}
-                          {solicitudCuidado.cuidador.cedula}
+                          <strong>Ocupación:</strong>{" "}
+                          {solicitudCuidado.cuidador.ocupacion}
                         </p>
                         <p>
                           <strong>Localidad:</strong>{" "}
@@ -260,10 +253,10 @@ const ResumenCuidado = () => {
               <div className="card-content-mascota-interior">
                 <div className="mascota-details">
                   <div className="columna-izquierda">
-                    <p>
-                      {solicitudCuidado.fecha_inicio ===
-                      solicitudCuidado.fecha_fin ? (
-                        <>
+                    {solicitudCuidado.fecha_inicio ===
+                    solicitudCuidado.fecha_fin ? (
+                      <>
+                        <p>
                           <img
                             src={item}
                             alt="item"
@@ -271,50 +264,34 @@ const ResumenCuidado = () => {
                             style={{ height: "20px", marginRight: "10px" }}
                           />
                           <strong>Fecha del cuidado: </strong>
-                          {solicitudCuidado.fecha_inicio}
-                        </>
-                      ) : (
-                        <>
-                          <>
-                            <img
-                              src={item}
-                              alt="item"
-                              className="item"
-                              style={{ height: "20px", marginRight: "10px" }}
-                            />
-                            <strong>Fecha de inicio del cuidado: </strong>
-                            {solicitudCuidado.fecha_inicio}
-                          </>
-                          <>
-                            <img
-                              src={item}
-                              alt="item"
-                              className="item"
-                              style={{ height: "20px", marginRight: "10px" }}
-                            />
-                            <strong>Fecha de fin del cuidado: </strong>
-                            {solicitudCuidado.fecha_fin}
-                          </>
-                        </>
-                      )}
-                    </p>
-                    <p>
-                      {solicitudCuidado.fecha_inicio ===
-                      solicitudCuidado.fecha_fin ? (
-                        <>
+                          {formatDateTime(solicitudCuidado.fecha_inicio)}
+                        </p>
+                      </>
+                    ) : (
+                      <>
+                        <p>
                           <img
                             src={item}
                             alt="item"
                             className="item"
                             style={{ height: "20px", marginRight: "10px" }}
                           />
-                          <strong>Horas de cuidado: </strong>
-                          {solicitudCuidado.horas_cuidado} horas
-                        </>
-                      ) : (
-                        <></>
-                      )}
-                    </p>
+                          <strong>Fecha de inicio del cuidado: </strong>
+                          {formatDateTime(solicitudCuidado.fecha_inicio)}
+                        </p>
+                        <p>
+                          <img
+                            src={item}
+                            alt="item"
+                            className="item"
+                            style={{ height: "20px", marginRight: "10px" }}
+                          />
+                          <strong>Fecha de fin del cuidado: </strong>
+                          {formatDateTime(solicitudCuidado.fecha_fin)}
+                        </p>
+                      </>
+                    )}
+
                     <p>
                       <img
                         src={item}
