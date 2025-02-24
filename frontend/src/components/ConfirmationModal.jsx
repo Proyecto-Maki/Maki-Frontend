@@ -4,6 +4,7 @@ import "../styles/modal.css";
 
 const ConfirmationModal = ({ show, handleYes, handleNo, action, response }) => {
   const isDeleteAction = action && action.includes("Eliminar");
+  const isCancelAction = action && action.includes("Cancelar");
   
   return (
     <Modal show={show} onHide={handleNo}>
@@ -19,7 +20,7 @@ const ConfirmationModal = ({ show, handleYes, handleNo, action, response }) => {
         >
           No
         </Button>
-        {isDeleteAction ? (
+        {isDeleteAction | isCancelAction ? (
           <Button
             variant="primary"
             className="modal-confirm-button-primary-delete"

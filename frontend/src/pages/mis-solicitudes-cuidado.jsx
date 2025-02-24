@@ -34,10 +34,10 @@ const MisSolicitudesCuidado = () => {
     navigate("/login");
   }
 
-  const handleVerDetalleSolicitud = (solicitudCuidado) => {
-    console.log(`Ver detalle de la solicitud de cuidado: ${solicitudCuidado.id}`);
+  const handleVerDetalleSolicitud = (idSolicitud) => {
+    console.log(`Ver detalle de la solicitud de cuidado: ${idSolicitud}`);
     navigate("/resumen-cuidado", {state: {
-      solicitudCuidado}});
+      idSolicitud}});
   }
   
 
@@ -51,6 +51,7 @@ const MisSolicitudesCuidado = () => {
       .then((res) => {
         if (res.status === 200) {
           setSolicitudesAdopcion(res.data);
+          console.log("Solicitudes de cuidado:", res.data);
         } else {
           console.error("Error al obtener las solicitudes de cuidado:", res);
           setError("Error al obtener las solicitudes de cuidado");
@@ -96,7 +97,7 @@ const MisSolicitudesCuidado = () => {
                   </h3>
 
                   
-                    <button className="ver-detalle-sa" onClick={() => handleVerDetalleSolicitud(solicitud)}>
+                    <button className="ver-detalle-sa" onClick={() => handleVerDetalleSolicitud(solicitud.id)}>
                       <FaChevronRight id="chevron" />
                     </button>
                   
