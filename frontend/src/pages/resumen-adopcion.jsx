@@ -151,6 +151,8 @@ const ResumenAdopcion = () => {
     setShowErrorModal(false);
   }
 
+  
+
   return (
     <div className="absolute-resumen-adopcion-container">
       <Navbar />

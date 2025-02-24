@@ -34,6 +34,11 @@ const MisSolicitudesCuidado = () => {
     navigate("/login");
   }
 
+  const handleVerDetalleSolicitud = (solicitudCuidado) => {
+    console.log(`Ver detalle de la solicitud de cuidado: ${solicitudCuidado.id}`);
+    navigate("/resumen-cuidado", {state: {
+      solicitudCuidado}});
+  }
   
 
   useEffect(() => {
@@ -90,11 +95,11 @@ const MisSolicitudesCuidado = () => {
                     })}
                   </h3>
 
-                  <Link to="/resumen-cuidado" className="ver-detalle-sa">
-                    <button className="ver-detalle-sa">
+                  
+                    <button className="ver-detalle-sa" onClick={() => handleVerDetalleSolicitud(solicitud)}>
                       <FaChevronRight id="chevron" />
                     </button>
-                  </Link>
+                  
                 </div>
               </div>
 
