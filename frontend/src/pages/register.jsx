@@ -115,14 +115,17 @@ function Register() {
     const birthDate = new Date(fechaNacimiento);
     let age = today.getFullYear() - birthDate.getFullYear();
     const monthDifference = today.getMonth() - birthDate.getMonth();
-    if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
-        age--;
+    if (
+      monthDifference < 0 ||
+      (monthDifference === 0 && today.getDate() < birthDate.getDate())
+    ) {
+      age--;
     }
     if (age < 18) {
-        return "Debes ser mayor de edad para registrarte.";
+      return "Debes ser mayor de edad para registrarte.";
     }
     return null;
-};
+  };
 
   const handleChange = (e) => {
     setFormData({
@@ -196,7 +199,9 @@ function Register() {
     }
 
     if (type === "user") {
-      const fechaNacimientoError = validateFechaNacimiento(formData.fecha_nacimiento);
+      const fechaNacimientoError = validateFechaNacimiento(
+        formData.fecha_nacimiento
+      );
       if (fechaNacimientoError) {
         setError(fechaNacimientoError);
         setShowErrorModal(true);
@@ -216,12 +221,12 @@ function Register() {
       .post(url, dataToSubmit)
       .then((response) => {
         if (response.status === 201) {
-          console.log("Usuario registrado correctamente");
-          // Redirigir después de la espera si es éxito
+          // Si la respuesta es un éxito, continua con el flujo
           setResponse(response.data.message);
-          setDirNavigate("/confirmation-register");
+          setDirNavigate("/confirmacion-registro");
           setShowSuccessModal(true);
         } else {
+          // Si hay un error, muestra el modal de error y no guarda el usuario
           console.log("Error al registrar el usuario");
           console.log(response.data.message);
           setResponse(response.data.message);
@@ -229,10 +234,21 @@ function Register() {
         }
       })
       .catch((error) => {
-        console.error(error.response ? error.response.data : error.message);
-        console.log(error.response.data.message);
-        setError(error.response ? error.response.data.detail : error.message);
-        setShowErrorModal(true);
+        // // Aquí manejas cualquier error de red o errores del servidor
+        // console.error(error.response ? error.response.data : error.message);
+        // setError(error.response ? error.response.data.detail : error.message);
+        // setShowErrorModal(true);
+        if (error.response) {
+          // Si el error tiene una respuesta de la API
+          setError(
+            error.response.data.detail || "Error al registrar el usuario"
+          );
+          setShowErrorModal(true);
+        } else {
+          // Si el error no tiene respuesta (error de red o otro)
+          setError("Ha ocurrido un error en la red");
+          setShowErrorModal(true);
+        }
       });
   };
 

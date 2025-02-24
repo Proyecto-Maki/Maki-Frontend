@@ -17,7 +17,7 @@ const InfoProduct = () => {
     copia_main,
     copia_main,
     copia_main,
-    copia_main
+    copia_main,
   ]; // Vistas adicionales del producto
   const [product, setProduct] = useState(null); // Información del producto
   const [loading, setLoading] = useState(true);
@@ -27,12 +27,20 @@ const InfoProduct = () => {
     const savedCart = localStorage.getItem("inCart");
     return savedCart ? JSON.parse(savedCart) : {};
   }); // Estado para manejar si el producto está en el carrito
+  const [cartProducts, setCartProducts] = useState([]); // Define cartProducts state
   const cart_code = localStorage.getItem("codigo_carrito"); // Obtén el código del carrito desde localStorage
   const navigate = useNavigate();
 
   const handleClick = () => {
     navigate("/publish-review"); // Cambia "/otra-pagina" por la ruta deseada
   };
+  const codigo_carrito =
+    localStorage.getItem("codigo_carrito") ||
+    (() => {
+      const nuevoCodigo = Math.random().toString(36).substr(2, 10);
+      localStorage.setItem("codigo_carrito", nuevoCodigo);
+      return nuevoCodigo;
+    })();
 
   // Obtiene información del producto
   useEffect(() => {
@@ -52,7 +60,28 @@ const InfoProduct = () => {
     fetchProduct();
   }, [slug]);
 
-  
+  useEffect(() => {
+    const fetchCart = async () => {
+      try {
+        console.log("Fetching cart with codigo_carrito:", codigo_carrito);
+        const response = await api.get(
+          `/get_estado_carrito?codigo_carrito=${codigo_carrito}`
+        );
+        console.log("Cart response:", response.data);
+        const productosEnCarrito = response.data.productos.map(
+          (item) => item.id
+        );
+        setCartProducts(productosEnCarrito);
+        setInCart(
+          productosEnCarrito.reduce((acc, id) => ({ ...acc, [id]: true }), {})
+        );
+        console.log("Productos en carrito obtenidos:", productosEnCarrito);
+      } catch (error) {
+        console.error("Error al obtener el carrito:", error);
+      }
+    };
+    fetchCart();
+  }, [codigo_carrito]);
 
   // Verifica si el producto está en el carrito
   useEffect(() => {
@@ -60,7 +89,7 @@ const InfoProduct = () => {
       if (product?.id) {
         try {
           const response = await api.get(
-            `/producto_en_carrito/?codigo=${cart_code}&id_producto=${product.id}`
+            `/producto_en_carrito/?codigo=${codigo_carrito}&id_producto=${product.id}`
           );
           setInCart((prev) => ({
             ...prev,
@@ -76,38 +105,60 @@ const InfoProduct = () => {
     };
 
     syncCart();
-  }, [product?.id, cart_code]);
+  }, [product?.id, codigo_carrito]);
 
   const agregar_producto = async (producto) => {
-    const nuevoProducto = {
-      codigo: cart_code, // Código del carrito
-      id_producto: producto.id, // ID del producto
+    const userId = sessionStorage.getItem("user_id");
+    if (!userId) {
+      console.error("❌ Error: No se encontró user_id en sessionStorage");
+      setMensaje("Error: No se encontró usuario. Inicia sesión.");
+      return;
+    }
+    const codigoCarrito = localStorage.getItem("codigo_carrito");
+    // Objeto con la información a enviar, que incluye la cantidad deseada.
+    const productoData = {
+      codigo: codigo_carrito,
+      id_producto: producto.id,
+      user_id: userId,
+      cantidad: quantity,
     };
 
-    try {
-      const response = await api.post("agregar_producto/", nuevoProducto);
-      setInCart((prev) => {
-        const updatedCart = { ...prev, [producto.id]: true };
-        localStorage.setItem("inCart", JSON.stringify(updatedCart));
-        return updatedCart;
-      });
-      setMensaje("Producto agregado al carrito.");
-    } catch (err) {
-      console.error("Error al agregar producto:", err.message);
-      setMensaje("Error al agregar el producto.");
-    } finally {
-      setTimeout(() => setMensaje(""), 3000); // Limpia el mensaje después de 3 segundos
+    // Si el producto ya está en el carrito, actualizar la cantidad
+    if (inCart[producto.id]) {
+      try {
+        // Asegúrate de tener este endpoint en el backend para actualizar la cantidad
+        const response = await api.patch("actualizar_producto/", productoData);
+        console.log("✅ Cantidad actualizada:", response.data);
+        setMensaje("Cantidad actualizada en el carrito.");
+        setTimeout(() => setMensaje(""), 3000);
+        // Aquí podrías, si lo requieres, actualizar el estado local con la nueva cantidad.
+      } catch (err) {
+        console.error("❌ Error al actualizar la cantidad:", err.message);
+        setMensaje("Error al actualizar la cantidad.");
+        setTimeout(() => setMensaje(""), 3000);
+      }
+    } else {
+      // Si el producto no está en el carrito, se agrega por primera vez.
+      try {
+        const response = await api.post("agregar_producto/", productoData);
+        console.log("✅ Producto agregado:", response.data);
+        setMensaje("Producto agregado al carrito correctamente.");
+        setTimeout(() => setMensaje(""), 3000);
+        // Marcar el producto como agregado
+        setInCart((prev) => ({ ...prev, [producto.id]: true }));
+        setCartProducts((prev) => [...prev, producto.id]);
+      } catch (err) {
+        console.error("❌ Error al agregar producto:", err.message);
+        setMensaje("Error al agregar el producto al carrito.");
+        setTimeout(() => setMensaje(""), 3000);
+      }
     }
   };
-
-  
 
   // Incrementa o decrementa la cantidad
   const handleIncrement = () => setQuantity((prev) => prev + 1);
   const handleDecrement = () =>
     setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
-
-  
 
   if (loading) {
     return <LoadingPage />;
@@ -119,30 +170,33 @@ const InfoProduct = () => {
 
   const reseñas = [
     {
-        id: 1,
-        nombre: "Ivana P.",
-        fecha: "25/12/24",
-        estrellas: 4,
-        texto: "Así que mi cachorro tiene un estómago sensible y he probado muchas cosas diferentes...",
-        avatar: imagenCuidador
+      id: 1,
+      nombre: "Ivana P.",
+      fecha: "25/12/24",
+      estrellas: 4,
+      texto:
+        "Así que mi cachorro tiene un estómago sensible y he probado muchas cosas diferentes...",
+      avatar: imagenCuidador,
     },
     {
-        id: 2,
-        nombre: "Melissa",
-        fecha: "27/11/24",
-        estrellas: 3,
-        texto: "Nuestros dos perros han sido criados con cordero y arroz integral...",
-        avatar: imagenCuidador
+      id: 2,
+      nombre: "Melissa",
+      fecha: "27/11/24",
+      estrellas: 3,
+      texto:
+        "Nuestros dos perros han sido criados con cordero y arroz integral...",
+      avatar: imagenCuidador,
     },
     {
-        id: 3,
-        nombre: "Rosa",
-        fecha: "10/11/24",
-        estrellas: 5,
-        texto: "Mi cachorro tenía tantas infecciones de oído que su veterinario sugirió cambiar su dieta...",
-        avatar: imagenCuidador
-    }
-];
+      id: 3,
+      nombre: "Rosa",
+      fecha: "10/11/24",
+      estrellas: 5,
+      texto:
+        "Mi cachorro tenía tantas infecciones de oído que su veterinario sugirió cambiar su dieta...",
+      avatar: imagenCuidador,
+    },
+  ];
 
   const increment = () => {
     setQuantity(quantity + 1);
@@ -153,8 +207,6 @@ const InfoProduct = () => {
       setQuantity(quantity - 1);
     }
   };
-
-  
 
   return (
     <div className="absolute-container-info-producto">
@@ -183,19 +235,15 @@ const InfoProduct = () => {
                       className="thumbnail-image"
                     />
                   ))} */}
-                  {
-                    thumbnails.map((thumb, index) => (
-                      <img
-                        key={index}
-                        src={thumb}
-                        alt={`Vista ${index + 1}`}
-                        onClick={() =>
-                          setMainImage(thumb)
-                        }
-                        className="thumbnail-image"
-                      />
-                    ))
-                  }
+                  {thumbnails.map((thumb, index) => (
+                    <img
+                      key={index}
+                      src={thumb}
+                      alt={`Vista ${index + 1}`}
+                      onClick={() => setMainImage(thumb)}
+                      className="thumbnail-image"
+                    />
+                  ))}
                 </div>
               </div>
             </div>
@@ -251,41 +299,60 @@ const InfoProduct = () => {
             </div>
           </div>
           <h2 className="title-comments"> Criticas y reseñas </h2>
-            <div className="container-reseñas-de-producto">
-                <div className="producto-container">
-                    <div className="reseñas-prod">
-                        {reseñas.map((reseña) => (
-                            <div key={reseña.id} className="reseña-prod">
-                                <div className="reseña-prod-header">
-                                    <img src={reseña.avatar} alt={reseña.nombre} className="reseña-avatar-prod" />
-                                    <div className="reseña-info-prod">
-                                        <p className="reseña-nombre-prod">{reseña.nombre}</p>
-                                        <p className="reseña-fecha-prod">{reseña.fecha}</p>
-                                    </div>
-                                    <button className="boton-eliminar-prod" onClick={() => eliminarReseña(reseña.id)}>
-                                        <i className="fas fa-trash"></i>
-                                    </button>
-
-                                </div>
-                                <div className="reseña-stars-prod">
-                                    {Array.from({ length: 5 }).map((_, index) => (
-                                        <span key={index}>{index < reseña.estrellas ? "⭐" : "☆"}</span>
-                                    ))}
-                                </div>
-                                <p className="reseña-texto-prod">{reseña.texto}</p>
-                            </div>
-                        ))}
+          <div className="container-reseñas-de-producto">
+            <div className="producto-container">
+              <div className="reseñas-prod">
+                {reseñas.map((reseña) => (
+                  <div key={reseña.id} className="reseña-prod">
+                    <div className="reseña-prod-header">
+                      <img
+                        src={reseña.avatar}
+                        alt={reseña.nombre}
+                        className="reseña-avatar-prod"
+                      />
+                      <div className="reseña-info-prod">
+                        <p className="reseña-nombre-prod">{reseña.nombre}</p>
+                        <p className="reseña-fecha-prod">{reseña.fecha}</p>
+                      </div>
+                      <button
+                        className="boton-eliminar-prod"
+                        onClick={() => eliminarReseña(reseña.id)}
+                      >
+                        <i className="fas fa-trash"></i>
+                      </button>
                     </div>
-
-                    <div className="escribir-reseña-prod">
-                        <h2 className="titulo-escribir-reseña-producto"> ¿Deseas escribir una reseña? </h2>
-                        <p className="Subtitulo-escribir-reseña-producto"> Comparte tus opiniones y experiencias con otros clientes ¡Nos ayudarías mucho!</p>
-                        <button className="boton-escribir-reseña-prod" onClick={handleClick}>Escríbela</button>
+                    <div className="reseña-stars-prod">
+                      {Array.from({ length: 5 }).map((_, index) => (
+                        <span key={index}>
+                          {index < reseña.estrellas ? "⭐" : "☆"}
+                        </span>
+                      ))}
                     </div>
-                </div>
+                    <p className="reseña-texto-prod">{reseña.texto}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="escribir-reseña-prod">
+                <h2 className="titulo-escribir-reseña-producto">
+                  {" "}
+                  ¿Deseas escribir una reseña?{" "}
+                </h2>
+                <p className="Subtitulo-escribir-reseña-producto">
+                  {" "}
+                  Comparte tus opiniones y experiencias con otros clientes ¡Nos
+                  ayudarías mucho!
+                </p>
+                <button
+                  className="boton-escribir-reseña-prod"
+                  onClick={handleClick}
+                >
+                  Escríbela
+                </button>
+              </div>
             </div>
+          </div>
         </div>
-        
       </div>
     </div>
   );

@@ -24,7 +24,6 @@ const Home = () => {
   // Aquí podrías agregar la URL de la foto de perfil o pasarla como prop
   const userProfileImage = "../src/img/catPfp.jpeg";
 
-
   useEffect(function () {
     if (localStorage.getItem("codigo") === null) {
       localStorage.setItem("codigo", randomValue);
@@ -34,9 +33,9 @@ const Home = () => {
   return (
     <div className="absolute-home-container">
       {/* Navbar */}
-      
+
       <Parallax pages={2.2} className="animation-container">
-      <Navbar />
+        <Navbar />
         <ParallaxLayer offset={0} speed={1.8}>
           <div className="home-container">
             <div className="dog__animation" id="backgroun-dog">
@@ -62,13 +61,21 @@ const Home = () => {
 
             <div className="icon-container">
               <div className="social-icon">
-                <a href="https://www.instagram.com/makishop.live/" target="_blank" rel="noopener noreferrer" className="social-icon instagram">
+                <a
+                  href="https://www.instagram.com/makishop.live/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-icon instagram"
+                >
                   <img src={instagram} alt="instagram" className="instagram" />
                 </a>
               </div>
 
               <div className="social-icon">
-                <a href="#" className="social-icon tiktok">
+                <a
+                  href="https://www.tiktok.com/@makishop.live/"
+                  className="social-icon tiktok"
+                >
                   <img src={tiktok} alt="tiktok" className="tiktok" />
                 </a>
               </div>
@@ -79,20 +86,46 @@ const Home = () => {
           <div className="home-content-2">
             <div className="welcome-article-container">
               <div className="left-text-container-2">
-                <h2><img src={paw} alt="paw" className="paw" style={{width:"50px", justifySelf:"center",paddingRight: "10px"}} />
-                  ¡Bienvenid@ a Maki! {" "}
-                  <img src={paw} alt="paw" className="paw" style={{width:"50px", justifySelf:"center",paddingRight: "10px"}} />
+                <h2>
+                  <img
+                    src={paw}
+                    alt="paw"
+                    className="paw"
+                    style={{
+                      width: "50px",
+                      justifySelf: "center",
+                      paddingRight: "10px",
+                    }}
+                  />
+                  ¡Bienvenid@ a Maki!{" "}
+                  <img
+                    src={paw}
+                    alt="paw"
+                    className="paw"
+                    style={{
+                      width: "50px",
+                      justifySelf: "center",
+                      paddingRight: "10px",
+                    }}
+                  />
                 </h2>
                 <p className="subheading-2">
-                  En Maki, creemos que el bienestar de tu mascota y el cuidado del planeta van de la mano. 
-                  Podrás encontrar alimentos naturales libres de químicos, accesorios ecológicos, servicios especializados de cuidado
-                  y fundaciones de la ciudad de Bogotá, con las cuales podrás adoptar y/o donar. <p style={{color:"#fcf3e3"}}> ¡Así podrás contribuir al bienestar animal! </p>
-                  <br />  
-                  Únete a nuestra comunidad y sé parte del cambio. Con Maki, cada compra y servicio que eliges contribuye a un mundo más sostenible
-                  y lleno de amor por los animales. 
+                  En Maki, creemos que el bienestar de tu mascota y el cuidado
+                  del planeta van de la mano. Podrás encontrar alimentos
+                  naturales libres de químicos, accesorios ecológicos, servicios
+                  especializados de cuidado y fundaciones de la ciudad de
+                  Bogotá, con las cuales podrás adoptar y/o donar.{" "}
+                  <p style={{ color: "#fcf3e3" }}>
+                    {" "}
+                    ¡Así podrás contribuir al bienestar animal!{" "}
+                  </p>
+                  <br />
+                  Únete a nuestra comunidad y sé parte del cambio. Con Maki,
+                  cada compra y servicio que eliges contribuye a un mundo más
+                  sostenible y lleno de amor por los animales.
                 </p>
               </div>
-              
+
               <div className="right-text-container-2">
                 <img src={maki} alt="maki" className="maki" />
               </div>
@@ -103,7 +136,11 @@ const Home = () => {
           offset={1.4}
           speed={1}
           className="footer-container-home-parallax"
-          style={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
         >
           <div className="footer-container-home">
             <div className="divider-footer-home">
@@ -133,7 +170,11 @@ const Home = () => {
                   src={logo}
                   alt="Logo Maki"
                   className="logo-img"
-                  style={{ height: "80px", marginRight: "15px", marginBottom:"30px" }}
+                  style={{
+                    height: "80px",
+                    marginRight: "15px",
+                    marginBottom: "30px",
+                  }}
                 />
               </div>
               <div className="footer-nav-home">
@@ -170,8 +211,9 @@ const Home = () => {
                 <div className="footer-social-home">
                   <div className="social-icon">
                     <a
-                      href="https://www.instagram.com/makishop.live/" 
-                      target="_blank" rel="noopener noreferrer"
+                      href="https://www.instagram.com/makishop.live/"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="social-icon-footer-home instagram"
                     >
                       <img
@@ -182,14 +224,10 @@ const Home = () => {
                     </a>
                   </div>
                   <div className="social-icon">
-                    <a
-                      href="#"
-                      className="social-icon-footer-home tiktok"
-                    >
+                    <a href="#" className="social-icon-footer-home tiktok">
                       <img src={tiktok} alt="tiktok" className="tiktok" />
                     </a>
                   </div>
-
                 </div>
                 <p className="email-footer-home">
                   makishopmanagement@gmail.com
