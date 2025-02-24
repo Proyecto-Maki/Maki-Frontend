@@ -9,7 +9,6 @@ import ErrorModal from "../components/ErrorModal";
 import api from "../api";
 import LoadingPage from "../components/loading-page";
 import { useNavigate } from "react-router-dom";
-import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import SuccessModal from "../components/SuccessModal";
 
 const Login = () => {

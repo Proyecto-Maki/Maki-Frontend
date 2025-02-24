@@ -1,0 +1,553 @@
+.absolute-container-create-care{
+    width: 100vw;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    background-color: #fdf0e6;
+  }
+  
+  .absolute-container-create-care::-webkit-scrollbar{
+    width: 5px;
+    right: 5%;
+    color: #FCF3E3;
+  }
+  
+  .absolute-container-create-care::-webkit-scrollbar-thumb {
+    background: #ffcc80; 
+    border-radius: 80px; 
+  }
+  
+  .absolute-container-create-care::-webkit-scrollbar-thumb:hover {
+    background: #ffa726; 
+  }
+  
+  .absolute-container-create-care::-webkit-scrollbar-track {
+    background: none; 
+  }
+  
+  /* Contenedor imagen fondo del login */
+  .background-container-create-care {
+    background-image: url("/fondo.svg");
+    background-size: contain;
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    position: relative;
+    justify-self: center;
+    min-height: 100vh;
+    width: 80vw;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: calc(var(--navbar-height, 80px));
+    min-height: calc(100vh - var(--navbar-height, 80px)); 
+  }
+
+  .select-pet{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: 1fr 350px;
+  }
+
+  .select-pet h2{
+    font-size: 24px;
+    color: #302f2f;
+  }
+
+  .select-pet p{
+    text-align: left;
+    font-size: 20px;
+    grid-column: 1 / 2;
+  }
+
+  .select-pet button{
+    justify-self: right;
+    align-self: center;
+  }
+
+  .button-select-pet{
+    padding: 12.5px 30px;
+    border: 0;
+    border-radius: 10px;
+    background-color: #7BB66D;
+    color: #ffffff;
+    transition: all 0.5s;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 60px;
+    -webkit-transition: all 0.5s;
+  }
+
+  .button-select-pet:hover{
+    background-color: #6cc555;
+    box-shadow: 0 0 20px #b2e9a4;
+    transform: scale(1.1);
+  }
+
+  .button-select-pet:active{
+    background-color: #6dca55;
+    transition: all 0.25s;
+    -webkit-transition: all 0.25s;
+    box-shadow: none;
+    transform: scale(0.98);
+  }
+
+  .pet-image-selected-care{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  /*diseño del modal de selecionar mascota*/
+  .container-modal-select-pet-care{
+    background-color: #FCF3E3;
+  }
+
+  .custom-modal .modal-content {
+    max-height: 90vh; 
+    overflow-y: auto; 
+  }
+  
+  .custom-modal .modal-content::-webkit-scrollbar {
+    width: 8px; 
+  }
+  
+  .custom-modal .modal-content::-webkit-scrollbar-track {
+    background: #fcf3e3; 
+    border-radius: 10px;
+  }
+  
+  .custom-modal .modal-content::-webkit-scrollbar-thumb {
+    background: #F4A258; 
+    border-radius: 10px;
+  }
+  
+  .custom-modal .modal-content::-webkit-scrollbar-thumb:hover {
+    background: #ffa726; 
+  }
+
+  .custom-modal{
+    width: 100%;
+    justify-self: center;
+    background-color: #FCF3E3;
+    border-radius: 10px;
+    border: 5px solid #BDD3CE;
+    
+    }
+  
+  .title-modal-pet-care{
+    color: #f4a258;
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+  }
+
+  /*Diseño tarjetas modal de seleccionar mascota*/
+  .pet-card-care {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr ;
+    padding: 20px 10px;
+    gap: 5px;
+    align-items: start;
+    justify-content: space-between;
+    background-color: #BDD3CE;
+    border-radius: 15px;
+    width: 100%; 
+    max-width: 1000px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 60px; 
+    position: relative;
+}
+
+.pet-image-care img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 20px;
+  grid-column: 1 / 3;
+}
+
+.pet-image-care{
+  justify-self: center;
+  align-self: center;
+}
+
+.pet-details-care-column1 {
+  flex-grow: 1;
+  grid-column: 2/3;
+}
+
+.pet-details-care-column1 h2 {
+  margin: 0 0 10px 0;
+  font-size: 2rem;
+  color: #fcf3e3;
+}
+
+.pet-details-care-column1 p {
+  margin: 5px 0;
+  font-size: 1rem;
+}
+
+.container-button-select-pet-care{
+  justify-self: center;
+}
+
+.button-select-pet-care-modal{
+  background-color: #f4a258;
+  border-radius: 10px;
+  border: none;
+  width: 100%;
+  height: 40px;
+  color: #FCF3E3;
+}
+
+/*diseño contenedores de información*/
+.solicitar-cuidado-dias{
+  background-color: white;
+  text-align: left;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+  padding: 20px 20px;
+}
+
+.solicitar-cuidado-dias h2{
+  font-size: 24px;
+  color: #302f2f;
+}
+
+.dates-care{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.custom-datepicker{
+  border-radius: 15px;
+  height: 45px;
+  background-color: #fcf3e3;
+  border: none;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.solicitar-cuidado-horas{
+  background-color: white;
+  text-align: left;
+  width: 100%;
+  border-radius: 10px;
+  padding: 20px 20px;
+  margin-top: 20px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.solicitar-cuidado-horas h2{
+  font-size: 24px;
+  color: #302f2f;
+}
+
+.quantity-hours-selector{
+  width: 30%;
+  height: 100%;
+  min-width: 200px;
+  background-color: #fcf3e3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  color: #302f2f9a;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.container-hours-selector span {
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.container-hours-selector span.num {
+  font-size: 5px;
+  border-left: 2px solid rgba(0, 0, 0, 0.1);
+  border-right: 2px solid rgba(0, 0, 0, 0.1);
+  pointer-events: none;
+}
+
+/*diseño contenedor de cuidado medico-especial*/
+.container-special-care{
+  width: 100%;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.container-question-special-care{
+  background-color: white;
+  border-radius: 10px;
+  margin-right: 10px;
+  padding: 20px 20px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.container-question-special-care h2{
+  font-size: 24px;
+  color: #302f2f;
+}
+
+.container-text-special-care{
+  background-color: #F4A258;
+  border-radius: 10px;
+  margin-left: 10px;
+  padding: 7px 7px;
+  text-align: left;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.container-text-special-care p{
+  color: white;
+}
+
+.container-checkbox-agree{
+  display:grid;
+  grid-template-columns: 1fr 200fr;
+  color: white;
+  width: 30%;
+  justify-self: center;
+  gap: 5px;
+}
+
+.select-yes-no{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+}
+
+.radio-label{
+  width: 30%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.radio-label input{
+  width: 20px;
+}
+/*diseño descripción del cuidado*/
+.care-description{
+  width: 100%;
+  margin-top: 20px;
+}
+
+.care-description h2{
+  font-size: 24px;
+  color: #302f2f;
+}
+
+.input-describe-pet-care{
+  border-radius: 10px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+  height: 100px;
+}
+
+/*diseño informaci+on de pago y terminos y condiciones*/
+.container-information{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 20px;
+  gap: 20px;
+  padding: 20px 20px;
+}
+
+.resumen-pago{
+  padding: 10px;
+  border: 2px solid #BDD3CE;
+  border-radius: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.container-checkbox-agree-tandc{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  justify-self: center;
+  text-align: center;
+}
+
+.terminos-condiciones-cuidados{
+  align-self: center;
+}
+
+.terms-checkbox-care-tandc{
+  width: 15px;
+  justify-self: center;
+  margin-right: 10px;
+}
+
+.terms-label-tandc{
+  width: 400px;
+  justify-self: center;
+}
+
+.btn-create-care-pet{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: none;
+  color: #f4a258;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 18px;
+  cursor: pointer;
+  background-color: transparent;
+  transition: background-color 0.3s;
+  margin: 0 auto;
+  max-width: 90%; /* Limitar ancho en pantallas pequeñas */
+  width: auto;
+  border: none;
+}
+
+.btn-create-care-pet::hover{
+    animation: flip 0.5s ease-in-out;
+}
+
+
+
+.btn-create-care-pet i {
+  font-size: 24px; /* Tamaño del ícono */
+  transition: transform 0.3s ease-in-out; /* Animación para el ícono */
+}
+
+.btn-create-care-pet:hover i {
+  animation: bounce 0.6s infinite; /* Animación al pasar el mouse */
+}
+
+.btn-create-care-pet:hover {
+  background-color: #bdd3ce;
+  color: white;
+}
+
+.disabled-care {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/*-----------------------------------------------*/
+  
+  .create-care {
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    padding: 30px;
+    width: 100%;
+    min-height: 90%;
+    max-width: 55vw; 
+    z-index: 10; 
+    background-color: #fdf0e6;
+    border-style: solid;
+    border-color: #bdd3ce;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center; 
+    text-align: center;
+    word-wrap: break-word;
+    margin: 20px 20px;
+  }
+  
+  .total-container-create-care{
+      margin-top: calc(var(--navbar-height, 80px));
+      min-height: calc(100vh - var(--navbar-height, 80px)); 
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      width: 100vw;
+      overflow: auto;
+      gap: 0px;
+  }
+  
+  .name-cuidador {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 48px;
+  }
+  
+  .input-container{
+      width: 90%;
+      height: auto;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+      border-radius: 20px;
+      display: flex;
+      align-items: self-start;
+      transform: translateY(-20px); 
+      margin-top: 5%;
+  }
+  
+  
+  @media (max-width: 768px) {
+  
+      .create-adoption {
+          padding: 15px;
+          max-width: 95vw; 
+      }
+      
+      .text-create-adoption {
+          font-size: 15px; 
+          margin: 5px 0; 
+      }
+      
+      .input-container {
+          width: 100%; 
+          margin-top: 9%; 
+      }
+  
+      .background-container-create-adoption {
+        width: 95%;
+        padding: 15px;
+      }
+    
+    
+      .input-container input {
+        font-size: 14px;
+        height: 45px;
+      }
+    
+      .btn-adopt-pet {
+        font-size: 16px;
+        padding: 10px;
+      }
+  
+      .text-create-adoption {
+          word-wrap: break-word; 
+          overflow-wrap: break-word; 
+          line-height: 1.4; 
+        }
+        
+    }
+    
+    /* Tablets (769px - 1024px) */
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .background-container-create-adoption {
+        width: 85%;
+        padding: 20px;
+      }
+    
+    }
+    
+    /* Escritorio (más de 1024px) */
+    @media (min-width: 1025px) {
+      .background-container-create-adoption {
+        width: 70%;
+      }
+    }
+  

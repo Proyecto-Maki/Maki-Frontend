@@ -80,12 +80,12 @@ function Navbar() {
             <ul className="navbar-nav mx-auto">
               <li className="nav-item">
                 <a className="nav-link" href="/">
-                  Bienvenido
+                  Inicio
                 </a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/servicios">
-                  Servicios
+                  Fundaciones
                 </a>
               </li>
               <li className="nav-item">
@@ -107,7 +107,7 @@ function Navbar() {
             {/* Botones adicionales */}
             <div className="button-login">
               {!isLoginPage && !isUserProfilePage && userLogin === false && (
-                <a href="/login">
+                <a href="/iniciar-sesion">
                   <button className="btn-custom">Login</button>
                 </a>
               )}
@@ -132,7 +132,7 @@ function Navbar() {
 
                     {/* Foto de perfil */}
                     <div className="profile-photo-navbar">
-                      <a href="/user-profile">
+                      <a href="/perfil-usuario">
                         <img
                           src={userProfileImage}
                           alt="Foto de perfil"

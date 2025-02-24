@@ -36,6 +36,8 @@ import MisSolicitudesCuidado from "./pages/mis-solicitudes-cuidado";
 import DonacionesRecibidas from "./pages/donaciones-recibidas";
 import ResumenCuidado from "./pages/resumen-solicitud-cuidado";
 import InfoCuidadores from "./pages/info-cuidador";
+import DonacionesRealizadas from "./pages/donaciones-realizadas";
+import CrearSolicitudCuidado from "./pages/crear-solicitud-cuidado";
 
 function App() {
   const [numItemsCarrito, setNumeroItemsCarrito] = useState(0);
@@ -60,14 +62,14 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/iniciar-sesion" element={<Login />} />
         <Route path="/" element={<Bienvenido />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/registrate" element={<Register />} />
         <Route
-          path="/confirmation-register"
+          path="/confirmacion-registro"
           element={<ConfirmationRegister />}
         />
-        <Route path="/user-profile" element={<UserProfile />} />
+        <Route path="/perfil-usuario" element={<UserProfile />} />
         <Route
           path="/password-reset-confirm/:uidb64/:token"
           element={<PasswordRecovery />}
@@ -76,7 +78,7 @@ function App() {
         {/*<Route path="/loading-page" element={<LoadingPage />}></Route>*/}
         <Route path="/register-pet" element={<RegisterPet />}></Route>
         <Route
-          path="/pet-profile-client"
+          path="/perfil-mascota-cliente"
           element={<PetProfileClient />}
         ></Route>
         <Route path="/publish-review" element={<PublishReview />} />
@@ -89,7 +91,7 @@ function App() {
         {/* Cambia id por slug */}
         <Route path="/adopcion" element={<Adoptions />} />
         <Route
-          path="/pet-profile-foundation"
+          path="/perfil-mascota-fundacion"
           element={<PetProfileFoundation />}
         />
         <Route path="/servicios" element={<Servicios />} />
@@ -119,6 +121,8 @@ function App() {
         <Route path="/donaciones-recibidas" element={<DonacionesRecibidas />}></Route>
         <Route path="/resumen-cuidado" element={<ResumenCuidado />}></Route>
         <Route path="/info-cuidador" element={<InfoCuidadores />}></Route>
+        <Route path="/donaciones-realizadas" element={<DonacionesRealizadas />}></Route>
+        <Route path="/crear-solicitud-cuidado" element={<CrearSolicitudCuidado />}></Route>
       </Routes>
     </BrowserRouter>
   );

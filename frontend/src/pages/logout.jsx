@@ -8,7 +8,7 @@ const Logout = () => {
     const refresh = sessionStorage.getItem('refresh');
 
     if (!token && !refresh) {
-        navigate('/login');
+        navigate('/iniciar-sesion');
     }
 
     api
@@ -27,7 +27,7 @@ const Logout = () => {
                 sessionStorage.removeItem('token');
                 sessionStorage.removeItem('refresh');
                 sessionStorage.removeItem('email');
-                navigate('/login');
+                navigate('/iniciar-sesion');
             } else {
                 console.log('Error in logout');
                 console.log(res.data.message);

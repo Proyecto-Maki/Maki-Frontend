@@ -8,3 +8,13 @@
 .recibiste-tarjeta-content-dr, .cantidad-content-dr{
     margin-left: 10px;
 }
+
+@media (max-width: 768px) {
+    .fila-intermedia-sa{
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+        justify-items: left;
+    }
+    
+}

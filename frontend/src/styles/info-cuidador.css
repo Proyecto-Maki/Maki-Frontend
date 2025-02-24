@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "Aoboshi One";
+    src: url("../fonts/AoboshiOne-Regular.ttf") format("truetype");
+  }
+  
 .absolute-container-cuidadores{
     width: 100vw;
     height: 100vh;
@@ -340,6 +345,130 @@
   .see-more-button-cuidador:active {
     transform: scale(0.95);
   }
+
+.container-reseñas-de-cuidador {
+    width: 100%;
+    max-height: 100vh;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 2%;
+    margin-bottom: 100px ;
+}
+
+.reseñas-container {
+    display: grid;
+    grid-template-columns: 1fr 300px; 
+    width: 100%;
+    max-width: 82%;
+    align-items: start;
+    gap: 20px;
+}
+
+.reseñas {
+    flex: 3;
+    max-width: 100%;
+    
+}
+
+.escribir-reseña {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-self: right;
+    max-width: 100%;
+
+}
+
+.reseña {
+    border-bottom: 1px solid gold;
+    padding: 16px;
+    background-color: transparent;
+    border-radius: 8px;
+}
+
+.reseña-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.reseña-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.reseña-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.reseña-nombre {
+    font-weight: bold;
+}
+
+.reseña-fecha {
+    font-size: 0.85rem;
+    color: gray;
+}
+
+.reseña-stars {
+    color: gold;
+}
+
+.reseña-texto {
+    margin-top: 10px;
+}
+.reseña:last-child {
+    margin-bottom: 50px;
+}
+.titulo-escribir-reseña-cuidador {
+    font-size: 2rem;
+    color: #F4A258; 
+    margin-bottom: 8px; 
+    text-align: center; 
+    font-family: "Aoboshi One";
+ 
+  }
+  
+  .Subtitulo-escribir-reseña-cuidador {
+    font-size: 0.75rem;
+    color: #302F2F; 
+    margin-bottom: 16px; 
+    text-align: center; 
+    font-family: "Aoboshi One";
+  }
+  
+
+.boton-reseña {
+    background-color: #F4A258;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 5px;
+    width: auto;
+    height: 45px;
+    font-family: "Aoboshi One";
+}
+
+.boton-eliminar {
+    background: none;
+    border: none;
+    color: #F4A258;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+
+  
   
   @media (max-width: 768px) {
     .image-cvv-container{
@@ -375,6 +504,19 @@
     .cuidado-button {
         min-width: 100px;
         font-size: 1rem;
+    }
+    .container-reseñas-de-cuidador{
+        flex-direction: column;
+    }
+
+    .reseñas-container{
+        max-width: 100%;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+    .escribir-reseña{
+        margin-bottom: 100px;
     }
 }
 
@@ -441,6 +583,14 @@
         height: auto;
         margin: 0 auto;
     }
+    .container-reseñas-de-cuidador{
+        flex-direction: column;
+    }
+
+    .reseñas-container{
+        grid-template-columns: 1fr;
+        max-width: 100%;
+    }
 }
 
 /* For extra small screens like very narrow mobile screens */
@@ -478,5 +628,13 @@
         flex-direction: column;
         justify-content: center;
         grid-template-columns: 1fr;
+    }
+    .container-reseñas-de-cuidador{
+        flex-direction: column;
+    }
+
+    .reseñas-container{
+        grid-template-columns: 1fr;
+        max-width: 100%;
     }
 }
