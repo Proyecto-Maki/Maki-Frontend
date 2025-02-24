@@ -300,7 +300,7 @@ function Productos() {
               </div>
             )}
 
-            {/* Renderizamos los productos */}
+            {/* Renderizamos los productoss */}
             {productos.length > 0 ? (
               <div className="container-cards-products">
                 <div className="row-productos">
