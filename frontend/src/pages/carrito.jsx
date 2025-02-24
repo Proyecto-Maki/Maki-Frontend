@@ -117,7 +117,7 @@ const Carrito = () => {
           }
         } catch (error) {
           console.error("Error al pagar con saldo:", error);
-          alert("❌ Ocurrió un error al procesar el pago con saldo.");
+          alert("Ocurrió un error al procesar el pago con saldo.");
         }
       } else {
         alert("⚠️ Saldo insuficiente para completar la compra.");
@@ -153,7 +153,7 @@ const Carrito = () => {
         }
       } catch (error) {
         console.error("Error al iniciar el pago:", error);
-        alert("❌ Error al procesar el pago con Mercado Pago.");
+        alert("Error al procesar el pago con Mercado Pago.");
       }
     }
   };
