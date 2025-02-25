@@ -35,46 +35,38 @@ const SolicitudesAdopcion = () => {
     !sessionStorage.getItem("is_cliente") ||
     !sessionStorage.getItem("is_fundacion")
   ) {
-    window.location.href = "/login";
+    window.location.href = "/iniciar-sesion";
   }
 
   useEffect(() => {
-    if (is_cliente === "true") {
-      api
-        .get(`mis-solicitudes-adopcion/${email}/`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((res) => {
-          if (res.status === 200) {
-            setSolicitudesAdopcion(res.data);
-          } else {
-            console.error("Error al obtener las solicitudes de adopción:", res);
-            
-          }
-        })
-        .catch((error) => {
-          console.error("Error al obtener las solicitudes de adopción:", error);
-        });
-    } else {
-      api
-        .get(`solicitudes-adopcion-fundacion/${email}/`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((res) => {
-          if (res.status === 200) {
-            setSolicitudesAdopcion(res.data);
-          } else {
-            console.error("Error al obtener las solicitudes de adopción:", res);
-          }
-        })
-        .catch((error) => {
-          console.error("Error al obtener las solicitudes de adopción:", error);
-        });
-    }
+    const fetchSolicitudesAdopcion = async () => {
+      try {
+        let response;
+        if (is_cliente === "true") {
+          response = await api.get(`mis-solicitudes-adopcion/${email}/`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+        } else {
+          response = await api.get(`solicitudes-adopcion-fundacion/${email}/`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+        }
+  
+        if (response.status === 200) {
+          setSolicitudesAdopcion(response.data);
+        } else {
+          console.error("Error al obtener las solicitudes de adopción:", response);
+        }
+      } catch (error) {
+        console.error("Error al obtener las solicitudes de adopción:", error);
+      }
+    };
+  
+    fetchSolicitudesAdopcion();
   }, []);
 
   const handleVerDetalleSolicitud = (solicitudAdopcion) => {

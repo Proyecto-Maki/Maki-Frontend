@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/productos.css";
 import generateRandomAlphaNumericCode from "../GenerateCardCode";
 import ProductSlider from "../pages/product-slider";
+import LoadingPage from "../components/loading-page";
 
 import { use } from "react";
 import Categories from "../components/categories";
@@ -159,6 +160,7 @@ function Productos() {
         console.log("Productos obtenidos:", res.data);
         setProductos(res.data);
         setFiltroPrecio("Todos");
+        setIsLoading(false);
       })
       .catch((err) => {
         console.error("Error al obtener productos:", err);
@@ -188,6 +190,11 @@ function Productos() {
   useEffect(() => {
     ordenarProductos();
   }, [filtroPrecio]);
+
+
+  if (isLoading) {
+    return <LoadingPage />;
+  }
 
   return (
     <div className="absolute-products-container">

@@ -10,6 +10,8 @@ import { useNavigate } from "react-router-dom";
 import api from "../api";
 import adopta_banner from "../img/anuncio_3.png";
 import dona_banner from "../img/anuncio_4.png";
+import LoadingPage from "../components/loading-page";
+import ServicesSlider from "../pages/services-banner";
 
 function Servicios() {
   const navigate = useNavigate();
@@ -30,6 +32,7 @@ function Servicios() {
   const refresh = sessionStorage.getItem("refresh");
   const is_cliente = sessionStorage.getItem("is_cliente");
   const is_fundacion = sessionStorage.getItem("is_fundacion");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (is_fundacion === "true") {
@@ -81,48 +84,33 @@ function Servicios() {
   // ]);
 
   useEffect(() => {
-    const fetchFundaciones = () => {
-      console.log("Localidades: ", idLocalidad);
-      api
-        .get("fundaciones/")
-        .then((res) => {
-          if (res.status === 200) {
-            setFundaciones(res.data);
-          } else {
-            console.log(res.data.message);
-            setError("Error al cargar las fundaciones");
-            setShowErrorModal(true);
-          }
-        })
-        .catch((error) => {
-          console.log("Error al cargar las fundaciones");
-          setError(error.response ? error.response.data.detail : "Error al cargar las fundaciones");
+    const fetchFundaciones = async () => {
+      try {
+        let response;
+        if (idLocalidad === 0) {
+          console.log("Localidades: ", idLocalidad);
+          response = await api.get("fundaciones/");
+        } else {
+          console.log("Localidad: ", idLocalidad);
+          response = await api.get(`fundaciones/localidad/${idLocalidad}/`);
+        }
+  
+        if (response.status === 200) {
+          setFundaciones(response.data);
+          setIsLoading(false);
+        } else {
+          console.log(response.data.message);
+          setError("Error al cargar las fundaciones");
           setShowErrorModal(true);
-        });
+        }
+      } catch (error) {
+        console.log("Error al cargar las fundaciones");
+        setError(error.response ? error.response.data.detail : "Error al cargar las fundaciones");
+        setShowErrorModal(true);
+      }
     };
-
-    if (idLocalidad === 0) {
-      fetchFundaciones();
-    } else {
-      console.log("Localidad: ", idLocalidad);
-      // setFundaciones([]);
-      api
-        .get(`fundaciones/localidad/${idLocalidad}/`)
-        .then((res) => {
-          if (res.status === 200) {
-            setFundaciones(res.data);
-          } else {
-            console.log(res.data.message);
-            setError("Error al cargar las fundaciones");
-            setShowErrorModal(true);
-          }
-        })
-        .catch((error) => {
-          console.log("Error al cargar las fundaciones");
-          setError(error.response ? error.response.data.detail : error.message);
-          setShowErrorModal(true);
-        });
-    }
+  
+    fetchFundaciones();
   }, [idLocalidad]);
 
   const handleLocalidadChange = (event) => {
@@ -145,13 +133,13 @@ function Servicios() {
       setWarning(
         "Para ver las adopciones disponibles, debes iniciar sesión. ¿Deseas iniciar sesión?"
       );
-      setDirNavigate("/login");
+      setDirNavigate("/iniciar-sesion");
       setShowWarningModal(true);
     } else if (is_fundacion === "true") {
       setWarning(
         "Debes iniciar sesión como cliente para poder adoptar mascotas. ¿Deseas iniciar sesión?"
       );
-      setDirNavigate("/login");
+      setDirNavigate("/iniciar-sesion");
       setShowWarningModal(true);
     } else {
       navigate("/mascotas-adopcion", { state: { fundacion } });
@@ -178,27 +166,15 @@ function Servicios() {
     setWarning("");
   };
 
+  if (isLoading) {
+    return <LoadingPage />;
+  }
+
   return (
     <div className="absolute-container-services">
       <Navbar />
+      <ServicesSlider />
       <div className="servicios-container">
-        <section className="banners">
-          <div class="adopta-card">
-            <img
-              src={adopta_banner}
-              alt="Adopta, no compres"
-              class="adopta-card-img"
-            />
-          </div>
-
-          <div class="donar-card">
-            <img
-              src={dona_banner}
-              alt="Haz tu donación"
-              class="donar-card-img"
-            />
-          </div>
-        </section>
         {is_fundacion === "true" ? (
           <div>
             <div className="fundacion-row">
@@ -275,7 +251,8 @@ function Servicios() {
                 </select>
               </div>
             </section>
-
+            <h2 style={{width: "100vw", color: "#7BB66D", padding: "20px "}}>Conoce nuestras fundaciones:</h2>
+            <p style={{width: "90vw", padding: "10px 20px", fontSize:"25px"}}>Acá podrás encontrar fundaciones animalistas de la ciudad de Bogotá. Con las cuales podrás adoptar mascotas o realizar donaciones para su bienestar.</p>
             <section className="fundaciones">
               {fundaciones.length === 0 ? (
                 <h3 className="no-fundaciones">No hay fundaciones</h3>

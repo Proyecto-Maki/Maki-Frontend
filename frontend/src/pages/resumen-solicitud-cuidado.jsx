@@ -13,6 +13,7 @@ import ConfirmationModal from "../components/ConfirmationModal";
 import SuccessModalReload from "../components/SuccessModalReload";
 import ErrorModal from "../components/ErrorModal.jsx";
 import { formatDateTime } from "../functions";
+import LoadingPage from "../components/loading-page";
 
 const ResumenCuidado = () => {
   const email = sessionStorage.getItem("email");
@@ -20,6 +21,7 @@ const ResumenCuidado = () => {
   const refresh = sessionStorage.getItem("refresh");
   const is_cliente = sessionStorage.getItem("is_cliente");
   const is_fundacion = sessionStorage.getItem("is_fundacion");
+  const [isLoading, setIsLoading] = useState(true);
 
   if (
     !sessionStorage.getItem("email") ||
@@ -69,29 +71,33 @@ const ResumenCuidado = () => {
   };
 
   useEffect(() => {
-    if (idSolicitud && token) {
-      api
-        .get(`mi-solicitud-cuidado/${idSolicitud}/`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((res) => {
-          if (res.status === 200) {
-            console.log(res.data);
-            setSolicitudCuidado(res.data);
+    const fetchSolicitudCuidado = async () => {
+      if (idSolicitud && token) {
+        try {
+          const response = await api.get(`mi-solicitud-cuidado/${idSolicitud}/`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+  
+          if (response.status === 200) {
+            console.log(response.data);
+            setSolicitudCuidado(response.data);
+            setIsLoading(false);
           } else {
-            console.error("Error al obtener la solicitud de cuidado:", res);
+            console.error("Error al obtener la solicitud de cuidado:", response);
             setError("Error al obtener la solicitud de cuidado");
             setShowErrorModal(true);
           }
-        })
-        .catch((error) => {
+        } catch (error) {
           console.error("Error al obtener la solicitud de cuidado:", error);
           setError("Error al obtener la solicitud de cuidado");
           setShowErrorModal(true);
-        });
-    }
+        }
+      }
+    };
+  
+    fetchSolicitudCuidado();
   }, [idSolicitud, token]);
 
   const cancelarCuidado = async (id_solicitud) => {
@@ -152,6 +158,10 @@ const ResumenCuidado = () => {
 
   if (!solicitudCuidado) {
     return <div>Cargando...</div>;
+  }
+
+  if (isLoading) {
+    return <LoadingPage />;
   }
 
   return (

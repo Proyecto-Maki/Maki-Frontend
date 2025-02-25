@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom"; // Importa Link para navegación
+import { Link, useNavigate, useLocation } from "react-router-dom"; // Importa Link para navegación
 import Navbar from "../components/navbar";
 import Footer from "../components/Footer";
 import api from "../api";
@@ -13,120 +13,52 @@ import CategoriesWithProvider from "../components/categories";
 import foto_perfil_cuidador from "../img/Mari Juliano.jpg";
 import item from "../img/paw-item-adoption.png";
 import axios from "axios";
+import LoadingPage from "../components/loading-page";
 
 function Makipaws() {
-  /*const [productos, setProductos] = useState([]);
-  const [mensaje, setMensaje] = useState(""); // Para mostrar mensajes al usuario
-  const [inCart, setInCart] = useState(() => {
-    const savedCart = localStorage.getItem("inCart");
-    return savedCart ? JSON.parse(savedCart) : {};
-  }); // Estado para manejar si cada producto está en el carrito
-  const cloudinaryBaseUrl = "https://res.cloudinary.com/dlktjxg1a/";
-  const codigo_carrito =
-    localStorage.getItem("codigo_carrito") ||
-    (() => {
-      const nuevoCodigo = generateRandomAlphaNumericCode(10); // Genera el código aleatorio
-      localStorage.setItem("codigo_carrito", nuevoCodigo);
-      return nuevoCodigo;
-    })();
-  console.log("Código del carrito generado:", codigo_carrito);
 
-  const agregar_producto = (producto) => {
-    const nuevoProducto = {
-      codigo: codigo_carrito, // Código del carrito
-      id_producto: producto.id, // ID del producto
-    };
+  const email = sessionStorage.getItem("email");
+  const token = sessionStorage.getItem("token");
+  const refresh = sessionStorage.getItem("refresh");
+  const is_cliente = sessionStorage.getItem("is_cliente");
+  const is_fundacion = sessionStorage.getItem("is_fundacion");
 
-    // Log para verificar los datos enviados
-    console.log("Datos enviados:", nuevoProducto);
+  if (
+    !sessionStorage.getItem("email") ||
+    !sessionStorage.getItem("token") ||
+    !sessionStorage.getItem("refresh") ||
+    !sessionStorage.getItem("is_cliente") ||
+    !sessionStorage.getItem("is_fundacion")
+  ) {
+    window.location.href = "/iniciar-sesion";
+  }
 
-    api
-      .post("agregar_producto/", nuevoProducto)
-      .then((res) => {
-        console.log("Respuesta del servidor:", res.data);
-        setMensaje("Producto agregado al carrito correctamente.");
-        setTimeout(() => setMensaje(""), 3000); // Limpia el mensaje después de 3 segundos
-        setInCart((prev) => {
-          const updatedCart = { ...prev, [producto.id]: true };
-          localStorage.setItem("inCart", JSON.stringify(updatedCart));
-          return updatedCart;
-        });
-      })
-      .catch((err) => {
-        console.error("Error al agregar producto:", err.message);
-        setMensaje("Error al agregar el producto al carrito.");
-        setTimeout(() => setMensaje(""), 3000); // Limpia el mensaje después de 3 segundos
-      });
-  };
+  const [isLoading, setIsLoading] = useState(true);
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  const getProductos = () => {
-    api
-      .get("/productos/")
-      .then((res) => {
-        setProductos(res.data); // Guardamos los productos en el estado
-        console.log("Productos:", res.data); // Verificamos los datos en consola
-      })
-      .catch((err) => alert("Error al obtener productos: " + err));
-  };
-
-  useEffect(() => {
-    getProductos();
-  }, []);*/
-
-  // const cuidadores = [
-  //   {
-  //     id: 1,
-  //     nombre: "Julian",
-  //     imagen: foto_perfil_cuidador,
-  //     ocupacion: "Cuidador experto en perros pequeños.",
-  //     categoriaMascotas: "Perros",
-  //     localidad: "Chapinero",
-  //     experiencia:
-  //       "Julián es un técnico enfocado en el cuidado de lagartos. Contó con experiencia trabajando en zoológicos y santuarios de animales.",
-  //   },
-  //   {
-  //     id: 2,
-  //     nombre: "Mariana",
-  //     imagen: foto_perfil_cuidador,
-  //     ocupacion: "Cuidadora especializada en gatos.",
-  //     categoriaMascotas: "Gatos",
-  //     localidad: "Usaquén",
-  //     experiencia:
-  //       "Julián es un técnico enfocado en el cuidado de lagartos. Contó con experiencia trabajando en zoológicos y santuarios de animales.",
-  //   },
-  //   {
-  //     id: 3,
-  //     nombre: "Carlos",
-  //     imagen: foto_perfil_cuidador,
-  //     ocupacion: "Cuidador con experiencia en aves y exóticos.",
-  //     categoriaMascotas: "Aves",
-  //     localidad: "Galerías",
-  //     experiencia:
-  //       "Julián es un técnico enfocado en el cuidado de lagartos. Contó con experiencia trabajando en zoológicos y santuarios de animales.",
-  //   },
-  //   {
-  //     id: 4,
-  //     nombre: "Kelly",
-  //     imagen: foto_perfil_cuidador,
-  //     ocupacion: "Veterinaria.",
-  //     categoriaMascotas: "Gatos",
-  //     localidad: "Fontibón",
-  //     experiencia:
-  //       "Julián es un técnico enfocado en el cuidado de lagartos. Contó con experiencia trabajando en zoológicos y santuarios de animales.",
-  //   },
-  // ];
   const [cuidadores, setCuidadores] = useState([]);
 
+  const handleDetalleCuidador = (idCuidador) => {
+    console.log("ID del cuidador:", idCuidador);
+    navigate("/info-cuidador", { state: { idCuidador } });
+  };
+
   useEffect(() => {
     api
-      .get("/cuidadores/") // Usamos `api` en lugar de `axios`
+      .get("/cuidadores/") 
       .then((response) => {
         setCuidadores(response.data);
+        setIsLoading(false);
       })
       .catch((error) => {
         console.error("Error al obtener los cuidadores:", error);
       });
   }, []);
+
+  if (isLoading) {
+    return <LoadingPage />;
+  }
 
   return (
     <div className="absolute-makipaws-container">
@@ -198,18 +130,23 @@ function Makipaws() {
                           {cuidador.experiencia}
                         </p>
                       </div>
-                      <Link
-                        to={`/info-cuidador/${cuidador.id}`}
+                      {/* <Link
+                    
                         className="btn card-button"
+                      > */}
+                      <button
+                        className="details-cuidador"
+                        onClick={(e) => {
+                          handleDetalleCuidador(cuidador.id);
+                        }}
                       >
-                        <button className="details-cuidador">
-                          <span>¡Me interesa!</span>
-                          <svg width="15px" height="10px" viewBox="0 0 13 10">
-                            <path d="M1,5 L11,5"></path>
-                            <polyline points="8 1 12 5 8 9"></polyline>
-                          </svg>
-                        </button>
-                      </Link>
+                        <span>¡Me interesa!</span>
+                        <svg width="15px" height="10px" viewBox="0 0 13 10">
+                          <path d="M1,5 L11,5"></path>
+                          <polyline points="8 1 12 5 8 9"></polyline>
+                        </svg>
+                      </button>
+                      {/* </Link> */}
                     </div>
                   </div>
                 </div>

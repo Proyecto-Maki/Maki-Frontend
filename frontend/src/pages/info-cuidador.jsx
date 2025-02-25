@@ -11,36 +11,52 @@ import imagenCuidador from "../img/Mari Juliano.jpg";
 import HojadeVida from "../img/PlantillaHoja de vida - Cuidadores.jpg";
 import imageCvv from "../img/image_lateral_CVV.jpg";
 import ReactImageMagnify from "@blacklab/react-image-magnify";
+import LoadingPage from "../components/loading-page";
 const InfoCuidadores = () => {
-  const [publicacionesCuidador, setPublicacionesCuidador] = useState([]);
+  const email = sessionStorage.getItem("email");
+  const token = sessionStorage.getItem("token");
+  const refresh = sessionStorage.getItem("refresh");
+  const is_cliente = sessionStorage.getItem("is_cliente");
+  const is_fundacion = sessionStorage.getItem("is_fundacion");
+  const urlImagen = "http://res.cloudinary.com/dlktjxg1a/";
+
+  if (
+    !sessionStorage.getItem("email") ||
+    !sessionStorage.getItem("token") ||
+    !sessionStorage.getItem("refresh") ||
+    !sessionStorage.getItem("is_cliente") ||
+    !sessionStorage.getItem("is_fundacion")
+  ) {
+    window.location.href = "/iniciar-sesion";
+  }
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const { idCuidador } = location.state || {};
+  const [loading, setLoading] = useState(true);
+  const [datosCuidador, setDatosCuidador] = useState({});
   const [showMoreStates, setShowMoreStates] = useState({});
 
   useEffect(() => {
-    const ejemploCuidador = {
-      id: 2,
-      titulo: "Dale una segunda oportunidad a Lucas",
-      direccion: "Calle 24 # 86 - 30 FONTIBÓN",
-      fecha: "2025-01-14T03:22:29.365763Z",
-      imagen: imagenCuidador,
-      nombre: "Julián",
-      ocupacion: "Cuidador de masotas",
-      localidad: "Chapinero",
-      categoria_mascota: "Conejos",
-      experiencia:
-        "Julián es un técnico enfocado en el cuidado de lagartos. Contó con experiencia trabajando en zoológicos y santuarios de animales en cuidado. ",
-      detalle_cuidador: {
-        id: 1,
-        cedula: "10101010",
-        telefono: "3123948710",
-        correo: "juli2390@gmail.com",
-        fecha_nacimiento: "12/05/1993",
-        localidad: "Kennedy",
-        codigoPostal: "109237",
-        direccion: "cra 12c #145-687",
-      },
+
+    const fetchData = async () => {
+      try {
+        const response = await api.get(`/cuidador/${idCuidador}/`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log("Datos del cuidador:", response.data);
+        setDatosCuidador(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error al obtener al cuidador:", error);
+        setLoading(false);
+      }
     };
 
-    setPublicacionesCuidador([ejemploCuidador]);
+    fetchData();
   }, []);
 
   const toggleShowMore = (id) => {
@@ -79,175 +95,139 @@ const InfoCuidadores = () => {
       avatar: imagenCuidador,
     },
   ];
+
+  if (loading) {
+    return <LoadingPage />;
+  }
   return (
     <div className="absolute-container-cuidadores">
       <Navbar />
       <div className="cuidadores-container">
         <h2 className="title-cuidador"> Información del cuidador </h2>
-        {publicacionesCuidador.length === 0 ? (
-          <div className="no-cuidadores-container">
-            <h3>
-              No hay publicaciones de adopción disponibles en este momento.
-            </h3>
+        
+        <div className="cards-container-cuidador" key={datosCuidador.id}>
+          {" "}
+          {/*este es el contenedor del cuidador*/}
+          <div className="cuidador-image">
+            <h2>{datosCuidador.nombre}</h2>
+            <img src={datosCuidador.imagen} alt={datosCuidador.nombre} />
           </div>
-        ) : (
-          publicacionesCuidador.map((publicacion) => (
-            <div className="cards-container-cuidador" key={publicacion.id}>
-              {" "}
-              {/*este es el contenedor del cuidador*/}
-              <div className="cuidador-image">
-                <h2>{publicacion.nombre}</h2>
-                <img src={publicacion.imagen} alt={publicacion.nombre} />
-              </div>
-              <div className="cuidador-card-info">
-                {showMoreStates[publicacion.id] ? (
-                  <div className="cuidador-more-details">
-                    <p>
-                      <img
-                        src={item}
-                        alt="item"
-                        className="item"
-                        style={{ height: "20px", marginRight: "10px" }}
-                      />
-                      <strong>Cédula:</strong>{" "}
-                      {publicacion.detalle_cuidador.cedula}
-                    </p>
-                    <p>
-                      <img
-                        src={item}
-                        alt="item"
-                        className="item"
-                        style={{ height: "20px", marginRight: "10px" }}
-                      />
-                      <strong>Teléfono:</strong>{" "}
-                      {publicacion.detalle_cuidador.telefono}
-                    </p>
-                    <p>
-                      <img
-                        src={item}
-                        alt="item"
-                        className="item"
-                        style={{ height: "20px", marginRight: "10px" }}
-                      />
-                      <strong>Fecha de Nacimiento:</strong>{" "}
-                      {publicacion.detalle_cuidador.fecha_nacimiento}
-                    </p>
-                    <p>
-                      <img
-                        src={item}
-                        alt="item"
-                        className="item"
-                        style={{ height: "20px", marginRight: "10px" }}
-                      />
-                      <strong>Localidad:</strong>{" "}
-                      {publicacion.detalle_cuidador.localidad}
-                    </p>
-                    <p>
-                      <img
-                        src={item}
-                        alt="item"
-                        className="item"
-                        style={{ height: "20px", marginRight: "10px" }}
-                      />
-                      <strong>Código Postal:</strong>{" "}
-                      {publicacion.detalle_cuidador.codigoPostal}
-                    </p>
-                    <p>
-                      <img
-                        src={item}
-                        alt="item"
-                        className="item"
-                        style={{ height: "20px", marginRight: "10px" }}
-                      />
-                      <strong>Dirección:</strong>{" "}
-                      {publicacion.detalle_cuidador.direccion}
-                    </p>
+          <div className="cuidador-card-info">
+            {showMoreStates[datosCuidador.id] ? (
+              <div className="cuidador-more-details">
+                <p>
+                  <img
+                    src={item}
+                    alt="item"
+                    className="item"
+                    style={{ height: "20px", marginRight: "10px" }}
+                  />
+                  <strong>Cédula:</strong> {datosCuidador.cedula}
+                </p>
+                <p>
+                  <img
+                    src={item}
+                    alt="item"
+                    className="item"
+                    style={{ height: "20px", marginRight: "10px" }}
+                  />
+                  <strong>Teléfono:</strong>{" "}
+                  {datosCuidador.telefono}
+                </p>
+                <p>
+                  <img
+                    src={item}
+                    alt="item"
+                    className="item"
+                    style={{ height: "20px", marginRight: "10px" }}
+                  />
+                  <strong>Localidad:</strong>{" "}
+                  {datosCuidador.localidad}
+                </p>
 
-                    <p>
-                      <img
-                        src={item}
-                        alt="item"
-                        className="item"
-                        style={{ height: "20px", marginRight: "10px" }}
-                      />
-                      <strong>Correo:</strong>{" "}
-                      {publicacion.detalle_cuidador.correo}
-                    </p>
-                  </div>
-                ) : (
-                  <div className="cuidador-details">
-                    <div className="container-detail-up">
-                      <img
-                        src={item}
-                        alt="item"
-                        className="item"
-                        style={{ height: "20px", marginRight: "10px" }}
-                      />
-                      <p className="row-1">
-                        <strong>Ocupación:</strong> {publicacion.ocupacion}
-                      </p>
-                    </div>
-                    <div className="container-detail">
-                      <img
-                        src={item}
-                        alt="item"
-                        className="item"
-                        style={{ height: "20px", marginRight: "10px" }}
-                      />
-                      <p className="row-2">
-                        <strong>Localidad:</strong> {publicacion.localidad}
-                      </p>
-                    </div>
-                    <div className="container-detail">
-                      <img
-                        src={item}
-                        alt="item"
-                        className="item"
-                        style={{ height: "20px", marginRight: "10px" }}
-                      />
-                      <p className="row-1">
-                        <strong>Categoría Mascotas:</strong>{" "}
-                        {publicacion.categoria_mascota}
-                      </p>
-                    </div>
-                    <div className="container-detail-down">
-                      <img
-                        src={item}
-                        alt="item"
-                        className="item"
-                        style={{ height: "20px", marginRight: "10px" }}
-                      />
-                      <p className="row-2">
-                        <strong>Experiencia:</strong> {publicacion.experiencia}
-                      </p>
-                    </div>
-                  </div>
-                )}
-                <button
-                  className="see-more-button-cuidador"
-                  onClick={() => toggleShowMore(publicacion.id)}
-                >
-                  <span>
-                    {showMoreStates[publicacion.id] ? "Ver menos" : "Ver más"}{" "}
-                  </span>
-                  <svg width="20px" height="10px" viewBox="0 0 13 10">
-                    <path d="M1,5 L11,5"></path>
-                    <polyline points="8 1 12 5 8 9"></polyline>
-                  </svg>
-                </button>
+                <p>
+                  <img
+                    src={item}
+                    alt="item"
+                    className="item"
+                    style={{ height: "20px", marginRight: "10px" }}
+                  />
+                  <strong>Correo:</strong> {datosCuidador.email}
+                </p>
               </div>
-              <button
-                className="cuidado-button"
-                title="Adoptar"
-                /*onClick={() =>
-                            handleAdoptarMascota(publicacion.mascota, publicacion.id)
+            ) : (
+              <div className="cuidador-details">
+                <div className="container-detail-up">
+                  <img
+                    src={item}
+                    alt="item"
+                    className="item"
+                    style={{ height: "20px", marginRight: "10px" }}
+                  />
+                  <p className="row-1">
+                    <strong>Ocupación:</strong> {datosCuidador.ocupacion}
+                  </p>
+                </div>
+                <div className="container-detail">
+                  <img
+                    src={item}
+                    alt="item"
+                    className="item"
+                    style={{ height: "20px", marginRight: "10px" }}
+                  />
+                  <p className="row-2">
+                    <strong>Localidad:</strong> {datosCuidador.localidad}
+                  </p>
+                </div>
+                <div className="container-detail">
+                  <img
+                    src={item}
+                    alt="item"
+                    className="item"
+                    style={{ height: "20px", marginRight: "10px" }}
+                  />
+                  <p className="row-1">
+                    <strong>Categoría Mascotas:</strong>{" "}
+                    {datosCuidador.categoria_mascotas}
+                  </p>
+                </div>
+                <div className="container-detail-down">
+                  <img
+                    src={item}
+                    alt="item"
+                    className="item"
+                    style={{ height: "20px", marginRight: "10px" }}
+                  />
+                  <p className="row-2">
+                    <strong>Experiencia:</strong> {datosCuidador.experiencia}
+                  </p>
+                </div>
+              </div>
+            )}
+            <button
+              className="see-more-button-cuidador"
+              onClick={() => toggleShowMore(datosCuidador.id)}
+            >
+              <span>
+                {showMoreStates[datosCuidador.id] ? "Ver menos" : "Ver más"}{" "}
+              </span>
+              <svg width="20px" height="10px" viewBox="0 0 13 10">
+                <path d="M1,5 L11,5"></path>
+                <polyline points="8 1 12 5 8 9"></polyline>
+              </svg>
+            </button>
+          </div>
+          <button
+            className="cuidado-button"
+            title="Adoptar"
+            /*onClick={() =>
+                            handleAdoptarMascota(datosCuidador.mascota, datosCuidador.id)
                             }*/
-              >
-                <i className="fas fa-paw"></i> Solicitar Cuidado
-              </button>
-            </div>
-          ))
-        )}
+          >
+            <i className="fas fa-paw"></i> Solicitar Cuidado
+          </button>
+        </div>
+      
       </div>
       {/*}
       <ErrorModal
@@ -265,17 +245,15 @@ const InfoCuidadores = () => {
         <div className="image-cvv-container">
           <div className="imageMagnifyer">
             <ReactImageMagnify
-              {...{
-                smallImage: {
-                  alt: "Hoja de vida cuidador",
-                  isFluidWidth: true,
-                  src: HojadeVida,
-                },
-                largeImage: {
-                  src: HojadeVida,
-                  width: 1000,
-                  height: 2050,
-                },
+              imageProps={{
+                alt: "Hoja de vida cuidador",
+                isFluidWidth: true,
+                src: `${urlImagen}${datosCuidador.hoja_vida}`,
+              }}
+              magnifiedImageProps={{
+                src: `${urlImagen}${datosCuidador.hoja_vida}`,
+                width: 1050,
+                height: 2050,
               }}
             />
           </div>

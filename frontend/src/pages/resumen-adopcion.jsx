@@ -12,46 +12,6 @@ import SuccessModalNoReload  from "../components/SuccessModalNoReload";
 import ErrorModal from "../components/ErrorModal.jsx";
 
 const ResumenAdopcion = () => {
-  // Datos estáticos
-  // const cliente = {
-  //     primer_nombre: "Ivana",
-  //     segundo_nombre: "Alejandra",
-  //     primer_apellido: "Pedraza",
-  //     segundo_apellido: "Hernandez",
-  //     cedula: "10101010",
-  // };
-
-  // const user = {
-  //     id: "1",
-  //     direccion: "Cra. 80 #9-0",
-  //     correo: "ivana240404@gmail.com",
-  //     telefono: "3002424245"
-  // };
-
-  // const publicacion_adopcion = {
-  //     titulo: "Cachorro juguetón y amable busca hogar",
-  // };
-
-  // const mascota = {
-  //     nombre: "Roberto",
-  //     tipo: "Perro",
-  //     raza: "Golden Retriever",
-  //     edad: "2 años",
-  //     sexo: "Macho",
-  //     estado_salud: "Saludable",
-  //     tamano: "Grande",
-  //     peso: "32kg",
-  //     personalidad: "Juguetón",
-  //     ubicacion: "Bogotá D.C.",
-  //     detalles: "Localidad de Suba, parque el virrey",
-  // };
-
-  // const solicitudAdopcion = {
-  //     id: "F892M",
-  //     estado: "Aceptada",
-  //     motivo: "Me gustan mucho los animales desde que era niña. He tenido muchas mascotas en mi vida y desde temprana edad aprendí a tener la responsabilidad de cómo cuidarlos y educarlos. Cuento con un jardín grande donde Roberto pueda correr y disfrutar del espacio. Trabajo remotamente así que mantengo en casa. No tengo niños y cuento con un gato de 2 años de edad que le gusta jugar con los perros."
-
-  // };
   const email = sessionStorage.getItem("email");
   const token = sessionStorage.getItem("token");
   const refresh = sessionStorage.getItem("refresh");
@@ -65,7 +25,7 @@ const ResumenAdopcion = () => {
     !sessionStorage.getItem("is_cliente") ||
     !sessionStorage.getItem("is_fundacion")
   ) {
-    window.location.href = "/login";
+    window.location.href = "/iniciar-sesion";
   }
 
   const location = useLocation();

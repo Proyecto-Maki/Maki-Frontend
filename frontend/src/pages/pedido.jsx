@@ -96,69 +96,6 @@ const Pedido = () => {
     console.log("La orden es: ", order);
   }, [order]);
 
-  //   const order = {
-  //     id: "2343242",
-  //     total: "$40000",
-  //     fechaCompra: "09/10/2003",
-  //     productos: [
-  //       {
-  //         id: 1,
-  //         name: "Alimento para perro Natural Balance Adultos - 1.5Kg",
-  //         price: 10000,
-  //         image: "../src/img/foodimg/dogfood.png",
-  //         quantity: 1,
-  //       },
-  //       {
-  //         id: 2,
-  //         name: "Alimento para gato Whiskas - 1Kg",
-  //         price: 8000,
-  //         image: "../src/img/foodimg/whiskas.png",
-  //         quantity: 2,
-  //       },
-  //       {
-  //         id: 1,
-  //         name: "Alimento para perro Natural Balance Adultos - 1.5Kg",
-  //         price: 10000,
-  //         image: "../src/img/foodimg/dogfood.png",
-  //         quantity: 1,
-  //       },
-  //       {
-  //         id: 2,
-  //         name: "Alimento para gato Whiskas - 1Kg",
-  //         price: 8000,
-  //         image: "../src/img/foodimg/whiskas.png",
-  //         quantity: 2,
-  //       },
-  //       {
-  //         id: 1,
-  //         name: "Alimento para perro Natural Balance Adultos - 1.5Kg",
-  //         price: 10000,
-  //         image: "../src/img/foodimg/dogfood.png",
-  //         quantity: 1,
-  //       },
-  //       {
-  //         id: 2,
-  //         name: "Alimento para gato Whiskas - 1Kg",
-  //         price: 8000,
-  //         image: "../src/img/foodimg/whiskas.png",
-  //         quantity: 2,
-  //       },
-  //       {
-  //         id: 1,
-  //         name: "Alimento para perro Natural Balance Adultos - 1.5Kg",
-  //         price: 10000,
-  //         image: "../src/img/foodimg/dogfood.png",
-  //         quantity: 1,
-  //       },
-  //       {
-  //         id: 2,
-  //         name: "Alimento para gato Whiskas - 1Kg",
-  //         price: 8000,
-  //         image: "../src/img/foodimg/whiskas.png",
-  //         quantity: 2,
-  //       },
-  //     ],
-  //   };
 
   const handleOpenConfirmationModal = (e, mascotaId) => {
     e.preventDefault();
@@ -192,15 +129,6 @@ const Pedido = () => {
 
   const handleCancelarPedido = async (e) => {
     e.preventDefault();
-    // const confirmacion = window.confirm(
-    //   "¿Estás seguro de que deseas cancelar este pedido? Se reembolsará el total a tu saldo."
-    // );
-
-    // if (!confirmacion) return; // Si el usuario cancela, no hace la petición
-
-    // console.log(
-    //   `Intentando cancelar pedido en: pedidos/${pedido.id}/cancelar/`
-    // );
 
     try {
       const response = await api.put(
