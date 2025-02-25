@@ -10,6 +10,8 @@ import fotoAngel from "../img/AboutUs/FotoAngel.jpeg";
 import fotoCatalina from "../img/AboutUs/FotoCatalina.jpeg";
 import fotoIvana from "../img/AboutUs/FotoIvana.jpg";
 import fotoKelly from "../img/AboutUs/FotoKelly.jpeg";
+import iconDog from "../img/dog_icon_aboutus.png";
+import iconCat from "../img/cat_icon_aboutus.png";
 import fotoFaq from "../img-webp/faq-image.webp";
 import { ImLinkedin } from "react-icons/im";
 import { FaGithub } from "react-icons/fa";
@@ -123,6 +125,40 @@ function AboutUs() {
           </div>
           <div></div>
         </div>
+        <div className="about-us-propose">
+          <div className="about-us-mision-title">
+            <h3>Nuestra propuesta de valor</h3>
+          </div>
+          <div className="about-us-propose-text">
+            <div className="about-us-propose-text-dm">
+              <div style={{alignContent:"center"}}>
+                <img 
+                  src={iconDog}
+                  style={{width:"100%"}}
+                ></img>
+              </div>
+              <div className="text-propose-dm">
+                <h4 style={{color:"#ff793f", fontSize:"30px"}}>Para Dueños de Mascotas</h4>
+                <p style={{fontSize:"28px"}}>Promover el bienestar de las mascotas y el medio ambiente a través de un espacio para encontrar productos sostenibles, cuidadores especializados y apoyar causas animalistas, como lo son adopciones y donaciones contribuyendo a un futuro más ético y responsable con los animales.</p>
+              </div>
+            </div>
+            <hr style={{border:"3px solid #ffa726", borderRadius:"5px"}}></hr>
+            <div className="about-us-propose-text-f">
+              <div className="text-propose-f">
+                <h4 style={{color:"#ff793f", fontSize:"30px"}}>Para Fundaciones</h4>
+                <p style={{fontSize:"28px"}}>Apoyar a las fundaciones en su labor de cuidado y preservación animal, conectándose con productos y servicios éticos y sostenibles, a la vez qué se promueve su visibilidad en una comunidad comprometida con el bienestar animal.</p>
+              </div>
+              <div style={{alignContent:"center"}}>
+                <img 
+                  src={iconCat}
+                  style={{width:"100%", justifySelf:"center"}}
+                ></img>
+              </div>
+              
+            </div>
+          </div>
+          <div></div>
+        </div>
 
         <div class="custom-shape-divider-top-1736726719">
           <svg
@@ -203,29 +239,7 @@ function AboutUs() {
                   </p>
                 </div>
               </div>
-              {/*<div class="accordion-item">
-                <input type="radio" id="section3" name="accordion" />
-                <label for="section3" class="accordion-header">
-                  <label class="accordion-title">¿Cómo protege Maki mis datos personales?</label>
-                  <div class="accordion-icon">
-                    <svg
-                      viewBox="0 0 16 16"
-                      fill="none"
-                      height="16"
-                      width="16"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M4.293 5.293a1 1 0 0 1 1.414 0L8 7.586l2.293-2.293a1 1 0 0 1 1.414 1.414l-3 3a1 1 0 0 1-1.414 0l-3-3a1 1 0 0 1 0-1.414z"
-                        fill="currentColor"
-                      ></path>
-                    </svg>
-                  </div>
-                </label>
-                <div class="content">
-                  <p>This is the content for Section 3.</p>
-                </div>
-              </div>*/}
+              
               <div class="accordion-item">
                 <input type="radio" id="section4" name="accordion" />
                 <label for="section4" class="accordion-header">

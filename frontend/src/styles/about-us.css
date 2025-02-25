@@ -172,6 +172,15 @@
   align-items: stretch;
   height: auto;
 }
+.about-us-propose-text {
+  width: 65%;
+  border: #ffa726 5px solid;
+  background-color: #fcf3e3;
+  border-radius: 25px;
+  padding: 2%;
+  grid-template-rows: 1fr 1fr;
+  height: auto;
+}
 
 .about-us-mision-text-mision {
   width: 40%;
@@ -181,8 +190,27 @@
   text-align: center;
 }
 
+.about-us-propose-text-dm{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  margin-bottom: 5%;
+}
+
+.text-propose-dm{
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-left: 5%;
+}
+
 .vertical-line {
   border-left: 2px solid #fff9e6;
+  margin-right: 0.5%;
+}
+
+.horizontal-line {
+  border-left: 8px solid #bdd3ce;
   margin-right: 0.5%;
 }
 
@@ -194,8 +222,29 @@
   text-align: center;
 }
 
+.about-us-propose-text-f{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 250px;
+  margin-top: 5%;
+}
+
+.text-propose-f{
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-right: 5%;
+}
 
 .about-us-mision {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  padding-bottom: 5%;
+}
+
+.about-us-propose {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -214,6 +263,7 @@
   font-size: 1.2rem;
   text-align: center;
 }
+
 
 .about-us-team {
   display: flex;
@@ -493,6 +543,8 @@
 @media only screen and (max-width: 992px) {
   .FAQ-container{
     grid-template-columns: 1fr;
+    justify-content: center;
+    padding: 20px;
   }
 
   .about-us-container {
@@ -553,6 +605,14 @@
   .footer {
     padding: 0;
   }
+
+  .about-us-propose-text-dm{
+    grid-template-columns: 1fr;
+  }
+
+  .about-us-propose-text-f{
+    grid-template-columns: 1fr;
+  }
 }
 
 @media only screen and (max-width: 600px) {
@@ -592,5 +652,13 @@
   .divider-footer {
     background-color: #7bb66d;
     padding-bottom: 20%;
+  }
+
+  .about-us-propose-text-dm{
+    grid-template-columns: 1fr;
+  }
+
+  .about-us-propose-text-f{
+    grid-template-columns: 1fr;
   }
 }
