@@ -198,6 +198,21 @@ const InfoProduct = () => {
     },
   ];
 
+  const [resenas, setResenas] = useState([]);
+
+  // useEffect(() => {
+  //   const fetchResenas = async () => {
+  //     try {
+  //       const response = await api.get(`resenas/producto/${product.id}/`);
+  //       console.log("Reseñas del producto:", response.data);
+  //       setResenas(response.data);
+
+  //     } catch (error) {
+  //       console.error("Error al cargar las reseñas:", error);
+  //     }
+  //   }
+  // }, []);
+
   const increment = () => {
     setQuantity(quantity + 1);
   };
