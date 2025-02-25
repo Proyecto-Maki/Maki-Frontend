@@ -6,6 +6,9 @@ import api from "../api"; // Axios configurado
 import imagenCuidador from "../img/Mari Juliano.jpg";
 import { useNavigate } from "react-router-dom";
 import "../styles/info-producto.css";
+import { formatDateTime } from "../functions";
+import clientes_img from "../img/Foto_Perfil_Clientes.svg";
+import fundaciones_img from "../img/Foto_Perfil_Fundaciones.svg";
 
 const InfoProduct = () => {
   const { slug } = useParams(); // Obtiene el slug desde la URL
@@ -63,15 +66,15 @@ const InfoProduct = () => {
   const [resenas, setResenas] = useState([]);
 
   useEffect(() => {
-    console.log("Cargando reseñas del producto:", product?.id);
+    console.log("Cargando resenas del producto:", product?.id);
     const fetchResenas = async () => {
       if (product?.id) {
         try {
           const response = await api.get(`resenas/producto/${product.id}/`);
-          console.log("Reseñas del producto:", response.data);
+          console.log("resenas del producto:", response.data);
           setResenas(response.data);
         } catch (error) {
-          console.error("Error al cargar las reseñas:", error);
+          console.error("Error al cargar las resenas:", error);
         }
       }
     };
@@ -186,35 +189,35 @@ const InfoProduct = () => {
     return <p>No se encontró el producto.</p>;
   }
 
-  const reseñas = [
-    {
-      id: 1,
-      nombre: "Ivana P.",
-      fecha: "25/12/24",
-      estrellas: 4,
-      texto:
-        "Así que mi cachorro tiene un estómago sensible y he probado muchas cosas diferentes...",
-      avatar: imagenCuidador,
-    },
-    {
-      id: 2,
-      nombre: "Melissa",
-      fecha: "27/11/24",
-      estrellas: 3,
-      texto:
-        "Nuestros dos perros han sido criados con cordero y arroz integral...",
-      avatar: imagenCuidador,
-    },
-    {
-      id: 3,
-      nombre: "Rosa",
-      fecha: "10/11/24",
-      estrellas: 5,
-      texto:
-        "Mi cachorro tenía tantas infecciones de oído que su veterinario sugirió cambiar su dieta...",
-      avatar: imagenCuidador,
-    },
-  ];
+  // const resenas = [
+  //   {
+  //     id: 1,
+  //     nombre: "Ivana P.",
+  //     fecha: "25/12/24",
+  //     estrellas: 4,
+  //     texto:
+  //       "Así que mi cachorro tiene un estómago sensible y he probado muchas cosas diferentes...",
+  //     avatar: imagenCuidador,
+  //   },
+  //   {
+  //     id: 2,
+  //     nombre: "Melissa",
+  //     fecha: "27/11/24",
+  //     estrellas: 3,
+  //     texto:
+  //       "Nuestros dos perros han sido criados con cordero y arroz integral...",
+  //     avatar: imagenCuidador,
+  //   },
+  //   {
+  //     id: 3,
+  //     nombre: "Rosa",
+  //     fecha: "10/11/24",
+  //     estrellas: 5,
+  //     texto:
+  //       "Mi cachorro tenía tantas infecciones de oído que su veterinario sugirió cambiar su dieta...",
+  //     avatar: imagenCuidador,
+  //   },
+  // ];
 
   // DEBAJO DE ESTO NO AGREGAR USEEFFECTS
 
@@ -322,21 +325,23 @@ const InfoProduct = () => {
           <div className="container-reseñas-de-producto">
             <div className="producto-container">
               <div className="reseñas-prod">
-                {resenas.map((reseña) => (
-                  <div key={reseña.id} className="reseña-prod">
+                {resenas.map((resena) => (
+                  <div key={resena.id} className="reseña-prod">
                     <div className="reseña-prod-header">
                       <img
-                        src={reseña.avatar}
-                        alt={reseña.nombre}
+                        src={clientes_img}
+                        alt="Imagen"
                         className="reseña-avatar-prod"
                       />
+
                       <div className="reseña-info-prod">
-                        <p className="reseña-nombre-prod">{reseña.nombre}</p>
-                        <p className="reseña-fecha-prod">{reseña.fecha}</p>
+                        <p className="reseña-titulo-prod">{resena.titulo}</p>
+                        <p className="reseña-nombre-prod">{resena.user_data.nombre ? resena.user_data.nombre : resena.user_data.primer_nombre}</p>
+                        <p className="reseña-fecha-prod">{formatDateTime(resena.fecha)}</p>
                       </div>
                       <button
                         className="boton-eliminar-prod"
-                        onClick={() => eliminarReseña(reseña.id)}
+                        onClick={() => eliminarresena(resena.id)}
                       >
                         <i className="fas fa-trash"></i>
                       </button>
@@ -344,11 +349,11 @@ const InfoProduct = () => {
                     <div className="reseña-stars-prod">
                       {Array.from({ length: 5 }).map((_, index) => (
                         <span key={index}>
-                          {index < reseña.estrellas ? "⭐" : "☆"}
+                          {index < resena.calificacion ? "⭐" : "☆"}
                         </span>
                       ))}
                     </div>
-                    <p className="reseña-texto-prod">{reseña.texto}</p>
+                    <p className="reseña-texto-prod">{resena.comentario}</p>
                   </div>
                 ))}
               </div>
@@ -356,7 +361,7 @@ const InfoProduct = () => {
               <div className="escribir-reseña-prod">
                 <h2 className="titulo-escribir-reseña-producto">
                   {" "}
-                  ¿Deseas escribir una reseña?{" "}
+                  ¿Deseas escribir una resena?{" "}
                 </h2>
                 <p className="Subtitulo-escribir-reseña-producto">
                   {" "}
