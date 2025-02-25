@@ -409,8 +409,14 @@
     flex-direction: column;
 }
 
-.reseña-nombre {
+.reseña-titulo-cuid {
     font-weight: bold;
+    margin-bottom: 1%;
+}
+
+.reseña-nombre-cuid {
+    font-weight: 500;
+    margin-bottom: 1%;
 }
 
 .reseña-fecha {

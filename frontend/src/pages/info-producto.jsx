@@ -34,6 +34,8 @@ const InfoProduct = () => {
   const cart_code = localStorage.getItem("codigo_carrito"); // Obtén el código del carrito desde localStorage
   const navigate = useNavigate();
 
+  const email = sessionStorage.getItem("email");
+
   const handleClick = () => {
     navigate("/publish-review"); // Cambia "/otra-pagina" por la ruta deseada
   };
@@ -325,37 +327,60 @@ const InfoProduct = () => {
           <div className="container-reseñas-de-producto">
             <div className="producto-container">
               <div className="reseñas-prod">
-                {resenas.map((resena) => (
-                  <div key={resena.id} className="reseña-prod">
-                    <div className="reseña-prod-header">
-                      <img
-                        src={clientes_img}
-                        alt="Imagen"
-                        className="reseña-avatar-prod"
-                      />
+                {resenas.length > 0 ? (
+                  <>
+                    {resenas.map((resena) => (
+                      <div key={resena.id} className="reseña-prod">
+                        <div className="reseña-prod-header">
+                          <img
+                            src={clientes_img}
+                            alt="Imagen"
+                            className="reseña-avatar-prod"
+                          />
 
-                      <div className="reseña-info-prod">
-                        <p className="reseña-titulo-prod">{resena.titulo}</p>
-                        <p className="reseña-nombre-prod">{resena.user_data.nombre ? resena.user_data.nombre : resena.user_data.primer_nombre}</p>
-                        <p className="reseña-fecha-prod">{formatDateTime(resena.fecha)}</p>
+                          <div className="reseña-info-prod">
+                            <p className="reseña-titulo-prod">
+                              {resena.titulo}
+                            </p>
+                            <p className="reseña-nombre-prod">
+                              {resena.user_data.nombre
+                                ? resena.user_data.nombre
+                                : resena.user_data.primer_nombre}
+                            </p>
+                            <p className="reseña-fecha-prod">
+                              {formatDateTime(resena.fecha)}
+                            </p>
+                          </div>
+                          {resena.user_data.email === email ? (
+                            <>
+                              <button
+                                className="boton-eliminar"
+                                onClick={() => eliminarReseña(resena.id)}
+                              >
+                                <i className="fas fa-trash"></i>
+                              </button>
+                            </>
+                          ) : (
+                            <></>
+                          )}
+                          
+                        </div>
+                        <div className="reseña-stars-prod">
+                          {Array.from({ length: 5 }).map((_, index) => (
+                            <span key={index}>
+                              {index < resena.calificacion ? "⭐" : "☆"}
+                            </span>
+                          ))}
+                        </div>
+                        <p className="reseña-texto-prod">{resena.comentario}</p>
                       </div>
-                      <button
-                        className="boton-eliminar-prod"
-                        onClick={() => eliminarresena(resena.id)}
-                      >
-                        <i className="fas fa-trash"></i>
-                      </button>
-                    </div>
-                    <div className="reseña-stars-prod">
-                      {Array.from({ length: 5 }).map((_, index) => (
-                        <span key={index}>
-                          {index < resena.calificacion ? "⭐" : "☆"}
-                        </span>
-                      ))}
-                    </div>
-                    <p className="reseña-texto-prod">{resena.comentario}</p>
-                  </div>
-                ))}
+                    ))}
+                  </>
+                ) : (
+                  <>
+                    <p className="reseña-titulo-prod">No hay comentarios</p>
+                  </>
+                )}
               </div>
 
               <div className="escribir-reseña-prod">

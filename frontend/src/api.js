@@ -25,7 +25,7 @@ api.interceptors.response.use(
   error => {
     if (error.response && error.response.status === 401 && error.response.data.detail === "Given token not valid for any token type") {
       sessionStorage.clear();
-      window.location.href = "/login";
+      window.location.href = "/iniciar-sesion";
     }
     return Promise.reject(error); // Asegúrate de rechazar el error
   }

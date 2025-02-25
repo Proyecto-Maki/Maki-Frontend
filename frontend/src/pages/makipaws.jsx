@@ -46,7 +46,10 @@ function Makipaws() {
 
   useEffect(() => {
     api
-      .get("/cuidadores/") 
+      .get("/cuidadores/", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+      }}) 
       .then((response) => {
         setCuidadores(response.data);
         setIsLoading(false);
