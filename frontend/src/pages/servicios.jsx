@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import api from "../api";
 import adopta_banner from "../img/anuncio_3.png";
 import dona_banner from "../img/anuncio_4.png";
+import LoadingPage from "../components/loading-page";
 
 function Servicios() {
   const navigate = useNavigate();
@@ -30,6 +31,7 @@ function Servicios() {
   const refresh = sessionStorage.getItem("refresh");
   const is_cliente = sessionStorage.getItem("is_cliente");
   const is_fundacion = sessionStorage.getItem("is_fundacion");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (is_fundacion === "true") {
@@ -81,48 +83,33 @@ function Servicios() {
   // ]);
 
   useEffect(() => {
-    const fetchFundaciones = () => {
-      console.log("Localidades: ", idLocalidad);
-      api
-        .get("fundaciones/")
-        .then((res) => {
-          if (res.status === 200) {
-            setFundaciones(res.data);
-          } else {
-            console.log(res.data.message);
-            setError("Error al cargar las fundaciones");
-            setShowErrorModal(true);
-          }
-        })
-        .catch((error) => {
-          console.log("Error al cargar las fundaciones");
-          setError(error.response ? error.response.data.detail : "Error al cargar las fundaciones");
+    const fetchFundaciones = async () => {
+      try {
+        let response;
+        if (idLocalidad === 0) {
+          console.log("Localidades: ", idLocalidad);
+          response = await api.get("fundaciones/");
+        } else {
+          console.log("Localidad: ", idLocalidad);
+          response = await api.get(`fundaciones/localidad/${idLocalidad}/`);
+        }
+  
+        if (response.status === 200) {
+          setFundaciones(response.data);
+          setIsLoading(false);
+        } else {
+          console.log(response.data.message);
+          setError("Error al cargar las fundaciones");
           setShowErrorModal(true);
-        });
+        }
+      } catch (error) {
+        console.log("Error al cargar las fundaciones");
+        setError(error.response ? error.response.data.detail : "Error al cargar las fundaciones");
+        setShowErrorModal(true);
+      }
     };
-
-    if (idLocalidad === 0) {
-      fetchFundaciones();
-    } else {
-      console.log("Localidad: ", idLocalidad);
-      // setFundaciones([]);
-      api
-        .get(`fundaciones/localidad/${idLocalidad}/`)
-        .then((res) => {
-          if (res.status === 200) {
-            setFundaciones(res.data);
-          } else {
-            console.log(res.data.message);
-            setError("Error al cargar las fundaciones");
-            setShowErrorModal(true);
-          }
-        })
-        .catch((error) => {
-          console.log("Error al cargar las fundaciones");
-          setError(error.response ? error.response.data.detail : error.message);
-          setShowErrorModal(true);
-        });
-    }
+  
+    fetchFundaciones();
   }, [idLocalidad]);
 
   const handleLocalidadChange = (event) => {
@@ -177,6 +164,10 @@ function Servicios() {
     setShowWarningModal(false);
     setWarning("");
   };
+
+  if (isLoading) {
+    return <LoadingPage />;
+  }
 
   return (
     <div className="absolute-container-services">

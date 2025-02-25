@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/navbar.jsx";
+import LoadingPage from "../components/loading-page";
 import "../styles/solicitudes-adopcion.css";
 import "../styles/mis-solicitudes-cuidado.css";
 import { FaChevronRight, FaDog } from "react-icons/fa";
@@ -19,6 +20,7 @@ const MisSolicitudesCuidado = () => {
   const [error, setError] = useState("");
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [solicitudAdopcion, setSolicitudesAdopcion] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   if (
     !sessionStorage.getItem("email") ||
@@ -27,11 +29,11 @@ const MisSolicitudesCuidado = () => {
     !sessionStorage.getItem("is_cliente") ||
     !sessionStorage.getItem("is_fundacion")
   ) {
-    window.location.href = "/login";
+    window.location.href = "/iniciar-sesion";
   }
 
   if (is_fundacion === "true") {
-    navigate("/login");
+    navigate("/iniciar-sesion");
   }
 
   const handleVerDetalleSolicitud = (idSolicitud) => {
@@ -42,33 +44,41 @@ const MisSolicitudesCuidado = () => {
   
 
   useEffect(() => {
-    api
-      .get(`mis-solicitudes-cuidado/${email}/`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        if (res.status === 200) {
-          setSolicitudesAdopcion(res.data);
-          console.log("Solicitudes de cuidado:", res.data);
+    const fetchSolicitudesCuidado = async () => {
+      try {
+        const response = await api.get(`mis-solicitudes-cuidado/${email}/`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+  
+        if (response.status === 200) {
+          setSolicitudesAdopcion(response.data);
+          console.log("Solicitudes de cuidado:", response.data);
+          setIsLoading(false);
         } else {
-          console.error("Error al obtener las solicitudes de cuidado:", res);
+          console.error("Error al obtener las solicitudes de cuidado:", response);
           setError("Error al obtener las solicitudes de cuidado");
           setShowErrorModal(true);
         }
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error("Error al obtener las solicitudes de cuidado:", error);
         setError("Error al obtener las solicitudes de cuidado");
         setShowErrorModal(true);
-      });
-  }, []);
+      }
+    };
+  
+    fetchSolicitudesCuidado();
+  }, [email, token]);
 
   const handleCloseErrorModal = () => {
     setShowErrorModal(false);
     setError("");
   };
+
+  if (isLoading) {
+    return <LoadingPage />;
+  }
 
   return (
     <div className="absolute-solicitudes-adopcion-container">

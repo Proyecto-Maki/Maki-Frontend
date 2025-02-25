@@ -41,7 +41,7 @@ const UserProfile = () => {
     !sessionStorage.getItem("email") &&
     !sessionStorage.getItem("refresh")
   ) {
-    navigate("/login");
+    navigate("/iniciar-sesion");
   }
 
   const email = sessionStorage.getItem("email");
@@ -59,6 +59,8 @@ const UserProfile = () => {
   const makipaws_url = "solicitudes-de-cuidado/";
   const donaciones_url = "donaciones-realizadas/";
 
+  const [isLoading, setIsLoading] = useState(true);
+
   const [userData, setUserData] = useState({
     name: "",
     email: "",
@@ -71,145 +73,116 @@ const UserProfile = () => {
   });
 
   useEffect(() => {
-    api
-      .get(`current-user/`, {
-        headers: {
-          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-        },
-      })
-      .then((res) => {
-        if (res.status === 200) {
-          const tem_email = res.data.email;
-          console.log(res.data);
+    const fetchData = async () => {
+      try {
+        const userResponse = await api.get(`current-user/`, {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+          },
+        });
+  
+        if (userResponse.status === 200) {
+          const tem_email = userResponse.data.email;
+          console.log(userResponse.data);
           console.log(tem_email);
-          if (res.data.is_cliente === true) {
+  
+          if (userResponse.data.is_cliente === true) {
             setImageProfile(clientes_img);
-            api
-              .get(`cliente-profile/`, {
-                params: {
-                  email: tem_email,
-                },
-                headers: {
-                  Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-                },
-              })
-              .then((res) => {
-                if (res.status === 200) {
-                  setUserData({
-                    name:
-                      res.data.primer_nombre + " " + res.data.primer_apellido,
-                    email: res.data.email,
-                    phone: res.data.telefono,
-                    address: res.data.direccion,
-                    postal_code: res.data.codigo_postal
-                      ? res.data.codigo_postal
-                      : "No hay código postal",
-                    localidad: res.data.localidad,
-                    role: "Dueño de mascota",
-                    saldo: res.data.saldo,
-                  });
-                  //console.log('Información del usuario:', userData);
-                } else {
-                  console.log("Error en la traida de los datos");
-                  console.log(response.data.message);
-                  setResponse(response.data.message);
-                  setShowErrorModal(true);
-                  setTimeout(() => {
-                    navigate("/login");
-                  }, 3000);
-                }
-              })
-              .catch((error) => {
-                console.error(
-                  error.response ? error.response.data : error.message
-                );
-                setError(
-                  error.response ? error.response.data.detail : error.message
-                );
-                setShowErrorModal(true);
-                setTimeout(() => {
-                  navigate("/login");
-                }, 3000);
+            const clienteResponse = await api.get(`cliente-profile/`, {
+              params: {
+                email: tem_email,
+              },
+              headers: {
+                Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+              },
+            });
+  
+            if (clienteResponse.status === 200) {
+              setUserData({
+                name: clienteResponse.data.primer_nombre + " " + clienteResponse.data.primer_apellido,
+                email: clienteResponse.data.email,
+                phone: clienteResponse.data.telefono,
+                address: clienteResponse.data.direccion,
+                postal_code: clienteResponse.data.codigo_postal
+                  ? clienteResponse.data.codigo_postal
+                  : "No hay código postal",
+                localidad: clienteResponse.data.localidad,
+                role: "Dueño de mascota",
+                saldo: clienteResponse.data.saldo,
               });
-          } else if (res.data.is_fundacion === true) {
+              setIsLoading(false);
+            } else {
+              console.log("Error en la traida de los datos");
+              console.log(clienteResponse.data.message);
+              setResponse(clienteResponse.data.message);
+              setShowErrorModal(true);
+              setTimeout(() => {
+                navigate("/iniciar-sesion");
+              }, 3000);
+            }
+          } else if (userResponse.data.is_fundacion === true) {
             setImageProfile(fundaciones_img);
-            api
-              .get("fundacion-profile/", {
-                params: {
-                  email: tem_email,
-                },
-                headers: {
-                  Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-                },
-              })
-              .then((res) => {
-                if (res.status === 200) {
-                  setUserData({
-                    name: res.data.nombre,
-                    email: res.data.email,
-                    phone: res.data.telefono,
-                    address: res.data.direccion,
-                    postal_code: res.data.codigo_postal
-                      ? res.data.codigo_postal
-                      : "No hay código postal",
-                    localidad: res.data.localidad,
-                    role: "Fundación",
-                    saldo: res.data.saldo,
-                  });
-                  //console.log('Información del usuario:', userData);
-                } else {
-                  console.log("Error en la traida de los datos");
-                  console.log(response.data.message);
-                  setError("Error en la traida de los datos");
-                  setShowErrorModal(true);
-                  setTimeout(() => {
-                    navigate("/login");
-                  }, 3000);
-                }
-              })
-              .catch((error) => {
-                console.error(
-                  error.response ? error.response.data : error.message
-                );
-                console.log(error.response);
-                setError(
-                  error.response ? error.response.data.detail : error.message
-                );
-                setShowErrorModal(true);
-                setTimeout(() => {
-                  navigate("/login");
-                }, 3000);
+            const fundacionResponse = await api.get("fundacion-profile/", {
+              params: {
+                email: tem_email,
+              },
+              headers: {
+                Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+              },
+            });
+  
+            if (fundacionResponse.status === 200) {
+              setUserData({
+                name: fundacionResponse.data.nombre,
+                email: fundacionResponse.data.email,
+                phone: fundacionResponse.data.telefono,
+                address: fundacionResponse.data.direccion,
+                postal_code: fundacionResponse.data.codigo_postal
+                  ? fundacionResponse.data.codigo_postal
+                  : "No hay código postal",
+                localidad: fundacionResponse.data.localidad,
+                role: "Fundación",
+                saldo: fundacionResponse.data.saldo,
               });
+              setIsLoading(false);
+            } else {
+              console.log("Error en la traida de los datos");
+              console.log(fundacionResponse.data.message);
+              setError("Error en la traida de los datos");
+              setShowErrorModal(true);
+              setTimeout(() => {
+                navigate("/iniciar-sesion");
+              }, 3000);
+            }
           } else {
             console.log("Este usuario no tiene un rol asignado");
-            console.log(response.data.message);
+            console.log(userResponse.data.message);
             setError("Este usuario no tiene un rol asignado");
             setShowErrorModal(true);
             setTimeout(() => {
-              navigate("/login");
+              navigate("/iniciar-sesion");
             }, 3000);
           }
         } else {
-          console.log(
-            "Error en la traida de los datos, la petición no fue exitosa"
-          );
-          console.log(response.data.message);
-          setError(
-            "Error en la traida de los datos, la petición no fue exitosa"
-          );
+          console.log("Error en la traida de los datos, la petición no fue exitosa");
+          console.log(userResponse.data.message);
+          setError("Error en la traida de los datos, la petición no fue exitosa");
           setShowErrorModal(true);
           setTimeout(() => {
-            navigate("/login");
+            navigate("/iniciar-sesion");
           }, 3000);
         }
-      })
-      .catch((error) => {
-        setError(error.response.message);
+      } catch (error) {
+        console.error(error.response ? error.response.data : error.message);
+        setError(error.response ? error.response.data.detail : error.message);
         setShowErrorModal(true);
         setTimeout(() => {
-          navigate("/login");
+          navigate("/iniciar-sesion");
         }, 3000);
-      });
+      }
+    };
+  
+    fetchData();
   }, []);
 
   const handleCloseErrorModal = () => {
@@ -250,7 +223,7 @@ const UserProfile = () => {
           setResponse("Cuenta eliminada con éxito");
           setShowSuccessModal(true);
           setTimeout(() => {
-            navigate("/login");
+            navigate("/iniciar-sesion");
           }, 3000);
         } else {
           console.log("Error al eliminar la cuenta");
@@ -283,15 +256,15 @@ const UserProfile = () => {
     setShowConfirmationModal(true);
   };
 
-  const [isLoading, setIsLoading] = useState(true);
+  
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setIsLoading(false);
+  //   }, 2000);
 
-    return () => clearTimeout(timer);
-  }, []);
+  //   return () => clearTimeout(timer);
+  // }, []);
 
   if (isLoading) {
     return <LoadingPage />;
