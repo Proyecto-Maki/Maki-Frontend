@@ -11,6 +11,7 @@ import api from "../api";
 import adopta_banner from "../img/anuncio_3.png";
 import dona_banner from "../img/anuncio_4.png";
 import LoadingPage from "../components/loading-page";
+import ServicesSlider from "../pages/services-banner";
 
 function Servicios() {
   const navigate = useNavigate();
@@ -132,13 +133,13 @@ function Servicios() {
       setWarning(
         "Para ver las adopciones disponibles, debes iniciar sesión. ¿Deseas iniciar sesión?"
       );
-      setDirNavigate("/login");
+      setDirNavigate("/iniciar-sesion");
       setShowWarningModal(true);
     } else if (is_fundacion === "true") {
       setWarning(
         "Debes iniciar sesión como cliente para poder adoptar mascotas. ¿Deseas iniciar sesión?"
       );
-      setDirNavigate("/login");
+      setDirNavigate("/iniciar-sesion");
       setShowWarningModal(true);
     } else {
       navigate("/mascotas-adopcion", { state: { fundacion } });
@@ -172,24 +173,8 @@ function Servicios() {
   return (
     <div className="absolute-container-services">
       <Navbar />
+      <ServicesSlider />
       <div className="servicios-container">
-        <section className="banners">
-          <div class="adopta-card">
-            <img
-              src={adopta_banner}
-              alt="Adopta, no compres"
-              class="adopta-card-img"
-            />
-          </div>
-
-          <div class="donar-card">
-            <img
-              src={dona_banner}
-              alt="Haz tu donación"
-              class="donar-card-img"
-            />
-          </div>
-        </section>
         {is_fundacion === "true" ? (
           <div>
             <div className="fundacion-row">
@@ -266,7 +251,8 @@ function Servicios() {
                 </select>
               </div>
             </section>
-
+            <h2 style={{width: "100vw", color: "#7BB66D", padding: "20px "}}>Conoce nuestras fundaciones:</h2>
+            <p style={{width: "90vw", padding: "10px 20px", fontSize:"25px"}}>Acá podrás encontrar fundaciones animalistas de la ciudad de Bogotá. Con las cuales podrás adoptar mascotas o realizar donaciones para su bienestar.</p>
             <section className="fundaciones">
               {fundaciones.length === 0 ? (
                 <h3 className="no-fundaciones">No hay fundaciones</h3>

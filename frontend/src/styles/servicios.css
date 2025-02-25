@@ -2,42 +2,38 @@
 .absolute-container-services{
     width: 100vw;
     height: 100vh;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
     position: relative;
-    background-color: #fdf0e6;
+    background-color: #fcf3e3;
     font-family: "Aoboshi One", sans-serif;
+    margin-top: calc(var(--navbar-height, 160px));
     min-height: calc(100vh - var(--navbar-height, 80px));
-    border: 2px solid rgb(89, 0, 255);
 }
 
 .servicios-container {
     padding: 20px;
-    background-color: #fff9e6;
-    padding-top: 0%;
+    background-color: #fcf3e3;
     width: 100vw;
-    height: 100vh;
-    overflow-y: auto;
-    overflow-x: hidden;
-    margin-top: calc(var(--navbar-height, 80px));
-    min-height: calc(100vh - var(--navbar-height, 80px));
-    border: 2px solid red;
+    height: auto;
+    margin-bottom: 7%;
 }
 
-.servicios-container::-webkit-scrollbar{
+.absolute-container-services::-webkit-scrollbar{
     width: 10px;
     color: #FCF3E3;
 }
 
-.servicios-container::-webkit-scrollbar-thumb {
+.absolute-container-services::-webkit-scrollbar-thumb {
     background: #ffcc80; 
     border-radius: 80px; 
 }
 
-.servicios-container::-webkit-scrollbar-thumb:hover {
+.absolute-container-services::-webkit-scrollbar-thumb:hover {
     background: #ffa726; 
 }
 
-.servicios-container::-webkit-scrollbar-track {
+.absolute-container-services::-webkit-scrollbar-track {
     background: none; 
 }
 
@@ -100,7 +96,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
-    background-color: #fff9e6;
+    background-color: #fcf3e3;
     padding: 20px;
     border-radius: 10px;
 }
@@ -230,4 +226,14 @@
 
 .btn-info:hover {
     background-color: #117a8b;
+}
+
+@media (max-width:768px) {
+    .fundacion-row{
+        grid-template-columns: 1fr;
+    }
+
+    .servicios-container{
+        margin-bottom: 20%;
+    }
 }
