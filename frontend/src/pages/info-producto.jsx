@@ -60,6 +60,24 @@ const InfoProduct = () => {
     fetchProduct();
   }, [slug]);
 
+  const [resenas, setResenas] = useState([]);
+
+  useEffect(() => {
+    console.log("Cargando reseñas del producto:", product?.id);
+    const fetchResenas = async () => {
+      if (product?.id) {
+        try {
+          const response = await api.get(`resenas/producto/${product.id}/`);
+          console.log("Reseñas del producto:", response.data);
+          setResenas(response.data);
+        } catch (error) {
+          console.error("Error al cargar las reseñas:", error);
+        }
+      }
+    };
+    fetchResenas();
+  }, [product?.id]);
+
   useEffect(() => {
     const fetchCart = async () => {
       try {
@@ -198,20 +216,7 @@ const InfoProduct = () => {
     },
   ];
 
-  const [resenas, setResenas] = useState([]);
-
-  // useEffect(() => {
-  //   const fetchResenas = async () => {
-  //     try {
-  //       const response = await api.get(`resenas/producto/${product.id}/`);
-  //       console.log("Reseñas del producto:", response.data);
-  //       setResenas(response.data);
-
-  //     } catch (error) {
-  //       console.error("Error al cargar las reseñas:", error);
-  //     }
-  //   }
-  // }, []);
+  // DEBAJO DE ESTO NO AGREGAR USEEFFECTS
 
   const increment = () => {
     setQuantity(quantity + 1);
@@ -317,7 +322,7 @@ const InfoProduct = () => {
           <div className="container-reseñas-de-producto">
             <div className="producto-container">
               <div className="reseñas-prod">
-                {reseñas.map((reseña) => (
+                {resenas.map((reseña) => (
                   <div key={reseña.id} className="reseña-prod">
                     <div className="reseña-prod-header">
                       <img
