@@ -34,7 +34,11 @@ const Footer = () => {
             src={logo}
             alt="Logo Maki"
             className="logo-img"
-            style={{ height: "80px", marginRight: "15px", marginBottom:"30px" }}
+            style={{
+              height: "80px",
+              marginRight: "15px",
+              marginBottom: "30px",
+            }}
           />
         </div>
         <div className="footer-nav">
@@ -77,7 +81,10 @@ const Footer = () => {
             >
               <img src={instagram} alt="instagram" className="instagram" />
             </a>
-            <a href="#" className="social-icon-footer tiktok">
+            <a
+              href="https://www.tiktok.com/@makishop.live/"
+              className="social-icon-footer tiktok"
+            >
               <img src={tiktok} alt="tiktok" className="tiktok" />
             </a>
           </div>
