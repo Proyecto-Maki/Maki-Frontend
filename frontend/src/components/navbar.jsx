@@ -11,7 +11,7 @@ function Navbar() {
   const location = useLocation(); // Obtenemos la ubicación actual de la ruta
 
   // Comprobamos si estamos en la página de Login
-  const isLoginPage = location.pathname === "/login";
+  const isLoginPage = location.pathname === "/iniciar-sesion";
 
   // Comprobamos si estamos en la página de perfil de usuario
   const isUserProfilePage = location.pathname === "/user-profile";

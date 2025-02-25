@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom"; // Importa Link para navegación
+import { Link, useNavigate } from "react-router-dom"; // Importa Link para navegación
 import Navbar from "../components/navbar";
 import Footer from "../components/Footer";
 import api from "../api";
@@ -115,7 +115,14 @@ function Makipaws() {
   //       "Julián es un técnico enfocado en el cuidado de lagartos. Contó con experiencia trabajando en zoológicos y santuarios de animales.",
   //   },
   // ];
+  const navigate = useNavigate();
+
   const [cuidadores, setCuidadores] = useState([]);
+
+  const handleDetalleCuidador = (idCuidador) => {
+    console.log("ID del cuidador:", idCuidador);
+    navigate("/info-cuidador", { state: { idCuidador } });
+  };
 
   useEffect(() => {
     api
@@ -198,18 +205,23 @@ function Makipaws() {
                           {cuidador.experiencia}
                         </p>
                       </div>
-                      <Link
-                        to={`/info-cuidador/${cuidador.id}`}
+                      {/* <Link
+                    
                         className="btn card-button"
+                      > */}
+                      <button
+                        className="details-cuidador"
+                        onClick={(e) => {
+                          handleDetalleCuidador(cuidador.id);
+                        }}
                       >
-                        <button className="details-cuidador">
-                          <span>¡Me interesa!</span>
-                          <svg width="15px" height="10px" viewBox="0 0 13 10">
-                            <path d="M1,5 L11,5"></path>
-                            <polyline points="8 1 12 5 8 9"></polyline>
-                          </svg>
-                        </button>
-                      </Link>
+                        <span>¡Me interesa!</span>
+                        <svg width="15px" height="10px" viewBox="0 0 13 10">
+                          <path d="M1,5 L11,5"></path>
+                          <polyline points="8 1 12 5 8 9"></polyline>
+                        </svg>
+                      </button>
+                      {/* </Link> */}
                     </div>
                   </div>
                 </div>

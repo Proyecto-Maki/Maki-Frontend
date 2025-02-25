@@ -264,18 +264,16 @@ const InfoCuidadores = () => {
         <h2 className="title-hoja-vida"> Hoja de vida del cuidador: </h2>
         <div className="image-cvv-container">
           <div className="imageMagnifyer">
-            <ReactImageMagnify
-              {...{
-                smallImage: {
-                  alt: "Hoja de vida cuidador",
-                  isFluidWidth: true,
-                  src: HojadeVida,
-                },
-                largeImage: {
-                  src: HojadeVida,
-                  width: 1000,
-                  height: 2050,
-                },
+          <ReactImageMagnify
+              imageProps={{
+                alt: "Hoja de vida cuidador",
+                isFluidWidth: true,
+                src: HojadeVida,
+              }}
+              magnifiedImageProps={{
+                src: HojadeVida,
+                width: 1050,
+                height: 2050,
               }}
             />
           </div>
