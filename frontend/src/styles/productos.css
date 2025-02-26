@@ -99,7 +99,7 @@
   font-size: 15px;
   font-weight: 400;
   letter-spacing: 0.05em;
-  color: #fcf3e3;
+  color: #302f2f;
 }
 
 .details svg {
@@ -109,7 +109,7 @@
   fill: none;
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke: #fcf3e3;
+  stroke: #302f2f;
   stroke-width: 2;
   transform: translateX(-5px);
   transition: all 0.3s ease;
@@ -201,7 +201,7 @@
 .card-price {
   font-size: 1.2rem;
   font-weight: bold;
-  color: #fcf3e3;
+  color: #302f2f;
   margin-bottom: 20px;
 }
 
@@ -253,12 +253,13 @@
 }
 
 .default-btn span {
-  color: hsl(0, 0%, 100%);
+  color: hsl(0, 0%, 11%);
   margin-left: 20px;
+  font-size: 1rem;
 }
 
 .hover-btn span {
-  color: hsl(0, 0%, 100%);
+  color: hsl(0, 0%, 11%);
 }
 
 .btn-cart-products:hover .default-btn {
@@ -308,6 +309,7 @@
 
 .selected {
   background-color: #7bb668;
+  color: white;
   padding: 5px;
   margin-bottom: 3px;
   border-radius: 5px;

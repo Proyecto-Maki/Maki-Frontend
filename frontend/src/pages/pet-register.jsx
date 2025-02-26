@@ -15,7 +15,7 @@ const RegisterPetClient = () => {
   const navigate = useNavigate();
 
   if (!sessionStorage.getItem('token') && !sessionStorage.getItem('email') && !sessionStorage.getItem('refresh')) {
-    navigate('/login');
+    navigate('/iniciar-sesion');
   }
 
   const tipoUsuario = sessionStorage.getItem('is_cliente') === 'true' ? 'dueño de mascotas' : 'fundacion';
@@ -284,7 +284,7 @@ const RegisterPetClient = () => {
     if (error_vali === false) {
       setResponse("Mascotas registradas correctamente");
       setShowSuccessModal(true);
-      setDirNavigate("/user-profile");
+      setDirNavigate("/perfil-usuario");
     }
   }
 

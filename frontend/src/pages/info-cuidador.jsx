@@ -12,6 +12,9 @@ import HojadeVida from "../img/PlantillaHoja de vida - Cuidadores.jpg";
 import imageCvv from "../img/image_lateral_CVV.jpg";
 import ReactImageMagnify from "@blacklab/react-image-magnify";
 import LoadingPage from "../components/loading-page";
+import clientes_img from "../img/Foto_Perfil_Clientes.svg";
+import { formatDateTime } from "../functions";
+
 const InfoCuidadores = () => {
   const email = sessionStorage.getItem("email");
   const token = sessionStorage.getItem("token");
@@ -39,7 +42,6 @@ const InfoCuidadores = () => {
   const [showMoreStates, setShowMoreStates] = useState({});
 
   useEffect(() => {
-
     const fetchData = async () => {
       try {
         const response = await api.get(`/cuidador/${idCuidador}/`, {
@@ -58,6 +60,31 @@ const InfoCuidadores = () => {
 
     fetchData();
   }, []);
+
+  const [resenas, setResenas] = useState([]);
+
+  useEffect(() => {
+    console.log("Cargando resenas del cuidador: ", datosCuidador.nombre);
+    const fetchResenas = async () => {
+      if (datosCuidador.id) {
+        try {
+          const response = await api.get(
+            `resenas/cuidador/${datosCuidador.id}/`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+          console.log("Resenas del cuidador:", response.data);
+          setResenas(response.data);
+        } catch (error) {
+          console.error("Error al obtener las resenas del cuidador:", error);
+        }
+      }
+    };
+    fetchResenas();
+  }, [datosCuidador.id]);
 
   const toggleShowMore = (id) => {
     setShowMoreStates((prevStates) => ({
@@ -104,7 +131,7 @@ const InfoCuidadores = () => {
       <Navbar />
       <div className="cuidadores-container">
         <h2 className="title-cuidador"> Información del cuidador </h2>
-        
+
         <div className="cards-container-cuidador" key={datosCuidador.id}>
           {" "}
           {/*este es el contenedor del cuidador*/}
@@ -131,8 +158,7 @@ const InfoCuidadores = () => {
                     className="item"
                     style={{ height: "20px", marginRight: "10px" }}
                   />
-                  <strong>Teléfono:</strong>{" "}
-                  {datosCuidador.telefono}
+                  <strong>Teléfono:</strong> {datosCuidador.telefono}
                 </p>
                 <p>
                   <img
@@ -141,8 +167,7 @@ const InfoCuidadores = () => {
                     className="item"
                     style={{ height: "20px", marginRight: "10px" }}
                   />
-                  <strong>Localidad:</strong>{" "}
-                  {datosCuidador.localidad}
+                  <strong>Localidad:</strong> {datosCuidador.localidad}
                 </p>
 
                 <p>
@@ -227,7 +252,6 @@ const InfoCuidadores = () => {
             <i className="fas fa-paw"></i> Solicitar Cuidado
           </button>
         </div>
-      
       </div>
       {/*}
       <ErrorModal
@@ -279,35 +303,56 @@ const InfoCuidadores = () => {
       <div className="container-reseñas-de-cuidador">
         <div className="reseñas-container">
           <div className="reseñas">
-            {reseñas.map((reseña) => (
-              <div key={reseña.id} className="reseña">
-                <div className="reseña-header">
-                  <img
-                    src={reseña.avatar}
-                    alt={reseña.nombre}
-                    className="reseña-avatar"
-                  />
-                  <div className="reseña-info">
-                    <p className="reseña-nombre">{reseña.nombre}</p>
-                    <p className="reseña-fecha">{reseña.fecha}</p>
+            {resenas.length > 0 ? (
+              <>
+                {resenas.map((resena) => (
+                  <div key={resena.id} className="reseña">
+                    <div className="reseña-header">
+                      <img
+                        src={clientes_img}
+                        alt="Imagen"
+                        className="reseña-avatar"
+                      />
+                      <div className="reseña-info">
+                        <p className="reseña-titulo-cuid">{resena.titulo}</p>
+                        <p className="reseña-nombre-cuid">
+                          {resena.user_data.nombre
+                            ? resena.user_data.nombre
+                            : resena.user_data.primer_nombre}
+                        </p>
+                        <p className="reseña-fecha">
+                          {formatDateTime(resena.fecha)}
+                        </p>
+                      </div>
+                      {resena.user_data.email === email ? (
+                        <>
+                          <button
+                            className="boton-eliminar"
+                            onClick={() => eliminarReseña(resena.id)}
+                          >
+                            <i className="fas fa-trash"></i>
+                          </button>
+                        </>
+                      ) : (
+                        <></>
+                      )}
+                    </div>
+                    <div className="reseña-stars">
+                      {Array.from({ length: 5 }).map((_, index) => (
+                        <span key={index}>
+                          {index < resena.calificacion ? "⭐" : "☆"}
+                        </span>
+                      ))}
+                    </div>
+                    <p className="reseña-texto">{resena.comentario}</p>
                   </div>
-                  <button
-                    className="boton-eliminar"
-                    onClick={() => eliminarReseña(reseña.id)}
-                  >
-                    <i className="fas fa-trash"></i>
-                  </button>
-                </div>
-                <div className="reseña-stars">
-                  {Array.from({ length: 5 }).map((_, index) => (
-                    <span key={index}>
-                      {index < reseña.estrellas ? "⭐" : "☆"}
-                    </span>
-                  ))}
-                </div>
-                <p className="reseña-texto">{reseña.texto}</p>
-              </div>
-            ))}
+                ))}
+              </>
+            ) : (
+              <>
+                <p className="reseña-titulo-prod">No hay comentarios</p>
+              </>
+            )}
           </div>
 
           <div className="escribir-reseña">

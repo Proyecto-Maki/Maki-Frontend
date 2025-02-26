@@ -28,7 +28,7 @@ const CreacionAdopcion = () => {
     const navigate = useNavigate();
 
     if (!sessionStorage.getItem("email") || !sessionStorage.getItem("token") || !sessionStorage.getItem("refresh") || !sessionStorage.getItem("is_cliente") || !sessionStorage.getItem("is_fundacion")) {
-        window.location.href = "/login";
+        window.location.href = "/iniciar-sesion";
     }
 
     const email = sessionStorage.getItem("email");
@@ -160,7 +160,7 @@ const CreacionAdopcion = () => {
                             if (res.status === 201) {
                                 setResponse("Publicación creada exitosamente");
                                 setShowSuccessModal(true);
-                                setDirNavigate("/pet-profile-foundation");
+                                setDirNavigate("/perfil-mascota-fundacion");
                             } else {
                                 setError(res.data.message);
                                 setShowErrorModal(true);

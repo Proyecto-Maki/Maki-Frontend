@@ -82,7 +82,7 @@
     height: 160px;
     border-radius: 50%;
     object-fit: cover;
-    border: 4px solid BDD3CE;
+    border: 4px solid #BDD3CE;
     z-index: 1;
   }
   
@@ -98,7 +98,7 @@
     font-size: 18px;
     cursor: pointer;
     margin: 0 5px;
-    color: #ffffff;
+    color: #302F2F;
   }
 
   
@@ -107,7 +107,7 @@
   }
   
   .card-text-pet-profile-foundation h3 {
-    color: #Fcf3e3;
+    color: #302F2F;
     font-weight: bold;
   }
   

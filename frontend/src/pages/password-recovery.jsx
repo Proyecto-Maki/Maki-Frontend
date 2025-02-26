@@ -111,7 +111,7 @@ const PasswordRecovery = () => {
       .then((res) => {
         if (res.status === 200) {
           setResponse(res.data.message);
-          setDirNavigate("/login");
+          setDirNavigate("/iniciar-sesion");
           setShowSuccessModal(true);
         }
       })

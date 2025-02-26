@@ -81,7 +81,7 @@ function App() {
           path="/perfil-mascota-cliente"
           element={<PetProfileClient />}
         ></Route>
-        <Route path="/publish-review" element={<PublishReview />} />
+        <Route path="/publicar-reseña" element={<PublishReview />} />
         <Route path="/infor-product" element={<InfoProduct />} />
         <Route path="/resume" element={<Resume />}></Route>
         <Route path="/logout" element={<Logout />}></Route>
