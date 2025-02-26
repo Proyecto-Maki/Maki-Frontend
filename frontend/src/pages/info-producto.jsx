@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import Navbar from "../components/navbar";
 import LoadingPage from "../components/loading-page";
 import api from "../api"; // Axios configurado
 import imagenCuidador from "../img/Mari Juliano.jpg";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import "../styles/info-producto.css";
 import { formatDateTime } from "../functions";
 import clientes_img from "../img/Foto_Perfil_Clientes.svg";
 import fundaciones_img from "../img/Foto_Perfil_Fundaciones.svg";
+import ErrorModal from "../components/ErrorModal";
+import ConfirmationModal from "../components/ConfirmationModal";
+import SuccessModalReload from "../components/SuccessModalReload";
 
 const InfoProduct = () => {
   const { slug } = useParams(); // Obtiene el slug desde la URL
@@ -26,6 +28,8 @@ const InfoProduct = () => {
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1); // Maneja la cantidad seleccionada
   const [mensaje, setMensaje] = useState(""); // Mensaje para retroalimentación
+  const [filtroCalificacion, setFiltroCalificacion] = useState("Todos");
+  const [resenaIdEliminar, setResenaIdEliminar] = useState(0);
   const [inCart, setInCart] = useState(() => {
     const savedCart = localStorage.getItem("inCart");
     return savedCart ? JSON.parse(savedCart) : {};
@@ -34,11 +38,21 @@ const InfoProduct = () => {
   const cart_code = localStorage.getItem("codigo_carrito"); // Obtén el código del carrito desde localStorage
   const navigate = useNavigate();
 
-  const email = sessionStorage.getItem("email");
+  const [showErrorModal, setShowErrorModal] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const [error, setError] = useState("");
+  const [response, setResponse] = useState("");
 
-  const handleClick = () => {
-    navigate("/publicar-reseña"); // Cambia "/otra-pagina" por la ruta deseada
+  const email = sessionStorage.getItem("email");
+  const token = sessionStorage.getItem("token");
+
+  const handlePublicarResena = () => {
+    const origen = "info-producto";
+    const contenido = { product };
+    navigate("/publicar-reseña", { state: { origen, contenido }}); // Cambia "/otra-pagina" por la ruta deseada
   };
+
   const codigo_carrito =
     localStorage.getItem("codigo_carrito") ||
     (() => {
@@ -57,9 +71,10 @@ const InfoProduct = () => {
         setCopia_Main(`${cloudinaryBaseUrl}${response.data.imagen}`);
       } catch (error) {
         console.error("Error al cargar el producto:", error);
-      } finally {
-        setLoading(false);
       }
+      // } finally {
+      //   setLoading(false);
+      // }
     };
 
     fetchProduct();
@@ -75,6 +90,7 @@ const InfoProduct = () => {
           const response = await api.get(`resenas/producto/${product.id}/`);
           console.log("resenas del producto:", response.data);
           setResenas(response.data);
+          setLoading(false);
         } catch (error) {
           console.error("Error al cargar las resenas:", error);
         }
@@ -82,6 +98,89 @@ const InfoProduct = () => {
     };
     fetchResenas();
   }, [product?.id]);
+
+  const handleFiltroCalificacion = (e) => {
+    console.log("Filtro de calificacion:", e.target.id);
+    setFiltroCalificacion(e.target.id);
+  };
+
+  const ordenarResenas = () => {
+    console.log("Filtro de calificacion:", filtroCalificacion);
+    let resenasOrdenadas = [...resenas];
+    if (filtroCalificacion === "Todos") {
+      return;
+    } else if (filtroCalificacion === "Menor-a-Mayor") {
+      resenasOrdenadas.sort((a, b) => a.calificacion - b.calificacion);
+    } else if (filtroCalificacion === "Mayor-a-Menor") {
+      resenasOrdenadas.sort((a, b) => b.calificacion - a.calificacion);
+    }
+
+    setResenas(resenasOrdenadas);
+    console.log("Resenas ordenadas:", resenasOrdenadas);
+  };
+
+  useEffect(() => {
+    ordenarResenas();
+  }, [filtroCalificacion]);
+
+  const handleEliminarResena =async (e) => {
+    e.preventDefault();
+
+    if (resenaIdEliminar === 0) {
+      return;
+    }
+
+    try {
+      const response = await api.delete(`resena/delete/${resenaIdEliminar}/`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      if (response.status === 204) {
+        console.log("Reseña eliminada:", response);
+        setResponse("Reseña eliminada con éxito");
+        setShowSuccessModal(true);
+        setResenaIdEliminar(0);
+      } else {
+        console.error("Error al eliminar la reseña:", response);
+        setError("Error al eliminar la reseña");
+        setShowErrorModal(true);
+      }
+    } catch (error) {
+      console.error("Error al eliminar la reseña:", error);
+      setError("Error al eliminar la reseña");
+      setShowErrorModal(true);
+    }
+  }
+
+  const handleOpenConfirmationModal = (e, id_resena) => {
+    e.preventDefault();
+    setShowConfirmationModal(true);
+    setResenaIdEliminar(id_resena);
+    console.log("Se abrió el modal de confirmación", id_resena);
+  };
+
+  const handleYesConfirmationModal = async (e) => {
+    setShowConfirmationModal(false);
+    e.preventDefault();
+    await new Promise((r) => setTimeout(r, 1000));
+    await handleEliminarResena(e);
+  };
+
+  const handleNoConfirmationModal = () => {
+    setShowConfirmationModal(false);
+  };
+
+  const handleCloseErrorModal = () => {
+    setShowErrorModal(false);
+    setError("");
+  };
+
+  const handleCloseSuccessModal = () => {
+    setShowSuccessModal(false);
+    setError("");
+    setResponse("");
+  };
 
   useEffect(() => {
     const fetchCart = async () => {
@@ -355,7 +454,7 @@ const InfoProduct = () => {
                             <>
                               <button
                                 className="boton-eliminar"
-                                onClick={() => eliminarReseña(resena.id)}
+                                onClick={(e) => handleOpenConfirmationModal(e, resena.id)}
                               >
                                 <i className="fas fa-trash"></i>
                               </button>
@@ -363,7 +462,6 @@ const InfoProduct = () => {
                           ) : (
                             <></>
                           )}
-                          
                         </div>
                         <div className="reseña-stars-prod">
                           {Array.from({ length: 5 }).map((_, index) => (
@@ -395,7 +493,7 @@ const InfoProduct = () => {
                 </p>
                 <button
                   className="boton-escribir-reseña-prod"
-                  onClick={handleClick}
+                  onClick={handlePublicarResena}
                 >
                   Escríbela
                 </button>
@@ -414,20 +512,20 @@ const InfoProduct = () => {
                         height="1em"
                         viewBox="0 0 512 512"
                         class="arrow"
-                        stroke ="#302f2f"
+                        stroke="#302f2f"
                       >
                         <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"></path>
                       </svg>
                     </div>
                     <div class="options">
                       <div title="Todos">
-                        {/*<input
+                        <input
                           id="Todos"
                           name="option"
                           type="radio"
-                          checked={filtroPrecio === "Todos"}
-                          onChange={handleFiltroPrecio}
-                        />*/}
+                          checked={filtroCalificacion === "Todos"}
+                          onChange={handleFiltroCalificacion}
+                        />
                         <label
                           class="option"
                           for="Todos"
@@ -435,13 +533,13 @@ const InfoProduct = () => {
                         ></label>
                       </div>
                       <div title="Menor-a-Mayor">
-                        {/*<input
+                        <input
                           id="Menor-a-Mayor"
                           name="option"
                           type="radio"
-                          checked={filtroPrecio === "Menor-a-Mayor"}
-                          onChange={handleFiltroPrecio}
-                        />*/}
+                          checked={filtroCalificacion === "Menor-a-Mayor"}
+                          onChange={handleFiltroCalificacion}
+                        />
                         <label
                           class="option"
                           for="Menor-a-Mayor"
@@ -449,13 +547,13 @@ const InfoProduct = () => {
                         ></label>
                       </div>
                       <div title="Mayor-a-Menor">
-                        {/*<input
+                        <input
                           id="Mayor-a-Menor"
                           name="option"
                           type="radio"
-                          checked={filtroPrecio === "Mayor-a-Menor"}
-                          onChange={handleFiltroPrecio}
-                        />*/}
+                          checked={filtroCalificacion === "Mayor-a-Menor"}
+                          onChange={handleFiltroCalificacion}
+                        />
                         <label
                           class="option"
                           for="Mayor-a-Menor"
@@ -465,12 +563,28 @@ const InfoProduct = () => {
                     </div>
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
         </div>
       </div>
+      <ErrorModal
+        show={showErrorModal}
+        handleClose={handleCloseErrorModal}
+        error={error}
+      />
+      <SuccessModalReload
+        show={showSuccessModal}
+        handleClose={handleCloseSuccessModal}
+        response={response}
+      />
+      <ConfirmationModal
+        show={showConfirmationModal}
+        handleYes={handleYesConfirmationModal}
+        handleNo={handleNoConfirmationModal}
+        action="Eliminar reseña"
+        response="¿Estás seguro de eliminar la reseña? Esta acción no se puede deshacer."
+      />
     </div>
   );
 };

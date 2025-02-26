@@ -97,11 +97,10 @@ const Pedido = () => {
   }, [order]);
 
 
-  const handleOpenConfirmationModal = (e, mascotaId) => {
+  const handleOpenConfirmationModal = (e) => {
     e.preventDefault();
     setShowConfirmationModal(true);
-    setMascotaIdEliminar(mascotaId);
-    console.log("Se abrió el modal de confirmación", mascotaId);
+    console.log("Se abrió el modal de confirmación", );
   };
 
   const handleYesConfirmationModal = async (e) => {
@@ -113,7 +112,6 @@ const Pedido = () => {
 
   const handleNoConfirmationModal = () => {
     setShowConfirmationModal(false);
-    setMascotaIdEliminar(0);
   };
 
   const handleCloseErrorModal = () => {
