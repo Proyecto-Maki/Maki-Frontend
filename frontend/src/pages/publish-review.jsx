@@ -42,6 +42,10 @@ const PublishReview = ({ id_producto, slug }) => {
         navigate('/iniciar-sesion');
     }
 
+    const handleClick = () => {
+        navigate("/terminos-y-condiciones"); 
+      };
+
     const email = sessionStorage.getItem('email');
     const token = sessionStorage.getItem('token');
     const refresh = sessionStorage.getItem('refresh');
@@ -261,7 +265,7 @@ const PublishReview = ({ id_producto, slug }) => {
                     <button className="publish-review-button" onClick={handleOpenConfirmationModal}>
                         Publicar
                     </button>
-                    <p className="publish-review-terms">Términos & Condiciones</p>
+                    <p className="publish-review-terms" onClick={handleClick}>Términos & Condiciones</p>
                 </div>
             </div>
             <SuccessModal

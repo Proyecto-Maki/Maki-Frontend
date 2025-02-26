@@ -345,7 +345,7 @@ h3 {
 }
 
 .Subtitulo-escribir-reseña-producto {
-  font-size: 0.75rem;
+  font-size: 20px;
   color: #302F2F; 
   margin-bottom: 16px; 
   text-align: center; 
@@ -379,6 +379,20 @@ h3 {
     font-size: 36px;
     margin-left: 0%;
     margin-top: 0%;
+}
+
+.filter-comments{
+  display: flex;
+  flex-direction: column;
+  padding: 2%;
+  margin-top: 10%;
+  align-items: center;
+}
+
+.filter-comments p{
+  color: #f39029;
+  font-size: 27px;
+  text-align: center;
 }
 
 @media (max-width: 768px) {
