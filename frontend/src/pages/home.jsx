@@ -224,7 +224,10 @@ const Home = () => {
                     </a>
                   </div>
                   <div className="social-icon">
-                    <a href="#" className="social-icon-footer-home tiktok">
+                    <a
+                      href="https://www.tiktok.com/@makishop.live/"
+                      className="social-icon-footer-home tiktok"
+                    >
                       <img src={tiktok} alt="tiktok" className="tiktok" />
                     </a>
                   </div>
