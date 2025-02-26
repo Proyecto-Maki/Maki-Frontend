@@ -274,6 +274,8 @@
     align-self: center;
     grid-column: 1 / 2;
     justify-content: center; 
+    overflow: hidden;
+    position: relative;
 }
 
 @keyframes pawJump {

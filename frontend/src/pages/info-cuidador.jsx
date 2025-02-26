@@ -276,8 +276,8 @@ const InfoCuidadores = () => {
               }}
               magnifiedImageProps={{
                 src: `${urlImagen}${datosCuidador.hoja_vida}`,
-                width: 1050,
-                height: 2050,
+                width: 1000,
+                height: 3000,
               }}
             />
           </div>
@@ -366,6 +366,71 @@ const InfoCuidadores = () => {
               ayudarías mucho!
             </p>
             <button className="boton-reseña">Escríbela</button>
+            <div className="filter-comments">
+                  <p> Ordena las reseñas por calificacion: </p>
+                  <div className="select">
+                    <div
+                      class="selected"
+                      data-default="Todos"
+                      data-one="Menor a Mayor"
+                      data-two="Mayor a Menor"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        height="1em"
+                        viewBox="0 0 512 512"
+                        class="arrow"
+                        stroke ="#302f2f"
+                      >
+                        <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"></path>
+                      </svg>
+                    </div>
+                    <div class="options">
+                      <div title="Todos">
+                        {/*<input
+                          id="Todos"
+                          name="option"
+                          type="radio"
+                          checked={filtroPrecio === "Todos"}
+                          onChange={handleFiltroPrecio}
+                        />*/}
+                        <label
+                          class="option"
+                          for="Todos"
+                          data-txt="Todos"
+                        ></label>
+                      </div>
+                      <div title="Menor-a-Mayor">
+                        {/*<input
+                          id="Menor-a-Mayor"
+                          name="option"
+                          type="radio"
+                          checked={filtroPrecio === "Menor-a-Mayor"}
+                          onChange={handleFiltroPrecio}
+                        />*/}
+                        <label
+                          class="option"
+                          for="Menor-a-Mayor"
+                          data-txt="Menor a Mayor"
+                        ></label>
+                      </div>
+                      <div title="Mayor-a-Menor">
+                        {/*<input
+                          id="Mayor-a-Menor"
+                          name="option"
+                          type="radio"
+                          checked={filtroPrecio === "Mayor-a-Menor"}
+                          onChange={handleFiltroPrecio}
+                        />*/}
+                        <label
+                          class="option"
+                          for="Mayor-a-Menor"
+                          data-txt="Mayor a Menor"
+                        ></label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
           </div>
         </div>
       </div>
