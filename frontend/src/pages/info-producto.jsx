@@ -584,6 +584,7 @@ const InfoProduct = () => {
         handleNo={handleNoConfirmationModal}
         action="Eliminar reseña"
         response="¿Estás seguro de eliminar la reseña? Esta acción no se puede deshacer."
+        className="custom-modal"
       />
     </div>
   );
