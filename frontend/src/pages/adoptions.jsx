@@ -176,116 +176,189 @@ const Adoptions = () => {
                 </div>
                 {showMoreStates[publicacion.id] ? (
                   <div className="pet-more-details">
-                    <p>
+                    <div className="container-detail-up"> 
                       <img
                         src={item}
                         alt="item"
                         className="item"
                         style={{ height: "20px", marginRight: "10px" }}
                       />
+                      <p className="row-1">
                       <strong>Apto para niños:</strong>{" "}
                       {publicacion.detalle_mascota.apto_ninos ? "Sí" : "No"}
                     </p>
-                    <p>
-                      <img
+                    </div>
+                    <div className="container-detail"> 
+                    <img
                         src={item}
                         alt="item"
                         className="item"
                         style={{ height: "20px", marginRight: "10px" }}
                       />
+                    <p className="row-2">
                       <strong>Apto en ambientes con ruido:</strong>{" "}
                       {publicacion.detalle_mascota.apto_ruido ? "Sí" : "No"}
                     </p>
-                    <p>
+                    </div>
+                    <div className="container-detail"> 
                       <img
                         src={item}
                         alt="item"
                         className="item"
                         style={{ height: "20px", marginRight: "10px" }}
                       />
-                      <strong>Habita en espacios:</strong>{" "}
-                      {publicacion.detalle_mascota.espacio === 'P' ? "Pequeño" : "Grande"}
-                    </p>
-                    <p>
-                      <img
+                      <p className="row-1">
+                        
+                        <strong>Habita en espacios:</strong>{" "}
+                        {publicacion.detalle_mascota.espacio === 'P' ? "Pequeño" : "Grande"}
+                      </p>
+                    </div>
+                    <div className="container-detail"> 
+                    <img
                         src={item}
                         alt="item"
                         className="item"
                         style={{ height: "20px", marginRight: "10px" }}
                       />
+                    <p className="row-2"> 
+                      
                       <strong>Apto para otras mascotas:</strong>{" "}
                       {publicacion.detalle_mascota.apto_otras_mascotas
                         ? "Sí"
                         : "No"}
                     </p>
-                    <p>
-                      <img
+                    </div>
+                    <div className="container-detail"> 
+                    <img
                         src={item}
                         alt="item"
                         className="item"
                         style={{ height: "20px", marginRight: "10px" }}
                       />
-                      <strong>Desparasitado:</strong>{" "}
-                      {publicacion.detalle_mascota.desparasitado
-                        ? "Sí"
-                        : "No"}
-                    </p>
-                    <p>
-                      <img
+                      <p className="row-1">
+                        
+                        <strong>Desparasitado:</strong>{" "}
+                        {publicacion.detalle_mascota.desparasitado
+                          ? "Sí"
+                          : "No"}
+                      </p>
+                    </div>
+                    <div className="container-detail"> 
+                    <img
                         src={item}
                         alt="item"
                         className="item"
                         style={{ height: "20px", marginRight: "10px" }}
                       />
+                    <p className="row-2">
+                      
                       <strong>Esterilizado:</strong>{" "}
                       {publicacion.detalle_mascota.esterilizado ? "Sí" : "No"}
                     </p>
-                    <p>
-                      <img
+                    </div>
+                    <div className="container-detail"> 
+                    <img
                         src={item}
                         alt="item"
                         className="item"
                         style={{ height: "20px", marginRight: "10px" }}
                       />
-                      <strong>Vacunado:</strong>{" "}
-                      {publicacion.detalle_mascota.vacunado ? "Sí" : "No"}
-                    </p>
-                    <p>
-                      <img
+                      <p className="row-1">
+                        
+                        <strong>Vacunado:</strong>{" "}
+                        {publicacion.detalle_mascota.vacunado ? "Sí" : "No"}
+                      </p>
+                    </div>
+                    <div className="container-detail"> 
+                    <img
                         src={item}
                         alt="item"
                         className="item"
-                        style={{ height: "20px", marginRight: "10px" }}
+                        style={{ height: "20px", marginRight: "10px", alignSelf:"flex-start"}}
                       />
+                    <p className="row-2">
+                      
                       <strong>Descripción:</strong> {publicacion.descripcion}
-                    </p>
+                    </p>  
+                    </div>  
+                    
                   </div>
                 ) : (
                   <div className="pet-details">
                     <h2>{publicacion.mascota.nombre}</h2>
-                    <p>
-                      <strong>Tipo:</strong> {publicacion.mascota.tipo}
-                    </p>
-                    <p>
-                      <strong>Sexo:</strong> {publicacion.mascota.sexo}
-                    </p>
-                    <p>
-                      <strong>Tamaño:</strong>{" "}
-                      {publicacion.mascota.tamano === "P"
-                        ? "Pequeño"
-                        : publicacion.mascota.tamano === "M"
-                        ? "Mediano"
-                        : "Grande"}
-                    </p>
-                    <p>
+                    <div className="container-detail-up"> 
+                      <img
+                        src={item}
+                        alt="item"
+                        className="item"
+                        style={{ height: "20px", marginRight: "10px" }}
+                      />
+                      <p className="row-1">
+                        <strong>Tipo:</strong> {publicacion.mascota.tipo}
+                      </p>
+
+                    </div>
+                    <div className="container-detail"> 
+                      <img
+                        src={item}
+                        alt="item"
+                        className="item"
+                        style={{ height: "20px", marginRight: "10px" }}
+                      />
+                      <p className="row-2">
+                        <strong>Sexo:</strong> {publicacion.mascota.sexo}
+                      </p>
+                    </div>
+                    <div className="container-detail"> 
+                      <img
+                        src={item}
+                        alt="item"
+                        className="item"
+                        style={{ height: "20px", marginRight: "10px" }}
+                      />
+                      <p className="row-1">
+                        <strong>Tamaño:</strong>{" "}
+                        {publicacion.mascota.tamano === "P"
+                          ? "Pequeño"
+                          : publicacion.mascota.tamano === "M"
+                          ? "Mediano"
+                          : "Grande"}
+                      </p>
+                    </div>
+                    <div className="container-detail">  
+                      <img
+                        src={item}
+                        alt="item"
+                        className="item"
+                        style={{ height: "20px", marginRight: "10px" }}
+                      />
+                    <p className="row-2">
                       <strong>Edad:</strong> {publicacion.mascota.edad} año(s)
                     </p>
-                    <p>
+                    </div>
+                    <div className="container-detail"> 
+                      <img
+                        src={item}
+                        alt="item"
+                        className="item"
+                        style={{ height: "20px", marginRight: "10px" }}
+                      />
+                    <p className="row-1">
                       <strong>Peso:</strong> {publicacion.mascota.peso} kg
                     </p>
-                    <p>
+                    </div>
+                    <div className="container-detail-down"> 
+                      <img
+                        src={item}
+                        alt="item"
+                        className="item"
+                        style={{ height: "20px", marginRight: "10px" }}
+                      />
+                    <p className="row-2"> 
                       <strong>Dirección:</strong> {publicacion.direccion}
                     </p>
+                    </div>
+                    
                   </div>
                 )}
                 <button

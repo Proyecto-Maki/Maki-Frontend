@@ -84,8 +84,8 @@
 
 .pet-details h2 {
     margin: 0 0 10px 0;
-    font-size: 1.5rem;
-    color: #302F2F;
+    font-size: 3rem;
+    color: #fcf3e3;
 }
 
 .pet-details p {
@@ -207,6 +207,66 @@
   .see-more-button:active {
     transform: scale(0.95);
   }
+
+  .container-detail{
+    display: flex;
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding: 0px;
+}
+
+.container-detail-up{
+    display: flex;
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding: 0;
+}
+
+.container-detail-up .row-1{
+    border: 2px solid #D8E5E2;
+    width: 100%;
+    height: 100%;
+    background-color: #D8E5E2;
+    padding-left: 6px;
+    border-radius: 5px 5px 0 0;
+}
+
+.container-detail-down{
+    display: flex;
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding: 0;
+}
+
+.container-detail-down .row-2{
+    border: 2px solid #fcf3e3;
+    width: 100%;
+    height: 100%;
+    background-color: #fcf3e3;
+    padding-left: 6px;
+    border-radius: 0 0 5px 5px;
+}
+
+.container-detail .row-1{
+    border: 2px solid #D8E5E2;
+    width: 100%;
+    height: 100%;
+    background-color: #D8E5E2;
+    padding-left: 6px;
+}
+
+.container-detail .row-2{
+    border: 2px solid #fcf3e3;
+    width: 100%;
+    background-color: #fcf3e3;
+    padding-left: 6px;
+}
   
   @media (max-width: 768px) {
     .cards-container{
