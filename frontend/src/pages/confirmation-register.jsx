@@ -54,7 +54,7 @@ const ConfirmationRegister = () => {
       .then((res) => {
         if (res.status === 200) {
           setResponse(res.data.message);
-          setDirNavigate("/login");
+          setDirNavigate("/iniciar-sesion");
           setShowSuccessModal(true);
         } else {
           setError(res.data.message);

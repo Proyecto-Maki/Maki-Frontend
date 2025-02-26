@@ -37,7 +37,7 @@ const InfoProduct = () => {
   const email = sessionStorage.getItem("email");
 
   const handleClick = () => {
-    navigate("/publish-review"); // Cambia "/otra-pagina" por la ruta deseada
+    navigate("/publicar-reseña"); // Cambia "/otra-pagina" por la ruta deseada
   };
   const codigo_carrito =
     localStorage.getItem("codigo_carrito") ||

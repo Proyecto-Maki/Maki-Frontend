@@ -39,7 +39,7 @@ const PublishReview = ({ id_producto, slug }) => {
     slug = "whiskas-sabor-pollo-sobres-100-gr"
 
     if (!sessionStorage.getItem('token') && !sessionStorage.getItem('email') && !sessionStorage.getItem('refresh')) {
-        navigate('/login');
+        navigate('/iniciar-sesion');
     }
 
     const email = sessionStorage.getItem('email');

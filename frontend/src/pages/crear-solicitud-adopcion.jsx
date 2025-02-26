@@ -30,7 +30,7 @@ function CrearSolicitudAdopcion() {
   const is_fundacion = sessionStorage.getItem("is_fundacion");
 
   if (!email || !token || !refresh || !is_cliente || !is_fundacion) {
-    window.location.href = "/login";
+    window.location.href = "/iniciar-sesion";
   }
 
   if (is_cliente === "false") {

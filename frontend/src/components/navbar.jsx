@@ -6,8 +6,10 @@ import { FaSearch, FaShoppingCart } from "react-icons/fa"; // Importamos los ico
 import clientes_img from "../img/Foto_Perfil_Clientes.svg";
 import fundaciones_img from "../img/Foto_Perfil_Fundaciones.svg";
 import { IoMenu } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
+  const navigate = useNavigate(); // Agregamos useNavigate
   const location = useLocation(); // Obtenemos la ubicación actual de la ruta
 
   // Comprobamos si estamos en la página de Login
@@ -51,7 +53,11 @@ function Navbar() {
     >
       <div className="container-fluid">
         {/* Logo */}
-        <div className="navbar-brand">
+        <div
+          className="navbar-brand"
+          onClick={() => navigate("/")}
+          style={{ cursor: "pointer" }} // Para que se vea como botón
+        >
           <img
             src={logo}
             alt="Logo Maki"
@@ -70,7 +76,7 @@ function Navbar() {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          
+
           <span className="navbar-toggler-icon"> <IoMenu /> </span>
         </button>
 

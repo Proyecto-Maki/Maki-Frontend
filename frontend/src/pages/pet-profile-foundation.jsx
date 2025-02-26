@@ -73,7 +73,7 @@ function PetProfileFoundation() {
     !sessionStorage.getItem("email") &&
     !sessionStorage.getItem("refresh")
   ) {
-    navigate("/login");
+    navigate("/iniciar-sesion");
   }
 
   const email = sessionStorage.getItem("email");
@@ -84,7 +84,7 @@ function PetProfileFoundation() {
   let crear_mascota_url = "/register-pet";
 
   if (es_cliente === "true") {
-    navigate("/pet-profile-client/");
+    navigate("/perfil-mascota-cliente");
   }
 
   // MIRA SI EL USUARIO ES CLIENTE O FUNDACION

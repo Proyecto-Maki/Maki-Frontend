@@ -16,7 +16,7 @@ const Pedidos = () => {
     !sessionStorage.getItem("is_cliente") ||
     !sessionStorage.getItem("is_fundacion")
   ) {
-    window.location.href = "/login";
+    window.location.href = "/iniciar-sesion";
   }
 
   const email = sessionStorage.getItem("email");
