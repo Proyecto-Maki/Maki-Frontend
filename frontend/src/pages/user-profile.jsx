@@ -58,6 +58,7 @@ const UserProfile = () => {
   const adopciones_url = "solicitudes-de-adopcion/";
   const makipaws_url = "solicitudes-de-cuidado/";
   const donaciones_url = "donaciones-realizadas/";
+  const [userType, setUserType] = useState("fundacion");
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -277,10 +278,12 @@ const UserProfile = () => {
       {/* User Profile */}
 
       <div className="profile-container">
+      
         <div className="content-user-profile">
           <div className="card-body p-4">
             <div className="d-flex">
               {/* Foto de perfil y botón de cerrar sesión */}
+              
               <div className="flex-shrink-0 text-center">
                 <div className="image-user-profile">
                   <img src={imageProfile} alt="Profile" className="img-fluid" />
@@ -331,19 +334,19 @@ const UserProfile = () => {
           </div>
         </div>
 
-        <div className="saldo-container">
-          <div className="saldo-subcontainer">
-            <button>
-              <div className="saldo-text">Tu saldo en Maki:</div>
-              <div className="saldo-money">
-                $ {formatMoney(parseFloat(userData.saldo))} COP
-              </div>
-            </button>
-          </div>
-        </div>
+        
 
         {/* Icons Section */}
         <div className="icons-container">
+        {userType === "fundacion" && (
+            <div className="change-plan" >
+                <h2>
+                  ¡Aún estás a tiempo para cambiar de plan de membresía!
+                </h2>
+                <button className="boton-cambiar-plan">Ver planes</button>
+            </div>
+          )}
+          
           <div className="d-flex flex-wrap justify-content-center">
             <a href={mascotas_url}>
               <button className="btn-mascotas-user-profile">
@@ -398,7 +401,19 @@ const UserProfile = () => {
               </a>
             )}
           </div>
+          <div className="saldo-container">
+          <div className="saldo-subcontainer">
+            <button>
+              <div className="saldo-text">Tu saldo en Maki:</div>
+              <div className="saldo-money">
+                $ {formatMoney(parseFloat(userData.saldo))} COP
+              </div>
+            </button>
+          </div>
+          
         </div>
+        </div>
+        
         {/* Botón de Eliminar cuenta */}
         <div className="d-flex justify-content-center mt-4">
           <button

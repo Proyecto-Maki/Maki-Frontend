@@ -43,7 +43,7 @@
   width: 100%;
   height: 5rem;
   display: flex;
-  margin-top: 5%;
+  margin-top: 0%;
 }
 
 .saldo-subcontainer{
@@ -63,6 +63,7 @@
   padding-right: 1rem;
   display: flex;
   align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .saldo-text{
@@ -172,10 +173,13 @@
 .icons-container {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   gap: 2rem;
   margin-top: 1rem;
   flex-wrap: wrap; 
   padding: 16px;
+  align-items: center;
+  align-content: center;
 }
 
 /* Estilo para los íconos */
@@ -213,6 +217,29 @@
   color: #7BB66D;
   font-weight: bold;
   transform: scale(1.1);
+}
+
+.change-plan{
+  justify-items: center;
+}
+
+.change-plan button{
+  border-radius: 15px;
+  background-color: #ffa726;
+  border: none;
+  color: #fcf3e3;
+  padding: 10px;
+  margin-bottom: 5px;
+  width: 200px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.change-plan button:hover{
+  background-color: #FFD96E;
+  color: #302F2F;
+}
+
+.boton-cambiar-plan{
 }
 
 /* ================================ Estilos para botones ================================ */
