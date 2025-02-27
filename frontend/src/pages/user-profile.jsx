@@ -57,7 +57,7 @@ const UserProfile = () => {
 
   const adopciones_url = "solicitudes-de-adopcion/";
   const makipaws_url = "solicitudes-de-cuidado/";
-  const donaciones_url = "donaciones-realizadas/";
+  const donaciones_url = es_cliente === "true" ? "donaciones-realizadas/" : "donaciones-recibidas/";
   const [userType, setUserType] = useState("fundacion");
 
   const [isLoading, setIsLoading] = useState(true);
@@ -334,7 +334,16 @@ const UserProfile = () => {
           </div>
         </div>
 
-        
+        <div className="saldo-container">
+          <div className="saldo-subcontainer">
+            <button>
+              <div className="saldo-text">Tu saldo en Maki:</div>
+              <div className="saldo-money">
+                {formatMoney(userData.saldo)} COP
+              </div>
+            </button>
+          </div>
+        </div>
 
         {/* Icons Section */}
         <div className="icons-container">

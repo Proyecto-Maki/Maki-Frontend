@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import ErrorModal from "../components/ErrorModal";
 import api from "../api.js";
 import { formatDateTime } from "../functions.js";
+import { formatMoney } from "../functions.js";
 
 const Pedidos = () => {
   const navigate = useNavigate();
@@ -115,7 +116,7 @@ const Pedidos = () => {
               </div>
               <div className="fila-intermedia-mi">
                 <p className="total-mi">
-                  Total: ${pedido.total.toLocaleString()}
+                  Total: {formatMoney(pedido.total)} COP
                 </p>
                 <button className="estado-mi">{pedido.estado}</button>
               </div>

@@ -13,6 +13,7 @@ import ConfirmationModal from "../components/ConfirmationModal";
 import SuccessModalReload from "../components/SuccessModalReload";
 import ErrorModal from "../components/ErrorModal.jsx";
 import { formatDateTime } from "../functions";
+import { formatMoney } from "../functions";
 import LoadingPage from "../components/loading-page";
 
 const ResumenCuidado = () => {
@@ -204,11 +205,7 @@ const ResumenCuidado = () => {
                 <p className="adopcion-apellido-cliente">
                   <span className="label-apellido-adopcion">Total:</span>{" "}
                   <span className="cliente-apellido">
-                    {solicitudCuidado.costo ? Number(solicitudCuidado.costo).toLocaleString("es-CO", {
-                      style: "currency",
-                      currency: "COP",
-                      minimumFractionDigits: 2,
-                    })  : "Cargando"}
+                    {solicitudCuidado.costo ? formatMoney(solicitudCuidado.costo) + " COP" : "Cargando"}
                   </span>
                 </p>
               </div>

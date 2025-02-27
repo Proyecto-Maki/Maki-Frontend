@@ -8,6 +8,7 @@ import "../styles/productos.css";
 import generateRandomAlphaNumericCode from "../GenerateCardCode";
 import ProductSlider from "../pages/product-slider";
 import LoadingPage from "../components/loading-page";
+import { formatMoney } from "../functions";
 
 import { use } from "react";
 import Categories from "../components/categories";
@@ -325,7 +326,7 @@ function Productos() {
                         </Link>
                         <div className="card-body">
                           <h5 className="card-title">{producto.nombre}</h5>
-                          <p className="card-price">${producto.precio}</p>
+                          <p className="card-price">{formatMoney(producto.precio)} COP</p>
                           <Link
                             to={`/productos/${producto.slug}`}
                             className="btn card-button"
