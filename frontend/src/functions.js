@@ -11,6 +11,7 @@ export function formatDateTime(date) {
 }
 
 
-export function formatMoney(num){
-  return num.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-}
+export const formatMoney = (amount) => {
+  amount = parseFloat(amount);
+  return (amount.toLocaleString('es-CO', { style: 'currency', currency: 'COP' }));
+};

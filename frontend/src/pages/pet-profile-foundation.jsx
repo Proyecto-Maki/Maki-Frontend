@@ -12,50 +12,6 @@ import PetUpdate from "../components/forms/pet-update";
 import { MdPets } from "react-icons/md";
 
 function PetProfileFoundation() {
-  // Estado inicial con las mascotas
-
-  // const [mascotas, setMascotas] = useState([
-  //   {
-  //     id: 1,
-  //     nombre: "Baby",
-  //     tipo: "Perro",
-  //     edad: "2 meses",
-  //     tamano: "Pequeño",
-  //     peso: "3kg",
-  //     raza: "Korgi",
-  //     imagen: "../src/img/pet pfp/silly.jpeg", // Ruta de la imagen
-  //   },
-  //   {
-  //     id: 2,
-  //     nombre: "Milo",
-  //     tipo: "Gato",
-  //     edad: "1 año",
-  //     tamano: "Mediano",
-  //     peso: "5kg",
-  //     raza: "Siberiano",
-  //     imagen: "../src/img/pet pfp/fish.jpeg", // Ruta de la imagen
-  //   },
-  //   {
-  //     id: 3,
-  //     nombre: "Milo",
-  //     tipo: "Gato",
-  //     edad: "1 año",
-  //     tamano: "Mediano",
-  //     peso: "5kg",
-  //     raza: "Siberiano",
-  //     imagen: "../src/img/pet pfp/hampter.jpeg", // Ruta de la imagen
-  //   },
-  //   {
-  //     id: 4,
-  //     nombre: "Milo",
-  //     tipo: "Gato",
-  //     edad: "1 año",
-  //     tamano: "Mediano",
-  //     peso: "5kg",
-  //     raza: "Siberiano",
-  //     imagen: "../src/img/pet pfp/hehe.jpeg", // Ruta de la imagen
-  //   },
-  // ]);
 
   const [mascotasUser, setMascotasUser] = useState([]);
   const [mascotaUser, setMascotaUser] = useState({});
@@ -87,50 +43,16 @@ function PetProfileFoundation() {
     navigate("/perfil-mascota-cliente");
   }
 
-  // MIRA SI EL USUARIO ES CLIENTE O FUNDACION
-  // useEffect(() => {
-  //   api
-  //     .get(`current-user/`, {
-  //       headers: {
-  //         'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
-  //       },
-  //     })
-  //     .then((res) => {
-  //       if (res.status === 200) {
-  //         console.log(res.data);
-  //         if (res.data.is_cliente) {
-  //           es_cliente = true;
-  //           crear_mascota_url = '/register-pet-client';
-  //           console.log(crear_mascota_url);
-  //         } else {
-  //           es_fundacion = true;
-  //           crear_mascota_url = '/register-pet-foundation';
-  //           console.log(crear_mascota_url);
-  //         }
-  //       } else {
-  //         console.log(res.data.message);
-  //         setError(res.data.message);
-  //         setShowErrorModal(true);
-  //       }
-
-  //     })
-  //     .catch((error) => {
-  //       console.error(error.response ? error.response.data : error.message);
-  //       setError(error.response.data.detail);
-  //       setShowErrorModal(true);
-  //     });
-  // }, []);
-
   // TRAIDA DE MASCOTAS DEL USUARIO
 
   useEffect(() => {
-    api
-      .get(`mascotas/${email}/`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
+    const fetchMascotas = async () => {
+      try {
+        const response = await api.get(`mascotas/${email}/`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         if (response.status === 200) {
           setMascotasUser(response.data);
         } else {
@@ -138,8 +60,7 @@ function PetProfileFoundation() {
           setError("Error al obtener las mascotas");
           setShowErrorModal(true);
         }
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error(error.response);
         setError(
           error.response
@@ -147,7 +68,10 @@ function PetProfileFoundation() {
             : "Error al obtener las mascotas"
         );
         setShowErrorModal(true);
-      });
+      }
+    };
+  
+    fetchMascotas();
   }, []);
 
   const handleAnadirMascota = () => {

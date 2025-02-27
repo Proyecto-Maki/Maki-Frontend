@@ -57,7 +57,7 @@ const UserProfile = () => {
 
   const adopciones_url = "solicitudes-de-adopcion/";
   const makipaws_url = "solicitudes-de-cuidado/";
-  const donaciones_url = "donaciones-realizadas/";
+  const donaciones_url = es_cliente === "true" ? "donaciones-realizadas/" : "donaciones-recibidas/";
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -336,7 +336,7 @@ const UserProfile = () => {
             <button>
               <div className="saldo-text">Tu saldo en Maki:</div>
               <div className="saldo-money">
-                $ {formatMoney(parseFloat(userData.saldo))} COP
+                {formatMoney(userData.saldo)} COP
               </div>
             </button>
           </div>

@@ -9,6 +9,7 @@ import ErrorModal from "../components/ErrorModal.jsx";
 import api from "../api.js";
 import { formatDateTime } from "../functions";
 import { Link } from "react-router-dom";
+import { formatMoney } from "../functions";
 
 const MisSolicitudesCuidado = () => {
   const navigate = useNavigate();
@@ -99,11 +100,7 @@ const MisSolicitudesCuidado = () => {
                 </div>
                 <div className="id-y-chevron-sa">
                   <h3 className="id-sa">
-                    {Number(solicitud.costo).toLocaleString("es-CO", {
-                      style: "currency",
-                      currency: "COP",
-                      minimumFractionDigits: 2,
-                    })}
+                    {formatMoney(solicitud.costo)} COP
                   </h3>
 
                   
