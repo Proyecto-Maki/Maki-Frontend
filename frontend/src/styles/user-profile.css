@@ -64,11 +64,12 @@
   display: flex;
   align-items: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-size: 20px;
 }
 
 .saldo-text{
   color: #7BB66D;
-  font-size: 22px;
+  font-size: 25px;
 }
 
 .saldo-money{
@@ -232,6 +233,7 @@
   margin-bottom: 5px;
   width: 200px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-size: 25px;
 }
 
 .change-plan button:hover{
@@ -240,6 +242,7 @@
 }
 
 .boton-cambiar-plan{
+  margin-top: 20px;
 }
 
 /* ================================ Estilos para botones ================================ */
@@ -419,7 +422,7 @@
 .btn-delete-account {
   background-color: #FFD96E;
   color: #302F2F;
-  font-size: 1rem;
+  font-size: 20px;
   padding: 0.5rem 1rem;
   border-radius: 5px;
   display: flex;

@@ -333,18 +333,6 @@ const UserProfile = () => {
             </div>
           </div>
         </div>
-
-        <div className="saldo-container">
-          <div className="saldo-subcontainer">
-            <button>
-              <div className="saldo-text">Tu saldo en Maki:</div>
-              <div className="saldo-money">
-                {formatMoney(userData.saldo)} COP
-              </div>
-            </button>
-          </div>
-        </div>
-
         {/* Icons Section */}
         <div className="icons-container">
         {userType === "fundacion" && (
@@ -415,7 +403,7 @@ const UserProfile = () => {
             <button>
               <div className="saldo-text">Tu saldo en Maki:</div>
               <div className="saldo-money">
-                $ {formatMoney(parseFloat(userData.saldo))} COP
+                {formatMoney(parseFloat(userData.saldo))} COP
               </div>
             </button>
           </div>
