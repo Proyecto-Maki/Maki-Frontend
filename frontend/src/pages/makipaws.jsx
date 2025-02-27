@@ -16,7 +16,6 @@ import axios from "axios";
 import LoadingPage from "../components/loading-page";
 
 function Makipaws() {
-
   const email = sessionStorage.getItem("email");
   const token = sessionStorage.getItem("token");
   const refresh = sessionStorage.getItem("refresh");
@@ -49,8 +48,10 @@ function Makipaws() {
       .get("/cuidadores/", {
         headers: {
           Authorization: `Bearer ${token}`,
-      }}) 
+        },
+      })
       .then((response) => {
+        console.log("Datos recibidos:", response.data); // Verificar datos en consola
         setCuidadores(response.data);
         setIsLoading(false);
       })
@@ -110,7 +111,10 @@ function Makipaws() {
                             style={{ height: "20px", marginRight: "10px" }}
                           />
                           <strong>Categoría: </strong>
-                          {cuidador.categoriaMascotas}
+                          {
+                            /* {cuidador.categoriaMascotas} */
+                            cuidador.categoria_mascotas
+                          }
                         </p>
                         <p className="card-locality">
                           <img
