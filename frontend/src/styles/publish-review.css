@@ -172,6 +172,7 @@
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
+    margin-bottom: 30px;
 }
 
 .publish-review-button:hover {
@@ -185,6 +186,19 @@
     text-decoration: underline;
     cursor: pointer;
     font-weight: bold;
+}
+
+.form-group-terms-reseña{
+    display: grid;
+    grid-template-columns: 230px 300px;
+    text-align:center;
+}
+
+.terms-checkbox-reseña{
+    width: 6%;
+    height: auto;
+    justify-self: right;
+    display: flex;
 }
 
 @media (min-width: 768px) {

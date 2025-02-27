@@ -281,7 +281,7 @@ h3 {
   align-items: center;
   justify-self: right;
   max-width: 100%;
-
+  position: relative;
 }
 
 .reseña-prod {
@@ -387,12 +387,17 @@ h3 {
   padding: 2%;
   margin-top: 10%;
   align-items: center;
+  position: sticky;
 }
 
 .filter-comments p{
   color: #f39029;
   font-size: 27px;
   text-align: center;
+}
+
+.custom-modal{
+  z-index: 1500;
 }
 
 @media (max-width: 768px) {

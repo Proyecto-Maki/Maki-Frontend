@@ -331,7 +331,7 @@ const Carrito = () => {
                     />
                     <label htmlFor="saldo">
                       <img src={LogoMakiimg} alt="Maki" className="maki-icon" />
-                      Saldo (disponible: ${formatMoney(saldo)})
+                      Saldo (disponible: {formatMoney(saldo)} COP)
                     </label>
                   </div>
                 </div>
@@ -394,25 +394,23 @@ const Carrito = () => {
             <div className="summary-card">
               <h3 className="card-title">Resumen de compra</h3>
               <p>
-                Precio sin IVA: $
-                {cart
+                Precio sin IVA:{" "} {formatMoney(cart
                   .reduce(
                     (total, product) =>
                       total + product.price * product.quantity,
                     0
-                  )
-                  .toLocaleString()}
+                  ))
+                  } COP
               </p>
               <p>
                 <strong>
-                  TOTAL: $
-                  {cart
+                  TOTAL: {" "} {formatMoney(cart
                     .reduce(
                       (total, product) =>
                         total + product.price * product.quantity,
                       0
-                    )
-                    .toLocaleString()}
+                    ))
+                    } COP
                 </strong>
               </p>
               <button className="Btn-carrito-pay" onClick={handlePayment}>

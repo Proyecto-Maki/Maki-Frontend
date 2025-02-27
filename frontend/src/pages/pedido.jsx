@@ -6,6 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom"; // Importa la funci
 import ErrorModal from "../components/ErrorModal";
 import ConfirmationModal from "../components/ConfirmationModal";
 import SuccessModal from "../components/SuccessModal.jsx";
+import { formatMoney } from "../functions.js";
 
 const Pedido = () => {
   const [showErrorModal, setShowErrorModal] = useState(false);
@@ -178,7 +179,7 @@ const Pedido = () => {
               <h4 className="pedido-id"># {order.id}</h4>
             </div>
             <div className="fila-intermedia">
-              <p className="pedido-total">Total: {order.total}</p>
+              <p className="pedido-total">Total: {formatMoney(order.total)} COP</p>
               <p className="pedido-fecha">
                 Fecha de compra: {order.fechaCompra}
               </p>
@@ -201,7 +202,7 @@ const Pedido = () => {
                 />
                 <div className="producto-detalles">
                   <h3 className="producto-nombre">{product.name}</h3>
-                  <p className="producto-precio">${product.price}</p>
+                  <p className="producto-precio">{formatMoney(product.price)} COP</p>
                 </div>
                 {/* Sección para mostrar la cantidad */}
                 <div className="producto-cantidad">

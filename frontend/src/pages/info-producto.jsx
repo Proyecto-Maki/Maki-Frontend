@@ -11,6 +11,7 @@ import fundaciones_img from "../img/Foto_Perfil_Fundaciones.svg";
 import ErrorModal from "../components/ErrorModal";
 import ConfirmationModal from "../components/ConfirmationModal";
 import SuccessModalReload from "../components/SuccessModalReload";
+import { formatMoney } from "../functions";
 
 const InfoProduct = () => {
   const { slug } = useParams(); // Obtiene el slug desde la URL
@@ -373,7 +374,7 @@ const InfoProduct = () => {
             </div>
             <div className="column-info">
               <h1>{product.nombre}</h1>
-              <h2>${parseFloat(product.precio).toFixed(2)}</h2>
+              <h2>{formatMoney(product.precio)}</h2>
               <p>Selecciona la cantidad:</p>
               <div className="container-quantity-selector">
                 <div className="quantity-selector">
@@ -584,6 +585,7 @@ const InfoProduct = () => {
         handleNo={handleNoConfirmationModal}
         action="Eliminar reseña"
         response="¿Estás seguro de eliminar la reseña? Esta acción no se puede deshacer."
+        className="custom-modal"
       />
     </div>
   );

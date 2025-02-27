@@ -20,6 +20,8 @@ function Navbar() {
 
   const [userLogin, setUserLogin] = useState(false); // Variable de estado para saber si el usuario está logueado
   const [userProfileImage, setUserProfileImage] = useState(""); // Variable de estado para la foto de perfil
+  const is_cliente = sessionStorage.getItem("is_cliente");
+  const is_fundacion  = sessionStorage.getItem("is_fundacion");
 
   useEffect(() => {
     if (
@@ -76,8 +78,10 @@ function Navbar() {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-
-          <span className="navbar-toggler-icon"> <IoMenu /> </span>
+          <span className="navbar-toggler-icon">
+            {" "}
+            <IoMenu />{" "}
+          </span>
         </button>
 
         {/* Links y botones */}
@@ -99,11 +103,17 @@ function Navbar() {
                   Productos
                 </a>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/makipaws">
-                  MakiPaws
-                </a>
-              </li>
+              {is_cliente === "true" ? (
+                <>
+                  <li className="nav-item">
+                    <a className="nav-link" href="/makipaws">
+                      MakiPaws
+                    </a>
+                  </li>
+                </>
+              ) : (
+                <></>
+              )}
               <li className="nav-item">
                 <a className="nav-link" href="/sobre-maki">
                   Acerca de Maki

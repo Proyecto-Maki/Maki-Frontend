@@ -42,12 +42,12 @@ function Membresias() {
                         <h3 className="membership-text">Ofrecemos los siguientes planes con los siguientes beneficios para tu fundación de mascotas</h3>
                     </div>
                     <div className="plan-table">
-                        <div className="table-wrapper">
-                            <div className="table">
+                        <div className="table-wrapper-membership">
+                            <div className="table-membership">
                                 <div className="plan">Elige tu plan</div>
                                 <div className="plan column-personal">Personal</div>
                                 <div className="plan column-peludos">Peludos</div>
-                                <div className="row header">
+                                <div className="row-membership header">
                                     <div className="cell">Podrás ver y comprar nuestros productos.</div>
                                     <div className="cell column-personal">
                                         <img
@@ -66,7 +66,7 @@ function Membresias() {
                                         />
                                     </div>
                                 </div>
-                                <div className="row">
+                                <div className="row-membership">
                                 <div className="cell">Podrás recibir donaciones de nuestros clientes.</div>
                                 <div className="cell column-personal">
                                     <img
@@ -85,7 +85,7 @@ function Membresias() {
                                             />
                                     </div>
                                 </div>
-                                <div className="row header">
+                                <div className="row-membership header">
                                 <div className="cell">
                                     Podrás publicar tus animales en adopción en nuestra plataforma.
                                 </div>
@@ -106,7 +106,7 @@ function Membresias() {
                                     />
                                 </div>
                                 </div>
-                                <div className="row">
+                                <div className="row-membership">
                                 <div className="cell">
                                     Obtendrás un 25% de descuento en nuestros productos.
                                 </div>
@@ -127,7 +127,7 @@ function Membresias() {
                                     />
                                 </div>
                                 </div>
-                                <div className="row price">
+                                <div className="row-membership price">
                                     <h2 >Precio</h2>
                                     <button className="price-personal">$0 COP</button>
                                     <button className="price-peludos">$26.000 COP</button>

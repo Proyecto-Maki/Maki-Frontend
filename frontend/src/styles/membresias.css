@@ -113,26 +113,26 @@
     overflow-x: auto;
 }
 
-.table-wrapper::-webkit-scrollbar {
+.table-wrapper-membership::-webkit-scrollbar {
   width: 3px;
   height: 5px;
   background-color: #D0DAD8;
 }
 
-.table-wrapper::-webkit-scrollbar-thumb {
+.table-wrapper-membership::-webkit-scrollbar-thumb {
   background: #ffcc80;
   border-radius: 80px;
 }
 
-.table-wrapper::-webkit-scrollbar-thumb:hover {
+.table-wrapper-membership::-webkit-scrollbar-thumb:hover {
   background: #ffa726;
 }
 
-.table-wrapper::-webkit-scrollbar-track {
+.table-wrapper-membership::-webkit-scrollbar-track {
   background: none;
 }
 
-.table-wrapper  h2 {
+.table-wrapper-membership  h2 {
     color: #ff7e1a;
     padding: 10px 0;
     margin: 0;
@@ -150,7 +150,7 @@
     font-family: "Koulen", sans-serif;
 }
 
-.table {
+.table-membership {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     background-color: #fcf3e3;
@@ -159,20 +159,20 @@
     grid-template-columns: repeat(3, minmax(150px, 1fr)); 
 }
 
-.table-wrapper {
+.table-wrapper-membership {
   width: 100%;
   overflow-x: auto; 
   -webkit-overflow-scrolling: touch; 
 }
 
-.row {
+.row-membership {
     display: contents;
 }
 
 .cell {
     padding: 15px;
     text-align: center;
-    font-size: 16px;
+    font-size: 20px;
     min-width: 150px;
 }
 
@@ -205,8 +205,8 @@
     font-size: 18px;
 }
 
-.row.price .cell:nth-child(2)::after,
-.row.price .cell:nth-child(3)::after {
+.row-membership.price .cell:nth-child(2)::after,
+.row-membership.price .cell:nth-child(3)::after {
     content: "";
 }
 
@@ -345,17 +345,17 @@
     }
 
 
-    .table {
+    .table-membership {
         grid-template-columns: 1fr 1fr  1fr; 
     }
 
     .cell {
-        font-size: 0.9rem;
+        font-size: 20px;
         padding: 8px;
     }
 
     .price h2 {
-        font-size: 1.2rem;
+        font-size: 50px;
     }
 }
 
@@ -375,7 +375,7 @@
     .logo-membership img {
         height: 60px;
     }
-    .table {
+    .table-membership {
         grid-template-columns: 1fr  1fr  1fr; 
     }
 
@@ -388,7 +388,7 @@
       font-size: 1rem;
   }
 
-  .table {
+  .table-membership {
       overflow-x: auto; 
   }
 }
