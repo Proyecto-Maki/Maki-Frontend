@@ -26,6 +26,7 @@ const PublishReview = () => {
   const [comment, setComment] = useState("");
   const [imageProfile, setImageProfile] = useState("");
   const [createUrl, setCreateUrl] = useState("");
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
 
   const email = sessionStorage.getItem("email");
   const token = sessionStorage.getItem("token");
@@ -71,6 +72,15 @@ const PublishReview = () => {
   // Prueba de producto CAMBIAR ESTO PA HACER PRUEBAS
 //   id_producto = 6;
 //   slug = "whiskas-sabor-pollo-sobres-100-gr";
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  if (!acceptedTerms) {
+    setError("Debes aceptar los términos y condiciones para continuar.");
+    // alert("Debes aceptar los términos y condiciones para continuar.");
+    setShowErrorModal(true);
+    return;
+  }
+}
 
   const handleClick = () => {
     navigate("/terminos-y-condiciones");
@@ -250,7 +260,7 @@ const PublishReview = () => {
     <div className="absolute-container-publish-review">
       <Navbar />
       <div className="background-container-publish-review">
-        <div className="publish-review-container">
+        <div className="publish-review-container" onSubmit={handleSubmit}>
           <h2 className="publish-review-title">
             ¿Qué piensas de nuestro {origen === "info-producto" ? "producto" : "cuidador"}?
           </h2>
@@ -305,9 +315,30 @@ const PublishReview = () => {
           >
             Publicar
           </button>
-          <p className="publish-review-terms" onClick={handleClick}>
-            Términos & Condiciones
-          </p>
+          
+          <div className="form-group-terms-reseña">
+              <input
+                className="terms-checkbox-reseña"
+                type="checkbox"
+                id="terms"
+                checked={acceptedTerms}
+                onChange={() => setAcceptedTerms(!acceptedTerms)}
+                required
+              />
+              <label htmlFor="terms" className="terms-label">
+                Acepto los{" "}
+                <a
+                  href="/terminos-y-condiciones"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: "#ff7f50" }}
+                >
+                  términos y condiciones
+                </a>{" "}
+                de Maki
+              </label>
+              
+            </div>
         </div>
       </div>
       <SuccessModalNoReload
