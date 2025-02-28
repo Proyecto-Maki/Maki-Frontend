@@ -274,6 +274,53 @@ function CrearSolicitudCuidado() {
     return <LoadingPage />;
   }
 
+  const handlePayment = async () => {
+    if (!selectedPet || !startDate || !payment.total) {
+      alert("Faltan datos obligatorios para el pago.");
+      return;
+    }
+
+    try {
+      const email = sessionStorage.getItem("email");
+      const token = sessionStorage.getItem("token");
+
+      if (!email || !token) {
+        alert("Debes iniciar sesión para realizar un pago.");
+        return;
+      }
+
+      const response = await fetch(
+        "https://backend.makishop.live/api/mercadopago/create_preference_cuidado/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            user_id: sessionStorage.getItem("user_id"),
+            mascota_id: selectedPet.id,
+            cuidador_id: cuidador.id,
+            total: payment.total,
+            email: email,
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (response.ok) {
+        window.location.href = data.init_point; // Redirigir a Mercado Pago
+      } else {
+        console.error("Error al crear la preferencia:", data.error);
+        alert("Error al iniciar el pago.");
+      }
+    } catch (error) {
+      console.error("Error inesperado:", error);
+      alert("Error inesperado al iniciar el pago.");
+    }
+  };
+
   return (
     <div className="absolute-container-create-care">
       {/* Navbar */}
@@ -289,7 +336,13 @@ function CrearSolicitudCuidado() {
             />
           </div>
           <div className="create-care">
-            <form className="form-create-care">
+            <form
+              className="form-create-care"
+              onSubmit={(e) => {
+                e.preventDefault(); // 🚀 Evita el comportamiento por defecto del formulario
+                handlePayment();
+              }}
+            >
               <div className="photo-container">
                 {cuidador ? (
                   <>
@@ -516,8 +569,9 @@ function CrearSolicitudCuidado() {
               </div>
               <div className="btn-create-care">
                 <button
-                  type="submit"
+                  // type="submit"
                   className="btn-create-care-pet"
+                  onClick={handlePayment}
                   disabled={!isCreateButtonEnabled()}
                 >
                   <i className="fas fa-paw"></i> ¡Crear!
