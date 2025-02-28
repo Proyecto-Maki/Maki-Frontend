@@ -32,6 +32,8 @@ const Login = () => {
           console.log("✅ Login successful:", response.data);
 
           const user_id = response.data.data.id; // 📌 Asegurar que el backend devuelve el ID del usuario
+          const is_fundacion = response.data.data.is_fundacion;
+          const first_login = response.data.data.first_login;
           if (!user_id) {
             console.error(
               "❌ No se recibió user_id en la respuesta del backend"
@@ -44,10 +46,12 @@ const Login = () => {
           sessionStorage.setItem("refresh", response.data.data.refresh);
           sessionStorage.setItem("email", email);
           sessionStorage.setItem("is_cliente", response.data.data.is_cliente);
-          sessionStorage.setItem(
-            "is_fundacion",
-            response.data.data.is_fundacion
-          );
+          sessionStorage.setItem("is_fundacion", is_fundacion);
+
+          if (is_fundacion && first_login) {
+            navigate("/membresias");
+            return;
+          }
 
           // 📌 Establecer el mensaje de respuesta ANTES de abrir el modal
           setResponse("¡Bienvenido a Maki!");
