@@ -28,7 +28,7 @@ function Membresias() {
 
   const handleBuyMembership = (plan) => {
     api
-      .post("/mercadopago/create-membership-preference/", {
+      .post("/mercadopago/create_membership_preference/", {
         user_id,
         membership_plan: plan,
       })
