@@ -52,8 +52,8 @@ const InfoCuidadores = () => {
 
   const handlePublicarResena = () => {
     const origen = "info-cuidador";
-    const contenido = { datosCuidador }
-    navigate("/publicar-reseña", { state: { origen, contenido }}); // Cambia "/otra-pagina" por la ruta deseada
+    const contenido = { datosCuidador };
+    navigate("/publicar-reseña", { state: { origen, contenido } }); // Cambia "/otra-pagina" por la ruta deseada
   };
 
   useEffect(() => {
@@ -121,8 +121,8 @@ const InfoCuidadores = () => {
   };
 
   useEffect(() => {
-      ordenarResenas();
-    }, [filtroCalificacion]);
+    ordenarResenas();
+  }, [filtroCalificacion]);
 
   const toggleShowMore = (id) => {
     setShowMoreStates((prevStates) => ({
@@ -131,7 +131,7 @@ const InfoCuidadores = () => {
     }));
   };
 
-  const handleEliminarResena =async (e) => {
+  const handleEliminarResena = async (e) => {
     e.preventDefault();
 
     if (resenaIdEliminar === 0) {
@@ -143,7 +143,7 @@ const InfoCuidadores = () => {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      })
+      });
       if (response.status === 204) {
         console.log("Reseña eliminada:", response);
         setResponse("Reseña eliminada con éxito");
@@ -159,7 +159,7 @@ const InfoCuidadores = () => {
       setError("Error al eliminar la reseña");
       setShowErrorModal(true);
     }
-  }
+  };
 
   const handleOpenConfirmationModal = (e, id_resena) => {
     e.preventDefault();
@@ -312,6 +312,11 @@ const InfoCuidadores = () => {
           <button
             className="cuidado-button"
             title="Adoptar"
+            onClick={() =>
+              navigate("/crear-solicitud-cuidado", {
+                state: { cuidador: datosCuidador },
+              })
+            }
             /*onClick={() =>
                             handleAdoptarMascota(datosCuidador.mascota, datosCuidador.id)
                             }*/
@@ -384,7 +389,9 @@ const InfoCuidadores = () => {
                         <>
                           <button
                             className="boton-eliminar"
-                            onClick={(e) => handleOpenConfirmationModal(e, resena.id)}
+                            onClick={(e) =>
+                              handleOpenConfirmationModal(e, resena.id)
+                            }
                           >
                             <i className="fas fa-trash"></i>
                           </button>
@@ -421,7 +428,9 @@ const InfoCuidadores = () => {
               Comparte tus opiniones y experiencias con otros clientes ¡Nos
               ayudarías mucho!
             </p>
-            <button className="boton-reseña" onClick={handlePublicarResena}>Escríbela</button>
+            <button className="boton-reseña" onClick={handlePublicarResena}>
+              Escríbela
+            </button>
             <div className="filter-comments">
               <p> Ordena las reseñas por calificacion: </p>
               <div className="select">
