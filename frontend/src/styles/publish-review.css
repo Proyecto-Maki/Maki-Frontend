@@ -190,18 +190,25 @@
 
 .form-group-terms-reseña{
     display: grid;
-    grid-template-columns: 230px 300px;
+    grid-template-columns: 20px 1fr;
     text-align:center;
+    justify-self: center;
+    width: 50%;
 }
 
 .terms-checkbox-reseña{
-    width: 6%;
+    width: 80%;
     height: auto;
-    justify-self: right;
+    justify-self: self-start;
     display: flex;
 }
 
-@media (min-width: 768px) {
+
+@media (max-width: 768px) {
+    .form-group-terms-reseña{
+        width: 100%;
+    }
+
     .publish-review-user-info {
         flex-direction: row; 
         justify-content: space-between;
@@ -228,5 +235,24 @@
 
     .publish-review-user-info {
         justify-content: space-between;
+    }
+
+    .form-group-terms-reseña{
+        grid-template-columns: 80px 1fr;
+        margin-right: 0%;
+        padding: 0%;
+        width: 60%;
+    }
+
+    .terms-checkbox-reseña{
+        width: 20%;
+        justify-self: right;
+    }
+    
+}
+
+@media (min-width: 2560px){
+    .form-group-terms-reseña{
+        width: 40%;
     }
 }

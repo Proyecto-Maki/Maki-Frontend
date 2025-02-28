@@ -317,6 +317,7 @@ const handleSubmit = async (e) => {
           </button>
           
           <div className="form-group-terms-reseña">
+            
               <input
                 className="terms-checkbox-reseña"
                 type="checkbox"
@@ -325,7 +326,9 @@ const handleSubmit = async (e) => {
                 onChange={() => setAcceptedTerms(!acceptedTerms)}
                 required
               />
-              <label htmlFor="terms" className="terms-label">
+            
+           
+            <label htmlFor="terms" className="terms-label">
                 Acepto los{" "}
                 <a
                   href="/terminos-y-condiciones"
@@ -337,8 +340,9 @@ const handleSubmit = async (e) => {
                 </a>{" "}
                 de Maki
               </label>
+            
               
-            </div>
+          </div>
         </div>
       </div>
       <SuccessModalNoReload
