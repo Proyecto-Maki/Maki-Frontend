@@ -51,7 +51,7 @@ const InfoProduct = () => {
   const handlePublicarResena = () => {
     const origen = "info-producto";
     const contenido = { product };
-    navigate("/publicar-reseña", { state: { origen, contenido }}); // Cambia "/otra-pagina" por la ruta deseada
+    navigate("/publicar-reseña", { state: { origen, contenido } }); // Cambia "/otra-pagina" por la ruta deseada
   };
 
   const codigo_carrito =
@@ -84,7 +84,7 @@ const InfoProduct = () => {
   const [resenas, setResenas] = useState([]);
 
   useEffect(() => {
-    console.log("Cargando resenas del producto:", product?.id);
+    //console.log("Cargando resenas del producto:", product?.id);
     const fetchResenas = async () => {
       if (product?.id) {
         try {
@@ -124,7 +124,7 @@ const InfoProduct = () => {
     ordenarResenas();
   }, [filtroCalificacion]);
 
-  const handleEliminarResena =async (e) => {
+  const handleEliminarResena = async (e) => {
     e.preventDefault();
 
     if (resenaIdEliminar === 0) {
@@ -136,7 +136,7 @@ const InfoProduct = () => {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      })
+      });
       if (response.status === 204) {
         console.log("Reseña eliminada:", response);
         setResponse("Reseña eliminada con éxito");
@@ -152,7 +152,7 @@ const InfoProduct = () => {
       setError("Error al eliminar la reseña");
       setShowErrorModal(true);
     }
-  }
+  };
 
   const handleOpenConfirmationModal = (e, id_resena) => {
     e.preventDefault();
@@ -433,7 +433,7 @@ const InfoProduct = () => {
                       <div key={resena.id} className="reseña-prod">
                         <div className="reseña-prod-header">
                           <img
-                            src={clientes_img}
+                            src={resena.user_data.is_cliente === true ? clientes_img : fundaciones_img}
                             alt="Imagen"
                             className="reseña-avatar-prod"
                           />
@@ -455,7 +455,9 @@ const InfoProduct = () => {
                             <>
                               <button
                                 className="boton-eliminar"
-                                onClick={(e) => handleOpenConfirmationModal(e, resena.id)}
+                                onClick={(e) =>
+                                  handleOpenConfirmationModal(e, resena.id)
+                                }
                               >
                                 <i className="fas fa-trash"></i>
                               </button>
