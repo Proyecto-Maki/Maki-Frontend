@@ -27,12 +27,17 @@ function Membresias() {
   }
 
   const handleBuyMembership = (plan) => {
+    console.log("📌 Enviando datos a Mercado Pago:", {
+      user_id,
+      membership_plan: plan,
+    });
     api
       .post("/create_membership_preference/", {
         user_id,
         membership_plan: plan,
       })
       .then((response) => {
+        console.log("✅ Respuesta de Mercado Pago:", response.data);
         if (response.data.init_point) {
           window.location.href = response.data.init_point; // Redirigir a Mercado Pago
         } else {
