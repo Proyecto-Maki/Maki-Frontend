@@ -77,6 +77,8 @@
     color: #FF793F;
     flex-grow: 1;
     font-family: 'Aoboshi One', sans-serif;
+    border: 2px solid red;
+    background-color: #fcf3e3;
 }
 
 .right-text-container h2{
@@ -103,8 +105,9 @@
   margin: 0;
   font-size: 3.75rem;
   line-height: 1.2;
-  color: #fcf3e3;
+  color: #F4A258;
   text-align: center;
+  margin-top: 20%;
 }
 
 .subheading {
@@ -119,7 +122,7 @@
 .subheading-2 {
   z-index: 1;
   margin-top: 1rem;
-  font-size: 35px;
+  font-size: 30px;
   color: #302f2fe5;
   background-color: #fcf3e3;
   border-radius: 10px;
@@ -422,6 +425,94 @@
     padding: 20% 0;
   }
 
+  .Welcome-article-Services{
+    border: 2px solid red;
+    width: auto;
+    text-align: center;
+  }
+
+  .Welcome-article-Services h2{
+    text-align: center;
+  }
+
+  .donations-services{
+    font-size: 50px;
+    margin-bottom: 5%;
+  }
+
+ 
+
+  /* */
+  .custom-shape-divider-bottom-1736726305 {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+  }
+  
+  .custom-shape-divider-bottom-1736726305 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 163px;
+    transform: rotateY(180deg);
+  }
+  
+  .custom-shape-divider-bottom-1736726305 .shape-fill {
+    fill: #7BB66D;
+  }
+
+  .container-cards{
+    border: 2px solid red;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+  }
+
+  .container-cards h2{
+
+  }
+
+  .card-donations img{
+    width: 45%;
+    margin-bottom: 10%;
+  }
+
+  .title-services{
+    font-family: 'Koulen', sans-serif;
+    color: #fcf3e3;
+    font-size: 90px;
+  }
+
+
+  .card-donations{
+    background-color: #fcf3e3;
+    width: 65%;
+    border-radius: 20px;
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border: 5px solid #F4A258;
+  }
+
+  .card-donations-content{
+    border: 2px solid red;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-end;
+    justify-items: flex-end;
+    align-items: center;
+  }
+
+  .card-donations-content{
+    color: #302F2F;
+    font-size:25px;
+  }
+
   /* Estilos responsive para pantallas pequeñas */
 @media (max-width: 768px) {
     .footer-logo-home .logo {
@@ -519,6 +610,14 @@
     .subheading-2{
       padding: 20px;
       font-size: 50px;
+    }
+
+    .card-donations{
+      width: 40%;
+    }
+
+    .card-donations-content p{
+      font-size: 20px;
     }
   }
 
