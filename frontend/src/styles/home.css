@@ -77,7 +77,6 @@
     color: #FF793F;
     flex-grow: 1;
     font-family: 'Aoboshi One', sans-serif;
-    border: 2px solid red;
     background-color: #fcf3e3;
 }
 
@@ -107,7 +106,6 @@
   line-height: 1.2;
   color: #F4A258;
   text-align: center;
-  margin-top: 20%;
 }
 
 .subheading {
@@ -303,10 +301,12 @@
     text-align: center;
     padding: 40vh 0;
     width: 100%;
+    height: auto;
     overflow: visible;
     bottom: 0;
     background-color: #FCF3E3;
-    margin-top: 50px;
+    margin-top: 40%;
+    padding-bottom: 400px;
     position: absolute;
 }
 
@@ -408,7 +408,7 @@
   .copyright-footer-home {
     font-size: 10px;
     color: #ffa726;
-    margin-top: 50px;
+    margin-top: 30px;
   }
 
   .footer-divider-home {
@@ -426,20 +426,16 @@
   }
 
   .Welcome-article-Services{
-    border: 2px solid red;
     width: auto;
     text-align: center;
+    background-color: #fcf3e3;
   }
 
   .Welcome-article-Services h2{
     text-align: center;
   }
 
-  .donations-services{
-    font-size: 50px;
-    margin-bottom: 5%;
-  }
-
+  
  
 
   /* */
@@ -465,15 +461,31 @@
     fill: #7BB66D;
   }
 
+  .custom-shape-divider-bottom-1736726306{
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+  }
+
+  .custom-shape-divider-bottom-1736726306 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 163px;
+  }
+
+  .custom-shape-divider-bottom-1736726306 .shape-fill {
+    fill: #7BB66D;
+  }
+
   .container-cards{
-    border: 2px solid red;
     display: grid;
     grid-template-columns: 1fr 1fr;
     justify-items: center;
-  }
-
-  .container-cards h2{
-
+    justify-content: center;
   }
 
   .card-donations img{
@@ -483,34 +495,112 @@
 
   .title-services{
     font-family: 'Koulen', sans-serif;
-    color: #fcf3e3;
+    color: #F4A258;
     font-size: 90px;
   }
 
+  .donations-services{
+    font-size: 50px;
+    margin-bottom: 5%;
+  }
 
-  .card-donations{
+
+  .card-adoptions img{
+    width: 45%;
+    margin-bottom: 10%;
+  }
+
+  .adoptions-services{
+    font-size: 50px;
+    margin-bottom: 5%;
+  }
+
+  .card-adoptions-content{
+    display: flex;
+    flex-direction: column;
+    align-content: flex-end;
+    justify-items: flex-end;
+    align-items: center;
+    color: #302F2F;
+    font-size:26px;
+  }
+
+  .card-adoptions{
     background-color: #fcf3e3;
-    width: 65%;
+    width: 76%;
     border-radius: 20px;
     margin: 20px;
     padding: 20px;
     display: flex;
     flex-direction: column;
     border: 5px solid #F4A258;
+    box-shadow: #0000007a 0px 0px 10px 0px;;
+  }
+
+
+  .card-donations{
+    background-color: #fcf3e3;
+    width: 76%;
+    border-radius: 20px;
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border: 5px solid #F4A258;
+    box-shadow: #0000007a 0px 0px 10px 0px;;
   }
 
   .card-donations-content{
-    border: 2px solid red;
     display: flex;
     flex-direction: column;
     align-content: flex-end;
     justify-items: flex-end;
     align-items: center;
+    color: #302F2F;
+    font-size:26px;
   }
 
-  .card-donations-content{
-    color: #302F2F;
-    font-size:25px;
+  /*articulo de bienvenida parte de makipaws*/
+  .Welcome-article-MakiPaws{
+    width: auto;
+  }
+
+  .Welcome-article-MakiPaws h2{
+    text-align: center;
+    margin-top: 2%;
+  }
+
+  .title-makipaws{
+    font-family: 'Koulen', sans-serif;
+    color: #fcf3e3;
+    font-size: 90px;
+  }
+
+  .content-article-MakiPaws{
+    display: grid;
+    grid-template-columns: 370px 1fr;
+    margin: 90px;
+    align-items: center;
+  }
+
+  .content-article-MakiPaws img{
+    width: 90%;
+    justify-self: center;
+  }
+
+  .content-article-MakiPaws .text-MakiPaws{
+    background-color: #fcf3e3;
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    align-content: center;
+    font-size: 30px;
+    width: 100%;
+    height: auto;
+  }
+
+  .services-content-tent{
+    padding: 20px;
   }
 
   /* Estilos responsive para pantallas pequeñas */
@@ -565,6 +655,40 @@
       justify-content: center;
       justify-items: center;
     }
+
+    .container-cards{
+      grid-template-columns: 1fr;
+    }
+
+    .card-adoptions,
+    .card-donations{
+      width: 90%;
+    }
+
+    .content-article-MakiPaws{
+      grid-template-columns: 1fr;
+      align-items: center;
+      margin: 20px;
+    }
+
+    .content-article-MakiPaws img{
+      display: flex;
+    }
+
+    .content-article-MakiPaws .text-MakiPaws{
+      width: auto;
+      height: auto;
+    }
+
+
+    .services-content-tent{
+      padding: 20px;
+      align-items: center;
+      align-content: center;
+      justify-content: center;
+      justify-items: center;
+      text-align: center;
+    }
     
   }
   
@@ -593,32 +717,140 @@
       justify-content: center;
       justify-items: center;
     }
-  }
 
-
-  @media (min-width: 2560px) {
-    .welcome-article-container{
-      margin-bottom: 0;
+    .container-cards{
       grid-template-columns: 1fr;
     }
 
-    .right-text-container-2{
-      margin-top: 10%;
-      width: 50%;
-    }
-
-    .subheading-2{
-      padding: 20px;
-      font-size: 50px;
-    }
-
+    .card-adoptions,
     .card-donations{
-      width: 40%;
+      width: 90%;
     }
 
-    .card-donations-content p{
-      font-size: 20px;
+    .content-article-MakiPaws{
+      grid-template-columns: 1fr;
+      align-items: center;
+    }
+
+    .content-article-MakiPaws img{
+      display: flex;
+    }
+
+    .content-article-MakiPaws .text-MakiPaws{
+      width: auto;
+      height: auto;
     }
   }
 
+@media (max-width:1024px) {
+  .footer-logo-home .logo {
+    max-width: 80px; 
+    margin-bottom: 10px;
+  }
+
+  .footer-nav-home ul {
+    flex-direction: column; 
+    gap: 10px; 
+  }
+
+  .footer-social-home {
+    gap: 10px; 
+  }
+
+  .footer-divider-home {
+    width: 80%; 
+  }
+
+  .email-home {
+    font-size: 13px; 
+  }
+
+  .copyright-home {
+    font-size: 11px;
+  }
+  .subheading{
+    overflow: hidden;
+  }
+
+  .animation-container{
+    page: 2.5;
+  }
+  .footer-container-home-parallax {
+    offset: 20;
+  }
+  
+  .subheading-2 {
+    font-size: 1rem;
+  }
+
+  .left-text-container-2 h2 {
+    font-size: 2rem;
+  }
+
+  .left-text-container-2{
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+  }
+
+  .container-cards{
+    grid-template-columns: 1fr;
+  }
+
+  .card-adoptions,
+  .card-donations{
+    width: auto;
+  }
+}
+
+@media (width:1024px) {
+  
+  .left-text-container-2 h2{
+    font-size: 50px;
+  }
+
+  .subheading-2{
+    padding: 20px;
+    font-size: 33px;
+  }
+
+  .welcome-article-container{
+    margin-bottom: 0px;
+    grid-template-columns: 1fr;
+  }
+
+  .container-cards{
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+
+@media (min-width: 1440px) {
+
+    .card-donations-content p{
+      font-size: 32px;
+    }
+
+    .card-adoptions-content p{
+      font-size: 32px;
+    }
+}
+
+@media (min-width: 2560px) {
+  .welcome-article-container{
+    margin-bottom: 0px;
+    grid-template-columns: 1fr;
+  }
+
+  .right-text-container-2{
+    margin-top: 10%;
+    width: 50%;
+  }
+
+  .subheading-2{
+    padding: 20px;
+    font-size: 50px;
+  }
+}
   
