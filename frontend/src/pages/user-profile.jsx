@@ -88,6 +88,7 @@ const UserProfile = () => {
           console.log(tem_email);
   
           if (userResponse.data.is_cliente === true) {
+            setUserType("cliente");
             setImageProfile(clientes_img);
             const clienteResponse = await api.get(`cliente-profile/`, {
               params: {
@@ -111,6 +112,7 @@ const UserProfile = () => {
                 role: "Dueño de mascota",
                 saldo: clienteResponse.data.saldo,
               });
+
               setIsLoading(false);
             } else {
               console.log("Error en la traida de los datos");
@@ -122,6 +124,7 @@ const UserProfile = () => {
               }, 3000);
             }
           } else if (userResponse.data.is_fundacion === true) {
+            setUserType("fundacion");
             setImageProfile(fundaciones_img);
             const fundacionResponse = await api.get("fundacion-profile/", {
               params: {

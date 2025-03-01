@@ -29,11 +29,121 @@ function CrearSolicitudCuidado() {
   const [endDate, setEndDate] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [selectedOption, setSelectedOption] = useState("opcion1");
-  const [payment, setPayment] = useState(null);
+  const [payment, setPayment] = useState({
+    precioSinIva: 0,
+    iva: 0,
+    precioConIva: 0,
+    cuidadoMedico: 0,
+    precioConCuidadoMedico: 0,
+    total: 0,
+  });
   const [selectedCareType, setSelectedCareType] = useState(null);
   const [enabledCareType, setEnabledCareType] = useState(null);
+  const [showHourSelection, setShowHourSelection] = useState(false);
   const location = useLocation();
   const cuidador = location.state?.cuidador || null;
+  const [isTermsChecked, setIsTermsChecked] = useState(false);
+  const [isMedicalCareChecked, setIsMedicalCareChecked] = useState(false);
+
+  useEffect(() => {
+    calcularPrecioTotal();
+  }, [startDate, endDate, selectedOption]);
+
+  useEffect(() => {
+    if (startDate && !endDate) {
+      setEndDate(startDate);
+    }
+  }, [startDate]);
+
+  // 🔹 Si `endDate` no está seleccionado, asignarlo igual a `startDate`
+  useEffect(() => {
+    if (startDate && !endDate) {
+      setEndDate(startDate);
+    }
+  }, [startDate]);
+
+  // 🔹 Verificar si la diferencia entre `startDate` y `endDate` es 1 día o menos
+  useEffect(() => {
+    if (startDate && endDate) {
+      const diffTime = Math.abs(endDate - startDate);
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+      console.log(`📅 Diferencia de días: ${diffDays}`);
+
+      if (diffDays <= 1) {
+        setSelectedCareType("horas"); // 🔹 Habilitar selección de horas
+      } else {
+        setSelectedCareType("dias"); // 🔹 Mantener en modo "días"
+      }
+    }
+  }, [startDate, endDate]);
+
+  useEffect(() => {
+    if (startDate && endDate && startDate.getTime() === endDate.getTime()) {
+      setShowHourSelection(true);
+    } else {
+      setShowHourSelection(false);
+    }
+  }, [startDate, endDate]);
+
+  const calcularPrecioTotal = () => {
+    console.log("📌 Calculando precio total...");
+
+    if (!startDate) {
+      console.log("⚠️ Faltan fechas para calcular el precio");
+      return;
+    }
+
+    // Si endDate es null, asumir que es igual a startDate
+    const finalEndDate = endDate || startDate;
+
+    const tarifaDiaria = 40000;
+    const ivaPorcentaje = 0.19;
+    const cuidadoMedicoExtra = selectedOption === "Sí" ? 0.2 : 0;
+
+    // Calcular número de días (mínimo 1 día)
+    const diffTime = Math.abs(finalEndDate - startDate);
+    const diffDays = Math.max(1, Math.ceil(diffTime / (1000 * 60 * 60 * 24)));
+
+    console.log(`📅 Días de cuidado: ${diffDays}`);
+
+    // Precio sin IVA
+    let precioSinIva = tarifaDiaria * diffDays;
+
+    // Incremento por cuidado médico
+    let incrementoCuidadoMedico = precioSinIva * cuidadoMedicoExtra;
+
+    // Precio con incremento por cuidado médico
+    let precioConCuidadoMedico = precioSinIva + incrementoCuidadoMedico;
+
+    // IVA
+    let iva = precioConCuidadoMedico * ivaPorcentaje;
+
+    // Precio final con IVA
+    let total = precioConCuidadoMedico + iva;
+
+    console.log("💰 Precio sin IVA:", precioSinIva);
+    console.log("➕ Incremento por Cuidado Médico:", incrementoCuidadoMedico);
+    console.log("🧾 IVA (19%):", iva);
+    console.log("💵 Total a pagar:", total);
+
+    // Actualizar estado con los valores calculados
+    setPayment({
+      precioSinIva,
+      iva,
+      precioConIva: precioSinIva + iva,
+      cuidadoMedico: incrementoCuidadoMedico,
+      precioConCuidadoMedico,
+      total,
+    });
+  };
+
+  // 🔹 Si el usuario solo selecciona la fecha de inicio, endDate se asigna automáticamente
+  useEffect(() => {
+    if (startDate && !endDate) {
+      setEndDate(startDate);
+    }
+  }, [startDate]);
 
   // useEffect(() => {
   //   // Simulación de carga de mascotas
@@ -109,18 +219,6 @@ function CrearSolicitudCuidado() {
   }, []);
 
   useEffect(() => {
-    console.log("Cargando información de pago...");
-    setPayment({
-      precioSinIva: "$80,000",
-      iva: "19%",
-      precioConIva: "$71.400",
-      cuidadoMedico: "20%",
-      precioConCuidadoMedico: "$85,680",
-      total: "$114,240",
-    });
-  }, []);
-
-  useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 1000);
@@ -136,7 +234,8 @@ function CrearSolicitudCuidado() {
   };
 
   // Incrementa o decrementa la cantidad
-  const handleIncrement = () => setQuantity((prev) => prev + 1);
+  const handleIncrement = () =>
+    setQuantity((prev) => (prev < 24 ? prev + 1 : prev));
   const handleDecrement = () =>
     setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
 
@@ -146,6 +245,38 @@ function CrearSolicitudCuidado() {
   };
   const toggleCareType = (type) => {
     setEnabledCareType((prevType) => (prevType === type ? null : type));
+  };
+
+  const handleTermsChange = (e) => {
+    setIsTermsChecked(e.target.checked);
+
+    if (e.target.checked) {
+      const requestData = {
+        user_id: sessionStorage.getItem("user_id"),
+        mascota_id: selectedPet?.id,
+        cuidador_id: cuidador?.id,
+        total: payment.total,
+        email: sessionStorage.getItem("email"),
+        fecha_inicio: startDate,
+        fecha_fin: endDate,
+        horas_cuidado: showHourSelection ? quantity : null,
+        is_cuidado_especial: selectedOption === "Sí",
+        descripcion: document.querySelector(".input-describe-pet-care").value,
+      };
+
+      console.log("Datos que se enviarán al backend:", requestData);
+    }
+  };
+
+  const handleMedicalCareChange = (e) => {
+    setIsMedicalCareChecked(e.target.checked);
+  };
+
+  const isCreateButtonEnabled = () => {
+    if (selectedOption === "Sí") {
+      return isTermsChecked && isMedicalCareChecked;
+    }
+    return isTermsChecked;
   };
 
   useEffect(() => {
@@ -159,6 +290,62 @@ function CrearSolicitudCuidado() {
   if (isLoading) {
     return <LoadingPage />;
   }
+
+  const handlePayment = async () => {
+    if (!selectedPet || !startDate || !payment.total) {
+      alert("Faltan datos obligatorios para el pago.");
+      return;
+    }
+
+    try {
+      const email = sessionStorage.getItem("email");
+      const token = sessionStorage.getItem("token");
+
+      if (!email || !token) {
+        alert("Debes iniciar sesión para realizar un pago.");
+        return;
+      }
+
+      const requestData = {
+        user_id: sessionStorage.getItem("user_id"),
+        mascota_id: selectedPet.id,
+        cuidador_id: cuidador.id,
+        total: payment.total,
+        email: email,
+        fecha_inicio: startDate,
+        fecha_fin: endDate,
+        horas_cuidado: showHourSelection ? quantity : null,
+        is_cuidado_especial: selectedOption === "Sí",
+        descripcion: document.querySelector(".input-describe-pet-care").value,
+      };
+
+      console.log("Datos enviados al backend:", requestData);
+
+      const response = await fetch(
+        "https://backend.makishop.live/api/mercadopago/create_preference_cuidado/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(requestData),
+        }
+      );
+
+      const data = await response.json();
+
+      if (response.ok) {
+        window.location.href = data.init_point; // Redirigir a Mercado Pago
+      } else {
+        console.error("Error al crear la preferencia:", data.error);
+        alert("Error al iniciar el pago.");
+      }
+    } catch (error) {
+      console.error("Error inesperado:", error);
+      alert("Error inesperado al iniciar el pago.");
+    }
+  };
 
   return (
     <div className="absolute-container-create-care">
@@ -175,7 +362,13 @@ function CrearSolicitudCuidado() {
             />
           </div>
           <div className="create-care">
-            <form className="form-create-care">
+            <form
+              className="form-create-care"
+              onSubmit={(e) => {
+                e.preventDefault(); // 🚀 Evita el comportamiento por defecto del formulario
+                handlePayment();
+              }}
+            >
               <div className="photo-container">
                 {cuidador ? (
                   <>
@@ -266,37 +459,23 @@ function CrearSolicitudCuidado() {
                   </div>
                 </div>
               </div>
-              <div
-                className={`solicitar-cuidado-horas ${
-                  enabledCareType === "dias" ? "disabled-care" : ""
-                }`}
-                onClick={() => toggleCareType("horas")}
-              >
-                <h2>¿Necesitas solicitar un cuidado menor a 24 horas?</h2>
-                <div className="dates-care">
-                  <div>
-                    <p style={{ fontSize: "20px" }}>Fecha del cuidado</p>
-                    <DatePicker
-                      selected={startDate}
-                      onChange={(date) => setStartDate(date)}
-                      dateFormat="dd/MM/yyyy"
-                      minDate={new Date()}
-                      placeholderText="Selecciona una fecha"
-                      className="custom-datepicker"
-                    />
-                  </div>
-                  <div>
-                    <p style={{ fontSize: "20px" }}>Horas de cuidado</p>
-                    <div className="container-hours-selector">
-                      <div className="quantity-hours-selector">
-                        <span onClick={handleDecrement}>-</span>
-                        <span className="quantity-value">{quantity}</span>
-                        <span onClick={handleIncrement}>+</span>
+              {showHourSelection && (
+                <div className="solicitar-cuidado-horas">
+                  <h2>¿Necesitas solicitar un cuidado menor a 24 horas?</h2>
+                  <div className="dates-care">
+                    <div>
+                      <p style={{ fontSize: "20px" }}>Horas de cuidado</p>
+                      <div className="container-hours-selector">
+                        <div className="quantity-hours-selector">
+                          <span onClick={handleDecrement}>-</span>
+                          <span className="quantity-value">{quantity}</span>
+                          <span onClick={handleIncrement}>+</span>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              )}
               <div className="container-special-care">
                 <div className="container-question-special-care">
                   <h2>¿Tu mascota solicita un cuidado médico?</h2>
@@ -305,7 +484,7 @@ function CrearSolicitudCuidado() {
                       <label key={index} className="radio-label">
                         <input
                           type="radio"
-                          name="opciones"
+                          name="cuidadoMedico"
                           value={option}
                           checked={selectedOption === option}
                           onChange={() => setSelectedOption(option)}
@@ -315,20 +494,24 @@ function CrearSolicitudCuidado() {
                     ))}
                   </div>
                 </div>
-                <div className="container-text-special-care">
-                  <p>
-                    Recuerda que tu tarifa final tiene un incremento del 20% por
-                    una solicitud con cuidado médico.
-                  </p>
-                  <div className="container-checkbox-agree">
-                    <input
-                      className="terms-checkbox-care"
-                      type="checkbox"
-                      id="terms"
-                    />
-                    <a>De acuerdo</a>
+                {selectedOption === "Sí" && (
+                  <div className="container-text-special-care">
+                    <p>
+                      Recuerda que tu tarifa final tiene un incremento del 20%
+                      por una solicitud con cuidado médico.
+                    </p>
+                    <div className="container-checkbox-agree">
+                      <input
+                        className="terms-checkbox-care"
+                        type="checkbox"
+                        id="medicalCare"
+                        checked={isMedicalCareChecked}
+                        onChange={handleMedicalCareChange}
+                      />
+                      <label htmlFor="medicalCare">De acuerdo</label>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
               <div className="care-description">
                 <h2>Descripción del cuidado</h2>
@@ -346,11 +529,12 @@ function CrearSolicitudCuidado() {
                     style={{ textAlign: "left", gridColumn: "1 / 2" }}
                   >
                     <p>Precio sin IVA:</p>
-                    <p>IVA:</p>
                     <p>Cuidado Médico:</p>
-                    <p>Precio con cuidado médico:</p>
+                    <p>IVA (19%)</p>
+                    {/* <p>Precio con cuidado médico:</p> */}
                     <p style={{ fontSize: "24px", paddingTop: "15px" }}>
-                      TOTAL:
+                      TOTAL:{" "}
+                      <strong>${payment.total.toLocaleString()} COP</strong>
                     </p>
                   </div>
 
@@ -361,9 +545,9 @@ function CrearSolicitudCuidado() {
                     {payment ? (
                       <>
                         <p>{payment.precioSinIva}</p>
-                        <p>{payment.iva}</p>
                         <p>{payment.cuidadoMedico}</p>
-                        <p>{payment.precioConCuidadoMedico}</p>
+                        <p>{payment.iva}</p>
+                        {/* <p>{payment.precioConCuidadoMedico}</p> */}
                         <p
                           style={{
                             fontSize: "24px",
@@ -392,6 +576,8 @@ function CrearSolicitudCuidado() {
                         className="terms-checkbox-care-tandc"
                         type="checkbox"
                         id="terms"
+                        checked={isTermsChecked}
+                        onChange={handleTermsChange}
                       />
                       Acepto los{" "}
                       <a
@@ -408,7 +594,12 @@ function CrearSolicitudCuidado() {
                 </div>
               </div>
               <div className="btn-create-care">
-                <button type="submit" className="btn-create-care-pet">
+                <button
+                  // type="submit"
+                  className="btn-create-care-pet"
+                  onClick={handlePayment}
+                  disabled={!isCreateButtonEnabled()}
+                >
                   <i className="fas fa-paw"></i> ¡Crear!
                 </button>
               </div>
@@ -417,22 +608,22 @@ function CrearSolicitudCuidado() {
         </div>
       </div>
       {/*<SuccessModal
-        show={showSuccessModal}
-        handleClose={handleCloseSuccessModal}
-        response={response}
-        dirNavigate={dirNavigate}
-      />
-      <ErrorModal
-        show={showErrorModal}
-        handleClose={handleCloseErrorModal}
-        error={error}
-      />
-      <ConfirmationModal
-        show={showConfirmationModal}
-        handleYes={handleYesConfirmationModal}
-        handleNo={handleNoConfirmationModal}
-        response={`¿Estás seguro enviar esta solicitud de adopción para ${mascota.nombre}?`}
-      />*/}
+          show={showSuccessModal}
+          handleClose={handleCloseSuccessModal}
+          response={response}
+          dirNavigate={dirNavigate}
+        />
+        <ErrorModal
+          show={showErrorModal}
+          handleClose={handleCloseErrorModal}
+          error={error}
+        />
+        <ConfirmationModal
+          show={showConfirmationModal}
+          handleYes={handleYesConfirmationModal}
+          handleNo={handleNoConfirmationModal}
+          response={`¿Estás seguro enviar esta solicitud de adopción para ${mascota.nombre}?`}
+        />*/}
       <Modal
         show={showModal}
         onHide={closeModal}
@@ -493,9 +684,9 @@ function CrearSolicitudCuidado() {
             </div>
 
             /*<div key={pet.id} onClick={() => selectPet(pet)} style={{ cursor: "pointer", marginBottom: "10px", border:"2px solid red" }}>
-                                <img src={pet.image} alt={pet.name} style={{ width: "100px" }} />
-                                <p>{pet.name}</p>
-                            </div>*/
+                                  <img src={pet.image} alt={pet.name} style={{ width: "100px" }} />
+                                  <p>{pet.name}</p>
+                              </div>*/
           ))}
         </Modal.Body>
       </Modal>

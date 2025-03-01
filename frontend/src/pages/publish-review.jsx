@@ -97,16 +97,24 @@ const handleSubmit = async (e) => {
     // console.log("Publicando reseña", { rating, title, comment });
     // alert("¡Tu reseña ha sido publicada!");
 
+    if (acceptedTerms === false) {
+      setError("Debes aceptar los términos y condiciones para continuar.");
+      setShowErrorModal(true);
+      return;
+    }
+
     if (rating === 0) {
       setError(
         "Por favor ingrese una calificación entre una y cinco estrellas"
       );
       setShowErrorModal(true);
+      return;
     }
 
     if (title === "" || comment === "") {
       setError("Por favor ingrese todos los campos");
       setShowErrorModal(true);
+      return;
     }
 
     e.preventDefault();

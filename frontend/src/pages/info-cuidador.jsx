@@ -359,7 +359,7 @@ const InfoCuidadores = () => {
                   <div key={resena.id} className="reseña">
                     <div className="reseña-header">
                       <img
-                        src={clientes_img}
+                        src={resena.user_data.is_cliente === true ? clientes_img : fundaciones_img}
                         alt="Imagen"
                         className="reseña-avatar"
                       />
