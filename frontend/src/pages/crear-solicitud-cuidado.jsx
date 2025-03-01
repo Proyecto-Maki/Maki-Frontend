@@ -249,6 +249,23 @@ function CrearSolicitudCuidado() {
 
   const handleTermsChange = (e) => {
     setIsTermsChecked(e.target.checked);
+
+    if (e.target.checked) {
+      const requestData = {
+        user_id: sessionStorage.getItem("user_id"),
+        mascota_id: selectedPet?.id,
+        cuidador_id: cuidador?.id,
+        total: payment.total,
+        email: sessionStorage.getItem("email"),
+        fecha_inicio: startDate,
+        fecha_fin: endDate,
+        horas_cuidado: showHourSelection ? quantity : null,
+        is_cuidado_especial: selectedOption === "Sí",
+        descripcion: document.querySelector(".input-describe-pet-care").value,
+      };
+
+      console.log("Datos que se enviarán al backend:", requestData);
+    }
   };
 
   const handleMedicalCareChange = (e) => {
