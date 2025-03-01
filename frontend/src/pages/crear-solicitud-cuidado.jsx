@@ -254,7 +254,7 @@ function CrearSolicitudCuidado() {
       const requestData = {
         user_id: sessionStorage.getItem("user_id"),
         mascota_id: selectedPet?.id,
-        cuidador_id: cuidador?.id,
+        cuidador: cuidador,
         total: payment.total,
         email: sessionStorage.getItem("email"),
         fecha_inicio: startDate,
