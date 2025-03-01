@@ -289,6 +289,21 @@ function CrearSolicitudCuidado() {
         return;
       }
 
+      const requestData = {
+        user_id: sessionStorage.getItem("user_id"),
+        mascota_id: selectedPet.id,
+        cuidador_id: cuidador.id,
+        total: payment.total,
+        email: email,
+        fecha_inicio: startDate,
+        fecha_fin: endDate,
+        horas_cuidado: showHourSelection ? quantity : null,
+        is_cuidado_especial: selectedOption === "Sí",
+        descripcion: document.querySelector(".input-describe-pet-care").value,
+      };
+
+      console.log("Datos enviados al backend:", requestData);
+
       const response = await fetch(
         "https://backend.makishop.live/api/mercadopago/create_preference_cuidado/",
         {
@@ -297,13 +312,7 @@ function CrearSolicitudCuidado() {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({
-            user_id: sessionStorage.getItem("user_id"),
-            mascota_id: selectedPet.id,
-            cuidador_id: cuidador.id,
-            total: payment.total,
-            email: email,
-          }),
+          body: JSON.stringify(requestData),
         }
       );
 
