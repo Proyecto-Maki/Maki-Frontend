@@ -26,11 +26,11 @@ const AdoptionsFun = () => {
   const [isEditarOpen, setIsEditarOpen] = useState(false);
 
   if (!email || !token || !refresh || !is_cliente || !is_fundacion) {
-    window.location.href = "/login";
+    window.location.href = "/iniciar-sesion";
   }
 
   if (is_cliente === "true") {
-    window.location.href = "/login";
+    window.location.href = "/iniciar-sesion";
   }
 
   const [publicacionesFundacion, setPublicacionesFundacion] = useState([]);
@@ -55,6 +55,7 @@ const AdoptionsFun = () => {
       .then((res) => {
         if (res.status === 200) {
           setPublicacionesFundacion(res.data);
+          setIsLoading(false);
         } else {
           console.log(res.data);
           setError("Error al obtener las publicaciones de adopción");
@@ -182,13 +183,13 @@ const AdoptionsFun = () => {
 
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setIsLoading(false);
+  //   }, 2000);
 
-    return () => clearTimeout(timer);
-  }, []);
+  //   return () => clearTimeout(timer);
+  // }, []);
 
   if (isLoading) {
     return <LoadingPage />;

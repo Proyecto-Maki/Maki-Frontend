@@ -9,7 +9,7 @@ import generateRandomAlphaNumericCode, {
   randomValue,
 } from "../GenerateCardCode";
 import MakipawsSlider from "../pages/makipaws_banner";
-import CategoriesWithProvider from "../components/categories";
+import Categories from "../components/categories-pets";
 import foto_perfil_cuidador from "../img/Mari Juliano.jpg";
 import item from "../img/paw-item-adoption.png";
 import axios from "axios";
@@ -37,6 +37,7 @@ function Makipaws() {
   const navigate = useNavigate();
 
   const [cuidadores, setCuidadores] = useState([]);
+  const [categoria, setCategoria] = useState(null);
 
   const handleDetalleCuidador = (idCuidador) => {
     console.log("ID del cuidador:", idCuidador);
@@ -44,8 +45,29 @@ function Makipaws() {
   };
 
   useEffect(() => {
+
+    const categoria_a = categoria ? categoria.name : null;
+    console.log("Categoría seleccionada:", categoria_a);
+    const params = { categoria: categoria_a };
+
+    // api
+    //   .get("/cuidadores/", {
+    //     headers: {
+    //       Authorization: `Bearer ${token}`,
+    //     },
+    //   })
+    //   .then((response) => {
+    //     console.log("Datos recibidos:", response.data); // Verificar datos en consola
+    //     setCuidadores(response.data);
+    //     setIsLoading(false);
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error al obtener los cuidadores:", error);
+    //   });
+
     api
-      .get("/cuidadores/", {
+      .get("cuidadores-categoria/", {
+        params : params,
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -58,7 +80,7 @@ function Makipaws() {
       .catch((error) => {
         console.error("Error al obtener los cuidadores:", error);
       });
-  }, []);
+  }, [categoria]);
 
   if (isLoading) {
     return <LoadingPage />;
@@ -69,7 +91,10 @@ function Makipaws() {
       <div className="makipaws-container">
         <Navbar />
         <MakipawsSlider />
-        <CategoriesWithProvider />
+        <Categories 
+          categoria={categoria} 
+          setCategoria={setCategoria}  
+        />
         <main className="main-content-makipaws">
           <div className="container py-5">
             <div className="row-makipaws">

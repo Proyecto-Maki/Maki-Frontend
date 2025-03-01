@@ -6,6 +6,7 @@ import api from "../api";
 import item from "../img/paw-item-adoption.png";
 import ErrorModal from "../components/ErrorModal";
 import SuccessModal from "../components/SuccessModal";
+import LoadingPage from "../components/loading-page";
 
 const Adoptions = () => {
   // Estado para almacenar los datos de las mascotas
@@ -26,7 +27,7 @@ const Adoptions = () => {
   const is_fundacion = sessionStorage.getItem("is_fundacion");
 
   if (!email || !token || !refresh || !is_cliente || !is_fundacion) {
-    window.location.href = "/login";
+    window.location.href = "/iniciar-sesion";
   }
 
   const { fundacion } = location.state || {};
@@ -36,6 +37,7 @@ const Adoptions = () => {
     return;
   }
 
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     api
@@ -50,6 +52,7 @@ const Adoptions = () => {
       .then((res) => {
         if (res.status === 200) {
           setPublicacionesAdopcion(res.data);
+          setIsLoading(false);
         } else {
           console.error("Error al obtener las publicaciones de adopción:", res);
           setError("Error al obtener las publicaciones de adopción");
@@ -85,6 +88,10 @@ const Adoptions = () => {
     setShowErrorModal(false);
     setError("");
   };
+
+  if (isLoading) {
+    return <LoadingPage />;
+  }
 
   return (
     <div className="absolute-container-adoptions">
