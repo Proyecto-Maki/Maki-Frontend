@@ -54,46 +54,18 @@ function TarjetasDonacion() {
     };
   }, []);
 
-  const handleDonation = async (tarjetaTipo, monto) => {
+  const handleDonation = async (monto) => {
     try {
-      const token = sessionStorage.getItem("token");
-      const email = sessionStorage.getItem("email");
-      const user_id = sessionStorage.getItem("user_id");
-
-      if (!token || !email || !fundacion) {
-        alert("Debes iniciar sesión y seleccionar una fundación para donar.");
-        return;
-      }
-
-      console.log("Enviando datos para crear preferencia de donación:", {
-        user_id: user_id,
-        fundacion_id: fundacion.nit, // Asegurar que se envía el identificador correcto
-        tarjeta_tipo: tarjetaTipo,
+      const response = await api.post("/api/mercadopago/preference/donar/", {
         monto: monto,
       });
-
-      const response = await api.post(
-        "/mercadopago/preference/donar/",
-        {
-          user_id: user_id,
-          fundacion_id: fundacion.nit, // Enviar el identificador correcto
-          tarjeta_tipo: tarjetaTipo,
-          monto: monto,
-          email: email, // Enviar el email del usuario
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
 
       if (response.status === 200) {
         const { init_point } = response.data;
         console.log("Redirigiendo a:", init_point);
-        window.location.href = init_point; // Redirigir a la pasarela de pagos
+        window.location.href = init_point;
       } else {
-        alert("Hubo un error al generar la preferencia de pago.");
+        alert("Error al generar la preferencia de pago.");
       }
     } catch (error) {
       console.error(
@@ -149,7 +121,7 @@ function TarjetasDonacion() {
                   ¡Juntos hacemos la diferencia! 💚🐾.
                 </p>
               </div>
-              <button onClick={() => handleDonation("Bronze")}>Donar</button>{" "}
+              <button onClick={() => handleDonation(20000)}>Donar</button>{" "}
             </div>
             <div className="card otherCard2">
               <div>
@@ -181,7 +153,7 @@ function TarjetasDonacion() {
                   ¡Juntos hacemos la diferencia! 💚🐾.
                 </p>
               </div>
-              <button onClick={() => handleDonation("Silver")}>Donar</button>{" "}
+              <button onClick={() => handleDonation(50000)}>Donar</button>{" "}
             </div>
             <div className="card otherCard1">
               <div>
@@ -213,7 +185,7 @@ function TarjetasDonacion() {
                   ¡Juntos hacemos la diferencia! 💚🐾.
                 </p>
               </div>
-              <button onClick={() => handleDonation("Gold")}>Donar</button>{" "}
+              <button onClick={() => handleDonation(80000)}>Donar</button>{" "}
             </div>
             <div className="card principalCard">
               <div>
@@ -245,7 +217,7 @@ function TarjetasDonacion() {
                   ¡Juntos hacemos la diferencia! 💚🐾.
                 </p>
               </div>
-              <button onClick={() => handleDonation("Platinum")}>Donar</button>{" "}
+              <button onClick={() => handleDonation(110000)}>Donar</button>{" "}
             </div>
           </div>
         </div>
