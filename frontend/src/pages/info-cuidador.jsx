@@ -267,17 +267,6 @@ const InfoCuidadores = () => {
                     className="item"
                     style={{ height: "20px", marginRight: "10px" }}
                   />
-                  <p className="row-2">
-                    <strong>Localidad:</strong> {datosCuidador.localidad}
-                  </p>
-                </div>
-                <div className="container-detail">
-                  <img
-                    src={item}
-                    alt="item"
-                    className="item"
-                    style={{ height: "20px", marginRight: "10px" }}
-                  />
                   <p className="row-1">
                     <strong>Categoría Mascotas:</strong>{" "}
                     {datosCuidador.categoria_mascotas}

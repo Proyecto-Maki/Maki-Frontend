@@ -5,6 +5,7 @@ import anuncio_1 from "../img/anuncio_1.png";
 import anuncio_2 from "../img/anuncio_2.png";
 import anuncio_3 from "../img/anuncio_3.png";
 import anuncio_4 from "../img/anuncio_4.png";
+import anuncio_5 from "../img-webp/makipaws_banner.webp";
 
 const ProductSlider = () => {
     var settings = {
@@ -33,6 +34,9 @@ const ProductSlider = () => {
                     </div>
                     <div className='item-slider'>
                         <img src={anuncio_4} alt="anuncio_4" className="anuncio_4" />
+                    </div>
+                    <div className='item-slider'>
+                        <img src={anuncio_5} alt="anuncio_4" className="anuncio_4" />
                     </div>
                 </Slider>
             </div>

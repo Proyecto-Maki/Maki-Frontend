@@ -3,15 +3,13 @@
 
 .absolute-container-products-slider{
     position: relative;
-    max-width: 90vw;
-    margin: 0 auto;
+    max-width: 100vw;
 }
 
 .item-slider{
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px;
 }
 
 .item-slider img {
