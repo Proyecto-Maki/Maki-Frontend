@@ -35,12 +35,12 @@ const Login = () => {
     //   return;
     // }
 
-    if (!captchaValue) {
-      setCaptchaError(true); // Activa el mensaje de error del CAPTCHA
-      return;
-    } else {
-      setCaptchaError(false); // Resetea el error si el usuario completa el CAPTCHA
-    }
+    // if (!captchaValue) {
+    //   setCaptchaError(true); // Activa el mensaje de error del CAPTCHA
+    //   return;
+    // } else {
+    //   setCaptchaError(false); // Resetea el error si el usuario completa el CAPTCHA
+    // }
 
     api
       .post("login/", { email, password, captcha: captchaValue }) // 🔹 Enviamos el CAPTCHA al backend
