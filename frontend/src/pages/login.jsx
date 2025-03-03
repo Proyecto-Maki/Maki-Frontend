@@ -23,15 +23,23 @@ const Login = () => {
   const [response, setResponse] = useState("");
   const [dirNavigate, setDirNavigate] = useState("");
   const navigate = useNavigate();
+  const [captchaError, setCaptchaError] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     // 📌 Verificar que el usuario haya completado el CAPTCHA
+    // if (!captchaValue) {
+    //   setError("Por favor, verifica el CAPTCHA.");
+    //   setShowErrorModal(true);
+    //   return;
+    // }
+
     if (!captchaValue) {
-      setError("Por favor, verifica el CAPTCHA.");
-      setShowErrorModal(true);
+      setCaptchaError(true); // Activa el mensaje de error del CAPTCHA
       return;
+    } else {
+      setCaptchaError(false); // Resetea el error si el usuario completa el CAPTCHA
     }
 
     api
