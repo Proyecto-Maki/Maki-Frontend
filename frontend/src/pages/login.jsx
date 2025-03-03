@@ -41,6 +41,7 @@ const Login = () => {
     // } else {
     //   setCaptchaError(false); // Resetea el error si el usuario completa el CAPTCHA
     // }
+    console.log("🔹 Valor del reCAPTCHA:", captchaValue);
 
     api
       .post("login/", { email, password, captcha: captchaValue }) // 🔹 Enviamos el CAPTCHA al backend
@@ -173,7 +174,10 @@ const Login = () => {
               >
                 <ReCAPTCHA
                   sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
-                  onChange={(value) => setCaptchaValue(value)}
+                  onChange={(value) => {
+                    setCaptchaValue(value); // 📌 Almacenar el valor del CAPTCHA
+                    setCaptchaError(false); // Borra el error si el usuario lo completa
+                  }}
                 />
               </div>
               <button type="submit" className="btn btn-success login-btn">
