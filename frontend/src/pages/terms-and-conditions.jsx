@@ -472,22 +472,38 @@ function TerminosYCondiciones() {
                 Uso de tarjetas de regalo donadas:
                 <ul>
                   <li>
-                    Todas las donaciones realizadas a través de Maki serán utilizadas exclusivamente por las fundaciones beneficiarias para la adquisición de productos dentro de la plataforma Maki.
+                    Todas las donaciones realizadas a través de Maki serán
+                    utilizadas exclusivamente por las fundaciones beneficiarias
+                    para la adquisición de productos dentro de la plataforma
+                    Maki.
                   </li>
                   <li>
-                    Las fundaciones no podrán retirar el monto donado en efectivo ni destinarlo a la compra de productos fuera de Maki.
+                    Las fundaciones no podrán retirar el monto donado en
+                    efectivo ni destinarlo a la compra de productos fuera de
+                    Maki.
                   </li>
                   <li>
-                    Si un usuario desea realizar una donación de mayor volumen que las ofertadas o directamente a una fundación específica, deberá comunicarse directamente con la fundación de su interés, y no a través de Maki.
+                    Si un usuario desea realizar una donación de mayor volumen
+                    que las ofertadas o directamente a una fundación específica,
+                    deberá comunicarse directamente con la fundación de su
+                    interés, y no a través de Maki.
                   </li>
                   <li>
-                    Maki no será intermediario de donaciones externas a la plataforma, por lo que cualquier gestión externa deberá ser realizada entre el usuario y la fundación de forma independiente.
+                    Maki no será intermediario de donaciones externas a la
+                    plataforma, por lo que cualquier gestión externa deberá ser
+                    realizada entre el usuario y la fundación de forma
+                    independiente.
                   </li>
                   <li>
-                    Maki garantiza que las donaciones serán asignadas a las fundaciones beneficiarias de forma transparente y segura, sin intermediarios.
+                    Maki garantiza que las donaciones serán asignadas a las
+                    fundaciones beneficiarias de forma transparente y segura,
+                    sin intermediarios.
                   </li>
                   <li>
-                    Las fundaciones podrán acceder a los fondos donados únicamente para adquirir productos de Maki, asegurando que los recursos sean utilizados de manera efectiva y en beneficio de sus causas.
+                    Las fundaciones podrán acceder a los fondos donados
+                    únicamente para adquirir productos de Maki, asegurando que
+                    los recursos sean utilizados de manera efectiva y en
+                    beneficio de sus causas.
                   </li>
                 </ul>
               </li>
@@ -495,22 +511,60 @@ function TerminosYCondiciones() {
                 Tarifa y Modalidad de Cobro cuidados de MakiPaws:
                 <ul>
                   <li>
-                    El servicio de cuidado de MakiPaws tiene un costo fijo de $40,000 COP por día de cuidado.
+                    El servicio de cuidado de MakiPaws tiene un costo fijo de
+                    $40,000 COP por día de cuidado.
                   </li>
                   <li>
-                    El cobro se aplicará por cada día calendario en el que la mascota permanezca bajo cuidado.
+                    El cobro se aplicará por cada día calendario en el que la
+                    mascota permanezca bajo cuidado.
                   </li>
                   <li>
-                    Los usuarios pueden solicitar el servicio de cuidado por horas o por varios días, según sus necesidades.
+                    Los usuarios pueden solicitar el servicio de cuidado por
+                    horas o por varios días, según sus necesidades.
                   </li>
                   <li>
-                    En caso que el servicio sea solicitado por un tiempo menor a 24 horas, el cobro aplicará igualmente como un día completo de cuidado ($40,000 COP).
+                    En caso que el servicio sea solicitado por un tiempo menor a
+                    24 horas, el cobro aplicará igualmente como un día completo
+                    de cuidado ($40,000 COP).
                   </li>
                   <li>
-                   El usuario deberá proporcionar toda la información necesaria sobre la mascota al momento de solicitar el servicio, a través del formularioo de solicitud de cuidado.
+                    El usuario deberá proporcionar toda la información necesaria
+                    sobre la mascota al momento de solicitar el servicio, a
+                    través del formularioo de solicitud de cuidado.
                   </li>
                   <li>
-                    El tiempo de cuidado inicia en el momento en el que el cuidador llega al hogar de la mascota y finaliza en el momento en el que el cuidador se retira del hogar de la mascota.
+                    El tiempo de cuidado inicia en el momento en el que el
+                    cuidador llega al hogar de la mascota y finaliza en el
+                    momento en el que el cuidador se retira del hogar de la
+                    mascota.
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Restricciones en la compra de tarjetas de regalo/donaciones:
+                <ul>
+                  <li>
+                    Un cliente podrá adquirir un máximo de 5 tarjetas de regalo
+                    por transacción, combinando cualquier tipo de tarjeta.
+                  </li>
+                  <li>
+                    Las tarjetas de regalo tienen un límite de compra por tipo:
+                    <ul>
+                      <li>Bronze: Máximo 5 tarjetas</li>
+                      <li>Silver: Máximo 4 tarjetas</li>
+                      <li>Gold: Máximo 3 tarjetas</li>
+                      <li>Platinum: Máximo 2 tarjetas</li>
+                    </ul>
+                  </li>
+                  <li>
+                    Cada cliente podrá adquirir hasta 5 tarjetas en total dentro
+                    de un periodo de 6 meses.
+                  </li>
+                  <li>
+                    En caso de que un cliente desee realizar donaciones
+                    adicionales mediante tarjetas de regalo dentro del mismo
+                    periodo de 6 meses, deberá comunicarse con Maki para
+                    gestionar su solicitud.
                   </li>
                 </ul>
               </li>
