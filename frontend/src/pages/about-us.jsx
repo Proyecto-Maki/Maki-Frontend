@@ -56,7 +56,6 @@ function AboutUs() {
           </div>
 
           <div className="about-us-content-text">
-            <h3>¿Qué es Maki?</h3>
             <p>
               Maki es una plataforma web de marketplace especializado en
               productos y servicios con un enfoque ético y sostenible para
@@ -139,14 +138,14 @@ function AboutUs() {
               </div>
               <div className="text-propose-dm">
                 <h4 style={{color:"#ff793f", fontSize:"30px"}}>Para Dueños de Mascotas</h4>
-                <p style={{fontSize:"28px"}}>Promover el bienestar de las mascotas y el medio ambiente a través de un espacio para encontrar productos sostenibles, cuidadores especializados y apoyar causas animalistas, como lo son adopciones y donaciones contribuyendo a un futuro más ético y responsable con los animales.</p>
+                <p style={{fontSize:"28px"}}> <p style={{color:"#7BB66D"}}> ¿Amas a tu mascota y al planeta? </p>Encuentra productos sanos y sostenibles, cuidadores especializados de mascotas y apoya fundaciones animalistas en un solo lugar.</p>
               </div>
             </div>
             <hr style={{border:"3px solid #ffa726", borderRadius:"5px"}}></hr>
             <div className="about-us-propose-text-f">
               <div className="text-propose-f">
                 <h4 style={{color:"#ff793f", fontSize:"30px"}}>Para Fundaciones</h4>
-                <p style={{fontSize:"28px"}}>Apoyar a las fundaciones en su labor de cuidado y preservación animal, conectándose con productos y servicios éticos y sostenibles, a la vez qué se promueve su visibilidad en una comunidad comprometida con el bienestar animal.</p>
+                <p style={{fontSize:"28px"}}> <p style={{color:"#7BB66D"}}>¿Tu fundación necesita más apoyo? </p>Conéctate con una comunidad comprometida, recibe donaciones confiables y accede a productos sostenibles para cuidar mejor a los animales. </p>
               </div>
               <div style={{alignContent:"center"}}>
                 <img 
