@@ -18,7 +18,6 @@ import cat_makipaws from "../img/cat_makipaws_home.png";
 import ProductSlider from "../pages/product-slider";
 import CategoriesHome from "../components/categories_home";
 
-
 const Home = () => {
   const location = useLocation(); // Obtenemos la ubicación actual de la ruta
   // Comprobamos si estamos en la página de Login
@@ -40,22 +39,20 @@ const Home = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      
       if (window.innerWidth <= 768) {
         setNumPages(6.4);
         setFooterOffset(5.7); // Ajusta la posición del footer en móviles
-      }else {
+      } else {
         setNumPages(4.56);
         setFooterOffset(3.999); // Offset normal en pantallas grandes
       }
     };
 
-    handleResize(); 
-    window.addEventListener("resize", handleResize); 
+    handleResize();
+    window.addEventListener("resize", handleResize);
 
-    return () => window.removeEventListener("resize", handleResize); 
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
-
 
   return (
     <div className="absolute-home-container">
@@ -63,7 +60,7 @@ const Home = () => {
 
       <Parallax key={numPages} pages={numPages} className="animation-container">
         <Navbar />
-        <div className="container-content" style={{paddingBottom: "100px"}}>
+        <div className="container-content" style={{ paddingBottom: "100px" }}>
           <ParallaxLayer offset={0} speed={1.8}>
             <div className="home-container">
               <div className="dog__animation" id="backgroun-dog">
@@ -78,7 +75,8 @@ const Home = () => {
                   ¡COMPRA <br /> LO MEJOR{" "}
                 </h2>
                 <p className="subheading">
-                  Tenemos los mejores alimentos naturales y ecológicos en el país
+                  Tenemos los mejores alimentos naturales y ecológicos en el
+                  país
                 </p>
               </div>
               <div className="right-text-container">
@@ -95,7 +93,11 @@ const Home = () => {
                     rel="noopener noreferrer"
                     className="social-icon instagram"
                   >
-                    <img src={instagram} alt="instagram" className="instagram" />
+                    <img
+                      src={instagram}
+                      alt="instagram"
+                      className="instagram"
+                    />
                   </a>
                 </div>
 
@@ -112,7 +114,7 @@ const Home = () => {
           </ParallaxLayer>
           <ParallaxLayer offset={0.99} speed={0.8} className="parallax-article">
             <div className="home-content-2">
-            <div class="custom-shape-divider-bottom-1736726306" >
+              <div class="custom-shape-divider-bottom-1736726306">
                 <svg
                   data-name="Layer 1"
                   xmlns="http://www.w3.org/2000/svg"
@@ -136,20 +138,14 @@ const Home = () => {
                 </svg>
               </div>
               <div className="welcome-article-container">
-                
                 <div className="left-text-container-2">
-               
-                  <h2>
-                    
-                    ¡Bienvenid@ a Maki!{" "}
-                    
-                  </h2>
+                  <h2>¡Bienvenid@ a Maki! </h2>
                   <p className="subheading-2">
                     En Maki, creemos que el bienestar de tu mascota y el cuidado
                     del planeta van de la mano. Podrás encontrar alimentos
-                    naturales libres de químicos, accesorios ecológicos, servicios
-                    especializados de cuidado y fundaciones de la ciudad de
-                    Bogotá, con las cuales podrás adoptar y/o donar.{" "}
+                    naturales libres de químicos, accesorios ecológicos,
+                    servicios especializados de cuidado y fundaciones de la
+                    ciudad de Bogotá, con las cuales podrás adoptar y/o donar.{" "}
                     <p style={{ color: "#F4A258" }}>
                       {" "}
                       ¡Así podrás contribuir al bienestar animal!{" "}
@@ -165,8 +161,8 @@ const Home = () => {
                   <img src={maki} alt="maki" className="maki" />
                 </div>
               </div>
-              
-              <div class="custom-shape-divider-bottom-1736726305" >
+
+              <div class="custom-shape-divider-bottom-1736726305">
                 <svg
                   data-name="Layer 1"
                   xmlns="http://www.w3.org/2000/svg"
@@ -190,12 +186,12 @@ const Home = () => {
                 </svg>
               </div>
             </div>
-              <div className="carrusel-imagenes-welcome-article">
+            <div className="carrusel-imagenes-welcome-article">
               <ProductSlider />
               <CategoriesHome />
-              </div>
+            </div>
             <div className="Welcome-article-Services">
-            <div class="custom-shape-divider-bottom-1736726306" >
+              <div class="custom-shape-divider-bottom-1736726306">
                 <svg
                   data-name="Layer 1"
                   xmlns="http://www.w3.org/2000/svg"
@@ -219,42 +215,38 @@ const Home = () => {
                 </svg>
               </div>
               <div className="services">
-                <h2 className="title-services">
-                  Nuestros Servicios  
-                </h2>
+                <h2 className="title-services">Nuestros Servicios</h2>
                 <div className="container-cards">
                   <div className="card-donations">
                     <h2 className="donations-services">Donaciones</h2>
                     <div className="card-donations-content">
-                      <img 
-                        src={cat} 
-                        alt="cat" 
-                        className="cat_services" 
-                      />
-                      <p > Con Maki podrás realizar donaciones de tarjetas de regalo a las fundaciones inscritas en el apartado de fundaciones. 
-                        Con estas tarjetas podrán comprar productos únicamente en Maki para sus mascotas.
+                      <img src={cat} alt="cat" className="cat_services" />
+                      <p>
+                        {" "}
+                        Con Maki podrás realizar donaciones de tarjetas de
+                        regalo a las fundaciones inscritas en el apartado de
+                        fundaciones. Con estas tarjetas podrán comprar productos
+                        únicamente en Maki para sus mascotas.
                       </p>
                     </div>
-                    
                   </div>
                   <div className="card-adoptions">
                     <h2 className="adoptions-services">Adopciones</h2>
-                      <div className="card-adoptions-content">
-                        <img 
-                          src={dog} 
-                          alt="dog" 
-                          className="dog_services" 
-                        />
-                        <p > Adopta y ten un nuevo miembro en tu familia. 
-                          En el apartado de fundaciones podrás observar todas nuestras fundaciones disponibles, 
-                          junto con sus mascotas listas para adopción.
-                        </p>
-                      </div>
+                    <div className="card-adoptions-content">
+                      <img src={dog} alt="dog" className="dog_services" />
+                      <p>
+                        {" "}
+                        Adopta y ten un nuevo miembro en tu familia. En el
+                        apartado de fundaciones podrás observar todas nuestras
+                        fundaciones disponibles, junto con sus mascotas listas
+                        para adopción.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
-              
-              <div class="custom-shape-divider-bottom-1736726305" >
+
+              <div class="custom-shape-divider-bottom-1736726305">
                 <svg
                   data-name="Layer 1"
                   xmlns="http://www.w3.org/2000/svg"
@@ -278,33 +270,33 @@ const Home = () => {
                 </svg>
               </div>
             </div>
-            
+
             <div className="Welcome-article-MakiPaws">
-              
-              <h2 className="title-makipaws">
-                MakiPaws  
-              </h2>
+              <h2 className="title-makipaws">MakiPaws</h2>
               <div className="content-article-MakiPaws">
-                <img 
-                  src={cat_makipaws} 
-                  alt="cat_makipaws" 
-                  className="cat_makipaws" 
-                  />
+                <img
+                  src={cat_makipaws}
+                  alt="cat_makipaws"
+                  className="cat_makipaws"
+                />
                 <div className="text-MakiPaws">
                   <p>
-                  Con MakiPaws, tu mascota estará en las mejores manos. 
-                  Nuestro servicio de cuidado de mascotas te ofrece una selección de cuidadores confiables y calificados, para que elijas el ideal según tus necesidades. 
-                  Seguridad, amor y bienestar para tu mejor amigo, siempre garantizados
+                    Con MakiPaws, tu mascota estará en las mejores manos.
+                    Nuestro servicio de cuidado de mascotas te ofrece una
+                    selección de cuidadores confiables y calificados, para que
+                    elijas el ideal según tus necesidades. Seguridad, amor y
+                    bienestar para tu mejor amigo, siempre garantizados
                   </p>
                 </div>
               </div>
-              
             </div>
           </ParallaxLayer>
         </div>
-        
-        <div className="container-footer"
-        style={{position:"relative", bottom:"0", width:"100%"}}>
+
+        <div
+          className="container-footer"
+          style={{ position: "relative", bottom: "0", width: "100%" }}
+        >
           <ParallaxLayer
             offset={footerOffset}
             speed={1}
@@ -377,6 +369,11 @@ const Home = () => {
                         Acerca de Maki
                       </a>
                     </li>
+                    <li className="nav-item">
+                      <a className="nav-link" href="/terminos-y-condiciones">
+                        Términos y Condiciones
+                      </a>
+                    </li>
                   </ul>
                 </div>
                 <hr className="footer-divider-home" />
@@ -416,7 +413,6 @@ const Home = () => {
             </div>
           </ParallaxLayer>
         </div>
-        
       </Parallax>
     </div>
   );

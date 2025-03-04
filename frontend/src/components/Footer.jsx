@@ -68,6 +68,11 @@ const Footer = () => {
                 Acerca de Maki
               </a>
             </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/terminos-y-condiciones">
+                Términos y Condiciones
+              </a>
+            </li>
           </ul>
         </div>
         <hr className="footer-divider" />
