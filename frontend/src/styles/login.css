@@ -256,6 +256,10 @@
 .tooltip-login:hover .tooltip-login-password {
   visibility: visible;
 }
+.captcha-container{
+  display: flex;
+  justify-content: center;
+}
 
 /* Responsiveness */
 @media (max-width: 768px) {
