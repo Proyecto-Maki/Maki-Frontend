@@ -170,7 +170,7 @@ const Login = () => {
 
               <div
                 className="form-group position-relative"
-                style={{ display: "flex", justifyContent: "center" }}
+                style={{ display: "flex", justifyContent: "center", width: "100%" }}
               >
                 <ReCAPTCHA
                   sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
