@@ -41,12 +41,12 @@ const Login = () => {
     // } else {
     //   setCaptchaError(false); // Resetea el error si el usuario completa el CAPTCHA
     // }
-    console.log("🔹 Valor del reCAPTCHA:", captchaValue);
+    //console.log("🔹 Valor del reCAPTCHA:", captchaValue);
 
     api
       .post("login/", { email, password, captcha: captchaValue }) // 🔹 Enviamos el CAPTCHA al backend
       .then((response) => {
-        console.log("Response:", response);
+        //console.log("Response:", response);
         if (response.status === 200) {
           console.log("✅ Login successful:", response.data);
 
