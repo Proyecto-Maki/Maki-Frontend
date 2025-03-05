@@ -94,7 +94,7 @@ function Servicios() {
           console.log("Localidad: ", idLocalidad);
           response = await api.get(`fundaciones/localidad/${idLocalidad}/`);
         }
-  
+
         if (response.status === 200) {
           setFundaciones(response.data);
           setIsLoading(false);
@@ -105,11 +105,15 @@ function Servicios() {
         }
       } catch (error) {
         console.log("Error al cargar las fundaciones");
-        setError(error.response ? error.response.data.detail : "Error al cargar las fundaciones");
+        setError(
+          error.response
+            ? error.response.data.detail
+            : "Error al cargar las fundaciones"
+        );
         setShowErrorModal(true);
       }
     };
-  
+
     fetchFundaciones();
   }, [idLocalidad]);
 
@@ -148,6 +152,36 @@ function Servicios() {
 
   const handleAdopciones = () => {
     navigate("/adopciones-fundacion");
+  };
+
+  const handleDonar = (fundacion) => {
+    const email = sessionStorage.getItem("email");
+    const token = sessionStorage.getItem("token");
+    const refresh = sessionStorage.getItem("refresh");
+    const is_cliente = sessionStorage.getItem("is_cliente");
+    const is_fundacion = sessionStorage.getItem("is_fundacion");
+
+    if (
+      email === null ||
+      token === null ||
+      refresh === null ||
+      is_cliente === null ||
+      is_fundacion === null
+    ) {
+      setWarning(
+        "Para realizar donaciones, debes iniciar sesión. ¿Deseas iniciar sesión?"
+      );
+      setDirNavigate("/iniciar-sesion");
+      setShowWarningModal(true);
+    } else if (is_fundacion === "true") {
+      setWarning(
+        "Debes iniciar sesión como cliente para poder realizar donaciones. ¿Deseas iniciar sesión?"
+      );
+      setDirNavigate("/iniciar-sesion");
+      setShowWarningModal(true);
+    } else {
+      navigate("/tarjetas-donaciones", { state: { fundacion } });
+    }
   };
 
   const handleCloseSuccessModal = () => {
@@ -211,7 +245,11 @@ function Servicios() {
               </div>
             </div>
             <div className="fundacion-actions-adopciones">
-              <button className="adopciones-button" title="Adoptar" onClick={() => handleAdopciones()}>
+              <button
+                className="adopciones-button"
+                title="Adoptar"
+                onClick={() => handleAdopciones()}
+              >
                 <i className="fas fa-paw"></i> Adopciones
               </button>
             </div>
@@ -251,8 +289,16 @@ function Servicios() {
                 </select>
               </div>
             </section>
-            <h2 style={{width: "100vw", color: "#7BB66D", padding: "20px "}}>Conoce nuestras fundaciones:</h2>
-            <p style={{width: "90vw", padding: "10px 20px", fontSize:"25px"}}>Acá podrás encontrar fundaciones animalistas de la ciudad de Bogotá. Con las cuales podrás adoptar mascotas o realizar donaciones para su bienestar.</p>
+            <h2 style={{ width: "100vw", color: "#7BB66D", padding: "20px " }}>
+              Conoce nuestras fundaciones:
+            </h2>
+            <p
+              style={{ width: "90vw", padding: "10px 20px", fontSize: "25px" }}
+            >
+              Acá podrás encontrar fundaciones animalistas de la ciudad de
+              Bogotá. Con las cuales podrás adoptar mascotas o realizar
+              donaciones para su bienestar.
+            </p>
             <section className="fundaciones">
               {fundaciones.length === 0 ? (
                 <h3 className="no-fundaciones">No hay fundaciones</h3>
@@ -287,7 +333,12 @@ function Servicios() {
                         >
                           Adoptar
                         </button>
-                        <button className="btn btn-info">Donar</button>
+                        <button
+                          className="btn btn-info"
+                          onClick={() => handleDonar(fundacion)}
+                        >
+                          Donar
+                        </button>
                       </div>
                     </div>
                   </div>

@@ -32,13 +32,12 @@ const Carrito = () => {
         image: item.image,
         quantity: item.cantidad,
       }));
-      console.log("Productos del carrito:", productos);
+
       setCart(productos);
     } catch (error) {
       console.error("Error al obtener los productos del carrito:", error);
     } finally {
       setIsLoading(false);
-      console.log("Carrito cargado.");
     }
   };
 
@@ -117,7 +116,7 @@ const Carrito = () => {
           }
         } catch (error) {
           console.error("Error al pagar con saldo:", error);
-          alert("Ocurrió un error al procesar el pago con saldo.");
+          alert("❌ Ocurrió un error al procesar el pago con saldo.");
         }
       } else {
         alert("⚠️ Saldo insuficiente para completar la compra.");
@@ -153,7 +152,7 @@ const Carrito = () => {
         }
       } catch (error) {
         console.error("Error al iniciar el pago:", error);
-        alert("Error al procesar el pago con Mercado Pago.");
+        alert("❌ Error al procesar el pago con Mercado Pago.");
       }
     }
   };
@@ -275,15 +274,6 @@ const Carrito = () => {
       handlePaymentSuccess();
     }
     fetchCart();
-    const wasPaid = sessionStorage.getItem("wasPaid");
-    if (wasPaid) {
-      console.log("✅ Pago detectado, reseteando carrito...");
-      localStorage.removeItem("codigo_carrito");
-      sessionStorage.removeItem("wasPaid"); // Limpiar flag de pago
-      setCart([]);
-      fetchCart(); // Volver a obtener un carrito vacío
-    }
-
     fetchSaldo();
   }, []);
 
@@ -331,7 +321,7 @@ const Carrito = () => {
                     />
                     <label htmlFor="saldo">
                       <img src={LogoMakiimg} alt="Maki" className="maki-icon" />
-                      Saldo (disponible: {formatMoney(saldo)} COP)
+                      Saldo (disponible: {formatMoney(saldo)})
                     </label>
                   </div>
                 </div>
@@ -394,30 +384,31 @@ const Carrito = () => {
             <div className="summary-card">
               <h3 className="card-title">Resumen de compra</h3>
               <p>
-                Precio sin IVA:{" "} {formatMoney(cart
+                Precio sin IVA: $
+                {cart
                   .reduce(
                     (total, product) =>
                       total + product.price * product.quantity,
                     0
-                  ))
-                  } COP
+                  )
+                  .toLocaleString()}
               </p>
               <p>
                 <strong>
-                  TOTAL: {" "} {formatMoney(cart
+                  TOTAL: $
+                  {cart
                     .reduce(
                       (total, product) =>
-                        total + product.price * product.quantity,
+                        total +
+                        product.price * product.quantity +
+                        (total + product.price * product.quantity) * 0.19,
                       0
-                    ))
-                    } COP
+                    )
+                    .toLocaleString()}
                 </strong>
               </p>
               <button className="Btn-carrito-pay" onClick={handlePayment}>
                 Pagar
-                <svg className="svgIcon" viewBox="0 0 576 512">
-                  <path d="M512 80c8.8 0 16 7.2 16 16v32H48V96c0-8.8 7.2-16 16-16H512zm16 144V416c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V224H528zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm56 304c-13.3 0-24 10.7-24 24s10.7 24 24 24h48c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm128 0c-13.3 0-24 10.7-24 24s10.7 24 24 24H360c13.3 0 24-10.7 24-24s-10.7-24-24-24H248z"></path>
-                </svg>
               </button>
             </div>
           </div>
