@@ -10,8 +10,11 @@ import api from "../api";
 import LoadingPage from "../components/loading-page";
 import { useNavigate } from "react-router-dom";
 import SuccessModal from "../components/SuccessModal";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const Login = () => {
+  const [captchaValue, setCaptchaValue] = useState(null);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -20,20 +23,37 @@ const Login = () => {
   const [response, setResponse] = useState("");
   const [dirNavigate, setDirNavigate] = useState("");
   const navigate = useNavigate();
+  const [captchaError, setCaptchaError] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // 📌 Verificar que el usuario haya completado el CAPTCHA
+    // if (!captchaValue) {
+    //   setError("Por favor, verifica el CAPTCHA.");
+    //   setShowErrorModal(true);
+    //   return;
+    // }
+
+    // if (!captchaValue) {
+    //   setCaptchaError(true); // Activa el mensaje de error del CAPTCHA
+    //   return;
+    // } else {
+    //   setCaptchaError(false); // Resetea el error si el usuario completa el CAPTCHA
+    // }
+    console.log("🔹 Valor del reCAPTCHA:", captchaValue);
+
     api
-      .post("login/", { email, password })
+      .post("login/", { email, password, captcha: captchaValue }) // 🔹 Enviamos el CAPTCHA al backend
       .then((response) => {
         console.log("Response:", response);
         if (response.status === 200) {
           console.log("✅ Login successful:", response.data);
 
-          const user_id = response.data.data.id; // 📌 Asegurar que el backend devuelve el ID del usuario
+          const user_id = response.data.data.id;
           const is_fundacion = response.data.data.is_fundacion;
           const first_login = response.data.data.first_login;
+
           if (!user_id) {
             console.error(
               "❌ No se recibió user_id en la respuesta del backend"
@@ -53,7 +73,6 @@ const Login = () => {
             return;
           }
 
-          // 📌 Establecer el mensaje de respuesta ANTES de abrir el modal
           setResponse("¡Bienvenido a Maki!");
           setShowSuccessModal(true);
           setTimeout(() => {
@@ -102,7 +121,7 @@ const Login = () => {
     setError("");
     setResponse("");
   };
-
+  console.log("Clave reCAPTCHA:", import.meta.env.VITE_RECAPTCHA_SITE_KEY);
   return (
     <div className="absolute-login-container">
       {/* Navbar */}
@@ -147,6 +166,19 @@ const Login = () => {
                     Ingresa tu contraseña
                   </span>
                 </div>
+              </div>
+
+              <div
+                className="form-group position-relative"
+                style={{ display: "flex", justifyContent: "center" }}
+              >
+                <ReCAPTCHA
+                  sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+                  onChange={(value) => {
+                    setCaptchaValue(value); // 📌 Almacenar el valor del CAPTCHA
+                    setCaptchaError(false); // Borra el error si el usuario lo completa
+                  }}
+                />
               </div>
               <button type="submit" className="btn btn-success login-btn">
                 Ingresa
