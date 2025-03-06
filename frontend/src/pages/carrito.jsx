@@ -342,7 +342,7 @@ const Carrito = () => {
                     <div className="product-details">
                       <h3 className="product-name">{product.name}</h3>
                       <p className="product-price">
-                        ${(product.price * product.quantity).toLocaleString()}
+                        ${formatMoney(product.price * product.quantity)}
                       </p>
                     </div>
                     <div className="d-flex flex-column">
@@ -391,7 +391,7 @@ const Carrito = () => {
                       total + product.price * product.quantity,
                     0
                   )
-                  .toLocaleString()}
+                  .toLocaleString()} COP
               </p>
               <p>
                 <strong>
@@ -404,7 +404,7 @@ const Carrito = () => {
                         (total + product.price * product.quantity) * 0.19,
                       0
                     )
-                    .toLocaleString()}
+                    .toLocaleString()} COP
                 </strong>
               </p>
               <button className="Btn-carrito-pay" onClick={handlePayment}>
