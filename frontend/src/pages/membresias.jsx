@@ -49,6 +49,10 @@ function Membresias() {
       });
   };
 
+  const handleRemindLater = () => {
+    navigate("/");
+  };
+
   return (
     <div className="absolute-membership-container">
       <Navbar /> {/* Add Navbar component */}
@@ -183,7 +187,9 @@ function Membresias() {
               </div>
             </div>
             <div className="container-button-later">
-              <button className="button-later">Recuérdame más tarde</button>
+              <button className="button-later" onClick={handleRemindLater}>
+                Recuérdame más tarde
+              </button>
             </div>
           </div>
         </div>
