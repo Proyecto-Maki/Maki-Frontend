@@ -38,11 +38,13 @@ const MisSolicitudesCuidado = () => {
   }
 
   const handleVerDetalleSolicitud = (idSolicitud) => {
-    console.log(`Ver detalle de la solicitud de cuidado: ${idSolicitud}`);
-    navigate("/resumen-cuidado", {state: {
-      idSolicitud}});
-  }
-  
+    //console.(`Ver detalle de la solicitud de cuidado: ${idSolicitud}`);
+    navigate("/resumen-cuidado", {
+      state: {
+        idSolicitud,
+      },
+    });
+  };
 
   useEffect(() => {
     const fetchSolicitudesCuidado = async () => {
@@ -52,13 +54,16 @@ const MisSolicitudesCuidado = () => {
             Authorization: `Bearer ${token}`,
           },
         });
-  
+
         if (response.status === 200) {
           setSolicitudesAdopcion(response.data);
-          console.log("Solicitudes de cuidado:", response.data);
+          //console.("Solicitudes de cuidado:", response.data);
           setIsLoading(false);
         } else {
-          console.error("Error al obtener las solicitudes de cuidado:", response);
+          console.error(
+            "Error al obtener las solicitudes de cuidado:",
+            response
+          );
           setError("Error al obtener las solicitudes de cuidado");
           setShowErrorModal(true);
         }
@@ -68,7 +73,7 @@ const MisSolicitudesCuidado = () => {
         setShowErrorModal(true);
       }
     };
-  
+
     fetchSolicitudesCuidado();
   }, [email, token]);
 
@@ -99,15 +104,14 @@ const MisSolicitudesCuidado = () => {
                   <h3 className="titulo-sa">#{solicitud.id}</h3>
                 </div>
                 <div className="id-y-chevron-sa">
-                  <h3 className="id-sa">
-                    {formatMoney(solicitud.costo)} COP
-                  </h3>
+                  <h3 className="id-sa">{formatMoney(solicitud.costo)} COP</h3>
 
-                  
-                    <button className="ver-detalle-sa" onClick={() => handleVerDetalleSolicitud(solicitud.id)}>
-                      <FaChevronRight id="chevron" />
-                    </button>
-                  
+                  <button
+                    className="ver-detalle-sa"
+                    onClick={() => handleVerDetalleSolicitud(solicitud.id)}
+                  >
+                    <FaChevronRight id="chevron" />
+                  </button>
                 </div>
               </div>
 

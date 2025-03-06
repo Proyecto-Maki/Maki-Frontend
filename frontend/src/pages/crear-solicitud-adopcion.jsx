@@ -44,13 +44,9 @@ function CrearSolicitudAdopcion() {
     return;
   }
 
-
-
   // Estados del formulario
   const [motivo, setMotivo] = useState("");
   const [terminos, setTerminos] = useState(false);
-
-
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -59,9 +55,6 @@ function CrearSolicitudAdopcion() {
 
     return () => clearTimeout(timer);
   }, []);
-
-
-
 
   // useEffect(() => {
   //   const fetchPets = async () => {
@@ -101,13 +94,13 @@ function CrearSolicitudAdopcion() {
     }
 
     return error;
-  }
+  };
 
   const validateTerminos = (terminos) => {
     if (!terminos) {
       return "Debes aceptar las normativas de Maki.";
     }
-  }
+  };
 
   const handleEnviarSolicitud = async (e) => {
     e.preventDefault();
@@ -130,13 +123,13 @@ function CrearSolicitudAdopcion() {
       email: email,
       id_publicacion: id_publicacion,
       motivo: motivo,
-    }
+    };
 
     api
-      .post('solicitud-adopcion/create/', data, {
+      .post("solicitud-adopcion/create/", data, {
         headers: {
-          'Authorization': `Bearer ${token}`,
-        }
+          Authorization: `Bearer ${token}`,
+        },
       })
       .then((res) => {
         if (res.status === 201) {
@@ -144,18 +137,21 @@ function CrearSolicitudAdopcion() {
           setShowSuccessModal(true);
           setDirNavigate("/servicios");
         } else {
-          console.log(res.data);
+          //console.log(res.data);
           setError("Error al enviar la solicitud de adopción.");
           setShowErrorModal(true);
         }
       })
       .catch((error) => {
         console.log(error);
-        setError(error.response ? error.response.data.detail : "Error al enviar la solicitud de adopción.");
+        setError(
+          error.response
+            ? error.response.data.detail
+            : "Error al enviar la solicitud de adopción."
+        );
         setShowErrorModal(true);
       });
-
-  }
+  };
 
   const handleCloseSuccessModal = () => {
     setShowSuccessModal(false);
@@ -170,7 +166,7 @@ function CrearSolicitudAdopcion() {
 
   const handleYesConfirmationModal = async (e) => {
     setIsLoading(true);
-    await new Promise(r => setTimeout(r, 2000));
+    await new Promise((r) => setTimeout(r, 2000));
     await handleEnviarSolicitud(e);
     setIsLoading(false);
     handleNoConfirmationModal();
@@ -226,12 +222,18 @@ function CrearSolicitudAdopcion() {
                       required
                     />
                     <span className="tooltip-create-adoption-message">
-                      Este campo es obligatorio. Ingresa el motivo de adopción. 
+                      Este campo es obligatorio. Ingresa el motivo de adopción.
                     </span>
                   </div>
                 </div>
-                <div className="normative-maki" style={{ display: "grid", gridTemplateColumns: "50px 1fr"}}>
-                  <div className="form-group-normativas" style={{ marginBottom: "10px"}}>
+                <div
+                  className="normative-maki"
+                  style={{ display: "grid", gridTemplateColumns: "50px 1fr" }}
+                >
+                  <div
+                    className="form-group-normativas"
+                    style={{ marginBottom: "10px" }}
+                  >
                     <input
                       className="terms-checkbox-normativas"
                       type="checkbox"
@@ -254,14 +256,17 @@ function CrearSolicitudAdopcion() {
                     de Maki
                   </label>
                 </div>
-
               </form>
             </div>
           ) : (
             <p>No hay mascotas disponibles para adoptar.</p>
           )}
           <div className="container-btn-adopt-pet">
-            <button type="submit" className="btn-adopt-pet" onClick={handleOpenConfirmationModal}>
+            <button
+              type="submit"
+              className="btn-adopt-pet"
+              onClick={handleOpenConfirmationModal}
+            >
               <i className="fas fa-paw"></i> ¡Adoptar!
             </button>
           </div>

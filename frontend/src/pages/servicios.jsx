@@ -48,9 +48,9 @@ function Servicios() {
         .then((res) => {
           if (res.status === 200) {
             setFundacion(res.data);
-            console.log("Fundación: ", res.data);
+            //console.("Fundación: ", res.data);
           } else {
-            console.log("Error al cargar la fundación");
+            //console.("Error al cargar la fundación");
             setError(res.data.message);
             setShowErrorModal(true);
           }
@@ -88,10 +88,10 @@ function Servicios() {
       try {
         let response;
         if (idLocalidad === 0) {
-          console.log("Localidades: ", idLocalidad);
+          //console.("Localidades: ", idLocalidad);
           response = await api.get("fundaciones/");
         } else {
-          console.log("Localidad: ", idLocalidad);
+          //console.("Localidad: ", idLocalidad);
           response = await api.get(`fundaciones/localidad/${idLocalidad}/`);
         }
 
@@ -99,7 +99,7 @@ function Servicios() {
           setFundaciones(response.data);
           setIsLoading(false);
         } else {
-          console.log(response.data.message);
+          //console.(response.data.message);
           setError("Error al cargar las fundaciones");
           setShowErrorModal(true);
         }
@@ -123,7 +123,7 @@ function Servicios() {
   };
 
   useEffect(() => {
-    console.log("Localidad seleccionada: ", idLocalidad);
+    //console.("Localidad seleccionada: ", idLocalidad);
   }, [idLocalidad]);
 
   const handleAdoptar = (fundacion) => {

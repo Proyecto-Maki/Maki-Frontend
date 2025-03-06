@@ -84,12 +84,12 @@ const InfoProduct = () => {
   const [resenas, setResenas] = useState([]);
 
   useEffect(() => {
-    //console.log("Cargando resenas del producto:", product?.id);
+    ////console.("Cargando resenas del producto:", product?.id);
     const fetchResenas = async () => {
       if (product?.id) {
         try {
           const response = await api.get(`resenas/producto/${product.id}/`);
-          console.log("resenas del producto:", response.data);
+          ////console.("resenas del producto:", response.data);
           setResenas(response.data);
           setLoading(false);
         } catch (error) {
@@ -101,12 +101,12 @@ const InfoProduct = () => {
   }, [product?.id]);
 
   const handleFiltroCalificacion = (e) => {
-    console.log("Filtro de calificacion:", e.target.id);
+    ////console.("Filtro de calificacion:", e.target.id);
     setFiltroCalificacion(e.target.id);
   };
 
   const ordenarResenas = () => {
-    console.log("Filtro de calificacion:", filtroCalificacion);
+    ////console.("Filtro de calificacion:", filtroCalificacion);
     let resenasOrdenadas = [...resenas];
     if (filtroCalificacion === "Todos") {
       return;
@@ -117,7 +117,7 @@ const InfoProduct = () => {
     }
 
     setResenas(resenasOrdenadas);
-    console.log("Resenas ordenadas:", resenasOrdenadas);
+    ////console.("Resenas ordenadas:", resenasOrdenadas);
   };
 
   useEffect(() => {
@@ -138,7 +138,7 @@ const InfoProduct = () => {
         },
       });
       if (response.status === 204) {
-        console.log("Reseña eliminada:", response);
+        ////console.("Reseña eliminada:", response);
         setResponse("Reseña eliminada con éxito");
         setShowSuccessModal(true);
         setResenaIdEliminar(0);
@@ -158,7 +158,7 @@ const InfoProduct = () => {
     e.preventDefault();
     setShowConfirmationModal(true);
     setResenaIdEliminar(id_resena);
-    console.log("Se abrió el modal de confirmación", id_resena);
+    ////console.("Se abrió el modal de confirmación", id_resena);
   };
 
   const handleYesConfirmationModal = async (e) => {
@@ -186,11 +186,11 @@ const InfoProduct = () => {
   useEffect(() => {
     const fetchCart = async () => {
       try {
-        console.log("Fetching cart with codigo_carrito:", codigo_carrito);
+        //console.log("Fetching cart with codigo_carrito:", codigo_carrito);
         const response = await api.get(
           `/get_estado_carrito?codigo_carrito=${codigo_carrito}`
         );
-        console.log("Cart response:", response.data);
+        //console.log("Cart response:", response.data);
         const productosEnCarrito = response.data.productos.map(
           (item) => item.id
         );
@@ -198,7 +198,7 @@ const InfoProduct = () => {
         setInCart(
           productosEnCarrito.reduce((acc, id) => ({ ...acc, [id]: true }), {})
         );
-        console.log("Productos en carrito obtenidos:", productosEnCarrito);
+        //console.log("Productos en carrito obtenidos:", productosEnCarrito);
       } catch (error) {
         console.error("Error al obtener el carrito:", error);
       }
@@ -251,7 +251,7 @@ const InfoProduct = () => {
       try {
         // Asegúrate de tener este endpoint en el backend para actualizar la cantidad
         const response = await api.patch("actualizar_producto/", productoData);
-        console.log("✅ Cantidad actualizada:", response.data);
+        //console.("✅ Cantidad actualizada:", response.data);
         setMensaje("Cantidad actualizada en el carrito.");
         setTimeout(() => setMensaje(""), 3000);
         // Aquí podrías, si lo requieres, actualizar el estado local con la nueva cantidad.
@@ -264,7 +264,7 @@ const InfoProduct = () => {
       // Si el producto no está en el carrito, se agrega por primera vez.
       try {
         const response = await api.post("agregar_producto/", productoData);
-        console.log("✅ Producto agregado:", response.data);
+        //console.("✅ Producto agregado:", response.data);
         setMensaje("Producto agregado al carrito correctamente.");
         setTimeout(() => setMensaje(""), 3000);
         // Marcar el producto como agregado
@@ -433,7 +433,11 @@ const InfoProduct = () => {
                       <div key={resena.id} className="reseña-prod">
                         <div className="reseña-prod-header">
                           <img
-                            src={resena.user_data.is_cliente === true ? clientes_img : fundaciones_img}
+                            src={
+                              resena.user_data.is_cliente === true
+                                ? clientes_img
+                                : fundaciones_img
+                            }
                             alt="Imagen"
                             className="reseña-avatar-prod"
                           />

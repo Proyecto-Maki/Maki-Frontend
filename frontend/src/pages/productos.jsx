@@ -35,19 +35,19 @@ function Productos() {
       return nuevoCodigo;
     })();
 
-  console.log("Código del carrito generado:", codigo_carrito);
+  //console.("Código del carrito generado:", codigo_carrito);
 
   // Obtener los productos del carrito
   const fetchCart = async () => {
-    console.log("Iniciando fetchCart...");
+    //console.("Iniciando fetchCart...");
     try {
       let codigoCarrito = localStorage.getItem("codigo_carrito");
-      console.log("Código del carrito obtenido:", codigoCarrito);
+      //console.("Código del carrito obtenido:", codigoCarrito);
 
       const response = await api.get(
         `/get_estado_carrito?codigo_carrito=${codigoCarrito}`
       );
-      console.log("Respuesta del backend (carrito):", response.data);
+      //console.("Respuesta del backend (carrito):", response.data);
 
       const productosEnCarrito = response.data.productos.map((item) => item.id);
       if (response.status === 404) {
@@ -68,7 +68,7 @@ function Productos() {
       console.error("❌ Error al obtener los productos del carrito:", error);
     } finally {
       setIsLoading(false);
-      console.log("Finalizado fetchCart.");
+      //console.("Finalizado fetchCart.");
     }
   };
 
@@ -105,12 +105,12 @@ function Productos() {
       user_id: userId, // Agregar user_id en la petición
     };
 
-    console.log("📌 Enviando datos al backend:", nuevoProducto);
+    //console.("📌 Enviando datos al backend:", nuevoProducto);
 
     api
       .post("agregar_producto/", nuevoProducto)
       .then((res) => {
-        console.log("✅ Respuesta del servidor:", res.data);
+        //console.("✅ Respuesta del servidor:", res.data);
         setMensaje("Producto agregado al carrito correctamente.");
         setTimeout(() => setMensaje(""), 3000);
 
@@ -142,10 +142,10 @@ function Productos() {
       : null;
     const categoria_a = categoria ? categoria.name : null;
     const sub_categoria_a = subcategoria ? subcategoria.name : null;
-    console.log("Cambios en productos");
-    console.log("Categoría principal:", categoria_principal_a);
-    console.log("Categoría:", categoria_a);
-    console.log("Subcategoría:", sub_categoria_a);
+    //console.("Cambios en productos");
+    //console.("Categoría principal:", categoria_principal_a);
+    //console.("Categoría:", categoria_a);
+    //console.("Subcategoría:", sub_categoria_a);
 
     const params = {
       categoria_principal: categoria_principal_a,
@@ -158,7 +158,7 @@ function Productos() {
         params: params,
       })
       .then((res) => {
-        console.log("Productos obtenidos:", res.data);
+        //console.("Productos obtenidos:", res.data);
         setProductos(res.data);
         setFiltroPrecio("Todos");
         setIsLoading(false);
@@ -169,12 +169,12 @@ function Productos() {
   }, [categoriaPrincipal, categoria, subcategoria]);
 
   const handleFiltroPrecio = (e) => {
-    console.log("Filtro precio:", e.target.id);
+    //console.("Filtro precio:", e.target.id);
     setFiltroPrecio(e.target.id);
   };
 
   const ordenarProductos = () => {
-    console.log("Filtro de precios:", filtroPrecio);
+    //console.("Filtro de precios:", filtroPrecio);
     let productosOrdenados = [...productos];
     if (filtroPrecio === "Todos") {
       return;
@@ -185,13 +185,12 @@ function Productos() {
     }
 
     setProductos(productosOrdenados);
-    console.log("Productos ordenados de:", filtroPrecio, productosOrdenados);
+    //console.("Productos ordenados de:", filtroPrecio, productosOrdenados);
   };
 
   useEffect(() => {
     ordenarProductos();
   }, [filtroPrecio]);
-
 
   if (isLoading) {
     return <LoadingPage />;
@@ -249,7 +248,7 @@ function Productos() {
                       height="1em"
                       viewBox="0 0 512 512"
                       class="arrow"
-                      stroke ="#302f2f"
+                      stroke="#302f2f"
                     >
                       <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"></path>
                     </svg>
@@ -326,7 +325,9 @@ function Productos() {
                         </Link>
                         <div className="card-body">
                           <h5 className="card-title">{producto.nombre}</h5>
-                          <p className="card-price">{formatMoney(producto.precio)} COP</p>
+                          <p className="card-price">
+                            {formatMoney(producto.precio)} COP
+                          </p>
                           <Link
                             to={`/productos/${producto.slug}`}
                             className="btn card-button"
@@ -365,7 +366,6 @@ function Productos() {
                                 <circle cx="9" cy="21" r="1"></circle>
                                 <circle cx="20" cy="21" r="1"></circle>
                                 <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                             
                               </svg>
                               <span>
                                 {producto.stock > 0
@@ -387,7 +387,7 @@ function Productos() {
                                   fill="#ffffff"
                                 ></path>
                               </svg>
-                              <span>{(producto.precio)} COP</span>
+                              <span>{producto.precio} COP</span>
                             </div>
                           </button>
                         </div>

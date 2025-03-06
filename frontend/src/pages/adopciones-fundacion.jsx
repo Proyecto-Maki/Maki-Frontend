@@ -57,13 +57,17 @@ const AdoptionsFun = () => {
           setPublicacionesFundacion(res.data);
           setIsLoading(false);
         } else {
-          console.log(res.data);
+          //console.log(res.data);
           setError("Error al obtener las publicaciones de adopción");
           setShowErrorModal(true);
         }
       })
       .catch((err) => {
-        setError(err.response ? err.response.data.detail : "Error al obtener las publicaciones de adopción");
+        setError(
+          err.response
+            ? err.response.data.detail
+            : "Error al obtener las publicaciones de adopción"
+        );
         setShowErrorModal(true);
       });
   }, []);
@@ -73,7 +77,7 @@ const AdoptionsFun = () => {
     setShowConfirmationModal(true);
     setPublicacionIdEliminar(id_publicacion);
     setDetalleMascotaIdEliminar(id_detalle);
-    console.log("Se abrió el modal de confirmación", id_publicacion, id_detalle);
+    // console.log("Se abrió el modal de confirmación", id_publicacion, id_detalle);
   };
 
   const eliminarPublicacion = async (e) => {
@@ -82,8 +86,8 @@ const AdoptionsFun = () => {
       return;
     }
 
-    console.log("Publicación a eliminar: ", publicacionIdEliminar);
-    console.log("Detalle mascota a eliminar: ", detalleMascotaIdEliminar);
+    //console.log("Publicación a eliminar: ", publicacionIdEliminar);
+    //console.log("Detalle mascota a eliminar: ", detalleMascotaIdEliminar);
 
     let error_validacion = false;
     try {
@@ -95,7 +99,7 @@ const AdoptionsFun = () => {
         })
         .then((res) => {
           if (res.status === 204) {
-            console.log("Detalle mascota eliminado");
+            //console.log("Detalle mascota eliminado");
             api
               .delete(`publicaciones/delete/${publicacionIdEliminar}/`, {
                 headers: {
@@ -104,9 +108,9 @@ const AdoptionsFun = () => {
               })
               .then((res) => {
                 if (res.status === 204) {
-                  console.log("Publicación eliminada");
+                  //console.log("Publicación eliminada");
                 } else {
-                  console.log(res.data);
+                  //console.log(res.data);
                   setError("Error al eliminar la publicación");
                   setShowErrorModal(true);
                   error_validacion = true;
@@ -115,13 +119,15 @@ const AdoptionsFun = () => {
               .catch((error) => {
                 console.log(error);
                 setError(
-                  error.response ? error.response.data.detail : "Error al eliminar la publicación"
+                  error.response
+                    ? error.response.data.detail
+                    : "Error al eliminar la publicación"
                 );
                 setShowErrorModal(true);
                 error_validacion = true;
               });
           } else {
-            console.log(res.data);
+            //console.log(res.data);
             setError("Error al eliminar el detalle de la mascota");
             setShowErrorModal(true);
             error_validacion = true;
@@ -129,13 +135,21 @@ const AdoptionsFun = () => {
         })
         .catch((error) => {
           console.log(error);
-          setError(error.response ? error.response.data.detail : "Error al eliminar el detalle de la mascota");
+          setError(
+            error.response
+              ? error.response.data.detail
+              : "Error al eliminar el detalle de la mascota"
+          );
           setShowErrorModal(true);
           error_validacion = true;
         });
     } catch (error) {
       console.log(error);
-      setError(error.response ? error.response.data.detail : "Error al eliminar la publicación");
+      setError(
+        error.response
+          ? error.response.data.detail
+          : "Error al eliminar la publicación"
+      );
       setShowErrorModal(true);
       error_validacion = true;
     }
@@ -172,7 +186,7 @@ const AdoptionsFun = () => {
 
   const abrirEditar = async (publicacion) => {
     let publicacionData = publicacion;
-    console.log(publicacionData);
+    //console.log(publicacionData);
     setPublicacionEditar(publicacionData);
     setIsEditarOpen(true);
   };
@@ -238,16 +252,28 @@ const AdoptionsFun = () => {
                     {tarjetaSeleccionada === index ? (
                       <>
                         <p className="lista-adopcion-fundacion-info-oculta">
-                          <i className="fas fa-paw"></i> Apto para niños: {publicacion.detalle_mascota.apto_ninos === true ? "Sí" : "No"}
+                          <i className="fas fa-paw"></i> Apto para niños:{" "}
+                          {publicacion.detalle_mascota.apto_ninos === true
+                            ? "Sí"
+                            : "No"}
                         </p>
                         <p className="lista-adopcion-fundacion-info-oculta">
-                          <i className="fas fa-paw"></i> Tipo de espacio: {publicacion.detalle_mascota.espacio === "P" ? "Pequeño" : "Grande"}
+                          <i className="fas fa-paw"></i> Tipo de espacio:{" "}
+                          {publicacion.detalle_mascota.espacio === "P"
+                            ? "Pequeño"
+                            : "Grande"}
                         </p>
                         <p className="lista-adopcion-fundacion-info-oculta">
-                          <i className="fas fa-paw"></i> Desparasitado: {publicacion.detalle_mascota.desparasitado === true ? "Sí" : "No"}
+                          <i className="fas fa-paw"></i> Desparasitado:{" "}
+                          {publicacion.detalle_mascota.desparasitado === true
+                            ? "Sí"
+                            : "No"}
                         </p>
                         <p className="lista-adopcion-fundacion-info-oculta">
-                          <i className="fas fa-paw"></i> Vacunas al día: {publicacion.detalle_mascota.vacunado === true ? "Sí" : "No"}
+                          <i className="fas fa-paw"></i> Vacunas al día:{" "}
+                          {publicacion.detalle_mascota.vacunado === true
+                            ? "Sí"
+                            : "No"}
                         </p>
                       </>
                     ) : (
@@ -272,14 +298,24 @@ const AdoptionsFun = () => {
                     {tarjetaSeleccionada === index ? (
                       <>
                         <p className="lista-adopcion-fundacion-info-oculta">
-                          <i className="fas fa-paw"></i>Apto para ruido: {publicacion.detalle_mascota.apto_ruido === true ? "Sí" : "No"}
+                          <i className="fas fa-paw"></i>Apto para ruido:{" "}
+                          {publicacion.detalle_mascota.apto_ruido === true
+                            ? "Sí"
+                            : "No"}
                         </p>
                         <p className="lista-adopcion-fundacion-info-oculta">
                           <i className="fas fa-paw"></i>Apto para otras
-                          mascotas: {publicacion.detalle_mascota.apto_otras_mascotas === true ? "Sí" : "No"}
+                          mascotas:{" "}
+                          {publicacion.detalle_mascota.apto_otras_mascotas ===
+                          true
+                            ? "Sí"
+                            : "No"}
                         </p>
                         <p className="lista-adopcion-fundacion-info-oculta">
-                          <i className="fas fa-paw"></i>Esterilizado: {publicacion.detalle_mascota.esterilizado === true ? "Sí" : "No"}
+                          <i className="fas fa-paw"></i>Esterilizado:{" "}
+                          {publicacion.detalle_mascota.esterilizado === true
+                            ? "Sí"
+                            : "No"}
                         </p>
                       </>
                     ) : (
@@ -309,10 +345,17 @@ const AdoptionsFun = () => {
               >
                 <i className="fas fa-edit"></i>
               </button>
-              <button className="lista-adopcion-fundacion-delete-button" onClick={(e) => {
-                console.log("Se hizo click en eliminar", publicacion);
-                handleOpenConfirmationModal(e, publicacion.id, publicacion.detalle_mascota.id);
-              }}>
+              <button
+                className="lista-adopcion-fundacion-delete-button"
+                onClick={(e) => {
+                  //console.log("Se hizo click en eliminar", publicacion);
+                  handleOpenConfirmationModal(
+                    e,
+                    publicacion.id,
+                    publicacion.detalle_mascota.id
+                  );
+                }}
+              >
                 <i className="fas fa-trash-alt"></i>
               </button>
             </div>

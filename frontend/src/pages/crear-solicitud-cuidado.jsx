@@ -68,7 +68,7 @@ function CrearSolicitudCuidado() {
       const diffTime = Math.abs(endDate - startDate);
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-      console.log(`📅 Diferencia de días: ${diffDays}`);
+      //console.log(`📅 Diferencia de días: ${diffDays}`);
 
       if (diffDays <= 1) {
         setSelectedCareType("horas"); // 🔹 Habilitar selección de horas
@@ -87,10 +87,10 @@ function CrearSolicitudCuidado() {
   }, [startDate, endDate]);
 
   const calcularPrecioTotal = () => {
-    console.log("📌 Calculando precio total...");
+    //console.log("📌 Calculando precio total...");
 
     if (!startDate) {
-      console.log("⚠️ Faltan fechas para calcular el precio");
+      //console.log("⚠️ Faltan fechas para calcular el precio");
       return;
     }
 
@@ -105,7 +105,7 @@ function CrearSolicitudCuidado() {
     const diffTime = Math.abs(finalEndDate - startDate);
     const diffDays = Math.max(1, Math.ceil(diffTime / (1000 * 60 * 60 * 24)));
 
-    console.log(`📅 Días de cuidado: ${diffDays}`);
+    //console.log(`📅 Días de cuidado: ${diffDays}`);
 
     // Precio sin IVA
     let precioSinIva = tarifaDiaria * diffDays;
@@ -122,10 +122,10 @@ function CrearSolicitudCuidado() {
     // Precio final con IVA
     let total = precioConCuidadoMedico + iva;
 
-    console.log("💰 Precio sin IVA:", precioSinIva);
-    console.log("➕ Incremento por Cuidado Médico:", incrementoCuidadoMedico);
-    console.log("🧾 IVA (19%):", iva);
-    console.log("💵 Total a pagar:", total);
+    //console.log("💰 Precio sin IVA:", precioSinIva);
+    //console.log("➕ Incremento por Cuidado Médico:", incrementoCuidadoMedico);
+    //console.log("🧾 IVA (19%):", iva);
+    //console.log("💵 Total a pagar:", total);
 
     // Actualizar estado con los valores calculados
     setPayment({
@@ -197,7 +197,7 @@ function CrearSolicitudCuidado() {
         });
 
         if (response.status === 200 && response.data.length > 0) {
-          console.log("Mascotas recibidas en el frontend:", response.data); // 📌 Depuración
+          //console.log("Mascotas recibidas en el frontend:", response.data); // 📌 Depuración
           setPets(response.data);
         } else {
           console.warn("No hay mascotas registradas.");
@@ -264,7 +264,7 @@ function CrearSolicitudCuidado() {
         descripcion: document.querySelector(".input-describe-pet-care").value,
       };
 
-      console.log("Datos que se enviarán al backend:", requestData);
+      //console.log("Datos que se enviarán al backend:", requestData);
     }
   };
 
@@ -319,7 +319,7 @@ function CrearSolicitudCuidado() {
         descripcion: document.querySelector(".input-describe-pet-care").value,
       };
 
-      console.log("Datos enviados al backend:", requestData);
+      //console.log("Datos enviados al backend:", requestData);
 
       const response = await fetch(
         "https://backend.makishop.live/api/mercadopago/create_preference_cuidado/",

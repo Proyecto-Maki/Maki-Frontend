@@ -8,7 +8,6 @@ import api from "../api.js";
 import { use } from "react";
 import { formatDateTime } from "../functions.js";
 
-
 const SolicitudesAdopcion = () => {
   // const solicitudAdopcion = [
   //   { id: "2RYH6", titulo: "Chispa te necesita", fecha: "09/01/2025", estado: "En proceso", primer_nombre: "Juan", primer_apellido: "Pérez" },
@@ -55,25 +54,27 @@ const SolicitudesAdopcion = () => {
             },
           });
         }
-  
+
         if (response.status === 200) {
           setSolicitudesAdopcion(response.data);
         } else {
-          console.error("Error al obtener las solicitudes de adopción:", response);
+          console.error(
+            "Error al obtener las solicitudes de adopción:",
+            response
+          );
         }
       } catch (error) {
         console.error("Error al obtener las solicitudes de adopción:", error);
       }
     };
-  
+
     fetchSolicitudesAdopcion();
   }, []);
 
   const handleVerDetalleSolicitud = (solicitudAdopcion) => {
-    console.log(`Ver detalle de la solicitud ${solicitudAdopcion.id}`);
+    //console.(`Ver detalle de la solicitud ${solicitudAdopcion.id}`);
     navigate("/resumen-adopcion", { state: { solicitudAdopcion } });
-  }
-
+  };
 
   return (
     <div className="absolute-solicitudes-adopcion-container">
@@ -95,7 +96,10 @@ const SolicitudesAdopcion = () => {
                 </div>
                 <div className="id-y-chevron-sa">
                   <h3 className="id-sa">#{solicitudAdopcion.id}</h3>
-                  <button className="ver-detalle-sa" onClick={() => handleVerDetalleSolicitud(solicitudAdopcion)}>
+                  <button
+                    className="ver-detalle-sa"
+                    onClick={() => handleVerDetalleSolicitud(solicitudAdopcion)}
+                  >
                     <i className="fa-solid fa-chevron-right" id="chevron"></i>
                   </button>
                 </div>
@@ -137,7 +141,6 @@ const SolicitudesAdopcion = () => {
                     {solicitudAdopcion.estado}
                   </button>
                 </div>
-                
               </div>
             </div>
           ))

@@ -213,7 +213,7 @@ function Register() {
       ...formData,
       is_verified: false, // Ensure the is_verified field is included
     };
-    console.log(dataToSubmit);
+    //console.(dataToSubmit);
 
     const url = type === "user" ? "registro/cliente/" : "registro/fundacion/";
 

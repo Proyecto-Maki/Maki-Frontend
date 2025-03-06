@@ -41,14 +41,14 @@ const Login = () => {
     // } else {
     //   setCaptchaError(false); // Resetea el error si el usuario completa el CAPTCHA
     // }
-    //console.log("🔹 Valor del reCAPTCHA:", captchaValue);
+    ////console.("🔹 Valor del reCAPTCHA:", captchaValue);
 
     api
       .post("login/", { email, password, captcha: captchaValue }) // 🔹 Enviamos el CAPTCHA al backend
       .then((response) => {
-        //console.log("Response:", response);
+        ////console.("Response:", response);
         if (response.status === 200) {
-          console.log("✅ Login successful:", response.data);
+          //console.("✅ Login successful:", response.data);
 
           const user_id = response.data.data.id;
           const is_fundacion = response.data.data.is_fundacion;
@@ -121,7 +121,7 @@ const Login = () => {
     setError("");
     setResponse("");
   };
-  console.log("Clave reCAPTCHA:", import.meta.env.VITE_RECAPTCHA_SITE_KEY);
+  //console.("Clave reCAPTCHA:", import.meta.env.VITE_RECAPTCHA_SITE_KEY);
   return (
     <div className="absolute-login-container">
       {/* Navbar */}
@@ -168,9 +168,7 @@ const Login = () => {
                 </div>
               </div>
 
-              <div
-                className="captcha-container"
-              >
+              <div className="captcha-container">
                 <ReCAPTCHA
                   sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
                   onChange={(value) => {

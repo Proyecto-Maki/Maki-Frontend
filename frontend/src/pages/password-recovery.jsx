@@ -91,7 +91,7 @@ const PasswordRecovery = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(data);
+    //console.(data);
 
     const passwordError = validatePassword(
       newPasswords.password,
@@ -117,7 +117,11 @@ const PasswordRecovery = () => {
       })
       .catch((error) => {
         console.log(error.response.data);
-        setError(error.response ? error.response.data.detail : "Error al cambiar la contraseña");
+        setError(
+          error.response
+            ? error.response.data.detail
+            : "Error al cambiar la contraseña"
+        );
         setShowErrorModal(true);
       });
   };

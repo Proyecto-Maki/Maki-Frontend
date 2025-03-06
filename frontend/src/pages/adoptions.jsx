@@ -43,15 +43,15 @@ const Adoptions = () => {
 
   useEffect(() => {
     let categoria_sel = {
-      "Perros": "Perro",
-      "Gatos": "Gato",
-      "Aves": "Ave",
-      "Peces": "Pez",
-      "Reptiles": "Reptil",
-      "Roedores": "Roedor",
-    }
+      Perros: "Perro",
+      Gatos: "Gato",
+      Aves: "Ave",
+      Peces: "Pez",
+      Reptiles: "Reptil",
+      Roedores: "Roedor",
+    };
     const categoria_a = categoria ? categoria_sel[categoria.name] : null;
-    console.log("Categoría seleccionada:", categoria_a);  
+    //console.log("Categoría seleccionada:", categoria_a);
     const params = { categoria: categoria_a, email_fundacion: fundacion.email };
     // api
     //   .get("publicaciones-adopcion/", {
@@ -106,7 +106,6 @@ const Adoptions = () => {
         );
         setShowErrorModal(true);
       });
-
   }, [categoria]);
 
   const handleAdoptarMascota = (mascota, id_publicacion) => {
@@ -140,13 +139,10 @@ const Adoptions = () => {
   return (
     <div className="absolute-container-adoptions">
       <Navbar />
-      
+
       <div className="section-categories-adoptions">
         <h3 className="title-adoptions">Adopciones</h3>
-        <Categories 
-          categoria={categoria}
-          setCategoria={setCategoria}
-        />
+        <Categories categoria={categoria} setCategoria={setCategoria} />
       </div>
 
       <div className="adoptions-container">

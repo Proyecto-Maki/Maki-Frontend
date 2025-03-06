@@ -5,7 +5,7 @@ import LoadingPage from "../components/loading-page";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api";
-import ErrorModal from '../components/ErrorModal';
+import ErrorModal from "../components/ErrorModal";
 import ConfirmationModal from "../components/ConfirmationModal";
 import SuccessModalReload from "../components/SuccessModalReload";
 import PetUpdate from "../components/forms/pet-update";
@@ -61,27 +61,30 @@ function PetProfileClient() {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [response, setResponse] = useState("");
   const [isEditarOpen, setIsEditarOpen] = useState(false);
   const [mascotaIdEliminar, setMascotaIdEliminar] = useState(0);
   const navigate = useNavigate();
 
-  if (!sessionStorage.getItem('token') && !sessionStorage.getItem('email') && !sessionStorage.getItem('refresh')) {
-    navigate('/iniciar-sesion');
+  if (
+    !sessionStorage.getItem("token") &&
+    !sessionStorage.getItem("email") &&
+    !sessionStorage.getItem("refresh")
+  ) {
+    navigate("/iniciar-sesion");
   }
 
-  const email = sessionStorage.getItem('email');
-  const token = sessionStorage.getItem('token');
-  const refresh = sessionStorage.getItem('refresh');
-  let es_cliente = sessionStorage.getItem('is_cliente');
-  let es_fundacion = sessionStorage.getItem('is_fundacion');
-  let crear_mascota_url = '/register-pet';
+  const email = sessionStorage.getItem("email");
+  const token = sessionStorage.getItem("token");
+  const refresh = sessionStorage.getItem("refresh");
+  let es_cliente = sessionStorage.getItem("is_cliente");
+  let es_fundacion = sessionStorage.getItem("is_fundacion");
+  let crear_mascota_url = "/register-pet";
 
-  if (es_fundacion === 'true') {
-    navigate('/perfil-mascota-fundacion/');
+  if (es_fundacion === "true") {
+    navigate("/perfil-mascota-fundacion/");
   }
-
 
   // MIRA SI EL USUARIO ES CLIENTE O FUNDACION
   // useEffect(() => {
@@ -120,11 +123,12 @@ function PetProfileClient() {
   // TRAIDA DE MASCOTAS DEL USUARIO
 
   useEffect(() => {
-    api.get(`mascotas/${email}/`, {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
+    api
+      .get(`mascotas/${email}/`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         if (response.status === 200) {
           setMascotasUser(response.data);
@@ -135,16 +139,22 @@ function PetProfileClient() {
         }
       })
       .catch((error) => {
-        console.error(error.response ? error.response.data : "Error al obtener las mascotas");
-        setError(error.response ? error.response.data.detail : "Error al obtener las mascotas");
+        console.error(
+          error.response ? error.response.data : "Error al obtener las mascotas"
+        );
+        setError(
+          error.response
+            ? error.response.data.detail
+            : "Error al obtener las mascotas"
+        );
         setShowErrorModal(true);
       });
   }, []);
 
   const handleAnadirMascota = () => {
-    console.log(crear_mascota_url);
+    //console.(crear_mascota_url);
     navigate(crear_mascota_url);
-  }
+  };
 
   // Función para eliminar una mascota
   const eliminarMascota = async (e) => {
@@ -156,11 +166,11 @@ function PetProfileClient() {
       api
         .delete(`mascotas/delete/${mascotaIdEliminar}/`, {
           headers: {
-            'Authorization': `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
           },
         })
         .then((res) => {
-          if(res.status === 204) {
+          if (res.status === 204) {
             setResponse("Mascota eliminada exitosamente");
             setShowSuccessModal(true);
           } else {
@@ -170,13 +180,27 @@ function PetProfileClient() {
           }
         })
         .catch((error) => {
-          console.error(error.response ? error.response.data : "Error al eliminar la mascota");
-          setError(error.response ? error.response.data.detail : "Error al eliminar la mascota");
+          console.error(
+            error.response
+              ? error.response.data
+              : "Error al eliminar la mascota"
+          );
+          setError(
+            error.response
+              ? error.response.data.detail
+              : "Error al eliminar la mascota"
+          );
           setShowErrorModal(true);
-        })
+        });
     } catch (error) {
-      console.error(error.response ? error.response.data : "Error al eliminar la mascota");
-      setError(error.response ? error.response.data.detail : "Error al eliminar la mascota");
+      console.error(
+        error.response ? error.response.data : "Error al eliminar la mascota"
+      );
+      setError(
+        error.response
+          ? error.response.data.detail
+          : "Error al eliminar la mascota"
+      );
       setShowErrorModal(true);
     }
   };
@@ -185,41 +209,42 @@ function PetProfileClient() {
     e.preventDefault();
     setShowConfirmationModal(true);
     setMascotaIdEliminar(mascotaId);
-    console.log("Se abrió el modal de confirmación", mascotaId);
-  }
-
+    //console.("Se abrió el modal de confirmación", mascotaId);
+  };
 
   const handleYesConfirmationModal = async (e) => {
     setShowConfirmationModal(false);
     e.preventDefault();
-    await new Promise(r => setTimeout(r, 2000));
+    await new Promise((r) => setTimeout(r, 2000));
     await eliminarMascota(e);
-
-  }
+  };
 
   const handleNoConfirmationModal = () => {
     setShowConfirmationModal(false);
     setMascotaIdEliminar(0);
-  }
+  };
 
   const handleCloseErrorModal = () => {
     setShowErrorModal(false);
-    setError('');
+    setError("");
   };
 
   const abrirEditar = async (mascota) => {
     let mascotaData = mascota;
-    if (mascotaData.estado_salud === "Enfermo" || mascotaData.estado_salud === "Recuperación") {
+    if (
+      mascotaData.estado_salud === "Enfermo" ||
+      mascotaData.estado_salud === "Recuperación"
+    ) {
       try {
         const res = await api.get(`padecimientos/mascota/${mascotaData.id}/`, {
           headers: {
-            'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
-          }
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+          },
         });
 
         if (res.status === 200) {
           mascotaData.padecimiento = res.data.padecimiento;
-          console.log("El padecimiento es ", mascotaData.padecimiento);
+          //console.("El padecimiento es ", mascotaData.padecimiento);
         } else {
           console.log(res.data.message);
           setError("Error al obtener el padecimiento");
@@ -228,7 +253,11 @@ function PetProfileClient() {
         }
       } catch (error) {
         console.log(error);
-        setError(error.response ? error.response.data.detail : "Error al obtener el padecimiento");
+        setError(
+          error.response
+            ? error.response.data.detail
+            : "Error al obtener el padecimiento"
+        );
         setShowErrorModal(true);
         return;
       }
@@ -242,12 +271,11 @@ function PetProfileClient() {
     setIsEditarOpen(false);
   };
 
-const handleCloseSuccessModal = () => {
+  const handleCloseSuccessModal = () => {
     setShowSuccessModal(false);
     setError("");
     setResponse("");
-};
-
+  };
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -264,7 +292,6 @@ const handleCloseSuccessModal = () => {
   }
 
   return (
-
     <div className="absolute-container-pet-profile">
       {/* Navbar */}
       <Navbar />
@@ -273,9 +300,29 @@ const handleCloseSuccessModal = () => {
           <div className="heading-pet-profile">
             <h2>Mascotas</h2>
             <div className="button-container-pet-profile">
-              <button className="button-add-pet-profile" type="button" onClick={handleAnadirMascota}>
+              <button
+                className="button-add-pet-profile"
+                type="button"
+                onClick={handleAnadirMascota}
+              >
                 <span class="button__text">Añadir</span>
-                <span class="button__icon"><svg class="svg" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
+                <span class="button__icon">
+                  <svg
+                    class="svg"
+                    fill="none"
+                    height="24"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <line x1="12" x2="12" y1="5" y2="19"></line>
+                    <line x1="5" x2="19" y1="12" y2="12"></line>
+                  </svg>
+                </span>
               </button>
             </div>
           </div>
@@ -296,16 +343,22 @@ const handleCloseSuccessModal = () => {
                   <div key={mascota.id} className="card-text-pet-profile">
                     <h3>{mascota.nombre}</h3>
                     <p>
-                      <strong>Sexo:</strong> {mascota.sexo === 'M' ? 'Macho' : 'Hembra'}
+                      <strong>Sexo:</strong>{" "}
+                      {mascota.sexo === "M" ? "Macho" : "Hembra"}
                     </p>
-                    <p >
+                    <p>
                       <strong>Tipo:</strong> {mascota.tipo}
                     </p>
                     <p>
                       <strong>Edad:</strong> {mascota.edad} año(s)
                     </p>
                     <p>
-                      <strong>Tamaño:</strong> {mascota.tamano === 'P' ? 'Pequeño' : mascota.tamano === 'M' ? 'Mediano' : 'Grande'}
+                      <strong>Tamaño:</strong>{" "}
+                      {mascota.tamano === "P"
+                        ? "Pequeño"
+                        : mascota.tamano === "M"
+                        ? "Mediano"
+                        : "Grande"}
                     </p>
                     <p>
                       <strong>Peso:</strong> {mascota.peso} kg
@@ -319,25 +372,28 @@ const handleCloseSuccessModal = () => {
                     <button onClick={() => abrirEditar(mascota)}>
                       <i className="fas fa-pencil-alt"></i>
                     </button>
-                    <button onClick={(e) => handleOpenConfirmationModal(e, mascota.id)}>
+                    <button
+                      onClick={(e) =>
+                        handleOpenConfirmationModal(e, mascota.id)
+                      }
+                    >
                       <i className="fas fa-trash-alt"></i>
                     </button>
                   </div>
                 </div>
               ))}
             </div>
-          )
-          }
-
+          )}
 
           {/* Contenedor principal de tarjetas */}
-
         </div>
       </div>
       {isEditarOpen && (
         <div className="modal-editar-mascota">
           <div className="modal-editar-mascota-content">
-            <span className="close" onClick={cerrarEditar}>&times;</span>
+            <span className="close" onClick={cerrarEditar}>
+              &times;
+            </span>
             <PetUpdate
               isEditarOpen={isEditarOpen}
               cerrarEditar={cerrarEditar}
@@ -365,7 +421,6 @@ const handleCloseSuccessModal = () => {
       />
     </div>
   );
-};
-
+}
 
 export default PetProfileClient;

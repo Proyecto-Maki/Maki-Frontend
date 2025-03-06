@@ -12,7 +12,6 @@ import PetUpdate from "../components/forms/pet-update";
 import { MdPets } from "react-icons/md";
 
 function PetProfileFoundation() {
-
   const [mascotasUser, setMascotasUser] = useState([]);
   const [mascotaUser, setMascotaUser] = useState({});
   const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -56,7 +55,7 @@ function PetProfileFoundation() {
         if (response.status === 200) {
           setMascotasUser(response.data);
         } else {
-          console.log(response.data.message);
+          //console.(response.data.message);
           setError("Error al obtener las mascotas");
           setShowErrorModal(true);
         }
@@ -70,12 +69,12 @@ function PetProfileFoundation() {
         setShowErrorModal(true);
       }
     };
-  
+
     fetchMascotas();
   }, []);
 
   const handleAnadirMascota = () => {
-    console.log(crear_mascota_url);
+    //console.(crear_mascota_url);
     navigate(crear_mascota_url);
   };
 
@@ -133,7 +132,7 @@ function PetProfileFoundation() {
     e.preventDefault();
     setShowConfirmationModal(true);
     setMascotaIdEliminar(mascotaId);
-    console.log("Se abrió el modal de confirmación", mascotaId);
+    //console.("Se abrió el modal de confirmación", mascotaId);
   };
 
   const handleYesConfirmationModal = async (e) => {
@@ -168,7 +167,7 @@ function PetProfileFoundation() {
 
         if (res.status === 200) {
           mascotaData.padecimiento = res.data.padecimiento;
-          console.log("El padecimiento es ", mascotaData.padecimiento);
+          //console.("El padecimiento es ", mascotaData.padecimiento);
         } else {
           console.log(res.data.message);
           setError("Error al obtener el padecimiento");
@@ -217,7 +216,7 @@ function PetProfileFoundation() {
 
   const handleAdoptar = (mascota) => {
     // navigate('/crear-adopcion');
-    console.log(`Crear adopción de ${mascota.nombre}`);
+    //console.(`Crear adopción de ${mascota.nombre}`);
     navigate("/crear-adopcion", { state: { mascota } });
   };
 

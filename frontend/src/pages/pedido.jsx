@@ -54,7 +54,7 @@ const Pedido = () => {
       .then((res) => {
         if (res.status === 200) {
           setDetalles(res.data);
-          console.log(detalles);
+          //console.(detalles);
         } else {
           console.error("Error al obtener los detalles del pedido:", res);
           setError("Error al obtener los detalles del pedido");
@@ -94,14 +94,13 @@ const Pedido = () => {
   };
 
   useEffect(() => {
-    console.log("La orden es: ", order);
+    //console.("La orden es: ", order);
   }, [order]);
-
 
   const handleOpenConfirmationModal = (e) => {
     e.preventDefault();
     setShowConfirmationModal(true);
-    console.log("Se abrió el modal de confirmación", );
+    //console.("Se abrió el modal de confirmación", );
   };
 
   const handleYesConfirmationModal = async (e) => {
@@ -138,7 +137,7 @@ const Pedido = () => {
         }
       );
 
-      console.log("Respuesta de la API:", response);
+      //console.("Respuesta de la API:", response);
 
       if (response.status === 200) {
         // alert(
@@ -149,7 +148,9 @@ const Pedido = () => {
         const saldoActual = parseFloat(sessionStorage.getItem("saldo")) || 0;
         sessionStorage.setItem("saldo", saldoActual + parseFloat(pedido.total));
 
-        setResponse("Pedido cancelado exitosamente. Se ha reembolsado el monto a tu saldo.");
+        setResponse(
+          "Pedido cancelado exitosamente. Se ha reembolsado el monto a tu saldo."
+        );
         setDirNavigate("/mis-pedidos");
         setShowSuccessModal(true);
 
@@ -179,7 +180,9 @@ const Pedido = () => {
               <h4 className="pedido-id"># {order.id}</h4>
             </div>
             <div className="fila-intermedia">
-              <p className="pedido-total">Total: {formatMoney(order.total)} COP</p>
+              <p className="pedido-total">
+                Total: {formatMoney(order.total)} COP
+              </p>
               <p className="pedido-fecha">
                 Fecha de compra: {order.fechaCompra}
               </p>
@@ -202,7 +205,9 @@ const Pedido = () => {
                 />
                 <div className="producto-detalles">
                   <h3 className="producto-nombre">{product.name}</h3>
-                  <p className="producto-precio">{formatMoney(product.price)} COP</p>
+                  <p className="producto-precio">
+                    {formatMoney(product.price)} COP
+                  </p>
                 </div>
                 {/* Sección para mostrar la cantidad */}
                 <div className="producto-cantidad">

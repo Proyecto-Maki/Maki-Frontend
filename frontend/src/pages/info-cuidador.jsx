@@ -64,7 +64,7 @@ const InfoCuidadores = () => {
             Authorization: `Bearer ${token}`,
           },
         });
-        console.log("Datos del cuidador:", response.data);
+        ////console.log("Datos del cuidador:", response.data);
         setDatosCuidador(response.data);
       } catch (error) {
         console.error("Error al obtener al cuidador:", error);
@@ -77,7 +77,7 @@ const InfoCuidadores = () => {
   const [resenas, setResenas] = useState([]);
 
   useEffect(() => {
-    console.log("Cargando resenas del cuidador: ", datosCuidador.nombre);
+    //console.log("Cargando resenas del cuidador: ", datosCuidador.nombre);
     const fetchResenas = async () => {
       if (datosCuidador.id) {
         try {
@@ -89,7 +89,7 @@ const InfoCuidadores = () => {
               },
             }
           );
-          console.log("Resenas del cuidador:", response.data);
+          //console.log("Resenas del cuidador:", response.data);
           setResenas(response.data);
           setLoading(false);
         } catch (error) {
@@ -101,12 +101,12 @@ const InfoCuidadores = () => {
   }, [datosCuidador.id]);
 
   const handleFiltroCalificacion = (e) => {
-    console.log("Filtro de calificacion:", e.target.id);
+    //console.log("Filtro de calificacion:", e.target.id);
     setFiltroCalificacion(e.target.id);
   };
 
   const ordenarResenas = () => {
-    console.log("Filtro de calificacion:", filtroCalificacion);
+    //console.log("Filtro de calificacion:", filtroCalificacion);
     let resenasOrdenadas = [...resenas];
     if (filtroCalificacion === "Todos") {
       return;
@@ -117,7 +117,7 @@ const InfoCuidadores = () => {
     }
 
     setResenas(resenasOrdenadas);
-    console.log("Resenas ordenadas:", resenasOrdenadas);
+    //console.log("Resenas ordenadas:", resenasOrdenadas);
   };
 
   useEffect(() => {
@@ -145,7 +145,7 @@ const InfoCuidadores = () => {
         },
       });
       if (response.status === 204) {
-        console.log("Reseña eliminada:", response);
+        //console.log("Reseña eliminada:", response);
         setResponse("Reseña eliminada con éxito");
         setShowSuccessModal(true);
         setResenaIdEliminar(0);
@@ -165,7 +165,7 @@ const InfoCuidadores = () => {
     e.preventDefault();
     setShowConfirmationModal(true);
     setResenaIdEliminar(id_resena);
-    console.log("Se abrió el modal de confirmación", id_resena);
+    //console.log("Se abrió el modal de confirmación", id_resena);
   };
 
   const handleYesConfirmationModal = async (e) => {
@@ -359,7 +359,11 @@ const InfoCuidadores = () => {
                   <div key={resena.id} className="reseña">
                     <div className="reseña-header">
                       <img
-                        src={resena.user_data.is_cliente === true ? clientes_img : fundaciones_img}
+                        src={
+                          resena.user_data.is_cliente === true
+                            ? clientes_img
+                            : fundaciones_img
+                        }
                         alt="Imagen"
                         className="reseña-avatar"
                       />

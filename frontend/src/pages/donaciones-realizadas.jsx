@@ -45,7 +45,7 @@ const DonacionesRealizadas = () => {
           setDonacionesRealizadas(response.data);
           setIsLoading(false);
         } else {
-          console.log(response);
+          //console.log(response);
           setError("Error al cargar las donaciones realizadas");
           setShowErrorModal(true);
         }
@@ -112,7 +112,8 @@ const DonacionesRealizadas = () => {
                   <p className="nombre-cliente-sa">
                     <button className="estado-sa">Donaste:</button>
                     <span className="recibiste-tarjeta-content-dr">
-                      {donacion.tarjeta.tipo} ({formatMoney(donacion.tarjeta.monto)} COP)
+                      {donacion.tarjeta.tipo} (
+                      {formatMoney(donacion.tarjeta.monto)} COP)
                     </span>
                   </p>
                 </div>

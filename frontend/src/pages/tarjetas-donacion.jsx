@@ -16,7 +16,7 @@ function TarjetasDonacion() {
   const location = useLocation();
   const fundacion = location.state?.fundacion || null;
 
-  console.log("Fundación recibida en tarjetas-donacion.jsx:", fundacion);
+  //console.("Fundación recibida en tarjetas-donacion.jsx:", fundacion);
 
   if (!fundacion) {
     return <p>Error: No se ha seleccionado una fundación para donar.</p>;
@@ -62,7 +62,7 @@ function TarjetasDonacion() {
 
       if (response.status === 200) {
         const { init_point } = response.data;
-        console.log("Redirigiendo a:", init_point);
+        //console.("Redirigiendo a:", init_point);
         window.location.href = init_point;
       } else {
         alert("Error al generar la preferencia de pago.");

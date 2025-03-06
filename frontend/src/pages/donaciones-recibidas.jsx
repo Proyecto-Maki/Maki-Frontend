@@ -62,7 +62,7 @@ const DonacionesRecibidas = () => {
           setDonacionesRecibidas(response.data);
           setIsLoading(false);
         } else {
-          console.log(response);
+          //console.log(response);
           setError("Error al cargar las donaciones recibidas");
           setShowErrorModal(true);
         }

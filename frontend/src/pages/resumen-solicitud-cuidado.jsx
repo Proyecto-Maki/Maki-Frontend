@@ -37,7 +37,7 @@ const ResumenCuidado = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { idSolicitud } = location.state || {};
-  console.log("El id", idSolicitud);
+  //console.("El id", idSolicitud);
   const [solicitudCuidado, setSolicitudCuidado] = useState({
     mascota: {} || null,
     cliente: {} || null,
@@ -75,18 +75,24 @@ const ResumenCuidado = () => {
     const fetchSolicitudCuidado = async () => {
       if (idSolicitud && token) {
         try {
-          const response = await api.get(`mi-solicitud-cuidado/${idSolicitud}/`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-  
+          const response = await api.get(
+            `mi-solicitud-cuidado/${idSolicitud}/`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+
           if (response.status === 200) {
-            console.log(response.data);
+            //console.(response.data);
             setSolicitudCuidado(response.data);
             setIsLoading(false);
           } else {
-            console.error("Error al obtener la solicitud de cuidado:", response);
+            console.error(
+              "Error al obtener la solicitud de cuidado:",
+              response
+            );
             setError("Error al obtener la solicitud de cuidado");
             setShowErrorModal(true);
           }
@@ -97,7 +103,7 @@ const ResumenCuidado = () => {
         }
       }
     };
-  
+
     fetchSolicitudCuidado();
   }, [idSolicitud, token]);
 
@@ -143,7 +149,7 @@ const ResumenCuidado = () => {
   const handleOpenConfirmationModal = (e, id_solicitud) => {
     e.preventDefault();
     setShowConfirmationModal(true);
-    console.log(id_solicitud);
+    //console.(id_solicitud);
   };
 
   const handleYesConfirmationModal = async (e) => {
@@ -171,7 +177,9 @@ const ResumenCuidado = () => {
       <div className="contenedor-resumen-adopcion">
         <div className="info-adopcion-card">
           <div className="fila-superior-adopcion">
-            <h4 className="adopcion-titulo">#{solicitudCuidado.id || "Cargando"} </h4>
+            <h4 className="adopcion-titulo">
+              #{solicitudCuidado.id || "Cargando"}{" "}
+            </h4>
             <p className="adopcion-id">
               <button
                 className="cancelar-cuidado"
@@ -191,7 +199,9 @@ const ResumenCuidado = () => {
                     Fecha en la que se realizó la solicitud:
                   </span>{" "}
                   <span className="cliente-nombre">
-                    {solicitudCuidado.fecha_solicitud ? formatDateTime(solicitudCuidado.fecha_solicitud) : "Cargando"}
+                    {solicitudCuidado.fecha_solicitud
+                      ? formatDateTime(solicitudCuidado.fecha_solicitud)
+                      : "Cargando"}
                   </span>
                 </p>
                 <p className="adopcion-apellido-cliente">
@@ -205,7 +215,9 @@ const ResumenCuidado = () => {
                 <p className="adopcion-apellido-cliente">
                   <span className="label-apellido-adopcion">Total:</span>{" "}
                   <span className="cliente-apellido">
-                    {solicitudCuidado.costo ? formatMoney(solicitudCuidado.costo) + " COP" : "Cargando"}
+                    {solicitudCuidado.costo
+                      ? formatMoney(solicitudCuidado.costo) + " COP"
+                      : "Cargando"}
                   </span>
                 </p>
               </div>
@@ -226,45 +238,48 @@ const ResumenCuidado = () => {
               <div className="card-content-mascota-interior">
                 <div className="image-container">
                   <img
-                    src={solicitudCuidado.mascota.imagen  || dogImage}
-                    alt={solicitudCuidado.mascota.nombre  || "Cargando"}
+                    src={solicitudCuidado.mascota.imagen || dogImage}
+                    alt={solicitudCuidado.mascota.nombre || "Cargando"}
                   />
                 </div>
                 <div className="mascota-details">
                   <div className="columna-izquierda">
-                    <p className="name">{solicitudCuidado.mascota.nombre  || "Cargando"}</p>
-                    <p>{solicitudCuidado.mascota.raza  || "Cargando"}</p>
+                    <p className="name">
+                      {solicitudCuidado.mascota.nombre || "Cargando"}
+                    </p>
+                    <p>{solicitudCuidado.mascota.raza || "Cargando"}</p>
                     <p>
                       {solicitudCuidado.mascota.sexo === "M"
                         ? "Macho"
-                        : "Hembra"  || "Cargando"}
+                        : "Hembra" || "Cargando"}
                     </p>
                     <p>
                       {solicitudCuidado.mascota.tamano === "P"
                         ? "Pequeño"
                         : solicitudCuidado.mascota.tamano === "M"
                         ? "Mediano"
-                        : "Grande"  || "Cargando"}
+                        : "Grande" || "Cargando"}
                     </p>
-                    <p>{solicitudCuidado.mascota.raza  || "Cargando"}</p>
+                    <p>{solicitudCuidado.mascota.raza || "Cargando"}</p>
                   </div>
                   <div className="columna-derecha">
                     <p>
-                      <strong>Edad:</strong> {solicitudCuidado.mascota.edad  || "Cargando"}{" "}
-                      año(s)
+                      <strong>Edad:</strong>{" "}
+                      {solicitudCuidado.mascota.edad || "Cargando"} año(s)
                     </p>
                     <p>
-                      <strong>Peso:</strong> {solicitudCuidado.mascota.peso  || "Cargando"} kg
+                      <strong>Peso:</strong>{" "}
+                      {solicitudCuidado.mascota.peso || "Cargando"} kg
                     </p>
 
                     <p>
                       <strong>Dirección: </strong>
-                      {solicitudCuidado.cliente.direccion  || "Cargando"}
+                      {solicitudCuidado.cliente.direccion || "Cargando"}
                       {}
                     </p>
                     <p>
                       <strong>Localidad: </strong>
-                      {solicitudCuidado.cliente.localidad  || "Cargando"}
+                      {solicitudCuidado.cliente.localidad || "Cargando"}
                       {}
                     </p>
                   </div>
@@ -278,7 +293,7 @@ const ResumenCuidado = () => {
           <div className="card-informacion-cliente">
             <div className="card-content-cliente">
               <h2 className="h2-tarjetas-adopcion">
-                {solicitudCuidado.cuidador.primer_nombre  || "Cargando"}{" "}
+                {solicitudCuidado.cuidador.primer_nombre || "Cargando"}{" "}
                 {solicitudCuidado.cuidador.segundo_nombre || ""}{" "}
                 {solicitudCuidado.cuidador.primer_apellido || ""}{" "}
                 {solicitudCuidado.cuidador.segundo_apellido || ""}
@@ -293,7 +308,7 @@ const ResumenCuidado = () => {
                       <div className="columna-izquierda">
                         <p>
                           <strong>Cédula:</strong> CC{" "}
-                          {solicitudCuidado.cuidador.cedula  || "Cargando"}
+                          {solicitudCuidado.cuidador.cedula || "Cargando"}
                         </p>
                         <p>
                           <strong>Teléfono:</strong>{" "}
@@ -301,13 +316,13 @@ const ResumenCuidado = () => {
                         </p>
                         <p>
                           <strong>Correo:</strong>{" "}
-                          {solicitudCuidado.cuidador.email  || "Cargando"}
+                          {solicitudCuidado.cuidador.email || "Cargando"}
                         </p>
                       </div>
                       <div className="columna-derecha">
                         <p>
                           <strong>Localidad:</strong>{" "}
-                          {solicitudCuidado.cuidador.localidad  || "Cargando"}{" "}
+                          {solicitudCuidado.cuidador.localidad || "Cargando"}{" "}
                         </p>
                       </div>
                     </>
@@ -316,21 +331,22 @@ const ResumenCuidado = () => {
                       <div className="columna-izquierda">
                         <p>
                           <strong>Ocupación:</strong>{" "}
-                          {solicitudCuidado.cuidador.ocupacion  || "Cargando"}
+                          {solicitudCuidado.cuidador.ocupacion || "Cargando"}
                         </p>
                         <p>
                           <strong>Localidad:</strong>{" "}
-                          {solicitudCuidado.cuidador.localidad  || "Cargando"}
+                          {solicitudCuidado.cuidador.localidad || "Cargando"}
                         </p>
                         <p>
                           <strong>Experiencia:</strong>{" "}
-                          {solicitudCuidado.cuidador.experiencia  || "Cargando"}
+                          {solicitudCuidado.cuidador.experiencia || "Cargando"}
                         </p>
                       </div>
                       <div className="columna-derecha">
                         <p>
                           <strong>Categoría mascotas:</strong>{" "}
-                          {solicitudCuidado.cuidador.categoria_mascotas  || "Cargando"}{" "}
+                          {solicitudCuidado.cuidador.categoria_mascotas ||
+                            "Cargando"}{" "}
                         </p>
                       </div>
                     </>
@@ -373,7 +389,9 @@ const ResumenCuidado = () => {
                             style={{ height: "20px", marginRight: "10px" }}
                           />
                           <strong>Fecha del cuidado: </strong>
-                          {solicitudCuidado.fecha_inicio ? formatDateTime(solicitudCuidado.fecha_inicio) : "Cargando"}
+                          {solicitudCuidado.fecha_inicio
+                            ? formatDateTime(solicitudCuidado.fecha_inicio)
+                            : "Cargando"}
                         </p>
                       </>
                     ) : (
@@ -386,7 +404,9 @@ const ResumenCuidado = () => {
                             style={{ height: "20px", marginRight: "10px" }}
                           />
                           <strong>Fecha de inicio del cuidado: </strong>
-                          {solicitudCuidado.fecha_inicio ? formatDateTime(solicitudCuidado.fecha_inicio)  : "Cargando"}
+                          {solicitudCuidado.fecha_inicio
+                            ? formatDateTime(solicitudCuidado.fecha_inicio)
+                            : "Cargando"}
                         </p>
                         <p>
                           <img
@@ -396,7 +416,9 @@ const ResumenCuidado = () => {
                             style={{ height: "20px", marginRight: "10px" }}
                           />
                           <strong>Fecha de fin del cuidado: </strong>
-                          {solicitudCuidado.fecha_fin ? formatDateTime(solicitudCuidado.fecha_fin) : "Cargando"}
+                          {solicitudCuidado.fecha_fin
+                            ? formatDateTime(solicitudCuidado.fecha_fin)
+                            : "Cargando"}
                         </p>
                       </>
                     )}
@@ -409,7 +431,9 @@ const ResumenCuidado = () => {
                         style={{ height: "20px", marginRight: "10px" }}
                       />
                       <strong>Solicita cuidado medico: </strong>
-                      {solicitudCuidado.is_cuidado_especial ? "Sí" : "No"  || "Cargando"}
+                      {solicitudCuidado.is_cuidado_especial
+                        ? "Sí"
+                        : "No" || "Cargando"}
                     </p>
                   </div>
                   <div className="columna-derecha">
@@ -422,7 +446,7 @@ const ResumenCuidado = () => {
                       />
 
                       <strong>Descripción del cuidado: </strong>
-                      {solicitudCuidado.descripcion  || "Cargando"}
+                      {solicitudCuidado.descripcion || "Cargando"}
                     </p>
                   </div>
                 </div>

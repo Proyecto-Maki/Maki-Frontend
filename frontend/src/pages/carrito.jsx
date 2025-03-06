@@ -158,16 +158,16 @@ const Carrito = () => {
   };
 
   const updateProductQuantity = async (id, quantity) => {
-    console.log(`Iniciando updateProductQuantity para producto ID ${id}...`);
+    //console.log(`Iniciando updateProductQuantity para producto ID ${id}...`);
     try {
       const codigoCarrito = localStorage.getItem("codigo_carrito");
-      console.log("Código del carrito para actualización:", codigoCarrito);
+      //console.log("Código del carrito para actualización:", codigoCarrito);
 
-      console.log("Datos enviados al backend:", {
-        codigo_carrito: codigoCarrito,
-        producto_id: id,
-        cantidad: quantity,
-      });
+      // console.log("Datos enviados al backend:", {
+      //   codigo_carrito: codigoCarrito,
+      //   producto_id: id,
+      //   cantidad: quantity,
+      // });
 
       const response = await api.post("/update_cantidad_producto/", {
         codigo_carrito: codigoCarrito,
@@ -175,10 +175,10 @@ const Carrito = () => {
         cantidad: quantity,
       });
 
-      console.log(
-        `Respuesta del backend para updateProductQuantity (ID ${id}):`,
-        response.data
-      );
+      // console.log(
+      //   `Respuesta del backend para updateProductQuantity (ID ${id}):`,
+      //   response.data
+      // );
     } catch (error) {
       console.error("Error al actualizar la cantidad del producto:", error);
     }
@@ -186,42 +186,42 @@ const Carrito = () => {
 
   // Incrementar cantidad
   const increaseQuantity = (id) => {
-    console.log(`Incrementando cantidad para producto ID ${id}...`);
+    //console.log(`Incrementando cantidad para producto ID ${id}...`);
     const updatedCart = cart.map((product) =>
       product.id === id
         ? { ...product, quantity: product.quantity + 1 }
         : product
     );
 
-    console.log("Carrito actualizado localmente (incrementar):", updatedCart);
+    //console.log("Carrito actualizado localmente (incrementar):", updatedCart);
     setCart(updatedCart);
 
     const product = updatedCart.find((product) => product.id === id);
-    console.log(
-      `Cantidad nueva del producto ID ${id}:`,
-      product ? product.quantity : "No encontrado"
-    );
+    // console.log(
+    //   `Cantidad nueva del producto ID ${id}:`,
+    //   product ? product.quantity : "No encontrado"
+    // );
 
     updateProductQuantity(id, product.quantity);
   };
 
   // Decrementar cantidad
   const decreaseQuantity = (id) => {
-    console.log(`Decrementando cantidad para producto ID ${id}...`);
+    //console.log(`Decrementando cantidad para producto ID ${id}...`);
     const updatedCart = cart.map((product) =>
       product.id === id && product.quantity > 1
         ? { ...product, quantity: product.quantity - 1 }
         : product
     );
 
-    console.log("Carrito actualizado localmente (decrementar):", updatedCart);
+    //console.log("Carrito actualizado localmente (decrementar):", updatedCart);
     setCart(updatedCart);
 
     const product = updatedCart.find((product) => product.id === id);
-    console.log(
-      `Cantidad nueva del producto ID ${id}:`,
-      product ? product.quantity : "No encontrado"
-    );
+    // console.log(
+    //   `Cantidad nueva del producto ID ${id}:`,
+    //   product ? product.quantity : "No encontrado"
+    // );
 
     if (product && product.quantity > 0) {
       updateProductQuantity(id, product.quantity);
@@ -230,17 +230,17 @@ const Carrito = () => {
 
   // Eliminar producto del carrito
   const removeFromCart = async (id) => {
-    console.log(`Iniciando eliminación del producto ID ${id} del carrito...`);
+    //console.log(`Iniciando eliminación del producto ID ${id} del carrito...`);
     try {
       const codigoCarrito = localStorage.getItem("codigo_carrito");
-      console.log("Código del carrito obtenido:", codigoCarrito);
+      //console.log("Código del carrito obtenido:", codigoCarrito);
 
       const requestData = {
         codigo_carrito: codigoCarrito,
         producto_id: id,
       };
 
-      console.log("Datos enviados al backend para eliminación:", requestData);
+      //console.log("Datos enviados al backend para eliminación:", requestData);
 
       // Llamada al backend para eliminar el producto
       const response = await api.post(
@@ -248,14 +248,14 @@ const Carrito = () => {
         requestData
       );
 
-      console.log(
-        `Respuesta del backend para eliminar producto ID ${id}:`,
-        response.data
-      );
+      // console.log(
+      //   `Respuesta del backend para eliminar producto ID ${id}:`,
+      //   response.data
+      // );
 
       // Actualizar el estado local después de eliminar
       const updatedCart = cart.filter((product) => product.id !== id);
-      console.log("Carrito actualizado localmente (eliminar):", updatedCart);
+      //console.log("Carrito actualizado localmente (eliminar):", updatedCart);
       setCart(updatedCart);
     } catch (error) {
       console.error("Error al eliminar el producto del carrito:", error);
@@ -264,7 +264,7 @@ const Carrito = () => {
           "Datos de respuesta del backend (error):",
           error.response.data
         );
-        console.log("Estado de la respuesta:", error.response.status);
+        //console.log("Estado de la respuesta:", error.response.status);
       }
     }
   };
@@ -391,7 +391,8 @@ const Carrito = () => {
                       total + product.price * product.quantity,
                     0
                   )
-                  .toLocaleString()} COP
+                  .toLocaleString()}{" "}
+                COP
               </p>
               <p>
                 <strong>
@@ -404,7 +405,8 @@ const Carrito = () => {
                         (total + product.price * product.quantity) * 0.19,
                       0
                     )
-                    .toLocaleString()} COP
+                    .toLocaleString()}{" "}
+                  COP
                 </strong>
               </p>
               <button className="Btn-carrito-pay" onClick={handlePayment}>

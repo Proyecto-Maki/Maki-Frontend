@@ -57,8 +57,8 @@ const PublishReview = () => {
   }, [origen, navigate]);
 
   useEffect(() => {
-    console.log("Origen:", origen);
-    console.log("URL:", createUrl);
+    //console.("Origen:", origen);
+    //console.("URL:", createUrl);
   }, [createUrl]);
 
   useEffect(() => {
@@ -70,17 +70,17 @@ const PublishReview = () => {
   }, []);
 
   // Prueba de producto CAMBIAR ESTO PA HACER PRUEBAS
-//   id_producto = 6;
-//   slug = "whiskas-sabor-pollo-sobres-100-gr";
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  if (!acceptedTerms) {
-    setError("Debes aceptar los términos y condiciones para continuar.");
-    // alert("Debes aceptar los términos y condiciones para continuar.");
-    setShowErrorModal(true);
-    return;
-  }
-}
+  //   id_producto = 6;
+  //   slug = "whiskas-sabor-pollo-sobres-100-gr";
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!acceptedTerms) {
+      setError("Debes aceptar los términos y condiciones para continuar.");
+      // alert("Debes aceptar los términos y condiciones para continuar.");
+      setShowErrorModal(true);
+      return;
+    }
+  };
 
   const handleClick = () => {
     navigate("/terminos-y-condiciones");
@@ -119,9 +119,12 @@ const handleSubmit = async (e) => {
 
     e.preventDefault();
 
-    console.log("Contenido", contenido);
-    const id = origen === "info-producto" ? contenido.product.id : contenido.datosCuidador.id;
-    console.log("ID", id);
+    //console.("Contenido", contenido);
+    const id =
+      origen === "info-producto"
+        ? contenido.product.id
+        : contenido.datosCuidador.id;
+    //console.("ID", id);
 
     const data = {
       email: email,
@@ -141,16 +144,24 @@ const handleSubmit = async (e) => {
         if (res.status === 201) {
           setResponse("¡Tu reseña ha sido publicada!");
           setShowSuccessModal(true);
-        //   setDirNavigate("/productos/" + slug + "/");
+          //   setDirNavigate("/productos/" + slug + "/");
         } else {
           console.log("Error al publicar la reseña", res.data);
-          setError(res.data.message ? res.data.message.detail : "Error al publicar la reseña");
+          setError(
+            res.data.message
+              ? res.data.message.detail
+              : "Error al publicar la reseña"
+          );
           setShowErrorModal(true);
         }
       })
       .catch((error) => {
         console.log("Error al publicar la reseña", error.response.data.error);
-        setError(error.response ? error.response.data.detail : "Error al publicar la reseña");
+        setError(
+          error.response
+            ? error.response.data.detail
+            : "Error al publicar la reseña"
+        );
         setShowErrorModal(true);
       });
   };
@@ -195,7 +206,7 @@ const handleSubmit = async (e) => {
           const tem_email = res.data.email;
           console.log(res.data);
           if (res.data.is_cliente) {
-            console.log("Es cliente");
+            //console.("Es cliente");
             setImageProfile(imagenCliente);
             api
               .get(`cliente-profile/`, {
@@ -270,7 +281,8 @@ const handleSubmit = async (e) => {
       <div className="background-container-publish-review">
         <div className="publish-review-container" onSubmit={handleSubmit}>
           <h2 className="publish-review-title">
-            ¿Qué piensas de nuestro {origen === "info-producto" ? "producto" : "cuidador"}?
+            ¿Qué piensas de nuestro{" "}
+            {origen === "info-producto" ? "producto" : "cuidador"}?
           </h2>
           <div className="publish-review-user-info">
             <img
@@ -323,33 +335,29 @@ const handleSubmit = async (e) => {
           >
             Publicar
           </button>
-          
+
           <div className="form-group-terms-reseña">
-            
-              <input
-                className="terms-checkbox-reseña"
-                type="checkbox"
-                id="terms"
-                checked={acceptedTerms}
-                onChange={() => setAcceptedTerms(!acceptedTerms)}
-                required
-              />
-            
-           
+            <input
+              className="terms-checkbox-reseña"
+              type="checkbox"
+              id="terms"
+              checked={acceptedTerms}
+              onChange={() => setAcceptedTerms(!acceptedTerms)}
+              required
+            />
+
             <label htmlFor="terms" className="terms-label">
-                Acepto los{" "}
-                <a
-                  href="/terminos-y-condiciones"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color: "#ff7f50" }}
-                >
-                  términos y condiciones
-                </a>{" "}
-                de Maki
-              </label>
-            
-              
+              Acepto los{" "}
+              <a
+                href="/terminos-y-condiciones"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "#ff7f50" }}
+              >
+                términos y condiciones
+              </a>{" "}
+              de Maki
+            </label>
           </div>
         </div>
       </div>

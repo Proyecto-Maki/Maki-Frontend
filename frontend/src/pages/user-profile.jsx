@@ -49,15 +49,18 @@ const UserProfile = () => {
   const refresh = sessionStorage.getItem("refresh");
   const es_cliente = sessionStorage.getItem("is_cliente");
   const es_fundacion = sessionStorage.getItem("is_fundacion");
-  console.log(es_cliente);
+  //console.(es_cliente);
   const mascotas_url =
-    es_cliente === "true" ? "perfil-mascota-cliente/" : "perfil-mascota-fundacion/";
+    es_cliente === "true"
+      ? "perfil-mascota-cliente/"
+      : "perfil-mascota-fundacion/";
   const pedidos_url = "mis-pedidos/";
-  console.log(mascotas_url);
+  //console.(mascotas_url);
 
   const adopciones_url = "solicitudes-de-adopcion/";
   const makipaws_url = "solicitudes-de-cuidado/";
-  const donaciones_url = es_cliente === "true" ? "donaciones-realizadas/" : "donaciones-recibidas/";
+  const donaciones_url =
+    es_cliente === "true" ? "donaciones-realizadas/" : "donaciones-recibidas/";
   const [userType, setUserType] = useState("fundacion");
 
   const [isLoading, setIsLoading] = useState(true);
@@ -81,12 +84,12 @@ const UserProfile = () => {
             Authorization: `Bearer ${sessionStorage.getItem("token")}`,
           },
         });
-  
+
         if (userResponse.status === 200) {
           const tem_email = userResponse.data.email;
-          console.log(userResponse.data);
-          console.log(tem_email);
-  
+          //console.(userResponse.data);
+          //console.(tem_email);
+
           if (userResponse.data.is_cliente === true) {
             setUserType("cliente");
             setImageProfile(clientes_img);
@@ -98,10 +101,13 @@ const UserProfile = () => {
                 Authorization: `Bearer ${sessionStorage.getItem("token")}`,
               },
             });
-  
+
             if (clienteResponse.status === 200) {
               setUserData({
-                name: clienteResponse.data.primer_nombre + " " + clienteResponse.data.primer_apellido,
+                name:
+                  clienteResponse.data.primer_nombre +
+                  " " +
+                  clienteResponse.data.primer_apellido,
                 email: clienteResponse.data.email,
                 phone: clienteResponse.data.telefono,
                 address: clienteResponse.data.direccion,
@@ -134,7 +140,7 @@ const UserProfile = () => {
                 Authorization: `Bearer ${sessionStorage.getItem("token")}`,
               },
             });
-  
+
             if (fundacionResponse.status === 200) {
               setUserData({
                 name: fundacionResponse.data.nombre,
@@ -168,9 +174,13 @@ const UserProfile = () => {
             }, 3000);
           }
         } else {
-          console.log("Error en la traida de los datos, la petición no fue exitosa");
+          console.log(
+            "Error en la traida de los datos, la petición no fue exitosa"
+          );
           console.log(userResponse.data.message);
-          setError("Error en la traida de los datos, la petición no fue exitosa");
+          setError(
+            "Error en la traida de los datos, la petición no fue exitosa"
+          );
           setShowErrorModal(true);
           setTimeout(() => {
             navigate("/iniciar-sesion");
@@ -185,7 +195,7 @@ const UserProfile = () => {
         }, 3000);
       }
     };
-  
+
     fetchData();
   }, []);
 
@@ -202,7 +212,7 @@ const UserProfile = () => {
   };
 
   useEffect(() => {
-    console.log("userData ha cambiado:", userData);
+    //console.("userData ha cambiado:", userData);
   }, [userData]);
 
   const handleEliminarCuenta = async (e) => {
@@ -223,14 +233,14 @@ const UserProfile = () => {
       })
       .then((res) => {
         if (res.status === 200) {
-          console.log("Cuenta eliminada con éxito");
+          //console.("Cuenta eliminada con éxito");
           setResponse("Cuenta eliminada con éxito");
           setShowSuccessModal(true);
           setTimeout(() => {
             navigate("/iniciar-sesion");
           }, 3000);
         } else {
-          console.log("Error al eliminar la cuenta");
+          //console.("Error al eliminar la cuenta");
           console.log(response.data.message);
           setError("Error al eliminar la cuenta");
           setShowErrorModal(true);
@@ -260,8 +270,6 @@ const UserProfile = () => {
     setShowConfirmationModal(true);
   };
 
-  
-
   // useEffect(() => {
   //   const timer = setTimeout(() => {
   //     setIsLoading(false);
@@ -281,12 +289,11 @@ const UserProfile = () => {
       {/* User Profile */}
 
       <div className="profile-container">
-      
         <div className="content-user-profile">
           <div className="card-body p-4">
             <div className="d-flex">
               {/* Foto de perfil y botón de cerrar sesión */}
-              
+
               <div className="flex-shrink-0 text-center">
                 <div className="image-user-profile">
                   <img src={imageProfile} alt="Profile" className="img-fluid" />
@@ -338,15 +345,13 @@ const UserProfile = () => {
         </div>
         {/* Icons Section */}
         <div className="icons-container">
-        {userType === "fundacion" && (
-            <div className="change-plan" >
-                <h2>
-                  ¡Aún estás a tiempo para cambiar de plan de membresía!
-                </h2>
-                <button className="boton-cambiar-plan">Ver planes</button>
+          {userType === "fundacion" && (
+            <div className="change-plan">
+              <h2>¡Aún estás a tiempo para cambiar de plan de membresía!</h2>
+              <button className="boton-cambiar-plan">Ver planes</button>
             </div>
           )}
-          
+
           <div className="d-flex flex-wrap justify-content-center">
             <a href={mascotas_url}>
               <button className="btn-mascotas-user-profile">
@@ -402,18 +407,17 @@ const UserProfile = () => {
             )}
           </div>
           <div className="saldo-container">
-          <div className="saldo-subcontainer">
-            <button>
-              <div className="saldo-text">Tu saldo en Maki:</div>
-              <div className="saldo-money">
-                {formatMoney(parseFloat(userData.saldo))} COP
-              </div>
-            </button>
+            <div className="saldo-subcontainer">
+              <button>
+                <div className="saldo-text">Tu saldo en Maki:</div>
+                <div className="saldo-money">
+                  {formatMoney(parseFloat(userData.saldo))} COP
+                </div>
+              </button>
+            </div>
           </div>
-          
         </div>
-        </div>
-        
+
         {/* Botón de Eliminar cuenta */}
         <div className="d-flex justify-content-center mt-4">
           <button

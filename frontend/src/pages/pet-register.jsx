@@ -8,21 +8,27 @@ import api from "../api";
 import SuccessModal from "../components/SuccessModal";
 import ErrorModal from "../components/ErrorModal";
 import ConfirmationModal from "../components/ConfirmationModal";
-import defaultImgFile from "../img/dog.png";  
+import defaultImgFile from "../img/dog.png";
 
 const RegisterPetClient = () => {
-
   const navigate = useNavigate();
 
-  if (!sessionStorage.getItem('token') && !sessionStorage.getItem('email') && !sessionStorage.getItem('refresh')) {
-    navigate('/iniciar-sesion');
+  if (
+    !sessionStorage.getItem("token") &&
+    !sessionStorage.getItem("email") &&
+    !sessionStorage.getItem("refresh")
+  ) {
+    navigate("/iniciar-sesion");
   }
 
-  const tipoUsuario = sessionStorage.getItem('is_cliente') === 'true' ? 'dueño de mascotas' : 'fundacion';
+  const tipoUsuario =
+    sessionStorage.getItem("is_cliente") === "true"
+      ? "dueño de mascotas"
+      : "fundacion";
 
-  const email = sessionStorage.getItem('email');
-  const token = sessionStorage.getItem('token');
-  const refresh = sessionStorage.getItem('refresh');
+  const email = sessionStorage.getItem("email");
+  const token = sessionStorage.getItem("token");
+  const refresh = sessionStorage.getItem("refresh");
 
   const [isLoading, setIsLoading] = useState(true);
   const defaultImg = defaultImgFile;
@@ -49,10 +55,10 @@ const RegisterPetClient = () => {
   const validateNombre = (nombre) => {
     const regex = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/;
     if (nombre === "" || !regex.test(nombre)) {
-        return false;
+      return false;
     }
     return true;
-}
+  };
 
   const validateRaza = (raza) => {
     const regex = /^[A-Za-z]+$/;
@@ -60,15 +66,15 @@ const RegisterPetClient = () => {
       return false;
     }
     return true;
-  }
+  };
 
   const validatePadecimiento = (padecimiento) => {
     const regex = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/;
     if (padecimiento === "" || !regex.test(padecimiento)) {
-        return false;
+      return false;
     }
     return true;
-}
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -79,7 +85,7 @@ const RegisterPetClient = () => {
   }, []);
 
   const handleChangeImg = (e) => {
-    console.log(e.target.files[0]);
+    //console.(e.target.files[0]);
     const file = e.target.files[0];
     setImagen(e.target.files[0]);
     if (file) {
@@ -92,14 +98,22 @@ const RegisterPetClient = () => {
       setProfilePetImg(defaultImg);
       setImagen("");
     }
-  }
+  };
 
   const handleEstadoSaludChange = (e) => {
     setEstadoSalud(e.target.value);
   };
 
   const handleMascotas = () => {
-    if (nombre === "" || tipo === "" || raza === "" || edad === "" || estado_salud === "" || tamano === "" || peso === "") {
+    if (
+      nombre === "" ||
+      tipo === "" ||
+      raza === "" ||
+      edad === "" ||
+      estado_salud === "" ||
+      tamano === "" ||
+      peso === ""
+    ) {
       //alert("Por favor, llena todos los campos");
       // return;
       setError("Por favor, llena todos los campos");
@@ -134,7 +148,6 @@ const RegisterPetClient = () => {
       }
     }
 
-
     const data = {
       nombre: nombre,
       sexo: sexo,
@@ -147,7 +160,7 @@ const RegisterPetClient = () => {
       peso: parseFloat(peso),
       imagen: imagen,
     };
-    console.log(data);
+    //console.(data);
 
     setPetsData([...petsData, data]);
     console.log(petsData);
@@ -163,12 +176,21 @@ const RegisterPetClient = () => {
     setImagen("");
     document.getElementById("imagen-mascota").value = "";
     setProfilePetImg(defaultImg);
-  }
+  };
 
   const handleSubmit = async (e) => {
-    console.log(petsData);
+    //console.(petsData);
 
-    if (nombre !== "" || sexo !== "" || tipo !== "" || raza !== "" || edad !== "" || estado_salud !== "" || tamano !== "" || peso !== "") {
+    if (
+      nombre !== "" ||
+      sexo !== "" ||
+      tipo !== "" ||
+      raza !== "" ||
+      edad !== "" ||
+      estado_salud !== "" ||
+      tamano !== "" ||
+      peso !== ""
+    ) {
       // alert("Por favor, agrega la mascota a la lista de mascotas");
       // return;
       setError("Por favor, agrega la mascota a la lista de mascotas");
@@ -184,7 +206,6 @@ const RegisterPetClient = () => {
     }
 
     // setShowConfirmationModal(true);
-
 
     const cantidad_mascotas = petsData.length;
     let respuestas = [];
@@ -202,41 +223,46 @@ const RegisterPetClient = () => {
           estado_salud: petsData[i].estado_salud,
           tamano: petsData[i].tamano,
           peso: petsData[i].peso,
-        }
+        };
 
         if (petsData[i].imagen) {
-          currentPet.imagen = petsData[i].imagen, petsData[i].imagen.name;
+          (currentPet.imagen = petsData[i].imagen), petsData[i].imagen.name;
         }
-        console.log(currentPet);
+        //console.(currentPet);
         let id_mascota = 0;
 
         api
-          .post('registro/mascota/', currentPet, {
+          .post("registro/mascota/", currentPet, {
             headers: {
-              'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
+              Authorization: `Bearer ${sessionStorage.getItem("token")}`,
               "Content-Type": "multipart/form-data",
-            }
+            },
           })
           .then((res) => {
             if (res.status === 201) {
               id_mascota = parseInt(res.data.id);
-              console.log(id_mascota);
-              console.log("Mascota registrada correctamente");
-              if (currentPet.estado_salud === "Enfermo" || currentPet.estado_salud === "Recuperación") {
+              //console.(id_mascota);
+              //console.("Mascota registrada correctamente");
+              if (
+                currentPet.estado_salud === "Enfermo" ||
+                currentPet.estado_salud === "Recuperación"
+              ) {
                 const padecimiento = {
                   id_mascota: id_mascota,
                   padecimiento: petsData[i].padecimiento,
-                }
+                };
 
                 api
-                  .post('registro/mascota/padecimiento/', padecimiento, {
+                  .post("registro/mascota/padecimiento/", padecimiento, {
                     headers: {
-                      'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
-                    }
+                      Authorization: `Bearer ${sessionStorage.getItem(
+                        "token"
+                      )}`,
+                    },
                   })
                   .then((res) => {
                     if (res.status === 201) {
-                      console.log("Padecimiento registrado correctamente");
+                      //console.("Padecimiento registrado correctamente");
                     } else {
                       error_vali = true;
                       setError(res.data.message);
@@ -249,14 +275,17 @@ const RegisterPetClient = () => {
                     error_vali = true;
                     console.log(error);
                     // alert("Error al registrar padecimiento");
-                    setError(error.response ? error.response.data.detail : "Error al registrar padecimiento");
+                    setError(
+                      error.response
+                        ? error.response.data.detail
+                        : "Error al registrar padecimiento"
+                    );
                     setShowErrorModal(true);
                   });
-
               }
             } else {
               error_vali = true;
-              console.log(res.data)
+              console.log(res.data);
               console.log("Error al registrar mascota");
               setError(res.data.message);
               setShowErrorModal(true);
@@ -267,17 +296,24 @@ const RegisterPetClient = () => {
             console.log(error);
             // alert("Error al registrar mascota");
             error_vali = true;
-            setError(error.response ? error.response.data.detail : "Error al registrar mascota");
+            setError(
+              error.response
+                ? error.response.data.detail
+                : "Error al registrar mascota"
+            );
             setShowErrorModal(true);
           });
-
       }
     } catch (error) {
       console.log(error);
       error_vali = true;
-      setError(error.response ? error.response.data.detail : "Error al registrar mascota");
+      setError(
+        error.response
+          ? error.response.data.detail
+          : "Error al registrar mascota"
+      );
       setShowErrorModal(true);
-      
+
       // alert("Error al registrar mascota");
     }
 
@@ -286,8 +322,7 @@ const RegisterPetClient = () => {
       setShowSuccessModal(true);
       setDirNavigate("/perfil-usuario");
     }
-  }
-
+  };
 
   const handleCloseSuccessModal = () => {
     setShowSuccessModal(false);
@@ -301,24 +336,20 @@ const RegisterPetClient = () => {
   };
 
   const handleYesConfirmationModal = async (e) => {
-    
     setIsLoading(true);
-    await new Promise(r => setTimeout(r, 2000));
+    await new Promise((r) => setTimeout(r, 2000));
     await handleSubmit(e);
     setIsLoading(false);
     handleNoConfirmationModal();
-    
-  }
+  };
 
   const handleNoConfirmationModal = () => {
     setShowConfirmationModal(false);
-  }
+  };
 
   const handleOpenConfirmationModal = () => {
     setShowConfirmationModal(true);
-  }
-
-
+  };
 
   if (isLoading) {
     return <LoadingPage />;
@@ -338,13 +369,16 @@ const RegisterPetClient = () => {
           />
         </div>
         <div className="register-pet-container">
-          <form >
-            <h2>
-              ¡Hola! Eres {tipoUsuario} ¡Nos gustaría que la registraras!
-            </h2>
+          <form>
+            <h2>¡Hola! Eres {tipoUsuario} ¡Nos gustaría que la registraras!</h2>
 
             <div className="photo-container">
-              <img src={profilePetImg} id="petImg" alt="Foto-Mascota" className="photo-container-img"></img>
+              <img
+                src={profilePetImg}
+                id="petImg"
+                alt="Foto-Mascota"
+                className="photo-container-img"
+              ></img>
             </div>
 
             <div className="form-group">
@@ -360,9 +394,10 @@ const RegisterPetClient = () => {
                   // value={imagen}
                   onChange={handleChangeImg}
                 />
-                
+
                 <span className="tooltip-registro-mascota-text">
-                  Este campo no es obligatorio. Ingresa la imagen de tu mascota, en formato .PNG o .JPEG.
+                  Este campo no es obligatorio. Ingresa la imagen de tu mascota,
+                  en formato .PNG o .JPEG.
                 </span>
               </div>
             </div>
@@ -385,7 +420,6 @@ const RegisterPetClient = () => {
                     Este campo es obligatorio. Ingresa el nombre de tu mascota.
                   </span>
                 </div>
-
               </div>
             </div>
             <div className="form-row">
@@ -394,7 +428,13 @@ const RegisterPetClient = () => {
                   ¿Qué tipo de mascota tienes?
                 </label>
                 <div className="tooltip-registro-mascota">
-                  <select className="input-register-pet-type" name="tipo" value={tipo} onChange={(e) => setTipo(e.target.value)} required>
+                  <select
+                    className="input-register-pet-type"
+                    name="tipo"
+                    value={tipo}
+                    onChange={(e) => setTipo(e.target.value)}
+                    required
+                  >
                     <option defaultValue>Selecciona...</option>
                     <option>Perro</option>
                     <option>Gato</option>
@@ -407,7 +447,6 @@ const RegisterPetClient = () => {
                     Este campo es obligatorio. Ingresa el tipo de mascota.
                   </span>
                 </div>
-
               </div>
               <div className="form-group col-md-6">
                 <label className="label-register-pet-breed">Raza</label>
@@ -422,10 +461,10 @@ const RegisterPetClient = () => {
                     required
                   />
                   <span className="tooltip-registro-mascota-text-m">
-                    Este campo es obligatorio. Ingresa la raza de tu mascota. Si es un mestizo, ingresa "Mestizo".
+                    Este campo es obligatorio. Ingresa la raza de tu mascota. Si
+                    es un mestizo, ingresa "Mestizo".
                   </span>
                 </div>
-
               </div>
             </div>
             <div className="form-row">
@@ -434,17 +473,23 @@ const RegisterPetClient = () => {
                   Estado de salud
                 </label>
                 <div className="tooltip-registro-mascota">
-                  <select className="input-register-pet-type" name="estado_salud" value={estado_salud} required onChange={handleEstadoSaludChange}>
+                  <select
+                    className="input-register-pet-type"
+                    name="estado_salud"
+                    value={estado_salud}
+                    required
+                    onChange={handleEstadoSaludChange}
+                  >
                     <option defaultValue>Selecciona...</option>
                     <option>Saludable</option>
                     <option>Enfermo</option>
                     <option>Recuperación</option>
                   </select>
                   <span className="tooltip-registro-mascota-text">
-                    Este campo es obligatorio. Ingresa el estado de salud de tu mascota.
+                    Este campo es obligatorio. Ingresa el estado de salud de tu
+                    mascota.
                   </span>
                 </div>
-
               </div>
               <div className="form-group col-md-6">
                 <label
@@ -463,21 +508,21 @@ const RegisterPetClient = () => {
                     required
                   >
                     <option defaultValue>Selecciona...</option>
-                    <option value={'M'}>Macho</option>
-                    <option value={'H'}>Hembra</option>
+                    <option value={"M"}>Macho</option>
+                    <option value={"H"}>Hembra</option>
                   </select>
                   <span className="tooltip-registro-mascota-text-l">
                     Este campo es obligatorio. Ingresa el sexo de tu mascota.
                   </span>
                 </div>
-
               </div>
             </div>
 
             {estado_salud === "Enfermo" || estado_salud === "Recuperación" ? (
               <div className="form-group">
                 <label className="label-register-pet-breed">
-                  Si seleccionaste "Enfermo" o "Recuperación", ¿Qué padecimiento tiene?
+                  Si seleccionaste "Enfermo" o "Recuperación", ¿Qué padecimiento
+                  tiene?
                 </label>
                 <div className="input-photo-container">
                   <div className="tooltip-registro-mascota">
@@ -491,14 +536,14 @@ const RegisterPetClient = () => {
                       required
                     />
                     <span className="tooltip-registro-mascota-text-m">
-                      Si seleccionaste "Enfermo" o "Recuperación", este campo es obligatorio. Ingresa una breve descripción del padecimiento de tu mascota.
+                      Si seleccionaste "Enfermo" o "Recuperación", este campo es
+                      obligatorio. Ingresa una breve descripción del
+                      padecimiento de tu mascota.
                     </span>
                   </div>
-
                 </div>
               </div>
             ) : null}
-
 
             <div className="form-row">
               <div className="form-group col-md-6">
@@ -522,7 +567,8 @@ const RegisterPetClient = () => {
                     max={50}
                   />
                   <span className="tooltip-registro-mascota-text-m">
-                    Este campo es obligatorio. Ingresa la edad de tu mascota en años. Si es menor a un año, ingresa 0.
+                    Este campo es obligatorio. Ingresa la edad de tu mascota en
+                    años. Si es menor a un año, ingresa 0.
                   </span>
                 </div>
               </div>
@@ -543,15 +589,14 @@ const RegisterPetClient = () => {
                     required
                   >
                     <option defaultValue>Selecciona...</option>
-                    <option value={'P'}>Pequeño</option>
-                    <option value={'M'}>Mediano</option>
-                    <option value={'G'}>Grande</option>
+                    <option value={"P"}>Pequeño</option>
+                    <option value={"M"}>Mediano</option>
+                    <option value={"G"}>Grande</option>
                   </select>
                   <span className="tooltip-registro-mascota-text-l">
                     Este campo es obligatorio. Ingresa el tamaño de tu mascota.
                   </span>
                 </div>
-
               </div>
               <div className="form-group col-md-2">
                 <label
@@ -574,13 +619,12 @@ const RegisterPetClient = () => {
                     required
                   />
                   <span className="tooltip-registro-mascota-text-xl">
-                    Este campo es obligatorio. Ingresa el peso de tu mascota en kg.
+                    Este campo es obligatorio. Ingresa el peso de tu mascota en
+                    kg.
                   </span>
                 </div>
-
               </div>
             </div>
-
 
             <div className="pet-cards-container">
               {petsData.map((pet, index) => (
@@ -589,25 +633,32 @@ const RegisterPetClient = () => {
                   <p>Tipo: {pet.tipo}</p>
                   <p>Raza: {pet.raza}</p>
                   <p>Estado de salud: {pet.estado_salud}</p>
-                  {pet.estado_salud === "Enfermo" || pet.estado_salud === "Recuperación" ? (
+                  {pet.estado_salud === "Enfermo" ||
+                  pet.estado_salud === "Recuperación" ? (
                     <p>Padecimiento: {pet.padecimiento}</p>
                   ) : null}
                   <p>Edad: {pet.edad} año(s)</p>
                   <p>Tamaño: {pet.tamano}</p>
                   <p>Peso: {pet.peso} kg</p>
                 </div>
-              ))
-
-              }
+              ))}
             </div>
             <div className="container-btns-pet-register">
               <div className="d-flex flex-row">
-                <button type="submit" onClick={handleOpenConfirmationModal} className="btn-create-register-pet">
+                <button
+                  type="submit"
+                  onClick={handleOpenConfirmationModal}
+                  className="btn-create-register-pet"
+                >
                   <i className="fas fa-paw"></i> ¡Crear!
                 </button>
-                <button type="submit" className="btn-register-pet" onClick={handleMascotas}>
+                <button
+                  type="submit"
+                  className="btn-register-pet"
+                  onClick={handleMascotas}
+                >
                   <i className="fas fa-plus"></i> Registrar mascota
-                  </button>
+                </button>
               </div>
             </div>
           </form>

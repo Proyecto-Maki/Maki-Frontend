@@ -40,14 +40,13 @@ function Makipaws() {
   const [categoria, setCategoria] = useState(null);
 
   const handleDetalleCuidador = (idCuidador) => {
-    console.log("ID del cuidador:", idCuidador);
+    //console.("ID del cuidador:", idCuidador);
     navigate("/info-cuidador", { state: { idCuidador } });
   };
 
   useEffect(() => {
-
     const categoria_a = categoria ? categoria.name : null;
-    console.log("Categoría seleccionada:", categoria_a);
+    //console.("Categoría seleccionada:", categoria_a);
     const params = { categoria: categoria_a };
 
     // api
@@ -67,13 +66,13 @@ function Makipaws() {
 
     api
       .get("cuidadores-categoria/", {
-        params : params,
+        params: params,
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
       .then((response) => {
-        console.log("Datos recibidos:", response.data); // Verificar datos en consola
+        //console.("Datos recibidos:", response.data); // Verificar datos en consola
         setCuidadores(response.data);
         setIsLoading(false);
       })
@@ -91,10 +90,7 @@ function Makipaws() {
       <div className="makipaws-container">
         <Navbar />
         <MakipawsSlider />
-        <Categories 
-          categoria={categoria} 
-          setCategoria={setCategoria}  
-        />
+        <Categories categoria={categoria} setCategoria={setCategoria} />
         <main className="main-content-makipaws">
           <div className="container py-5">
             <div className="row-makipaws">

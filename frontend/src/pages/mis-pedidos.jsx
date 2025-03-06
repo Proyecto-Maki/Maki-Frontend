@@ -39,7 +39,7 @@ const Pedidos = () => {
   // ];
 
   const handleVerDetalle = (pedido) => {
-    console.log(`Ver detalle del pedido ${pedido.id}`);
+    //console.(`Ver detalle del pedido ${pedido.id}`);
     navigate("/mi-pedido", { state: { pedido } });
   };
 
@@ -49,7 +49,7 @@ const Pedidos = () => {
       return;
     }
 
-    console.log(`Obteniendo pedidos para el usuario: ${email}`);
+    //console.(`Obteniendo pedidos para el usuario: ${email}`);
 
     api
       .get(`pedidos/user/${email}/`, {
@@ -59,8 +59,8 @@ const Pedidos = () => {
       })
       .then((response) => {
         if (response.status === 200) {
-          console.log("Pedidos recibidos:", response.data);
-          console.log("Datos recibidos de la API:", response.data);
+          //console.("Pedidos recibidos:", response.data);
+          //console.("Datos recibidos de la API:", response.data);
 
           setPedidos(response.data);
         } else {
